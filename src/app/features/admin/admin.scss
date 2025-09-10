@@ -1,0 +1,21 @@
+.admin-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidenav-container {
+  flex: 1;
+}
+
+.sidenav {
+  width: 280px;
+  background: #ffffff;
+  border-right: 1px solid #e0e0e0;
+}
+
+.main-content {
+  width: 100%;
+  min-height: calc(100vh - 320px);
+  padding: 24px;
+  background: #f5f7fa;
+}

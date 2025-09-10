@@ -1,0 +1,53 @@
+<div class="sidebar">
+  <nav class="sidebar-nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a mat-button routerLink="/admin/users" routerLinkActive="active" class="nav-link">
+          <span>Usuario</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a mat-button routerLink="/admin/bank-accounts" routerLinkActive="active" class="nav-link">
+          <span>Banco</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a mat-button routerLink="/admin/clients" routerLinkActive="active" class="nav-link">
+          <span>Cliente</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a mat-button routerLink="/admin/pix/list" [class.active]="isActiveRoute(['/admin/pix/list', '/admin/pix/new'])" class="nav-link">
+          <span>PIX</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a mat-button routerLink="/admin/withdrawals" routerLinkActive="active" class="nav-link">
+          <span>Aprovar saques</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a mat-button routerLink="/admin/notifications" routerLinkActive="active" class="nav-link">
+          <span>Notificação de solicitação</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a mat-button routerLink="/admin/batch-bank" routerLinkActive="active" class="nav-link">
+          <span>Alterar banco em lote</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a mat-button routerLink="/admin/logs" routerLinkActive="active" class="nav-link">
+          <span>Relatório de logs</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
