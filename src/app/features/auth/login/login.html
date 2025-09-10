@@ -7,9 +7,9 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline" >
       <mat-label>Seu email</mat-label>
-      <input matInput type="email" formControlName="email" />
+      <input class="loginInputs" matInput type="email" formControlName="email" />
       <mat-icon matPrefix>email</mat-icon>
-      <mat-error>Dados inválidos</mat-error>
+      <mat-error class="error">Dados inválidos</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -34,9 +34,7 @@
     </mat-form-field>
 
     <div class="form-actions">
-      <a routerLink="/auth/forgot-password" class="forgot-password-link"
-        >Esqueceu a senha?</a
-      >
+      <a href="/auth/recovery-password" class="forgot-password-link">Esqueceu a senha?</a>
 
       <button
         mat-raised-button

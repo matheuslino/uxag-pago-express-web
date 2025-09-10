@@ -4,7 +4,6 @@
   align-items: center;
   width: 100%;
   --gray-200: rgba(255, 255, 255, 0) !important;
-
 }
 
 .login-container {
@@ -39,28 +38,31 @@ form {
   width: 100%;
   display: flex;
   flex-direction: column;
+  border-color: #C9C7C1;
 }
 
+
 .mat-form-field {
-  margin-bottom: 24px;
-  width: 100%; 
+  margin-bottom: 8px;
+  width: 100%;
 }
 
 .form-actions {
+  display: flex; /* Garante o alinhamento lado a lado */
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-top: 0px;
+  margin-top: 0px !important;
 }
 
-
-
 .forgot-password-link {
+  pointer-events:painted !important;
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #4a4a4a;
   text-decoration: underline;
+
 
   &:hover {
     color: #1f2937;
@@ -104,17 +106,16 @@ button.login-button {
   }
 
   .mat-mdc-form-field-outline-color {
-    color: #c9c7c1 !important;
+    color: #cac4d0 !important;
   }
 
   .mat-mdc-form-field-focus .mat-mdc-form-field-outline-color,
-  .mat-mdc-form-field:hover .mat-mdc-form-field-outline-color,
-  .mat-mdc-form-field.mat-mdc-form-field-invalid .mat-mdc-form-field-outline-color {
+  .mat-mdc-form-field:hover .mat-mdc-form-field-outline-color {
     color: #5c4896 !important;
   }
 
-  .mat-mdc-form-field.mat-mdc-form-field-invalid .mdc-floating-label,
-  .mat-mdc-form-field.mat-mdc-form-field-invalid .mat-icon {
+  .mat-mdc-form-field.mat-form-field-invalid .mdc-floating-label,
+  .mat-mdc-form-field.mat-form-field-invalid .mat-icon {
     color: #6b7280 !important;
   }
 
@@ -133,13 +134,16 @@ button.login-button {
     font-weight: 400;
   }
 
- 
 
   .mat-mdc-form-field-error {
     font-family: "Inter", sans-serif;
     font-size: 12px;
-    color: #ff0000;
-    margin-top: 0px; 
     text-align: left;
+    margin-top: -2px;
+
+  }
+  .mdc-text-field--invalid{
+    border-radius: 20% !important;
+    border-width: 2px !important;
   }
 }
