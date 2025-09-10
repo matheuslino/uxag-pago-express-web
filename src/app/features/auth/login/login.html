@@ -4,47 +4,69 @@
     <p>Área exclusiva para cliente Pago Express</p>
   </div>
 
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline" >
-      <mat-label>Seu email</mat-label>
-      <input class="loginInputs" matInput type="email" formControlName="email" />
-      <mat-icon matPrefix>email</mat-icon>
-      <mat-error class="error">Dados inválidos</mat-error>
-    </mat-form-field>
+  @if (showUserList && savedUsers.length > 0) {
+    <div class="user-selection-view">
+      <div class="user-card">
+        <div class="user-info" (click)="selectUser(savedUsers[0])">
+          <img [src]="getAvatar(savedUsers[0])" alt="Avatar do usuário" class="user-avatar">
+          <span class="user-name">Bem vindo, {{ savedUsers[0].Nome }}</span>
+        </div>
+        <button class="remove-button" (click)="removeUser(savedUsers[0])">Remove</button>
+      </div>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Sua senha</mat-label>
-      <input
-        matInput
-        [type]="hidePassword ? 'password' : 'text'"
-        formControlName="password"
-      />
-      <mat-icon matPrefix>lock</mat-icon>
-      <button
-        mat-icon-button
-        matSuffix
-        type="button"
-        (click)="hidePassword = !hidePassword"
-      >
-        <mat-icon>{{
-          hidePassword ? "visibility_off" : "visibility"
-        }}</mat-icon>
-      </button>
-      <mat-error>Dados inválidos</mat-error>
-    </mat-form-field>
-
-    <div class="form-actions">
-      <a href="/auth/recovery-password" class="forgot-password-link">Esqueceu a senha?</a>
-
-      <button
-        mat-raised-button
-        type="submit"
-        class="login-button"
-        [disabled]="isLoading"
-      >
-        <mat-icon *ngIf="isLoading">hourglass_empty</mat-icon>
-        {{ isLoading ? "Entrando..." : "Entrar" }}
-      </button>
+      <div class="form-actions">
+        <a href="/auth/recovery-password" class="forgot-password-link">Esqueci a senha?</a>
+        <button
+          mat-raised-button
+          class="login-button"
+          [disabled]="isLoading"
+          (click)="selectUser(savedUsers[0])"
+        >
+          <mat-icon *ngIf="isLoading">hourglass_empty</mat-icon>
+          {{ isLoading ? 'Entrando...' : 'Entrar' }}
+        </button>
+      </div>
     </div>
-  </form>
+  } @else {
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Seu email</mat-label>
+        <input class="loginInputs" matInput type="email" formControlName="email" />
+        <mat-icon matPrefix>email</mat-icon>
+        <mat-error class="error">Dados inválidos</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Sua senha</mat-label>
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <mat-icon matPrefix>lock</mat-icon>
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hidePassword = !hidePassword"
+        >
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error>Dados inválidos</mat-error>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <a href="/auth/recovery-password" class="forgot-password-link">Esqueci a senha?</a>
+        <button
+          mat-raised-button
+          type="submit"
+          class="login-button"
+          [disabled]="isLoading || loginForm.invalid"
+        >
+          <mat-icon *ngIf="isLoading">hourglass_empty</mat-icon>
+          {{ isLoading ? 'Entrando...' : 'Entrar' }}
+        </button>
+      </div>
+    </form>
+  }
 </div>
