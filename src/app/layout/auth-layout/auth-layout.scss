@@ -1,13 +1,8 @@
-
 .auth-container {
   display: grid;
   grid-template-columns: 45% 55%;
   width: 100%;
   min-height: 100vh;
-
-  @media (max-width: 992px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .auth-image-side {
@@ -20,54 +15,51 @@
   background-image: url('/assets/images/fundo_login.png');
   background-size: cover;
   background-position: center;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0);
-    z-index: 1;
-  }
-
-  @media (max-width: 992px) {
-    display: none;
-  }
+.auth-image-side::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 1;
 }
 
 .text-content {
   position: relative;
   z-index: 2;
   text-align: center;
+}
 
-  .logo {
-    margin-bottom: 3.5rem;
-    img {
-      width: 94px;
-      height: 38px;
-    }
-  }
+.text-content .logo {
+  margin-bottom: 3.5rem;
+}
 
-  h2 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 140%;
-    max-width: 516px;
-    margin: 0 auto 1.5rem auto;
-  }
+.text-content .logo img {
+  width: 94px;
+  height: 38px;
+}
 
-  p {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 140%;
-    opacity: 0.9;
-    max-width: 391px;
-    margin: 0 auto;
-  }
+.text-content h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 140%;
+  max-width: 516px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.text-content p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 140%;
+  opacity: 0.9;
+  max-width: 391px;
+  margin: 0 auto;
 }
 
 .auth-form-side {
@@ -76,8 +68,48 @@
   align-items: center;
   padding: 3rem;
   background-color: #ffffff;
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 992px) {
+  .auth-container {
+    display: block;
+    background-color: #ffffff;
+  }
+
+  .auth-image-side {
+    height: 45vh;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+  }
+
+  .text-content {
+    text-align: center;
+  }
+
+  .text-content .logo {
+    margin-bottom: 2rem;
+  }
+
+  .text-content h2 {
+    font-size: 24px; 
+    max-width: 100%;
+    margin: 0 0 1rem 0;
+  }
+
+  .text-content p {
+    font-size: 14px; 
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .auth-form-side {
+    margin-top: -32px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    align-items: flex-start;
     padding: 2.5rem 1.5rem;
+    height: calc(55vh + 32px);
+    z-index: 10;
+    position: relative;
   }
 }
