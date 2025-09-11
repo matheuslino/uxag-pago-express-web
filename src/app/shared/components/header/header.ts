@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, LOCALE_ID } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,12 +7,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { filter, map } from 'rxjs/operators';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt-BR');
 
 interface MenuItem {
   path: string;
   label: string;
-  icon: string;
   active?: boolean;
 }
 
@@ -24,8 +27,15 @@ interface Notification {
   createdAt: Date;
 }
 
+interface Wallet {
+  nome: string;
+  saldo: number;
+}
+
+
 @Component({
   selector: 'app-header',
+  standalone: true,
   imports: [
     RouterModule,
     CommonModule,
@@ -35,18 +45,39 @@ interface Notification {
     MatMenuModule,
     MatBadgeModule,
     MatDividerModule,
+    MatSidenavModule,
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })
 export class Header implements OnInit {
   imageLoaded = true;
-  unreadNotifications = 3;
+  unreadNotifications = 0;
+  addWalletPlaceholders: any[] = [];
+  greeting = '';
+  isBalanceVisible = false;
+
+  userName = 'Antônio';
+  userRole = 'Gerente de Contas';
+  userEmail = 'antonio.coutinho@example.com';
+  accountNumber = '#1132';
+  totalBalance = 12200.50;
+  balanceChangePercentage = 9;
 
   menuItems: MenuItem[] = [
-    { path: '/dashboard', label: 'Painel', icon: 'dashboard' },
-    { path: '/admin', label: 'Administração', icon: 'people' },
-    { path: '/wallets', label: 'Carteira', icon: 'account_balance_wallet' }
+    { path: '/dashboard', label: 'Painel' },
+    { path: '/admin', label: 'Administração' },
+    { path: '/wallets', label: 'Carteira' },
+    { path: '/transacoes', label: 'Transações' },
+    { path: '/relatorios', label: 'Relatórios' }
+  ];
+
+  wallets: Wallet[] = [
+    { nome: 'Barbearia Shelton', saldo: 1422.09 },
+    { nome: 'Soares Distribuidora', saldo: 3413.09 },
   ];
 
   notifications: Notification[] = [
@@ -55,28 +86,27 @@ export class Header implements OnInit {
       title: 'PIX Recebido',
       message: 'Você recebeu R$ 250,00 via PIX de João Silva',
       isRead: false,
-      createdAt: new Date('2024-01-20T10:30:00')
+      createdAt: new Date()
     },
     {
       id: '2',
       title: 'Transferência Realizada',
       message: 'Transferência de R$ 1.500,00 realizada com sucesso',
       isRead: false,
-      createdAt: new Date('2024-01-19T14:15:00')
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 1))
     },
     {
       id: '3',
       title: 'Nova chave PIX cadastrada',
       message: 'Sua chave PIX por telefone foi cadastrada com sucesso',
-      isRead: false,
-      createdAt: new Date('2024-01-20T08:00:00')
+      isRead: true,
+      createdAt: new Date(new Date().setDate(new Date().getDate() - 2))
     }
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    // Atualizar item ativo baseado na rota atual
     this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd),
@@ -86,8 +116,33 @@ export class Header implements OnInit {
         this.updateActiveMenuItem(url);
       });
 
-    // Calcular notificações não lidas
+    this.updateActiveMenuItem(this.router.url);
     this.updateUnreadCount();
+    this.setupWalletPlaceholders();
+    this.setGreeting();
+  }
+  
+  toggleBalanceVisibility(): void {
+    this.isBalanceVisible = !this.isBalanceVisible;
+  }
+
+  private setGreeting(): void {
+    const hour = new Date().getHours();
+    if (hour < 12) {
+      this.greeting = 'Bom dia';
+    } else if (hour < 18) {
+      this.greeting = 'Boa tarde';
+    } else {
+      this.greeting = 'Boa noite';
+    }
+  }
+
+  private setupWalletPlaceholders(): void {
+    const maxSlots = 3;
+    const placeholderCount = this.wallets.length < maxSlots 
+      ? maxSlots - this.wallets.length 
+      : 0;
+    this.addWalletPlaceholders = Array(placeholderCount).fill(0);
   }
 
   private updateActiveMenuItem(url: string): void {
@@ -100,18 +155,23 @@ export class Header implements OnInit {
     this.unreadNotifications = this.notifications.filter(n => !n.isRead).length;
   }
 
-  onImageError(event: any): void {
-    console.log('Erro ao carregar imagem:', event);
+  onImageError(): void {
     this.imageLoaded = false;
   }
 
   getUserInitials(): string {
-    return 'AC';
+    const names = this.userName.split(' ');
+    if (names.length > 1) {
+      return `${names[0][0]}${names[names.length - 1][0]}`.toUpperCase();
+    }
+    return this.userName.substring(0, 2).toUpperCase();
   }
 
   markAsRead(notification: Notification): void {
-    notification.isRead = true;
-    this.updateUnreadCount();
+    if (!notification.isRead) {
+      notification.isRead = true;
+      this.updateUnreadCount();
+    }
   }
 
   logout(): void {
