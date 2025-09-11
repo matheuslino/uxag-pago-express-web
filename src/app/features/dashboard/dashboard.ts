@@ -7,7 +7,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 
 import { BankConfigService } from '../../services/bank-config.service';
+import { TransactionConfigService } from '../../services/transaction-config.service';
 import { BankConfigModalComponent } from '../../shared/components/bank-config-modal/bank-config-modal';
+import { TransactionConfigModalComponent } from '../../shared/components/transaction-config-modal/transaction-config-modal';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,14 +21,16 @@ import { BankConfigModalComponent } from '../../shared/components/bank-config-mo
     MatCardModule
   ],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.scss'
+  styleUrls: ['./dashboard.scss']
 })
 export class Dashboard {
   private dialog = inject(MatDialog);
   private bankConfigService = inject(BankConfigService);
+  private transactionConfigService = inject(TransactionConfigService);
 
-  // Signal reativo para configuração atual
+  // Signals reativos
   bankConfig = this.bankConfigService.bankConfig;
+  transactionConfig = this.transactionConfigService.transactionConfig;
 
   openBankConfigModal() {
     const dialogRef = this.dialog.open(BankConfigModalComponent, {
@@ -38,8 +42,22 @@ export class Dashboard {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Configuração salva:', result);
-        // Aqui você pode adicionar notificações de sucesso
+        console.log('Configuração bancária salva:', result);
+      }
+    });
+  }
+
+  openTransactionConfigModal() {
+    const dialogRef = this.dialog.open(TransactionConfigModalComponent, {
+      width: '800px',
+      maxWidth: '95vw',
+      disableClose: false,
+      autoFocus: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Configuração de transações salva:', result);
       }
     });
   }

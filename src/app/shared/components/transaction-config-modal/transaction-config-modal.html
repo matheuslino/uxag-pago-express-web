@@ -1,0 +1,146 @@
+<div class="modal-header">
+  <h2 class="titleModal" mat-dialog-title>Configuração transações</h2>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="paddingLeft">
+  <p class="modal-subtitle">Texto complementar que vem abaixo</p>
+</div>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-content class="modal-content">
+  <!-- Seção da Empresa -->
+  <div class="company-section">
+    <div class="company-info">
+      <div class="company-icon">
+        <mat-icon>business</mat-icon>
+      </div>
+      <div class="company-details">
+        <h3>Empresa</h3>
+        <p>{{ selectedCompany()?.name || '123 Milhas' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulário de Configurações -->
+  <form [formGroup]="transactionConfigForm" class="config-form">
+    <div class="config-grid">
+      <!-- Coluna Esquerda -->
+      <div class="config-column">
+        <div class="config-item">
+          <div class="config-label">
+            <span>Depósitos</span>
+            <small>Depósito de valores através do PIX</small>
+          </div>
+          <mat-slide-toggle formControlName="deposits" color="primary"></mat-slide-toggle>
+        </div>
+
+        <div class="config-item">
+          <div class="config-label">
+            <span>Depósitos de comissão</span>
+            <small>Depósito de valores através do PIX</small>
+          </div>
+          <mat-slide-toggle formControlName="depositCommission" color="primary"></mat-slide-toggle>
+        </div>
+
+        <div class="config-item">
+          <div class="config-label">
+            <span>Boleto</span>
+            <small>Depósito de valores através do PIX</small>
+          </div>
+          <mat-slide-toggle formControlName="boleto" color="primary"></mat-slide-toggle>
+        </div>
+
+        <div class="config-item">
+          <div class="config-label">
+            <span>Divisão</span>
+            <small>Depósito de valores através do PIX</small>
+          </div>
+          <mat-slide-toggle formControlName="division" color="primary"></mat-slide-toggle>
+        </div>
+
+        <div class="config-item">
+          <div class="config-label">
+            <span>Pagamento de contas</span>
+            <small>Depósito de valores através do PIX</small>
+          </div>
+          <mat-slide-toggle formControlName="billPayment" color="primary"></mat-slide-toggle>
+        </div>
+
+        <div class="config-item">
+          <div class="config-label">
+            <span>Cartão de crédito</span>
+            <small>Depósito de valores através do PIX</small>
+          </div>
+          <mat-slide-toggle formControlName="creditCard" color="primary"></mat-slide-toggle>
+        </div>
+      </div>
+
+      <!-- Coluna Direita -->
+      <div class="config-column">
+        <div class="config-item">
+          <div class="config-label">
+            <span>Saques</span>
+            <small>Através do PIX</small>
+          </div>
+          <mat-slide-toggle formControlName="withdrawals" color="primary"></mat-slide-toggle>
+        </div>
+
+        <div class="config-item">
+          <div class="config-label">
+            <span>Transferência</span>
+            <small>Através do PIX</small>
+          </div>
+          <mat-slide-toggle formControlName="transfer" color="primary"></mat-slide-toggle>
+        </div>
+
+        <div class="config-item">
+          <div class="config-label">
+            <span>Saques para terceiros</span>
+            <small>Através do PIX</small>
+          </div>
+          <mat-slide-toggle formControlName="thirdPartyWithdrawals" color="primary"></mat-slide-toggle>
+        </div>
+
+        <div class="config-item">
+          <div class="config-label">
+            <span>Validação de saque</span>
+            <small>Através do PIX</small>
+          </div>
+          <mat-slide-toggle formControlName="checkValidation" color="primary"></mat-slide-toggle>
+        </div>
+
+        <div class="config-item">
+          <div class="config-label">
+            <span>Transferência carteira</span>
+            <small>Através do PIX</small>
+          </div>
+          <mat-slide-toggle formControlName="walletTransfer" color="primary"></mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-actions class="modal-actions">
+  <button mat-button class="buttonCancel" (click)="onCancel()">
+    Cancelar
+  </button>
+  <button 
+    mat-raised-button 
+    color="primary" 
+    class="buttonConfirm" 
+    (click)="onSave()" 
+    [disabled]="isLoading()">
+    @if (isLoading()) {
+      <mat-spinner diameter="20"></mat-spinner>
+    } @else {
+      Salvar
+    }
+  </button>
+</mat-dialog-actions>
