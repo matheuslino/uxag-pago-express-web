@@ -1,1 +1,71 @@
-<p>new works!</p>
+<div class="pix-list-bg">
+  <div class="pix-list-container">
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 18px;">
+      <a class="pix-list-add-key-btn" style="background: gray; color: #fff; border: none; border-radius: 24px; padding: 10px 28px; font-size: 1rem; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(108,58,214,0.08); transition: background 0.2s; text-decoration: none; display: inline-block;">
+        + adicionar nova chave
+      </a>
+    </div>
+    <div class="pix-list-select-row">
+      <div class="pix-list-select-section" style="width: 40%; padding: 8px 18px;">
+        <span class="pix-list-select-title">Cliente</span>
+        <select id="pix-client-select" class="pix-list-select" style="background: #fff; width: 280px; margin-top: 8px;">
+          <option selected>123 Milhas</option>
+        </select>
+      </div>
+      <div class="pix-list-client-info" style="width: 60%; background: #f6f6f6; border-radius: 5px; padding: 12px 18px; display: flex; align-items: center; justify-content: flex-start; height: 86px;">
+        <span style="display: inline-flex; align-items: center; justify-content: center; background: #fff; border-radius: 50%; padding: 6px; margin-right: 12px;">
+          <img src="/img/house.svg" alt="Avatar" style="width: 32px; height: 32px; border-radius: 70%; object-fit: cover;">
+        </span>
+        <div>
+          <span class="pix-list-select-title">Cliente</span>
+          <div class="pix-list-select-subtitle">123 milhas</div>
+        </div>
+      </div>
+    </div>
+    <div class="pix-list-results-section">
+      <h2 class="pix-list-results-title">Informações da chave</h2>
+      <div class="pix-list-results-info-row" style="display: flex; align-items: center; justify-content: space-between;">
+        <div class="pix-list-results-subtitle">Complete as informações de acordo com a chave desejada</div>
+      </div>
+  <hr style="border: none; border-top: 1px solid #ccc; margin: 18px 0 12px 0;">
+  <div style="color: #222; font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; margin-top: 8px; text-align: left;">Dados básicos</div>
+          <form class="pix-new-key-form" style="background: #f6f6f6; border-radius: 12px; padding: 24px; max-width: 600px; margin-left: auto; margin-right: 0; display: flex; flex-direction: column; align-items: flex-end; margin-top: 0; margin-bottom: 8px; position: relative;">
+          <div style="width: 100%; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; margin-top: 18px;">
+          </div>
+        <div style="display: flex; gap: 18px; width: 100%; justify-content: flex-end;">
+          <div class="pix-new-form-group" style="flex: 1;">
+            <label for="pix-key-name">Nome</label>
+            <input id="pix-key-name" type="text" value="Pix principal">
+          </div>
+          <div class="pix-new-form-group" style="flex: 1;">
+            <label for="pix-key-type">Tipo de chave</label>
+            <select id="pix-key-type">
+              <option selected>E-mail</option>
+              <option>CPF</option>
+              <option>CNPJ</option>
+              <option>Telefone</option>
+            </select>
+          </div>
+        </div>
+        <div class="pix-new-form-group" style="width: 100%; margin-top: 18px; margin-right: 26px;">
+          <label for="pix-key-value">Chave PIX</label>
+          <input id="pix-key-value" type="text" placeholder="Digite a chave PIX">
+        </div>
+      </form>
+    </div>
+  <hr style="border: none; border-top: 2px solid #bbb; margin: 24px 0 0 0;">
+  <div style="display: flex; flex-direction: column; margin-top: 0; background: #fff; padding: 18px 32px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+      <div style="display: flex; align-items: center; justify-content: center; width: 100%;">
+        <span style="font-size: 1rem; color: #000000; font-weight: 500; text-align: center;">Cadastro chave PIX: 123 Milhas</span>
+      </div>
+      <div style="display: flex; gap: 12px;">
+  <button type="button" style="background: #e0e0e0; color: #444; border: none; border-radius: 24px; padding: 10px 28px; font-size: 1rem; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: background 0.2s;" onclick="window.location.href='/admin/pix/list'">Cancelar</button>
+        <button type="submit" style="background: #6c3ad6; color: #fff; border: none; border-radius: 24px; padding: 10px 28px; font-size: 1rem; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(108,58,214,0.08); transition: background 0.2s;">Salvar</button>
+      </div>
+    </div>
+    <hr style="border: none; border-top: 1px solid #ccc; margin: 16px -32px 0 -32px; width: calc(100% + 64px);">
+  </div>
+    </div>
+  </div>
+
