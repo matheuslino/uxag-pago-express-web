@@ -1,0 +1,28 @@
+.dashboard-container {
+      padding: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+      color: #333;
+    }
+
+    .config-card {
+      max-width: 600px;
+    }
+
+    .current-config {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .current-config p {
+      margin: 0;
+    }
+
+    mat-card-actions {
+      padding-top: 16px;
+    }
