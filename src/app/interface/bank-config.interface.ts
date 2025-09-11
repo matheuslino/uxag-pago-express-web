@@ -1,4 +1,3 @@
-// src/app/interfaces/bank-config.interface.ts
 export interface BankConfig {
   id: string;
   companyName: string;

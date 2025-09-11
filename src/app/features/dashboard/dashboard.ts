@@ -1,4 +1,3 @@
-// src/app/pages/dashboard/dashboard.component.ts
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,6 +9,7 @@ import { BankConfigService } from '../../services/bank-config.service';
 import { TransactionConfigService } from '../../services/transaction-config.service';
 import { BankConfigModalComponent } from '../../shared/components/bank-config-modal/bank-config-modal';
 import { TransactionConfigModalComponent } from '../../shared/components/transaction-config-modal/transaction-config-modal';
+import { TransferConfigModalComponent } from '../../shared/components/transfer-config-modal/transfer-config-modal';
 
 @Component({
   selector: 'app-dashboard',
@@ -61,4 +61,21 @@ export class Dashboard {
       }
     });
   }
+
+  openTransferConfigModal() {
+  const dialogRef = this.dialog.open(TransferConfigModalComponent, {
+    width: '650px',
+    maxWidth: '95vw',
+    disableClose: false,
+    autoFocus: true,
+    panelClass: 'transfer-modal-panel'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      console.log('Configuração de transferência salva:', result);
+      // aqui você pode chamar o TransferConfigService.saveTransferConfig(result)
+    }
+  });
+}
 }

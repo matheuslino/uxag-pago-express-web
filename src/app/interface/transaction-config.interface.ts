@@ -1,4 +1,3 @@
-// src/app/interfaces/transaction-config.interface.ts
 export interface Company {
   id: string;
   name: string;

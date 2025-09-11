@@ -11,11 +11,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    // provideAnimationsAsync(),
     importProvidersFrom(MatDialogModule)
   ]
 };
-// function provideAnimationsAsync(): import("@angular/core").Provider | import("@angular/core").EnvironmentProviders {
-//   throw new Error('Function not implemented.');
-// }
 

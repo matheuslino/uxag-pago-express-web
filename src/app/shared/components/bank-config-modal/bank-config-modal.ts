@@ -1,4 +1,3 @@
-// src/app/components/bank-config-modal/bank-config-modal.component.ts
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';

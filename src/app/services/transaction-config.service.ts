@@ -1,4 +1,3 @@
-// src/app/services/transaction-config.service.ts
 import { Injectable, signal } from '@angular/core';
 import { Observable, of, delay } from 'rxjs';
 import { Company, TransactionConfig } from '../interface/transaction-config.interface';

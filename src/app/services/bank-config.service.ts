@@ -6,7 +6,6 @@ import { BankConfig, Company } from '../interface/bank-config.interface';
     providedIn: 'root'
 })
 export class BankConfigService {
-    // Signal para gerenciar estado reativo
     private bankConfigSignal = signal<BankConfig | null>(null);
 
     // Mock data para empresas
