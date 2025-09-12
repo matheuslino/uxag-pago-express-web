@@ -79,16 +79,44 @@ export const routes: Routes = [
         component: Dashboard,
       },
       {
-        path: 'admin',
+        path: 'administracao',
         component: Admin,
         children: [
           {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: '/administracao/users',
+          },
+          {
             path: 'clients',
             component: ListClient,
+            data: {
+              pageTitle: 'Clientes',
+              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+              breadcrumb: [
+                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Administração', path: '/administracao' },
+                { label: 'Clientes', path: '/administracao/clients' }
+              ],
+            }
           },
           {
             path: 'users',
             component: ListUser,
+            data: {
+              pageTitle: 'Usuários',
+              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+              breadcrumb: [
+                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Administração', path: '/administracao' },
+                { label: 'Usuários', path: '/administracao/users' }
+              ],
+              actionButton: {
+                show: true,
+                label: '+ Adicionar novo usuário',
+                icon: 'add'
+              }
+            }
           },
           {
             path: 'pix',
@@ -96,6 +124,20 @@ export const routes: Routes = [
               {
                 path: 'list',
                 component: ListPix,
+                data: {
+                  pageTitle: 'Chaves PIX',
+                  pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+                  breadcrumb: [
+                    { label: 'Painel', path: '/administracao/dashboard' },
+                    { label: 'Administração', path: '/administracao' },
+                    { label: 'Chaves PIX', path: '/administracao/pix/list' }
+                  ],
+                  actionButton: {
+                    show: true,
+                    label: '+ Adicionar nova chave',
+                    icon: 'add'
+                  }
+                }
               },
               {
                 path: 'new',
@@ -106,22 +148,67 @@ export const routes: Routes = [
           {
             path: 'bank-accounts',
             component: BankAccounts,
+            data: {
+              pageTitle: 'Contas bancárias',
+              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+              breadcrumb: [
+                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Administração', path: '/administracao' },
+                { label: 'Contas bancárias', path: '/administracao/bank-accounts' }
+              ],
+            }
           },
           {
             path: 'batch-bank',
             component: BatchBank,
+            data: {
+              pageTitle: 'Banco em lote',
+              pageSubtitle: 'Texto complementar abaixo',
+              breadcrumb: [
+                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Administração', path: '/administracao' },
+                { label: 'Contas bancárias', path: '/administracao/bank-accounts' }
+              ],
+            }
           },
           {
             path: 'logs',
             component: Logs,
+            data: {
+              pageTitle: 'Relatório de logs',
+              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+              breadcrumb: [
+                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Administração', path: '/administracao' },
+                { label: 'Contas bancárias', path: '/administracao/bank-accounts' }
+              ],
+            }
           },
           {
             path: 'notifications',
             component: Notifications,
+            data: {
+              pageTitle: 'Notificações',
+              pageSubtitle: 'Texto complementar abaixo',
+              breadcrumb: [
+                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Administração', path: '/administracao' },
+                { label: 'Notificações', path: '/administracao/notifications' }
+              ],
+            }
           },
           {
             path: 'withdrawals',
             component: Withdrawals,
+            data: {
+              pageTitle: 'Aprovar Saques',
+              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+              breadcrumb: [
+                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Administração', path: '/administracao' },
+                { label: 'Aprovar Saques', path: '/administracao/withdrawals' }
+              ],
+            }
           },
         ]
       },

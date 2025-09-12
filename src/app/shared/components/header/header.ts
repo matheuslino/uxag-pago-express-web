@@ -7,13 +7,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
-import { filter, map } from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
 
 interface MenuItem {
-  path: string;
   label: string;
-  icon: string;
-  active?: boolean;
+  path: string;
+  icon?: string;
+  active: boolean;
 }
 
 interface Notification {
@@ -24,10 +24,18 @@ interface Notification {
   createdAt: Date;
 }
 
+interface User {
+  name: string;
+  email: string;
+  role: string;
+  avatar?: string;
+}
+
 @Component({
   selector: 'app-header',
   imports: [
     RouterModule,
+    FormsModule,
     CommonModule,
     MatButtonModule,
     MatIconModule,
@@ -40,81 +48,98 @@ interface Notification {
   styleUrl: './header.scss'
 })
 export class Header implements OnInit {
-  imageLoaded = true;
-  unreadNotifications = 3;
-
   menuItems: MenuItem[] = [
-    { path: '/dashboard', label: 'Painel', icon: 'dashboard' },
-    { path: '/admin', label: 'Administração', icon: 'people' },
-    { path: '/wallets', label: 'Carteira', icon: 'account_balance_wallet' }
+    { label: 'Painel', path: '/dashboard', active: true },
+    { label: 'Administração', path: '/administracao/users', active: false },
+    { label: 'Carteira', path: '/wallets', active: false },
+    { label: 'Transações', path: '/transactions', active: false },
+    { label: 'Relatórios', path: '/reports', active: false }
   ];
 
   notifications: Notification[] = [
     {
       id: '1',
-      title: 'PIX Recebido',
-      message: 'Você recebeu R$ 250,00 via PIX de João Silva',
+      title: 'Nova transação',
+      message: 'Você recebeu um pagamento de R$ 1.250,00',
       isRead: false,
-      createdAt: new Date('2024-01-20T10:30:00')
+      createdAt: new Date()
     },
     {
       id: '2',
-      title: 'Transferência Realizada',
-      message: 'Transferência de R$ 1.500,00 realizada com sucesso',
+      title: 'Relatório mensal',
+      message: 'Seu relatório mensal está disponível',
       isRead: false,
-      createdAt: new Date('2024-01-19T14:15:00')
-    },
-    {
-      id: '3',
-      title: 'Nova chave PIX cadastrada',
-      message: 'Sua chave PIX por telefone foi cadastrada com sucesso',
-      isRead: false,
-      createdAt: new Date('2024-01-20T08:00:00')
+      createdAt: new Date(Date.now() - 3600000)
     }
   ];
+
+  currentUser: User = {
+    name: 'Antônio Coutinho',
+    email: 'antonio@example.com',
+    role: 'Gerente de Contas'
+  };
+
+  searchQuery: string = '';
+  currentLanguage: string = 'F';
+  imageLoaded: boolean = false;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Atualizar item ativo baseado na rota atual
-    this.router.events
-      .pipe(
-        filter(event => event instanceof NavigationEnd),
-        map((event: NavigationEnd) => event.urlAfterRedirects)
-      )
-      .subscribe(url => {
-        this.updateActiveMenuItem(url);
-      });
-
-    // Calcular notificações não lidas
-    this.updateUnreadCount();
   }
 
-  private updateActiveMenuItem(url: string): void {
-    this.menuItems.forEach(item => {
-      item.active = url.startsWith(item.path);
-    });
-  }
-
-  private updateUnreadCount(): void {
-    this.unreadNotifications = this.notifications.filter(n => !n.isRead).length;
-  }
-
-  onImageError(event: any): void {
-    console.log('Erro ao carregar imagem:', event);
-    this.imageLoaded = false;
+  get unreadNotifications(): number {
+    return this.notifications.filter(n => !n.isRead).length;
   }
 
   getUserInitials(): string {
-    return 'AC';
+    if (!this.currentUser.name) return 'AC';
+    return this.currentUser.name
+      .split(' ')
+      .map(name => name.charAt(0))
+      .join('')
+      .toUpperCase()
+      .substring(0, 2);
+  }
+
+  onImageError(event: any): void {
+    this.imageLoaded = false;
+  }
+
+  navigateToItem(item: MenuItem): void {
+    this.menuItems.forEach(menu => menu.active = false);
+    item.active = true;
+    this.router.navigate([item.path]);
+  }
+
+  onSearch(): void {
+    if (this.searchQuery.trim()) {
+      this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
+    }
+  }
+
+  openMessages(): void {
+    this.router.navigate(['/messages']);
   }
 
   markAsRead(notification: Notification): void {
     notification.isRead = true;
-    this.updateUnreadCount();
+  }
+
+  viewAllNotifications(): void {
+    this.router.navigate(['/notifications']);
   }
 
   logout(): void {
-    this.router.navigate(['/auth/login']);
+    localStorage.removeItem('auth_token');
+    this.router.navigate(['/login']);
+  }
+
+  goToProfile(): void {
+    this.router.navigate(['/settings/profile']);
+  }
+
+  goToSettings(): void {
+    this.router.navigate(['/settings']);
   }
 }

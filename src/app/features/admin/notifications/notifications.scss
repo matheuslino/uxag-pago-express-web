@@ -1,10 +1,8 @@
 .notifications-bg {
   background: #fff;
-  padding: 40px 0;
 }
 
 .notifications-container {
-  max-width: 1050px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -47,9 +45,8 @@
 .notifications-box {
   background: #f6f6f6;
   border: none;
-  border-radius: 10px;
   box-shadow: none;
-  padding: 12px 20px 20px 20px;
+  padding: 12px 20px;
   width: 100%;
   min-width: 0;
   max-width: 100%;
@@ -57,10 +54,10 @@
   flex-direction: column;
   gap: 18px;
   position: relative;
+  border-top: 1px solid #ccc;
 }
 
 .notifications-box + .notifications-box {
-  border-top: 1px solid #ccc;
   margin-top: 0;
   padding-top: 0;
 }
@@ -180,6 +177,5 @@
 .notifications-divider-webhook {
   border-top: 3px solid #ccc;
   width: 75vw;
-  margin-left: calc(-37.5vw + 50%);
   margin-bottom: 18px;
 }

@@ -1,15 +1,10 @@
 <mat-toolbar class="header-toolbar">
   <div class="header-content">
-    <!-- Left: Logo/Title -->
     <div class="header-left">
-      <div class="logo-section">
-        <mat-icon class="logo-icon">account_balance</mat-icon>
-        <h2 class="app-title">PagExpress</h2>
-      </div>
-    </div>
-    
-    <!-- Center: Horizontal Navigation Menu -->
-    <div class="header-center">
+      <a routerLink="/dashboard" routerLinkActive="active" class="logo-section">
+        <img src="assets/images/logo.svg" 
+          alt="User" />
+      </a>
       <nav class="horizontal-nav">
         <button 
           *ngFor="let item of menuItems" 
@@ -18,45 +13,51 @@
           routerLinkActive="active"
           class="nav-item"
           [class.active]="item.active">
-          <mat-icon>{{ item.icon }}</mat-icon>
-          <span>{{ item.label }}</span>
+          {{ item.label }}
         </button>
       </nav>
     </div>
     
-    <!-- Right: User Actions -->
     <div class="header-right">
-      <!-- Notifications -->
+      <div class="search-container">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Busque por algo..."
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="onSearch()">
+      </div>
+      
+      <button mat-icon-button class="action-btn" (click)="openMessages()">
+        <mat-icon>mail_outline</mat-icon>
+      </button>
+      
       <button mat-icon-button 
               [matMenuTriggerFor]="notificationMenu" 
-              class="notification-btn">
+              class="action-btn">
         <mat-icon [matBadge]="unreadNotifications" 
                   matBadgeColor="warn" 
                   matBadgeSize="small"
                   [matBadgeHidden]="unreadNotifications === 0">
-          notifications
+          notifications_none
         </mat-icon>
       </button>
       
-      <!-- User Menu -->
-      <button mat-icon-button 
-              [matMenuTriggerFor]="userMenu" 
-              class="user-menu-btn">
-        <div class="user-avatar-small">
-          <img src="assets/images/user-avatar.png" 
-                alt="User"
-                (error)="onImageError($event)"
-                *ngIf="imageLoaded" />
-          <span *ngIf="!imageLoaded" class="avatar-initials">
-            {{ getUserInitials() }}
-          </span>
+      <div class="user-profile" [matMenuTriggerFor]="userMenu">
+        <div class="user-avatar">
+          <img src="assets/images/avatar.png" 
+                alt="User" />
         </div>
-      </button>
+        <div class="user-info">
+          <div class="user-name">{{ currentUser?.name || 'Antônio Coutinho' }}</div>
+          <div class="user-role">{{ currentUser?.role || 'Gerente de Contas' }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </mat-toolbar>
 
-<!-- Notification Menu -->
 <mat-menu #notificationMenu="matMenu" class="notification-menu">
   <div class="notification-header">
     <h4>Notificações</h4>
@@ -81,28 +82,23 @@
     </div>
   </ng-template>
   <mat-divider></mat-divider>
-  <button mat-menu-item class="view-all-btn">
+  <button mat-menu-item class="view-all-btn" (click)="viewAllNotifications()">
     <mat-icon>visibility</mat-icon>
     <span>Ver todas</span>
   </button>
 </mat-menu>
 
-<!-- User Menu -->
 <mat-menu #userMenu="matMenu">
   <div class="user-menu-header">
-    <div class="user-info">
+    <div class="user-info-detailed">
       <div class="user-avatar-menu">
-        <img src="assets/images/user-avatar.png" 
-              alt="User"
-              (error)="onImageError($event)"
-              *ngIf="imageLoaded" />
-        <span *ngIf="!imageLoaded" class="avatar-initials">
-          {{ getUserInitials() }}
-        </span>
+        <img src="assets/images/avatar.png" 
+              alt="User" />
       </div>
       <div class="user-details">
-        <div class="user-name">Antônio Coutinho</div>
-        <div class="user-email">antonio@example.com</div>
+        <div class="user-name">{{ currentUser?.name || 'Antônio Coutinho' }}</div>
+        <div class="user-email">{{ currentUser?.email || 'antonio@example.com' }}</div>
+        <div class="user-role">{{ currentUser?.role || 'Gerente de Contas' }}</div>
       </div>
     </div>
   </div>
