@@ -13,6 +13,7 @@ import { TransferConfigModalComponent } from '../../shared/components/transfer-c
 import { WalletTransferConfig, WalletTransferConfigModalComponent1 } from '../../shared/components/wallet-transfer-config-modal-1/wallet-transfer-config-modal';
 import { WalletTransferConfigModalComponent } from '../../shared/components/wallet-transfer-config-modal-2/wallet-transfer-config-modal';
 import { IntegrationConfigModalComponent } from '../../shared/components/integration-config-modal/integration-config-modal.component';
+import { PixLimitsModalComponent } from '../../shared/components/pix-limits-modal/pix-limits-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -123,5 +124,16 @@ export class Dashboard {
     return dialogRef.afterClosed();
 
   }
+  openPixLimitModal() {
+    const dialogRef = this.dialog.open(PixLimitsModalComponent, {
+      width: '600px',
+      maxWidth: '90vw',
+      disableClose: true,
+      panelClass: 'custom-modal-panel'
+    });
 
+
+    return dialogRef.afterClosed();
+
+  }
 }
