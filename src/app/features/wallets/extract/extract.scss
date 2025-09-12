@@ -1,0 +1,246 @@
+:host {
+  --color-text-primary: #3A3A3A;
+  --color-text-secondary: #646464;
+  --color-text-tertiary: #8A8A8A;
+  --color-text-label: #344054;
+  --color-text-input: #101828;
+  --color-text-amount-label: #8F8F8F;
+  --color-text-amount-value: #545050;
+  --color-text-date: #A7A7A7;
+  --color-text-id: #797979;
+
+  --color-border: #D0D5DD;
+  --color-border-light: #F1F1F1;
+  --color-border-separator: #DADADA;
+
+  --color-bg-page: #FFFFFF;
+  --color-bg-card: #FFFFFF;
+  --color-bg-icon: #F3F6F8;
+  
+  --color-tag-credit-text: #5C4896;
+  --color-tag-credit-bg: #F6F3FF;
+  --color-tag-refund-text: #FF3C00;
+  --color-tag-refund-bg: #FFEDE7;
+  
+  --font-family-primary: 'Inter', sans-serif;
+  --font-family-title: 'Futura', 'Inter', sans-serif; 
+}
+
+.extract-container {
+  padding: 32px;
+  background-color: var(--color-bg-page);
+  font-family: var(--font-family-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 1056px;
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    label {
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--color-text-label);
+    }
+
+    .input-wrapper {
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      gap: 8px;
+      height: 35px;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 12px;
+        color: var(--color-text-input);
+        width: 100%;
+      }
+    }
+    &:nth-child(1) .input-wrapper { min-width: 230px; }
+    &:nth-child(2) .input-wrapper { min-width: 265px; }
+    &:nth-child(3) .input-wrapper { min-width: 265px; }
+  }
+}
+
+.results-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 32px;
+  gap: 24px;
+  width: 100%;
+  max-width: 1350px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: 6px;
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .card-title {
+      h2 {
+        margin: 0 0 4px 0;
+        font-family: var(--font-family-title);
+        font-weight: 600;
+        font-size: 20px;
+        color: var(--color-text-primary);
+      }
+      p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--color-text-tertiary);
+      }
+    }
+
+    .card-total {
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--color-text-input);
+    }
+  }
+}
+
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction-item {
+  display: flex;
+  flex-direction: column;
+  
+  .item-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .item-icon-details {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-grow: 1;
+    min-width: 200px;
+  }
+
+  .item-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: var(--color-bg-icon);
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+
+  .item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .type {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+    .date {
+      font-weight: 500;
+      font-size: 12px;
+      color: var(--color-text-date);
+      white-space: nowrap;
+    }
+  }
+
+  .item-amounts {
+    display: flex;
+    gap: 36px;
+    flex-grow: 2;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    .amount-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: left;
+
+      .label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--color-text-amount-label);
+      }
+      .value {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-text-amount-value);
+      }
+    }
+  }
+  
+  .item-tags {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    justify-content: flex-end;
+    flex-grow: 1;
+    min-width: 170px;
+  }
+  
+  .tag {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+
+    &--credit {
+      background-color: var(--color-tag-credit-bg);
+      color: var(--color-tag-credit-text);
+    }
+    &--refund {
+      background-color: var(--color-tag-refund-bg);
+      color: var(--color-tag-refund-text);
+    }
+    &--id {
+      padding: 4px 16px;
+      border: 1px solid var(--color-border-separator);
+      border-radius: 1000px;
+      color: var(--color-text-id);
+      background: none;
+    }
+  }
+  
+  .separator {
+    border: none;
+    height: 1px;
+    background-color: var(--color-border-separator);
+    margin: 0;
+  }
+}

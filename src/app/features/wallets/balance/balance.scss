@@ -1,0 +1,106 @@
+:host {
+  --color-background-page: #F9FAFB;
+  --color-background-card: #F9F9F9;
+  --color-white: #FFFFFF; 
+  --color-text-dark: #101828;
+  --color-text-body: #344054;
+  --color-text-light: #667085;
+  --color-text-header: #475467;
+  --color-border: #EAECF0;
+
+  --font-family: 'Inter', sans-serif;
+}
+
+.balance-container {
+  font-family: var(--font-family);
+  padding: 24px;
+  background-color: var(--color-background-page);
+}
+
+.results-card {
+  background: var(--color-background-card); 
+  border-radius: 8px;
+  padding: 24px;
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    h2 { font-size: 18px; margin: 0 0 4px 0; color: var(--color-text-dark); }
+    p { font-size: 14px; color: var(--color-text-light); margin: 0; }
+    .total-records { font-size: 14px; font-weight: 500; color: var(--color-text-body); }
+  }
+}
+
+.balance-list-container {
+  width: 100%;
+  background: var(--color-white); 
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.balance-list-header, .balance-list-row {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.balance-list-header {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-header);
+  background-color: #F9FAFB;
+}
+
+.balance-list-row {
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.col {
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.col-razao-social {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  .name { font-size: 14px; font-weight: 500; color: var(--color-text-dark); }
+  .cnpj { font-size: 14px; color: var(--color-text-light); }
+}
+
+.col-carteira, .col-apelido {
+  width: 20%;
+  font-size: 14px;
+  color: var(--color-text-light);
+}
+
+.col-valor {
+  width: 20%;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-dark);
+}
+
+.col-actions {
+  width: 10%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0; 
+  font-weight: 300; 
+}

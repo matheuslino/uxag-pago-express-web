@@ -1,1 +1,112 @@
-<p>transfer-wallet works!</p>
+<main class="transfer-wallet-container">
+
+  <section class="card form-card">
+    <header class="card-header">
+      <h2>Informações para envio</h2>
+      <p>Complete as informações de acordo com a chave desejada</p>
+    </header>
+    
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Seus dados</h3>
+      <div class="inputs-row">
+        <div class="input-group">
+          <label for="cliente">Cliente</label>
+          <input id="cliente" type="text" value="123 Milhas - 26.669.170/0001-57" readonly>
+        </div>
+        <div class="input-group">
+          <label for="carteira">Carteira</label>
+          <input id="carteira" type="text" value="6671 - Padrão" readonly>
+        </div>
+      </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Dados do favorecido</h3>
+      <div class="multi-row-inputs">
+        <div class="inputs-row">
+          <div class="input-group">
+            <label for="favorecido">Favorecido</label>
+            <input id="favorecido" type="text" placeholder="CNPJ, CPF" [(ngModel)]="transferData.favorecido">
+          </div>
+          <div class="input-group">
+            <label for="carteira-favorecido">Carteira do favorecido</label>
+            <input id="carteira-favorecido" type="text" placeholder="Nome da carteira" [(ngModel)]="transferData.carteiraFavorecido">
+          </div>
+        </div>
+        <div class="inputs-row">
+          <div class="input-group">
+            <label for="chave-pix">Chave pix</label>
+            <input id="chave-pix" type="text" placeholder="CNPJ, CPF" [(ngModel)]="transferData.chavePix">
+          </div>
+          <div class="input-group">
+            <label for="valor">Valor</label>
+            <input id="valor" type="number" placeholder="R$ 0,00" [(ngModel)]="transferData.valor">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Autenticação</h3>
+      <div class="inputs-row">
+        <div class="input-group">
+          <label for="senha">Senha</label>
+          <input id="senha" type="password" placeholder="*****">
+        </div>
+      </div>
+    </div>
+
+    <div class="temporary-button-container">
+      <button class="btn-transfer" (click)="openConfirmationModal()">Transferir</button>
+    </div>
+  </section>
+
+</main>
+
+@if (isModalVisible) {
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          <h2>Autorização de transferência</h2>
+          <p>Esta operação não poderá ser desfeita</p>
+        </div>
+        <button class="modal-close" (click)="closeConfirmationModal()">×</button>
+      </div>
+      
+      <hr class="modal-divider">
+      
+      <div class="modal-body">
+        <div class="transfer-details">
+          <div class="detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/></svg>
+          </div>
+          <div class="detail-item">
+            <span>Carteira Origem</span>
+            <strong>Wallet Default</strong>
+          </div>
+          <div class="detail-arrow">→</div>
+          <div class="detail-item">
+            <span>Carteira Destino</span>
+            <strong>{{ transferData.carteiraFavorecido }}</strong>
+          </div>
+          <div class="detail-item valor">
+            <span>Valor</span>
+            <strong>{{ transferData.valor | currency:'BRL' }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-cancel" (click)="closeConfirmationModal()">Cancelar</button>
+        <button class="btn btn-confirm" (click)="confirmTransfer()">Enviar</button>
+      </div>
+    </div>
+  </div>
+}
