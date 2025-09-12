@@ -1,1 +1,122 @@
-<p>transfer works!</p>
+<main class="transfer-container">
+
+  <section class="card form-card">
+    <header class="card-header">
+      <h2>Informações para envio</h2>
+      <p>Complete as informações de acordo com a chave desejada</p>
+    </header>
+    
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Seus dados</h3>
+      <div class="inputs-row">
+        <div class="input-group">
+          <label for="cliente">Cliente</label>
+          <input id="cliente" type="text" value="123 Milhas - 26.669.170/0001-57" readonly>
+        </div>
+        <div class="input-group">
+          <label for="carteira">Carteira</label>
+          <input id="carteira" type="text" value="6671 - Padrão" readonly>
+        </div>
+      </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Chave e valores</h3>
+      <div class="inputs-row">
+        <div class="input-group">
+          <label for="chave-pix">Chave pix</label>
+          <input id="chave-pix" type="text" placeholder="CNPJ, CPF">
+        </div>
+        <div class="input-group">
+          <label for="valor">Valor</label>
+          <input id="valor" type="text" placeholder="R$ 0,00">
+        </div>
+      </div>
+    </div>
+    
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Segurança</h3>
+      <div class="inputs-row">
+        <div class="input-group">
+          <label for="senha">Senha</label>
+          <input id="senha" type="password" placeholder="*****">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card pending-card">
+    <header class="card-header-pending">
+      <div class="title-group">
+        <h2>Saques pendentes</h2>
+        <p>Abaixo estão os resultados encontrados</p>
+      </div>
+      @if (hasPendingWithdrawals) {
+        <span class="total-records">Total {{ pendingWithdrawals.length }} registros</span>
+      }
+    </header>
+
+    @if (hasPendingWithdrawals) {
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Solicitante</th>
+              <th>Carteira</th>
+              <th>Chave PIX</th>
+              <th>
+                Valor
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 12.6667L3.33333 8.00004H12.6667L8 12.6667Z" fill="#535862"/>
+                </svg>
+              </th>
+              <th>Data/hora</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (saque of pendingWithdrawals; track saque.chavePix) {
+              <tr>
+                <td>
+                  <div class="solicitante-info">
+                    <span class="name">{{ saque.solicitante.name }}</span>
+                    <span class="email">{{ saque.solicitante.email }}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="carteira-info">
+                    <span class="id">{{ saque.carteira.id }}</span>
+                    <span class="name">{{ saque.carteira.name }}</span>
+                  </div>
+                </td>
+                <td>{{ saque.chavePix }}</td>
+                <td>{{ saque.valor | currency:'BRL' }}</td>
+                <td>{{ saque.dataHora }}</td>
+                <td><span class="status status--pending">{{ saque.status }}</span></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <div class="empty-state">
+        <div class="empty-state__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#DC6803" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 8V12" stroke="#DC6803" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 16H12.01" stroke="#DC6803" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="empty-state__title">Nenhum saque para aprovar ainda</h3>
+        <p class="empty-state__subtitle">Você pode incluir os limites digitando ele acima e depois ir em <strong>incluir</strong>.</p>
+      </div>
+    }
+  </section>
+
+</main>
