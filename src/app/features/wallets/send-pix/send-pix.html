@@ -1,1 +1,81 @@
-<p>send-pix works!</p>
+<main class="send-pix-container">
+
+  <section class="card form-card">
+    <header class="card-header">
+      <h2>Informações para envio</h2>
+      <p>Complete as informações de acordo com a chave desejada</p>
+    </header>
+    
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Seus dados</h3>
+      <div class="inputs-row">
+        <div class="input-group">
+          <label for="cliente">Cliente</label>
+          <input id="cliente" type="text" value="123 Milhas - 26.669.170/0001-57" readonly>
+        </div>
+        <div class="input-group">
+          <label for="carteira">Carteira</label>
+          <input id="carteira" type="text" value="6671 - Padrão" readonly>
+        </div>
+      </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="form-section form-section--column">
+      <div class="title-and-inputs">
+        <h3 class="form-section-title">Chave e valores</h3>
+        <div class="inputs-row">
+          <div class="input-group">
+            <label for="chave-pix">Chave pix</label>
+            <input id="chave-pix" type="text" value="adenor_soares@hotmail.com">
+          </div>
+          <div class="input-group">
+            <label for="valor">Valor</label>
+            <input id="valor" type="text" value="R$ 32.300">
+          </div>
+        </div>
+      </div>
+
+      @if (showAccountData) {
+        <div class="account-data-wrapper">
+          <div class="account-data-container">
+            <div class="account-data-header">
+              <h4 class="account-data-title">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.4 5.2a3.6 3.6 0 1 1-7.2 0 3.6 3.6 0 0 1 7.2 0Z" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.8 13.2a6.4 6.4 0 0 1 10.4 0" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Dados da conta:
+              </h4>
+              <span class="provider-tag">{{ accountData.provider }}</span>
+            </div>
+            <div class="account-data-details">
+              <div class="details-column">
+                <div class="detail-item">
+                  <span class="label">Nome:</span>
+                  <span class="value">{{ accountData.name }}</span>
+                </div>
+                <div class="detail-item">
+                  <span class="label">Chave:</span>
+                  <span class="value">{{ accountData.key }}</span>
+                </div>
+              </div>
+              <div class="details-column">
+                <div class="detail-item">
+                  <span class="label">CNPJ:</span>
+                  <span class="value">{{ accountData.cnpj }}</span>
+                </div>
+                <div class="detail-item">
+                  <span class="label">Tipo chave:</span>
+                  <span class="value">{{ accountData.keyType }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    
+  </section>
+
+</main>
