@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 interface MenuItem {
   label: string;
@@ -44,6 +45,7 @@ interface User {
     MatMenuModule,
     MatBadgeModule,
     MatDividerModule,
+    MatSidenavModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' }
@@ -52,6 +54,11 @@ interface User {
   styleUrl: './header.scss'
 })
 export class Header implements OnInit {
+
+  userName = 'Antônio Countinho';
+  userRole = 'Gerente de Contas';
+  userEmail = 'antonio.coutinho@example.com';
+
   menuItems: MenuItem[] = [
     { label: 'Painel', path: '/dashboard', active: true },
     { label: 'Administração', path: '/administracao/users', active: false },

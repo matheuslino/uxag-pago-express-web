@@ -159,6 +159,45 @@
     width: 100%;
     min-width: auto;
   }
+
+  .sidebar-nav {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 16px 0;
+
+    &::-webkit-scrollbar {
+      height: 0px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 4px;
+      
+      &:hover {
+        background: #a1a1a1;
+      }
+    }
+  }
+
+  .nav-list {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
   
   .nav-link,
   .sub-nav-link {

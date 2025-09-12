@@ -132,6 +132,18 @@
     width: 100%;
     justify-content: center;
   }
+  
+  .admin-layout {
+    padding: 0 16px;
+  }
+
+  .admin-content {
+    flex-direction: column!important;
+  }
+
+  .header-actions {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -141,6 +153,18 @@
   
   .breadcrumb-item {
     font-size: 12px;
+  }
+  
+  .admin-layout {
+    padding: 0 16px;
+  }
+
+  .admin-content {
+    flex-direction: column!important;
+  }
+
+  .header-actions {
+    display: none;
   }
 }
 

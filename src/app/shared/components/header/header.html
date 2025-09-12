@@ -1,62 +1,94 @@
-<mat-toolbar class="header-toolbar">
-  <div class="header-content">
-    <div class="header-left">
-      <a routerLink="/dashboard" routerLinkActive="active" class="logo-section">
-        <img src="assets/images/logo.svg" 
-          alt="User" />
-      </a>
-      <nav class="horizontal-nav">
-        <button 
-          *ngFor="let item of menuItems" 
-          mat-button 
-          [routerLink]="item.path"
-          routerLinkActive="active"
-          class="nav-item"
-          [class.active]="item.active">
-          {{ item.label }}
-        </button>
-      </nav>
-    </div>
-    
-    <div class="header-right">
-      <div class="search-container">
-        <mat-icon class="search-icon">search</mat-icon>
-        <input 
-          type="text" 
-          class="search-input" 
-          placeholder="Busque por algo..."
-          [(ngModel)]="searchQuery"
-          (keyup.enter)="onSearch()">
-      </div>
-      
-      <button mat-icon-button class="action-btn" (click)="openMessages()">
-        <mat-icon>mail_outline</mat-icon>
-      </button>
-      
-      <button mat-icon-button 
-              [matMenuTriggerFor]="notificationMenu" 
-              class="action-btn">
-        <mat-icon [matBadge]="unreadNotifications" 
-                  matBadgeColor="warn" 
-                  matBadgeSize="small"
-                  [matBadgeHidden]="unreadNotifications === 0">
-          notifications_none
-        </mat-icon>
-      </button>
-      
-      <div class="user-profile" [matMenuTriggerFor]="userMenu">
-        <div class="user-avatar">
-          <img src="assets/images/avatar.png" 
-                alt="User" />
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" class="mobile-sidenav">
+    <a routerLink="/dashboard" routerLinkActive="active" class="sidenav-header">
+      <img src="assets/images/logo.svg" 
+        alt="User" />
+    </a>
+    <a *ngFor="let item of menuItems" 
+       [routerLink]="item.path" 
+       (click)="sidenav.close()" 
+       routerLinkActive="active-link"
+       class="sidenav-link">
+      {{ item.label }}
+    </a>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="header-container">
+      <div class="header-content-wrapper">
+        <mat-toolbar class="top-bar">
+          <div class="top-bar-content">
+            <div class="left-section">
+              <button mat-icon-button class="mobile-menu-button" (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+              </button>
+              <a routerLink="/dashboard" routerLinkActive="active" class="logo-section">
+                <img src="assets/images/logo.svg" 
+                  alt="User" />
+              </a>
+              <nav class="horizontal-nav">
+                <button 
+                  *ngFor="let item of menuItems" 
+                  mat-button 
+                  [routerLink]="item.path"
+                  routerLinkActive="active"
+                  class="nav-item"
+                  [class.active]="item.active">
+                  {{ item.label }}
+                </button>
+              </nav>
+              <div class="search-bar">
+                <div class="search-input-wrapper">
+                  <mat-icon>search</mat-icon>
+                  <input type="text" placeholder="Busque por algo..." />
+                </div>
+                <span class="search-shortcut">⌘ F</span>
+              </div>
+            </div>
+
+            <img src="assets/images/logo.svg" alt="PagoExpress Logo" class="logo mobile-logo" />
+
+            <div class="user-actions">
+              <button mat-icon-button class="action-btn" (click)="openMessages()">
+                <mat-icon>mail_outline</mat-icon>
+              </button>
+              <button mat-icon-button 
+                      [matMenuTriggerFor]="notificationMenu" 
+                      class="action-btn">
+                <mat-icon [matBadge]="unreadNotifications" 
+                          matBadgeColor="warn" 
+                          matBadgeSize="small"
+                          [matBadgeHidden]="unreadNotifications === 0">
+                  notifications_none
+                </mat-icon>
+              </button>
+              <button class="user-info-button" [matMenuTriggerFor]="userMenu">
+                <div class="user-info">
+                  <div class="user-avatar">
+                    <img src="assets/images/avatar.png" alt="User Avatar" />
+                  </div>
+                  <div class="user-details">
+                    <span class="user-name">{{ userName }}</span>
+                    <span class="user-role">{{ userRole }}</span>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </mat-toolbar>
+        
+        <div class="search-bar-wrapper-mobile">
+          <div class="search-bar">
+            <div class="search-input-wrapper">
+              <mat-icon>search</mat-icon>
+              <input type="text" placeholder="Busque por algo..." />
+            </div>
+            <span class="search-shortcut">⌘ F</span>
+          </div>
         </div>
-        <div class="user-info">
-          <div class="user-name">{{ currentUser?.name || 'Antônio Coutinho' }}</div>
-          <div class="user-role">{{ currentUser?.role || 'Gerente de Contas' }}</div>
-        </div>
       </div>
     </div>
-  </div>
-</mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 <mat-menu #notificationMenu="matMenu" class="notification-menu">
   <div class="menu-header">
