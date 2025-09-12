@@ -1,0 +1,61 @@
+<div class="modal-container">
+  <!-- Header -->
+  <div class="modal-header">
+    <h2 class="modal-title">Configurar senha de integrações</h2>
+    <button mat-icon-button class="close-button" (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="modal-subtitle">
+    Texto complementar que vem abaixo
+  </div>
+
+  <div class="lineSeparation"></div>
+
+   <!-- Seção da Empresa -->
+  <div class="company-section">
+    <div class="company-info">
+      <div class="company-icon">🏢</div>
+      <div>
+        <h3>Empresa</h3>
+        <p>123 Milhas</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Integration Form -->
+  <div class="integration-section">
+    <h3 class="integration-title">Entrepay</h3>
+    <p class="integration-description">Texto complementar que vem abaixo</p>
+
+    <form [formGroup]="integrationForm" class="integration-form">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Login</mat-label>
+          <input matInput formControlName="login" placeholder="0120062839">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Senha</mat-label>
+          <input matInput [type]="showPassword() ? 'text' : 'password'" formControlName="password"
+            placeholder="qwertyasf128130">
+          <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
+            <mat-icon>{{ showPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  
+  <div class="lineSeparation"></div>
+  <!-- Actions -->
+  <div class="modal-actions">
+    <button mat-button class="cancel-button" (click)="onCancel()">
+      Cancelar
+    </button>
+    <button mat-raised-button color="primary" class="save-button" [disabled]="integrationForm.invalid || isLoading()"
+      (click)="onSave()">
+      {{ isLoading() ? 'Salvando...' : 'Salvar' }}
+    </button>
+  </div>
+</div>

@@ -12,6 +12,7 @@ import { TransactionConfigModalComponent } from '../../shared/components/transac
 import { TransferConfigModalComponent } from '../../shared/components/transfer-config-modal/transfer-config-modal';
 import { WalletTransferConfig, WalletTransferConfigModalComponent1 } from '../../shared/components/wallet-transfer-config-modal-1/wallet-transfer-config-modal';
 import { WalletTransferConfigModalComponent } from '../../shared/components/wallet-transfer-config-modal-2/wallet-transfer-config-modal';
+import { IntegrationConfigModalComponent } from '../../shared/components/integration-config-modal/integration-config-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -98,15 +99,29 @@ export class Dashboard {
 
   openWalletTransferConfigModal2() {
     const dialogRef = this.dialog.open(WalletTransferConfigModalComponent, {
-    minWidth: '800px',
-    maxHeight: '90vh',
-    disableClose: false
-  });
+      minWidth: '800px',
+      maxHeight: '90vh',
+      disableClose: false
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      console.log('Configuração salva:', result);
-    }
-  });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Configuração salva:', result);
+      }
+    });
   }
+
+  openIntegrationConfigModal() {
+    const dialogRef = this.dialog.open(IntegrationConfigModalComponent, {
+      width: '600px',
+      maxWidth: '90vw',
+      disableClose: true,
+      panelClass: 'custom-modal-panel'
+    });
+
+
+    return dialogRef.afterClosed();
+
+  }
+
 }
