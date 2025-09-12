@@ -1,1 +1,62 @@
-<p>new-item-wallet works!</p>
+<main class="new-item-container">
+
+  <section class="card form-card">
+    <header class="card-header">
+      <h2>Informações para envio</h2>
+      <p>Complete as informações de acordo com a chave desejada</p>
+    </header>
+    
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Dados da empresa</h3>
+      <div class="inputs-row">
+        <div class="input-group">
+          <label for="razao-social">Razão social</label>
+          <input id="razao-social" type="text" value="123 Milhas - 26.669.170/0001-57" readonly>
+        </div>
+      </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Dados da operação</h3>
+      <div class="multi-row-inputs">
+        <div class="inputs-row">
+          <div class="input-group">
+            <label for="carteira">Carteira</label>
+            <input id="carteira" type="text" placeholder="--" [(ngModel)]="formData.carteira">
+          </div>
+          <div class="input-group">
+            <label for="tipo">Tipo</label>
+            <input id="tipo" type="text" placeholder="Crédito" [(ngModel)]="formData.tipo">
+          </div>
+        </div>
+        <div class="inputs-row">
+          <div class="input-group">
+            <label for="valor">Valor</label>
+            <input id="valor" type="number" placeholder="R$ 0,00" [(ngModel)]="formData.valor">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Detalhes adicionais</h3>
+      <div class="inputs-row">
+        <div class="input-group full-width">
+          <label for="observacao">Observação</label>
+          <textarea id="observacao" placeholder="Digite aqui" [(ngModel)]="formData.observacao"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions-container">
+      <button class="btn-save" (click)="saveItem()">Salvar</button>
+    </div>
+  </section>
+
+</main>
