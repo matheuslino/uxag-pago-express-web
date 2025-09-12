@@ -1,1 +1,66 @@
-<p>transfer-wallet works!</p>
+<main class="transfer-wallet-container">
+
+  <section class="card form-card">
+    <header class="card-header">
+      <h2>Informações para envio</h2>
+      <p>Complete as informações de acordo com a chave desejada</p>
+    </header>
+    
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Seus dados</h3>
+      <div class="inputs-row">
+        <div class="input-group">
+          <label for="cliente">Cliente</label>
+          <input id="cliente" type="text" value="123 Milhas - 26.669.170/0001-57" readonly>
+        </div>
+        <div class="input-group">
+          <label for="carteira">Carteira</label>
+          <input id="carteira" type="text" value="6671 - Padrão" readonly>
+        </div>
+      </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Dados do favorecido</h3>
+      <div class="multi-row-inputs">
+        <div class="inputs-row">
+          <div class="input-group">
+            <label for="favorecido">Favorecido</label>
+            <input id="favorecido" type="text" placeholder="CNPJ, CPF">
+          </div>
+          <div class="input-group">
+            <label for="carteira-favorecido">Carteira do favorecido</label>
+            <input id="carteira-favorecido" type="text" placeholder="R$ 0,00">
+          </div>
+        </div>
+        <div class="inputs-row">
+          <div class="input-group">
+            <label for="chave-pix">Chave pix</label>
+            <input id="chave-pix" type="text" placeholder="CNPJ, CPF">
+          </div>
+          <div class="input-group">
+            <label for="valor">Valor</label>
+            <input id="valor" type="text" placeholder="R$ 0,00">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <hr class="separator">
+
+    <div class="form-section">
+      <h3 class="form-section-title">Autenticação</h3>
+      <div class="inputs-row">
+        <div class="input-group">
+          <label for="senha">Senha</label>
+          <input id="senha" type="password" placeholder="*****">
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
