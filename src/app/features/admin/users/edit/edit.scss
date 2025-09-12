@@ -1,0 +1,135 @@
+
+.page-wrapper {
+  background: #fff;
+  min-height: 100vh;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.pix-list-client-info {
+  width: 100%;
+  background: #f6f6f6;
+  border-radius: 5px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 86px;
+  margin-bottom: 32px;
+}
+
+.pix-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+  margin-right: 12px;
+}
+
+.pix-avatar img {
+  width: 32px;
+  height: 32px;
+  border-radius: 70%;
+  object-fit: cover;
+}
+
+.pix-user-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+
+.pix-user-role {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+
+.page-container {
+  width: 100%;
+  max-width: 1200px;
+  background: #f6f6f6;
+  border-radius: 8px;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+
+.edit-client-header {
+  margin-bottom: 32px;
+}
+
+.edit-client-header h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.edit-client-header p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* seções do formulário */
+.edit-client-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+
+.edit-client-section-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #222;
+  margin-top: 4px;
+  min-width: 200px;
+}
+
+
+.edit-client-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 600px;
+  margin-left: auto;
+}
+
+.edit-client-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-client-field label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.edit-client-field input,
+.edit-client-field select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+
+hr {
+  border: none;
+  border-top: 3px solid #ccc;
+  margin: 32px 0;
+}
+

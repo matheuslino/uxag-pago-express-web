@@ -1,0 +1,81 @@
+
+.page-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+  box-sizing: border-box;
+  background: #f6f6f6;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* título principal */
+.edit-client-header {
+  margin-bottom: 32px;
+}
+
+.edit-client-header h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.edit-client-header p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* seções do formulário */
+.edit-client-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+/* títulos pretos à esquerda */
+.edit-client-section-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #222;
+  margin-top: 4px;
+  min-width: 200px;
+}
+
+/* inputs à direita */
+.edit-client-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 600px;
+}
+
+.edit-client-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-client-field label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.edit-client-field input,
+.edit-client-field select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+hr {
+  border: none;
+  border-top: 3px solid #ccc; 
+  margin: 32px 0;
+}
