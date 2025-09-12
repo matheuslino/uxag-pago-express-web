@@ -1,0 +1,122 @@
+.logs-bg {
+  background: #fff;
+}
+
+.logs-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.logs-header {
+  background: #f6f6f6;
+  border-radius: 12px;
+  box-shadow: none;
+  border: none;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.logs-label {
+  font-weight: 500;
+  color: #444;
+  font-size: 1rem;
+  margin-right: 12px;
+}
+.logs-select {
+  min-width: 180px;
+  width: 200px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.logs-results-section {
+  background: #f6f6f6;
+  border-radius: 12px;
+  box-shadow: none;
+  border: none;
+  padding: 32px;
+}
+
+.logs-results-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.logs-results-info-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  margin-top: -8px;
+}
+.logs-results-subtitle {
+  font-size: 0.98rem;
+  color: #888;
+  margin-bottom: 18px;
+  margin-top: -5px;
+}
+
+.logs-results-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 32px;
+  border: 1px solid #ccc;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.logs-results-table th {
+  background: #f6f6f6;
+  font-weight: 600;
+  color: #555;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid #ccc;
+  border-left: none;
+  border-right: none;
+  padding: 12px 10px;
+}
+.logs-results-table thead tr {
+  border-top: 1px solid #ccc;
+}
+.logs-results-table th:first-child {
+  border-top-left-radius: 14px;
+}
+.logs-results-table th:last-child {
+  border-top-right-radius: 14px;
+}
+.logs-results-table tr:last-child td:first-child {
+  border-bottom-left-radius: 14px;
+}
+.logs-results-table tr:last-child td:last-child {
+  border-bottom-right-radius: 14px;
+}
+.logs-results-table td {
+  background: #fff !important;
+  border-bottom: 1px solid #ccc;
+  padding: 12px 10px;
+}
+.logs-results-table tr:last-child td {
+  border-bottom: none;
+}
+
+.logs-download-btn {
+  background: #6c3fc7;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.logs-download-btn:hover {
+  background: #5a32a3;
+}

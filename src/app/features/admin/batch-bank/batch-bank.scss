@@ -1,0 +1,173 @@
+.batch-bank-bg {
+  background: #fff;
+}
+
+.batch-bank-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.batch-bank-header {
+  background: #f6f6f6;
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 0;
+}
+
+.batch-bank-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 18px;
+}
+
+.batch-bank-select-row {
+  display: flex;
+  gap: 28px;
+  width: 100%;
+}
+
+.batch-bank-label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  color: #444;
+  font-size: 1rem;
+}
+
+.batch-bank-select {
+  margin-top: 6px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #fff;
+  min-width: 220px; 
+  width: 220px;     
+  box-sizing: border-box;
+}
+
+.batch-bank-results-section {
+  background: #f6f6f6;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.batch-bank-results-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.batch-bank-results-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 32px;
+  border: 1px solid #ccc;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.batch-bank-results-table th {
+  background: #f6f6f6;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 1px solid #ccc;
+  padding: 12px 10px;
+}
+
+.batch-bank-results-table th:first-child {
+  border-top-left-radius: 14px;
+}
+.batch-bank-results-table th:last-child {
+  border-top-right-radius: 14px;
+}
+.batch-bank-results-table tr:last-child td:first-child {
+  border-bottom-left-radius: 14px;
+}
+.batch-bank-results-table tr:last-child td:last-child {
+  border-bottom-right-radius: 14px;
+}
+
+.batch-bank-results-table td {
+  background: #fff !important;
+  border-bottom: 1px solid #ccc;
+  padding: 12px 10px;
+  padding-left: 70px;
+}
+
+.batch-bank-results-table tr:last-child td {
+  border-bottom: none;
+}
+
+.batch-bank-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 18px;
+  padding-top: 24px;
+}
+
+.batch-bank-btn-cancel {
+  background: #e0e0e0;
+  color: #444;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s;
+}
+.batch-bank-btn-cancel:hover {
+  background: #d5d5d5;
+}
+
+.batch-bank-btn-confirm {
+  background: #6c3fc7;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(108,58,214,0.08);
+  transition: background 0.2s;
+}
+.batch-bank-btn-confirm:hover {
+  background: #5a32a3;
+}
+
+.batch-bank-checkbox-btn {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #bbb;
+  border-radius: 6px;
+  background: #fff;
+  margin-right: 12px;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  position: relative;
+}
+.batch-bank-checkbox-btn.checked {
+  background: #6c3fc7;
+  border-color: #6c3fc7;
+}
+.batch-bank-checkbox-btn.checked::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 2px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}

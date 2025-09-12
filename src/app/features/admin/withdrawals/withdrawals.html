@@ -1,1 +1,95 @@
-<p>withdrawals works!</p>
+<div class="withdrawals-bg">
+  <div class="withdrawals-container">
+    <div class="filters-section">
+      <div class="filters">
+        <label>
+          Empresa
+          <select>
+            <option>123 Milhas</option>
+          </select>
+        </label>
+        <label>
+          Status
+          <select>
+            <option>Pendente</option>
+          </select>
+        </label>
+        <label>
+          Data início
+          <input type="text" placeholder="AAAA-MM-DD" />
+        </label>
+        <label>
+          Data fim
+          <input type="text" placeholder="AAAA-MM-DD" />
+        </label>
+      </div>
+    </div>
+
+    <div class="results-section">
+      <h2 class="results-title">Resultado da pesquisa</h2>
+      <div class="results-info-row">
+        <div class="results-subtitle">abaixo estão os resultados encontrados</div>
+        <div class="results-total">Total 1 Registro</div>
+      </div>
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Solicitante</th>
+            <th>Carteira</th>
+            <th>Chave PIX</th>
+            <th>Valor</th>
+            <th>Data/hora</th>
+            <th>Status</th>
+            <th>Aprovador</th>
+            <th>Status Aprovador</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pago Express (lucas_adm)</td>
+            <td>531 Wallet 2</td>
+            <td>cliente@pix.bcb.gov.br</td>
+            <td>R$ 239,12</td>
+            <td>01h07 – 17/03/2025</td>
+            <td>
+              <div class="status-pendente">
+                <span class="status-icon status-icon-pendente"></span>Pendente
+              </div>
+            </td>
+            <td>lucas_adm</td>
+            <td>
+              <span class="aprovador-icon aprovador-icon-green">✔</span>
+              <span class="aprovador-icon aprovador-icon-red">X</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Pago Express (lucas_adm)</td>
+            <td>531 Wallet 2</td>
+            <td>cliente@pix.bcb.gov.br</td>
+            <td>R$ 3.918,12</td>
+            <td>01h07 – 17/03/2025</td>
+            <td>
+              <div class="status-aprovado">
+                <span class="status-icon status-icon-aprovado"></span>Aprovado
+              </div>
+            </td>
+            <td>lucas_adm</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- <div class="pending-section">
+      <div class="pending-approval">
+        <span class="pending-message">
+          Você tem um(s) saque(s) pendente(s) para aprovar:
+          <strong>R$ 239,12 - lucas_adm</strong>
+        </span>
+        <div class="pending-actions">
+          <button class="btn-cancel">Cancelar</button>
+          <button class="btn-approve">Aprovar</button>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

@@ -1,6 +1,35 @@
-  <div class="admin-layout"> 
+<div class="page-header" *ngIf="pageTitle">
+  <nav class="breadcrumb" *ngIf="breadcrumbItems.length > 0">
+    <a 
+      *ngFor="let item of breadcrumbItems; let last = last" 
+      [routerLink]="item.path" 
+      [class.active]="last"
+      class="breadcrumb-item">
+      {{ item.label }}
+      <span *ngIf="!last" class="separator">/</span>
+    </a>
+  </nav>
+  <div class="header-content">
+    <div class="header-info">
+      <h1 class="page-title">{{ pageTitle }}</h1>
+      <p class="page-subtitle" *ngIf="pageSubtitle">{{ pageSubtitle }}</p>
+    </div>
+    
+    <div class="header-actions" *ngIf="showActionButton">
+      <button 
+        mat-flat-button
+        class="primary-action-btn"
+        (click)="onHeaderAction()">
+        {{ actionLabel }}
+      </button>
+    </div>
+  </div>
+</div>
+<div class="admin-layout">
+  <div class="admin-content">
     <app-admin-sidebar></app-admin-sidebar>
     <main class="main-content">
       <router-outlet></router-outlet>
     </main>
   </div>
+</div>

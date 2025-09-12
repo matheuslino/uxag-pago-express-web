@@ -1,141 +1,62 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav mode="over" class="mobile-sidenav">
-    <div class="sidenav-header">
-      <h4>Menu</h4>
+<mat-toolbar class="header-toolbar">
+  <div class="header-content">
+    <div class="header-left">
+      <a routerLink="/dashboard" routerLinkActive="active" class="logo-section">
+        <img src="assets/images/logo.svg" 
+          alt="User" />
+      </a>
+      <nav class="horizontal-nav">
+        <button 
+          *ngFor="let item of menuItems" 
+          mat-button 
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          class="nav-item"
+          [class.active]="item.active">
+          {{ item.label }}
+        </button>
+      </nav>
     </div>
-    <mat-divider></mat-divider>
-    <a *ngFor="let item of menuItems" 
-       [routerLink]="item.path" 
-       (click)="sidenav.close()" 
-       routerLinkActive="active-link"
-       class="sidenav-link">
-      {{ item.label }}
-    </a>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <div class="header-container">
-      <div class="header-content-wrapper">
-        <mat-toolbar class="top-bar">
-          <div class="top-bar-content">
-            <div class="left-section">
-              <button mat-icon-button class="mobile-menu-button" (click)="sidenav.toggle()">
-                <mat-icon>menu</mat-icon>
-              </button>
-              <img src="assets/images/logoEX.png" alt="PagoExpress Logo" class="logo desktop-logo" />
-              <nav class="desktop-nav">
-                <a *ngFor="let item of menuItems" [routerLink]="item.path" routerLinkActive="active" class="nav-item">{{ item.label }}</a>
-              </nav>
-              <div class="search-bar">
-                <div class="search-input-wrapper">
-                  <mat-icon>search</mat-icon>
-                  <input type="text" placeholder="Busque por algo..." />
-                </div>
-                <span class="search-shortcut">⌘ F</span>
-              </div>
-            </div>
-
-            <img src="assets/images/logoEX.png" alt="PagoExpress Logo" class="logo mobile-logo" />
-
-            <div class="user-actions">
-              <button mat-icon-button>
-                <mat-icon>email</mat-icon>
-              </button>
-              <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
-                <mat-icon [matBadge]="unreadNotifications" aria-hidden="false" matBadgeColor="warn" matBadgeSize="small" [matBadgeHidden]="unreadNotifications === 0">notifications_none</mat-icon>
-              </button>
-              <button class="user-info-button" [matMenuTriggerFor]="userMenu">
-                <div class="user-info">
-                  <div class="user-avatar">
-                    <img *ngIf="imageLoaded" src="assets/images/user-avatar.png" alt="User Avatar" (error)="onImageError()" />
-                    <span *ngIf="!imageLoaded" class="avatar-initials">{{ getUserInitials() }}</span>
-                  </div>
-                  <div class="user-details">
-                    <span class="user-name">{{ userName }}</span>
-                    <span class="user-role">{{ userRole }}</span>
-                  </div>
-                </div>
-              </button>
-            </div>
-          </div>
-        </mat-toolbar>
-        
-        <div class="search-bar-wrapper-mobile">
-          <div class="search-bar">
-            <div class="search-input-wrapper">
-              <mat-icon>search</mat-icon>
-              <input type="text" placeholder="Busque por algo..." />
-            </div>
-            <span class="search-shortcut">⌘ F</span>
-          </div>
+    
+    <div class="header-right">
+      <div class="search-container">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Busque por algo..."
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="onSearch()">
+      </div>
+      
+      <button mat-icon-button class="action-btn" (click)="openMessages()">
+        <mat-icon>mail_outline</mat-icon>
+      </button>
+      
+      <button mat-icon-button 
+              [matMenuTriggerFor]="notificationMenu" 
+              class="action-btn">
+        <mat-icon [matBadge]="unreadNotifications" 
+                  matBadgeColor="warn" 
+                  matBadgeSize="small"
+                  [matBadgeHidden]="unreadNotifications === 0">
+          notifications_none
+        </mat-icon>
+      </button>
+      
+      <div class="user-profile" [matMenuTriggerFor]="userMenu">
+        <div class="user-avatar">
+          <img src="assets/images/avatar.png" 
+                alt="User" />
         </div>
-
-        <div class="main-header-content">
-          <div class="welcome-section">
-            <div class="welcome-text">
-              <h1 class="welcome-title">{{ greeting }}, {{ userName.split(' ')[0] }}</h1>
-              <p class="welcome-subtitle">Essa é a sua tela do internet banking PagoExpress.</p>
-            </div>
-            <div class="account-number">
-              <span>Núm. da carteira</span>
-              <strong>{{ accountNumber }}</strong>
-            </div>
-          </div>
-
-          <mat-divider class="section-divider"></mat-divider>
-
-          <div class="balance-overview">
-            <div class="total-balance-section">
-              <span class="section-title">Saldo total</span>
-              <div class="balance-amount-wrapper">
-                <div class="balance-amount">
-                  R$ {{ totalBalance | number:'1.2-2' | slice:0:-3 }}<span class="cents">,{{ ((totalBalance | number:'1.2-2') ?? '0,00').split(',')[1] }}</span>
-                </div>
-                <mat-icon class="info-icon">visibility</mat-icon>
-              </div>
-                        <div class="balance-change">
-                <mat-icon class="trend-up-icon">trending_up</mat-icon>
-                <span>{{ balanceChangePercentage }}%</span> últimos 30 dias
-              </div>
-              <div class="action-buttons">
-                <button mat-stroked-button class="action-btn solicit-btn">
-                  Solicitar
-                  <mat-icon class="icon-space-left">swap_vert</mat-icon>
-                </button>
-                <button mat-flat-button class="action-btn transfer-btn">
-                  Transferir <mat-icon class="icon-space-left">arrow_outward</mat-icon>
-                </button>
-              </div>
-            </div>
-
-            <div class="wallets-section">
-              <div class="wallets-header">
-                <span class="section-title">Saldo por carteiras</span>
-                <a href="#" class="view-all-link">Ver todas</a>
-              </div>
-              <div class="wallets-grid">
-                <div class="wallet-card" *ngFor="let wallet of wallets">
-                   <div class="wallet-card-header">
-                      <mat-icon class="wallet-icon">store</mat-icon>
-                      <span class="wallet-name">{{ wallet.nome }}</span>
-                   </div>
-                   <div class="wallet-balance">
-                     R$ {{ wallet.saldo | number:'1.2-2' | slice:0:-3 }}<span class="cents">,{{ ((wallet.saldo | number:'1.2-2') ?? '0,00').split(',')[1] }}</span>
-                   </div>
-                </div>
-                <button *ngFor="let _ of addWalletPlaceholders" class="wallet-card add-wallet-card">
-                  <mat-icon class="add-icon">add</mat-icon>
-                  <span>Adicionar nova carteira</span>
-                </button>
-              </div>
-            </div>
-          </div>
+        <div class="user-info">
+          <div class="user-name">{{ currentUser?.name || 'Antônio Coutinho' }}</div>
+          <div class="user-role">{{ currentUser?.role || 'Gerente de Contas' }}</div>
         </div>
       </div>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
+  </div>
+</mat-toolbar>
 
 <mat-menu #notificationMenu="matMenu" class="notification-menu">
   <div class="menu-header">
@@ -157,7 +78,7 @@
     </div>
   </ng-template>
   <mat-divider></mat-divider>
-  <button mat-menu-item class="view-all-btn">
+  <button mat-menu-item class="view-all-btn" (click)="viewAllNotifications()">
     <mat-icon>visibility</mat-icon>
     <span>Ver todas</span>
   </button>
@@ -165,14 +86,15 @@
 
 <mat-menu #userMenu="matMenu">
   <div class="user-menu-header">
-    <div class="user-info-menu">
+    <div class="user-info-detailed">
       <div class="user-avatar-menu">
-        <img *ngIf="imageLoaded" src="assets/images/user-avatar.png" alt="User Avatar" (error)="onImageError()" />
-        <span *ngIf="!imageLoaded" class="avatar-initials">{{ getUserInitials() }}</span>
+        <img src="assets/images/avatar.png" 
+              alt="User" />
       </div>
-      <div class="user-details-menu">
-        <div class="user-name-menu">{{ userName }}</div>
-        <div class="user-email-menu">{{ userEmail }}</div>
+      <div class="user-details">
+        <div class="user-name">{{ currentUser?.name || 'Antônio Coutinho' }}</div>
+        <div class="user-email">{{ currentUser?.email || 'antonio@example.com' }}</div>
+        <div class="user-role">{{ currentUser?.role || 'Gerente de Contas' }}</div>
       </div>
     </div>
   </div>
@@ -181,5 +103,8 @@
   <button mat-menu-item routerLink="/settings"><mat-icon>settings</mat-icon><span>Configurações</span></button>
   <button mat-menu-item><mat-icon>help</mat-icon><span>Ajuda</span></button>
   <mat-divider></mat-divider>
-  <button mat-menu-item (click)="logout()" class="logout-item"><mat-icon>logout</mat-icon><span>Sair</span></button>
+  <button mat-menu-item (click)="logout()" class="logout-item">
+    <mat-icon>logout</mat-icon>
+    <span>Sair</span>
+  </button>
 </mat-menu>
