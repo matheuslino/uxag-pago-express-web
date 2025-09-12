@@ -13,7 +13,7 @@
 }
 
 .paddingLeft {
- padding: 0px 49px ;
+  padding: 0px 49px;
   
   .modal-subtitle {
     margin: 0;
@@ -30,7 +30,7 @@
 
 .modal-content {
   padding: 0 24px;
-  max-height: 50vh;
+  max-height: 60vh;
   overflow-y: auto;
 }
 
@@ -70,36 +70,30 @@
   font-size: 14px;
 }
 
-
 .config-form {
-  .config-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-  }
-  
-  .config-column {
+  .config-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
   }
   
   .config-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 16px 0;
     border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 20px;
     
     &:last-child {
       border-bottom: none;
+      padding-bottom: 0;
     }
-    
+  }
+  
+  .config-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 16px;
+
     .config-label {
       flex: 1;
       margin-right: 16px;
@@ -118,9 +112,27 @@
         line-height: 1.4;
       }
     }
-    
-    mat-slide-toggle {
-      flex-shrink: 0;
+
+    .config-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .input-label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .time-input,
+      .value-input {
+        width: 80px;
+      }
     }
   }
 }
@@ -151,16 +163,6 @@
   }
 }
 
-
-
-.inputsConfigColor {
-  color: #D0D5DD !important;
-}
-
-.inputsConfigBorder {
-  border: 1px solid #D0D5DD !important;
-}
-
 .buttonConfirm {
   background-color: #5C4896;
   color: white;
@@ -175,7 +177,7 @@
   font-size: 16px;
 }
 
-
+// Estilos para o slide toggle
 ::ng-deep .mat-mdc-slide-toggle.mat-mdc-slide-toggle-checked {
   .mdc-switch__track::before,
   .mdc-switch__track::after {
@@ -189,22 +191,40 @@
 }
 
 ::ng-deep .mat-mdc-slide-toggle:not(.mat-mdc-slide-toggle-checked) {
-  /* fundo do track */
   .mdc-switch__track::before,
   .mdc-switch__track::after {
     background-color: #f3f3f3 !important;
     border-color: #f3f3f3 !important;
   }
 
-  /* handle (bolinha) */
   .mdc-switch__handle,
   .mdc-switch__handle::before,
   .mdc-switch__handle::after {
-    background-color: #ffffff !important; /* branco */
-    border-color: #d0d0d0 !important;     /* cinza borda leve */
+    background-color: #ffffff !important;
+    border-color: #d0d0d0 !important;
   }
 }
 
 ::ng-deep .mat-mdc-slide-toggle .mdc-switch__icons {
   display: none !important;
+}
+
+.w-50{
+  width: 50%;
+}
+
+.config-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.config-label.w-50 {
+  flex: 0 0 50%; /* ocupa exatamente 50% do container */
+}
+.config-actions {
+  flex: 1; /* ocupa todo o espaço restante */
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }

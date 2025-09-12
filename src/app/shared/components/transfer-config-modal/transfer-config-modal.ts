@@ -68,7 +68,7 @@ export class TransferConfigModalComponent implements OnInit {
       if (config) {
         // Encontrar a empresa pelo nome
         const company = this.companies().find(c => c.nome === config.empresa.nome);
-        
+
         this.transferForm.patchValue({
           empresaId: company?.id || '',
           gratis: config.gratis,
@@ -85,10 +85,10 @@ export class TransferConfigModalComponent implements OnInit {
   onSave() {
     if (this.transferForm.valid) {
       this.isLoading.set(true);
-      
+
       const formValue = this.transferForm.value;
       const selectedCompany = this.companies().find(c => c.id === formValue.empresaId);
-      
+
       const transferConfig: TransferConfig = {
         id: '1', // Em produção, viria do backend
         empresa: {

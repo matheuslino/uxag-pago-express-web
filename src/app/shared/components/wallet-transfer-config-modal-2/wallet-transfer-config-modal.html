@@ -1,0 +1,100 @@
+<div class="modal-header">
+  <h2 class="titleModal" mat-dialog-title>Configurar transferências da carteira</h2>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="paddingLeft">
+  <p class="modal-subtitle">Texto complementar que vem abaixo</p>
+</div>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-content class="modal-content">
+ 
+    <!-- Seção da Empresa -->
+    <div class="company-section">
+      <div class="company-info">
+        <div class="company-icon">🏢</div>
+        <div>
+          <h3>Empresa</h3>
+          <p>123 Milhas</p>
+        </div>
+      </div>
+    </div>
+
+  <!-- Formulário de Configurações -->
+  <form [formGroup]="walletTransferConfigForm" class="config-form">
+    <div class="config-list">
+
+      <!-- Depósitos -->
+      <div class="config-item">
+        <div class="config-header">
+          <div class="config-label w-50">
+            <span>Depósitos</span>
+            <small>Depósito de valores através do PIX</small>
+          </div>
+          <div class="config-actions">
+            <mat-slide-toggle formControlName="deposits" color="primary"></mat-slide-toggle>
+            <mat-form-field appearance="outline" class="config-field">
+              <mat-label>Hora</mat-label>
+              <input matInput type="number" formControlName="depositsHour" placeholder="0" min="0" max="23">
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Saques -->
+      <div class="config-item">
+        <div class="config-header">
+          <div class="config-label">
+            <span>Saques</span>
+            <small>Depósito de valores através do PIX</small>
+          </div>
+          <div class="config-actions">
+            <mat-slide-toggle formControlName="withdrawals" color="primary"></mat-slide-toggle>
+            <mat-form-field appearance="outline" class="config-field">
+              <mat-label>Hora</mat-label>
+              <input matInput type="number" formControlName="withdrawalsHour" placeholder="0" min="0" max="23">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carteiras -->
+      <div class="config-item">
+        <div class="config-header">
+          <div class="config-label w-50">
+            <span>Carteiras</span>
+            <small>Depósito de valores através do PIX</small>
+          </div>
+          <div class="config-actions">
+            <mat-slide-toggle formControlName="wallets" color="primary"></mat-slide-toggle>
+            <mat-form-field appearance="outline" class="config-field">
+              <mat-label>Valor</mat-label>
+              <input matInput type="number" formControlName="walletsValue" placeholder="0" min="0" max="23">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</mat-dialog-content>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-actions class="modal-actions">
+  <button mat-button class="buttonCancel" (click)="onCancel()">
+    Cancelar
+  </button>
+  <button mat-raised-button color="primary" class="buttonConfirm" (click)="onSave()" [disabled]="isLoading()">
+    @if (isLoading()) {
+    <mat-spinner diameter="20"></mat-spinner>
+    } @else {
+    Salvar
+    }
+  </button>
+</mat-dialog-actions>

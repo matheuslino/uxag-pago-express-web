@@ -10,6 +10,8 @@ import { TransactionConfigService } from '../../services/transaction-config.serv
 import { BankConfigModalComponent } from '../../shared/components/bank-config-modal/bank-config-modal';
 import { TransactionConfigModalComponent } from '../../shared/components/transaction-config-modal/transaction-config-modal';
 import { TransferConfigModalComponent } from '../../shared/components/transfer-config-modal/transfer-config-modal';
+import { WalletTransferConfig, WalletTransferConfigModalComponent1 } from '../../shared/components/wallet-transfer-config-modal-1/wallet-transfer-config-modal';
+import { WalletTransferConfigModalComponent } from '../../shared/components/wallet-transfer-config-modal-2/wallet-transfer-config-modal';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,7 +36,7 @@ export class Dashboard {
 
   openBankConfigModal() {
     const dialogRef = this.dialog.open(BankConfigModalComponent, {
-      width: '700px',
+      width: '800px',
       maxWidth: '90vw',
       disableClose: false,
       autoFocus: true
@@ -63,19 +65,48 @@ export class Dashboard {
   }
 
   openTransferConfigModal() {
-  const dialogRef = this.dialog.open(TransferConfigModalComponent, {
-    width: '650px',
-    maxWidth: '95vw',
-    disableClose: false,
-    autoFocus: true,
-    panelClass: 'transfer-modal-panel'
+    const dialogRef = this.dialog.open(TransferConfigModalComponent, {
+      width: '800px',
+      maxWidth: '95vw',
+      disableClose: false,
+      autoFocus: true,
+      panelClass: 'transfer-modal-panel'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Configuração de transferência salva:', result);
+        // aqui você pode chamar o TransferConfigService.saveTransferConfig(result)
+      }
+    });
+  }
+
+  openWalletTransferConfigModal1() {
+    const dialogRef = this.dialog.open(WalletTransferConfigModalComponent1, {
+      width: '800px',
+      maxWidth: '95vw',
+      disableClose: false,
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe((result: WalletTransferConfig) => {
+      if (result) {
+        console.log('Configuração salva:', result);
+      }
+    });
+  }
+
+  openWalletTransferConfigModal2() {
+    const dialogRef = this.dialog.open(WalletTransferConfigModalComponent, {
+    minWidth: '800px',
+    maxHeight: '90vh',
+    disableClose: false
   });
 
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
-      console.log('Configuração de transferência salva:', result);
-      // aqui você pode chamar o TransferConfigService.saveTransferConfig(result)
+      console.log('Configuração salva:', result);
     }
   });
-}
+  }
 }
