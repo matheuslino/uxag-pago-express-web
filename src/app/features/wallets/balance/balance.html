@@ -1,1 +1,40 @@
-<p>balance works!</p>
+<main class="balance-container">
+
+  <section class="results-card">
+    <header class="card-header">
+      <div class="title-group">
+        <h2>Resultado da pesquisa</h2>
+        <p>Abaixo estão os resultados encontrados</p>
+      </div>
+      <span class="total-records">Total {{ balances.length }} registros</span>
+    </header>
+
+    <div class="balance-list-container">
+      <div class="balance-list-header">
+        <span class="col col-razao-social">Razão social</span>
+        <span class="col col-carteira">Carteira</span>
+        <span class="col col-apelido">Apelido</span>
+        <span class="col col-valor">Valor ↓</span>
+        <span class="col col-actions"></span>
+      </div>
+
+      @for (item of balances; track $index) {
+        <div class="balance-list-row">
+          <div class="col col-razao-social">
+            <span class="name">{{ item.razaoSocial.name }}</span>
+            <span class="cnpj">{{ item.razaoSocial.cnpj }}</span>
+          </div>
+          <span class="col col-carteira">{{ item.carteira }}</span>
+          <span class="col col-apelido">{{ item.apelido }}</span>
+          <span class="col col-valor">{{ item.valor | currency:'BRL' }}</span>
+          <div class="col col-actions">
+            <button class="btn-delete" (click)="removeBalance($index)">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+</main>
