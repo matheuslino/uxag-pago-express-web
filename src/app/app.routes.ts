@@ -314,38 +314,119 @@ export const routes: Routes = [
           {
             path: 'transfer',
             component: Transfer,
+            data: {
+              pageTitle: 'Transferência',
+              pageSubtitle: 'Transfira dinheiro entre contas',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Transferência', path: '/wallets/transfer' }
+              ],
+            }
           },
           {
             path: 'balance',
             component: Balance,
+            data: {
+              pageTitle: 'Saldo',
+              pageSubtitle: 'Consulte seu saldo',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Saldo', path: '/wallets/balance' }
+              ],
+            }
           },
           {
             path: 'deposit',
             component: Deposit,
+            data: {
+              pageTitle: 'Depósito',
+              pageSubtitle: 'Faça um depósito em sua carteira',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Depósito', path: '/wallets/deposit' }
+              ],
+            }
           },
           {
             path: 'logs',
             component: LogsWallet,
+            data: {
+              pageTitle: 'Logs da Carteira',
+              pageSubtitle: 'Consulte os logs da sua carteira',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Logs', path: '/wallets/logs' }
+              ],
+            }
           },
           {
             path: 'new-item-wallet',
             component: NewItemWallet,
+            data: {
+              pageTitle: 'Novo Item na Carteira',
+              pageSubtitle: 'Adicione um novo item à sua carteira',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Novo Item', path: '/wallets/new-item-wallet' }
+              ],
+            }
           },
           {
             path: 'payment',
             component: Payment,
+            data: {
+              pageTitle: 'Pagamento',
+              pageSubtitle: 'Realize um pagamento',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Pagamento', path: '/wallets/payment' }
+              ],
+            }
           },
           {
             path: 'extract',
             component: Extract,
+            data: {
+              pageTitle: 'Extrato',
+              pageSubtitle: 'Consulte seu extrato',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Extrato', path: '/wallets/extract' }
+              ],
+            }
           },
           {
             path: 'send-pix',
             component: SendPix,
+            data: {
+              pageTitle: 'Enviar PIX',
+              pageSubtitle: 'Envie um PIX para qualquer conta',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Enviar PIX', path: '/wallets/send-pix' }
+              ],
+            }
           },
           {
             path: 'transfer-wallet',
             component: TransferWallet,
+            data: {
+              pageTitle: 'Transferência entre Carteiras',
+              pageSubtitle: 'Transfira valores entre suas carteiras',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Transferência entre Carteiras', path: '/wallets/transfer-wallet' }
+              ],
+            }
           },
         ],
       },
