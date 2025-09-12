@@ -94,7 +94,7 @@ export const routes: Routes = [
               pageTitle: 'Clientes',
               pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
               breadcrumb: [
-                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Painel', path: '/dashboard' },
                 { label: 'Administração', path: '/administracao' },
                 { label: 'Clientes', path: '/administracao/clients' }
               ],
@@ -107,7 +107,7 @@ export const routes: Routes = [
               pageTitle: 'Usuários',
               pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
               breadcrumb: [
-                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Painel', path: '/dashboard' },
                 { label: 'Administração', path: '/administracao' },
                 { label: 'Usuários', path: '/administracao/users' }
               ],
@@ -128,7 +128,7 @@ export const routes: Routes = [
                   pageTitle: 'Chaves PIX',
                   pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
                   breadcrumb: [
-                    { label: 'Painel', path: '/administracao/dashboard' },
+                    { label: 'Painel', path: '/dashboard' },
                     { label: 'Administração', path: '/administracao' },
                     { label: 'Chaves PIX', path: '/administracao/pix/list' }
                   ],
@@ -152,7 +152,7 @@ export const routes: Routes = [
               pageTitle: 'Contas bancárias',
               pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
               breadcrumb: [
-                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Painel', path: '/dashboard' },
                 { label: 'Administração', path: '/administracao' },
                 { label: 'Contas bancárias', path: '/administracao/bank-accounts' }
               ],
@@ -165,9 +165,9 @@ export const routes: Routes = [
               pageTitle: 'Banco em lote',
               pageSubtitle: 'Texto complementar abaixo',
               breadcrumb: [
-                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Painel', path: '/dashboard' },
                 { label: 'Administração', path: '/administracao' },
-                { label: 'Contas bancárias', path: '/administracao/bank-accounts' }
+                { label: 'Banco em lote', path: '/administracao/batch-bank' }
               ],
             }
           },
@@ -178,9 +178,9 @@ export const routes: Routes = [
               pageTitle: 'Relatório de logs',
               pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
               breadcrumb: [
-                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Painel', path: '/dashboard' },
                 { label: 'Administração', path: '/administracao' },
-                { label: 'Contas bancárias', path: '/administracao/bank-accounts' }
+                { label: 'Relatório de logs', path: '/administracao/logs' }
               ],
             }
           },
@@ -191,7 +191,7 @@ export const routes: Routes = [
               pageTitle: 'Notificações',
               pageSubtitle: 'Texto complementar abaixo',
               breadcrumb: [
-                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Painel', path: '/dashboard' },
                 { label: 'Administração', path: '/administracao' },
                 { label: 'Notificações', path: '/administracao/notifications' }
               ],
@@ -204,7 +204,7 @@ export const routes: Routes = [
               pageTitle: 'Aprovar Saques',
               pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
               breadcrumb: [
-                { label: 'Painel', path: '/administracao/dashboard' },
+                { label: 'Painel', path: '/dashboard' },
                 { label: 'Administração', path: '/administracao' },
                 { label: 'Aprovar Saques', path: '/administracao/withdrawals' }
               ],
@@ -253,16 +253,63 @@ export const routes: Routes = [
         component: Wallets,
         children: [
           {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: '/wallets/list',
+          },
+          {
             path: 'new',
             component: NewWallet,
+            data: {
+              pageTitle: 'Wallets',
+              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Visualização', path: '/wallets/new' }
+              ],
+              actionButton: {
+                show: true,
+                label: '+ Adicionar nova carteira',
+                icon: 'add'
+              }
+            }
           },
           {
             path: 'edit',
             component: EditWallet,
+            data: {
+              pageTitle: 'Wallets',
+              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Visualização', path: '/wallets/edit' }
+              ],
+              actionButton: {
+                show: true,
+                label: '+ Adicionar nova carteira',
+                icon: 'add'
+              }
+            }
           },
           {
             path: 'list',
             component: ListWallet,
+            data: {
+              pageTitle: 'Wallets',
+              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Wallets', path: '/wallets' },
+                { label: 'Visualização', path: '/wallets/list' }
+              ],
+              actionButton: {
+                show: true,
+                label: '+ Adicionar nova carteira',
+                icon: 'add'
+              }
+            }
           },
           {
             path: 'transfer',
