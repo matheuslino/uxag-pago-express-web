@@ -1,0 +1,52 @@
+<main class="config-container">
+
+  <section class="top-section">
+    <div class="info-card">
+      <div class="icon-wrapper">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.75 4.5H2.25C1.83579 4.5 1.5 4.83579 1.5 5.25V12.75C1.5 13.1642 1.83579 13.5 2.25 13.5H15.75C16.1642 13.5 16.5 13.1642 16.5 12.75V5.25C16.5 4.83579 16.1642 4.5 15.75 4.5Z" stroke="#5C4896" stroke-width="1.2"/><path d="M3.75 7.5H6" stroke="#5C4896" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="text-wrapper">
+        <span class="title">Carteira</span>
+        <span class="details">6671 • Default</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="input-group">
+        <label for="usuario-input">Usuário</label>
+        <div class="input-wrapper">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.25 14.25C11.5637 14.25 14.25 11.5637 14.25 8.25C14.25 4.93629 11.5637 2.25 8.25 2.25C4.93629 2.25 2.25 4.93629 2.25 8.25C2.25 11.5637 4.93629 14.25 8.25 14.25Z" stroke="#8E8F93" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.75 15.75L12.4875 12.4875" stroke="#8E8F93" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <input id="usuario-input" type="text" placeholder="--" [(ngModel)]="newUserInput">
+        </div>
+      </div>
+      <button class="btn-link" (click)="addUser()" [disabled]="!newUserInput.trim()">Vincular</button>
+    </div>
+  </section>
+
+  <section class="results-card">
+    <header class="card-header">
+      <div class="title-group">
+        <h2>Resultado da pesquisa</h2>
+        <p>Abaixo estão os resultados encontrados</p>
+      </div>
+      <span class="total-records">Total {{ linkedUsers.length }} registros</span>
+    </header>
+
+    <div class="user-list-container">
+      <div class="user-list-header">
+        <span class="col-cpf">CPF/CNPJ</span>
+        <span class="col-name">Nome ↓</span>
+      </div>
+      @for (user of linkedUsers; track $index) {
+        <div class="user-list-row">
+          <span class="col-cpf">{{ user.cpfCnpj }}</span>
+          <span class="col-name">{{ user.name }}</span>
+          <button class="btn-delete" (click)="removeUser($index)">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 5H4.16667H17.5" stroke="#535862" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.6665 5.00004V3.33337C6.6665 2.89135 6.8421 2.46742 7.15466 2.15486C7.46722 1.8423 7.89114 1.66671 8.33317 1.66671H11.6665C12.1085 1.66671 12.5325 1.8423 12.845 2.15486C13.1576 2.46742 13.3332 2.89135 13.3332 3.33337V5.00004M15.8332 5.00004V16.6667C15.8332 17.1087 15.6576 17.5327 15.345 17.8452C15.0325 18.1578 14.6085 18.3334 14.1665 18.3334H5.83317C5.39114 18.3334 4.96722 18.1578 4.65466 17.8452C4.3421 17.5327 4.1665 17.1087 4.1665 16.6667V5.00004H15.8332Z" stroke="#535862" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.3335 9.16671V14.1667" stroke="#535862" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.6665 9.16671V14.1667" stroke="#535862" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      }
+    </div>
+  </section>
+
+</main>
