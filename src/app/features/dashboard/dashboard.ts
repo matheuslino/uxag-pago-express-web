@@ -21,6 +21,7 @@ import { EmailConfigModalComponent } from '../../shared/components/email-config-
 import { CertificateModalComponent } from '../../shared/components/certificate-modal.component/certificate-modal.component';
 import { PixFeeConfigModalComponent } from '../../shared/components/pix-fee-config-modal.component/pix-fee-config-modal.component';
 import { WithdrawalFeeConfigModalComponent } from '../../shared/components/withdrawal-fee-config-modal/withdrawal-fee-config-modal.component';
+import { CreditCardFeesModalComponent } from '../../shared/components/credit-card-fees-modal.component/credit-card-fees-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -238,6 +239,21 @@ export class Dashboard {
     const dialogRef = this.dialog.open(WithdrawalFeeConfigModalComponent, {
       width: '800px',
       maxWidth: '800px',
+      maxHeight: '90vh',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Certificados configurados:', result);
+      }
+    });
+  }
+
+   openTaxCredit() {
+    const dialogRef = this.dialog.open(CreditCardFeesModalComponent, {
+      width: '1000px',
+      maxWidth: '1000px',
       maxHeight: '90vh',
       disableClose: true
     });

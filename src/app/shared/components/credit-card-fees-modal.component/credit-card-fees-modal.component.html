@@ -1,0 +1,126 @@
+<div class="modal-container">
+    <!-- Header -->
+    <div class="modal-header">
+        <div class="header-content">
+            <h2 class="modal-title">Configurar taxas do cartão de crédito</h2>
+            <p class="modal-subtitle">Texto complementar que vem abaixo</p>
+        </div>
+        <button mat-icon-button (click)="onCancelClick()" class="close-button">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="modal-content">
+        <!-- Seção da Empresa -->
+        <div class="company-section">
+            <div class="company-info">
+                <div class="company-icon">{{ '🏢' }}</div>
+                <div>
+                    <h3>{{ companyInfo.nome }}</h3>
+                    <p>{{ companyInfo.milhas }}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Form Content -->
+        <form [formGroup]="feesForm" class="fees-form">
+            <!-- Table Header -->
+            <div class="table-header">
+                <div class="header-cell">Fornecedor</div>
+                <div class="header-cell">Bandeira</div>
+                <div class="header-cell">Tipo</div>
+                <div class="header-cell">Mín. parcela</div>
+                <div class="header-cell">Máx. parcela</div>
+                <div class="header-cell">Taxa</div>
+                <div class="header-cell actions-header"></div>
+            </div>
+
+            <!-- Form Rows -->
+            <div formArrayName="fees" class="fees-rows">
+                <div *ngFor="let feeGroup of feesArray.controls; let i = index" [formGroupName]="i" class="fee-row">
+                    <!-- Fornecedor -->
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-select formControlName="fornecedor">
+                            <mat-option *ngFor="let fornecedor of fornecedores" [value]="fornecedor.value">
+                                {{ fornecedor.label }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- Bandeira -->
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-select formControlName="bandeira">
+                            <mat-option *ngFor="let bandeira of bandeiras" [value]="bandeira.value">
+                                {{ bandeira.label }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- Tipo -->
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-select formControlName="tipo">
+                            <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                                {{ tipo.label }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- Mín. Parcela -->
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-select formControlName="minParcela">
+                            <mat-option *ngFor="let parcela of parcelasOptions" [value]="parcela.value">
+                                {{ parcela.label }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- Máx. Parcela -->
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-select formControlName="maxParcela">
+                            <mat-option *ngFor="let parcela of parcelasOptions" [value]="parcela.value">
+                                {{ parcela.label }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- Taxa -->
+                    <mat-form-field appearance="outline" class="form-field">
+                        <mat-select formControlName="taxa">
+                            <mat-option [value]="0.01">0,01%</mat-option>
+                            <mat-option [value]="0.02">0,02%</mat-option>
+                            <mat-option [value]="0.03">0,03%</mat-option>
+                            <mat-option [value]="0.05">0,05%</mat-option>
+                            <mat-option [value]="0.1">0,10%</mat-option>
+                            <mat-option [value]="0.15">0,15%</mat-option>
+                            <mat-option [value]="0.2">0,20%</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- Actions -->
+                    <div class="actions-cell">
+                        <button mat-icon-button type="button" (click)="removeFee(i)" [disabled]="feesArray.length <= 1" class="delete-button">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add New Button -->
+            <div class="add-new-container">
+                <button mat-stroked-button type="button" (click)="addNewFee()" class="add-new-button">
+                    Adicionar uma nova
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+    <!-- Footer Actions -->
+    <div class="modal-footer">
+        <button mat-button (click)="onCancelClick()" class="cancel-button">
+            Cancelar
+        </button>
+        <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="!feesForm.valid"
+            class="save-button">
+            Salvar
+        </button>
+    </div>
+</div>
