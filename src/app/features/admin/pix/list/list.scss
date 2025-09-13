@@ -33,16 +33,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: #f6f6f6;
+  background: #fAFAFA;
   border-radius: 5px;
   padding: 12px 18px 12px 18px;
   margin-bottom: 18px;
-  width: 80%;
+  width: 40%;
 }
 
 .pix-list-select-row {
   display: flex;
-  align-items: stretch; // faz ambas as divs ocuparem a mesma altura
+  align-items: stretch; 
   justify-content: space-between;
   gap: 32px;
   margin-bottom: 18px;
@@ -56,18 +56,47 @@
   margin-right: 12px;
 }
 .pix-list-select {
-  background: #f6f6f6;
+  background: #FFF;
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 15px;
   padding: 8px 12px;
   min-width: 180px;
-  width: 350px;
+  width: 320px;
   box-sizing: border-box;
 }
 
+.pix-list-client-info {
+  width: 60%;
+  background: #fafafa;
+  border-radius: 5px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 86px;
+}
+
+/* Avatar dentro da box de info */
+.pix-list-client-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+  margin-right: 12px;
+}
+
+.pix-list-client-avatar img {
+  width: 32px;
+  height: 32px;
+  border-radius: 70%;
+  object-fit: cover;
+}
+
 .pix-list-client-name {
-  background: #f6f6f6;
+  background: #FAFAFA;
   border-radius: 4px;
   padding: 12px 18px;
   font-weight: 600;
@@ -82,7 +111,7 @@
 }
 
 .pix-list-results-section {
-  background: #f6f6f6;
+  background: #FAFAFA;
   border-radius: 12px;
   box-shadow: none;
   border: none;
@@ -99,14 +128,23 @@
 .pix-list-results-info-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 18px;
   margin-top: -8px;
 }
+
 .pix-list-results-subtitle {
   font-size: 0.98rem;
   color: #888;
   margin-bottom: 18px;
   margin-top: -5px;
+}
+
+.pix-list-total {
+  color: #222;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: right; 
 }
 .pix-list-results-table {
   width: 100%;
@@ -118,7 +156,7 @@
   overflow: hidden;
 }
 .pix-list-results-table th {
-  background: #f6f6f6;
+  background:#FAFAFA;
   font-weight: 600;
   color: #555;
   border-top: 1px solid #ccc;
@@ -154,21 +192,14 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: 50%;
-  background: #eaeaea;
+  background: #fff;
   color: #e53935;
   font-size: 1.1rem;
   cursor: pointer;
   transition: background 0.2s;
-  border: 1px solid #d1d1d1;
+ 
 }
 .pix-list-trash-icon:hover {
   background: #ffcdd2;
   color: #b71c1c;
-}
-
-@media (max-width: 768px) {
-  .main-content {
-    display: block;
-  }
 }

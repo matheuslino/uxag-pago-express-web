@@ -8,8 +8,8 @@
 
 
 .associacao-container {
-  max-width: calc(100% - 280px); /* largura total menos a sidebar */
-  margin-left: 280px; /* empurra a tela para a direita da sidebar */
+  max-width: calc(100% - 280px);
+  margin-left: 280px;
   margin-right: auto;
   width: 100%;
   box-sizing: border-box;
@@ -23,12 +23,12 @@
   box-sizing: border-box;
 }
 
-/* Avatar e usuário */
+
 .associacao-user-info {
   display: flex;
   align-items: center;
-  flex: 1; /* ocupa todo o espaço disponível */
-  background: #f6f6f6;
+  flex: 1; 
+  background: #fAfAfA;
   padding: 12px 18px;
   border-radius: 5px;
   box-sizing: border-box;
@@ -64,12 +64,12 @@
   margin: 2px 0 0 0;
 }
 
-/* Empresa / Busca + botão */
+
 .associacao-company-info {
   display: flex;
   flex-direction: column;
-  flex: 1; /* ocupa todo o espaço disponível */
-  background: #f6f6f6;
+  flex: 1; 
+  background: #fAfAfA;
   padding: 12px 18px;
   border-radius: 5px;
   gap: 8px;
@@ -123,12 +123,12 @@
   background: #d5d5d5;
 }
 
-/* Seção de associação */
+
 .associacao-section {
-  background: #f6f6f6;
+  background: #fAfAfA;
   border-radius: 12px;
   padding: 24px 32px;
-  width: 100%; /* ocupa todo container */
+  width: 100%; 
   box-sizing: border-box;
 }
 
@@ -164,7 +164,7 @@
 }
 
 .associacao-table th {
-  background: #f6f6f6;
+  background: #fAfAfA;
   font-weight: 600;
   color: #555;
 }

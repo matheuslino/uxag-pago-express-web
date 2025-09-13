@@ -15,12 +15,39 @@
   padding: 32px;
   margin-bottom: 0;
 }
+.batch-bank-header-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;      
+  background: #E3D9FF;     
+  border-radius: 8px;      
+  padding: 6px 12px;        
+  width: fit-content;      
+}
+
+.batch-bank-arrow {
+  width: 45px;  
+  height: 45px;
+  
+}
 
 .batch-bank-title {
   font-size: 1.2rem;
   font-weight: 600;
   color: #333;
   margin-bottom: 18px;
+}
+
+.batch-bank-header-desc {
+  font-size: 0.98rem;
+  color: #888;
+  margin-top: 4px;
+}
+
+.batch-bank-divider {
+  border: none;
+  border-top: 1.5px solid #e0e0e0;
+  margin: 16px 0 24px 0;
 }
 
 .batch-bank-select-row {
@@ -44,8 +71,8 @@
   border-radius: 6px;
   font-size: 15px;
   background: #fff;
-  min-width: 220px; 
-  width: 220px;     
+  min-width: 220px;
+  width: 260px;
   box-sizing: border-box;
 }
 
@@ -60,6 +87,44 @@
   font-weight: 600;
   margin-bottom: 16px;
   color: #333;
+}
+
+.batch-bank-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+
+.batch-bank-results-subtitle {
+  font-size: 0.98rem;
+  color: #888;
+}
+
+.batch-bank-results-total {
+  font-size: 1rem;
+  color: #222;
+  font-weight: 500;
+}
+
+.batch-bank-col-solicitante {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espaço entre checkbox e título */
+}
+
+.batch-bank-col-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px; 
+  font-weight: 600;
+  color: #555;
+}
+
+.batch-bank-arrow {
+  width: 14px;   
+  height: 14px;
 }
 
 .batch-bank-results-table {
@@ -78,6 +143,9 @@
   color: #555;
   border-bottom: 1px solid #ccc;
   padding: 12px 10px;
+  text-align: left;
+  vertical-align: middle;
+  padding-left: 15px;
 }
 
 .batch-bank-results-table th:first-child {
@@ -97,7 +165,8 @@
   background: #fff !important;
   border-bottom: 1px solid #ccc;
   padding: 12px 10px;
-  padding-left: 70px;
+  padding-left: 16px;
+  vertical-align: middle;
 }
 
 .batch-bank-results-table tr:last-child td {
@@ -106,10 +175,42 @@
 
 .batch-bank-footer {
   display: flex;
-  justify-content: flex-end;
-  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
   margin-top: 18px;
   padding-top: 24px;
+}
+
+.batch-bank-footer-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: auto;
+  text-align: center;
+}
+
+.batch-bank-footer-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.batch-bank-footer-col span:first-child {
+  font-size: 0.98rem;
+  color: #222;
+  font-weight: 600;
+}
+
+.batch-bank-footer-col span:last-child {
+  font-size: 0.88rem;
+  color: #888;
+  margin-top: 2px;
 }
 
 .batch-bank-btn-cancel {
