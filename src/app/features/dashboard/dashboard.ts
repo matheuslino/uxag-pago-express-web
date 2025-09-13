@@ -15,6 +15,7 @@ import { WalletTransferConfigModalComponent } from '../../shared/components/wall
 import { IntegrationConfigModalComponent } from '../../shared/components/integration-config-modal/integration-config-modal.component';
 import { PixLimitsModalComponent } from '../../shared/components/pix-limits-modal/pix-limits-modal.component';
 import { IpConfigModalComponent } from '../../shared/components/ip-permission-modal/ip-permission-modal.component';
+import { LimitConfigModalComponent } from '../../shared/components/limit-config-modal.component/limit-config-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -139,6 +140,21 @@ export class Dashboard {
   }
   openConfigIpsModal(){
     const dialogRef = this.dialog.open(IpConfigModalComponent, {
+      width: '800px',
+      maxWidth: '95vw',
+      disableClose: false,
+      autoFocus: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Configuração de transações salva:', result);
+      }
+    });
+  }
+
+  openLimitConfigModal(){
+    const dialogRef = this.dialog.open(LimitConfigModalComponent, {
       width: '800px',
       maxWidth: '95vw',
       disableClose: false,
