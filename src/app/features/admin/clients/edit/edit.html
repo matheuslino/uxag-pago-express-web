@@ -1,72 +1,93 @@
-<div class="page-container">
-  <form class="edit-client-form">
-
-   
-    <div class="edit-client-header">
-      <h1>Informações do cliente</h1>
-      <p>Complete as informações de acordo com a chave desejada</p>
-    </div>
-   
-    <hr />
-
-   
-    <div class="edit-client-section">
-      <div class="edit-client-section-title">Dados Corporativos</div>
-      <div class="edit-client-fields-grid">
-        <div class="edit-client-field">
-          <label for="tipo-pessoa">Tipo pessoa</label>
-          <input id="tipo-pessoa" type="text" value="Jurídica">
-        </div>
-        <div class="edit-client-field">
-          <label for="cnpj">CNPJ</label>
-          <input id="cnpj" type="text" value="26.669.710/0001-57">
-        </div>
-        <div class="edit-client-field">
-          <label for="razao-social">Nome / Razão Social</label>
-          <input id="razao-social" type="text" value="123 Milhas">
-        </div>
-        <div class="edit-client-field">
-          <label for="nome-fantasia">Apelido / Nome Fantasia</label>
-          <input id="nome-fantasia" type="text" value="123 Milhas">
-        </div>
-        <div class="edit-client-field">
-          <label for="carteira-padrao">Carteira padrão</label>
-          <input id="carteira-padrao" type="text" value="6671 - Wallet Default">
-        </div>
+<div class="page-header">
+  <nav class="breadcrumb" *ngIf="headerInformation && headerInformation.breadcrumb.length > 0">
+    <a 
+      *ngFor="let item of headerInformation.breadcrumb; let last = last" 
+      [routerLink]="item.path" 
+      [class.active]="last"
+      class="breadcrumb-item">
+      {{ item.label }}
+      <span *ngIf="!last" class="separator">/</span>
+    </a>
+  </nav>
+  <div class="header-content">
+      <div class="header-info">
+        <h1 class="page-title">{{ headerInformation.pageTitle }}</h1>
+        <p class="page-subtitle" *ngIf="headerInformation && headerInformation.pageSubtitle">{{ headerInformation.pageSubtitle }}</p>
       </div>
     </div>
+</div>
+<div class="main-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="page-container">
+    <form class="edit-client-form">
 
-    <hr />
+    
+      <div class="edit-client-header">
+        <h1>Informações do cliente</h1>
+        <p>Complete as informações de acordo com a chave desejada</p>
+      </div>
+    
+      <hr />
 
-    <div class="edit-client-section">
-      <div class="edit-client-section-title">Dados de contato</div>
-      <div class="edit-client-fields-grid">
-        <div class="edit-client-field">
-          <label for="telefone">Telefone</label>
-          <input id="telefone" type="text" value="0000-0000">
-        </div>
-        <div class="edit-client-field">
-          <label for="email">E-mail</label>
-          <input id="email" type="email" value="jose@123milhas.com.br">
+    
+      <div class="edit-client-section">
+        <div class="edit-client-section-title">Dados Corporativos</div>
+        <div class="edit-client-fields-grid">
+          <div class="edit-client-field">
+            <label for="tipo-pessoa">Tipo pessoa</label>
+            <input id="tipo-pessoa" type="text" value="Jurídica">
+          </div>
+          <div class="edit-client-field">
+            <label for="cnpj">CNPJ</label>
+            <input id="cnpj" type="text" value="26.669.710/0001-57">
+          </div>
+          <div class="edit-client-field">
+            <label for="razao-social">Nome / Razão Social</label>
+            <input id="razao-social" type="text" value="123 Milhas">
+          </div>
+          <div class="edit-client-field">
+            <label for="nome-fantasia">Apelido / Nome Fantasia</label>
+            <input id="nome-fantasia" type="text" value="123 Milhas">
+          </div>
+          <div class="edit-client-field">
+            <label for="carteira-padrao">Carteira padrão</label>
+            <input id="carteira-padrao" type="text" value="6671 - Wallet Default">
+          </div>
         </div>
       </div>
-    </div>
 
-    <hr />
+      <hr />
 
-    <div class="edit-client-section">
-      <div class="edit-client-section-title">Dados complementares</div>
-      <div class="edit-client-fields-grid">
-        <div class="edit-client-field">
-          <label for="pais">País</label>
-          <input id="pais" type="text" value="Brasil">
-        </div>
-        <div class="edit-client-field">
-          <label for="segmento">Segmento</label>
-          <input id="segmento" type="text" value="Turismo">
+      <div class="edit-client-section">
+        <div class="edit-client-section-title">Dados de contato</div>
+        <div class="edit-client-fields-grid">
+          <div class="edit-client-field">
+            <label for="telefone">Telefone</label>
+            <input id="telefone" type="text" value="0000-0000">
+          </div>
+          <div class="edit-client-field">
+            <label for="email">E-mail</label>
+            <input id="email" type="email" value="jose@123milhas.com.br">
+          </div>
         </div>
       </div>
-    </div>
 
-  </form>
+      <hr />
+
+      <div class="edit-client-section">
+        <div class="edit-client-section-title">Dados complementares</div>
+        <div class="edit-client-fields-grid">
+          <div class="edit-client-field">
+            <label for="pais">País</label>
+            <input id="pais" type="text" value="Brasil">
+          </div>
+          <div class="edit-client-field">
+            <label for="segmento">Segmento</label>
+            <input id="segmento" type="text" value="Turismo">
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
 </div>

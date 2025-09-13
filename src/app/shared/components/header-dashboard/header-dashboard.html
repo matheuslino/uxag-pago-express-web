@@ -47,8 +47,7 @@
               <button class="user-info-button" [matMenuTriggerFor]="userMenu">
                 <div class="user-info">
                   <div class="user-avatar">
-                    <img *ngIf="imageLoaded" src="assets/images/user-avatar.png" alt="User Avatar" (error)="onImageError()" />
-                    <span *ngIf="!imageLoaded" class="avatar-initials">{{ getUserInitials() }}</span>
+                    <img src="assets/images/avatar.png" alt="User Avatar" />
                   </div>
                   <div class="user-details">
                     <span class="user-name">{{ userName }}</span>
@@ -116,7 +115,7 @@
               <div class="wallets-grid">
                 <div class="wallet-card" *ngFor="let wallet of wallets">
                    <div class="wallet-card-header">
-                      <mat-icon class="wallet-icon">store</mat-icon>
+                      <img src="assets/images/icon_card_dashboard.svg" alt="Wallet icon">
                       <span class="wallet-name">{{ wallet.nome }}</span>
                    </div>
                    <div class="wallet-balance">

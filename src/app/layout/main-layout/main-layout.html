@@ -1,6 +1,6 @@
 <div class="main-layout"> 
-  <app-header *ngIf="!!!isDashboardRoute" ></app-header>
   <app-header-dashboard *ngIf="!!isDashboardRoute" ></app-header-dashboard>
+  <app-header *ngIf="!!!isDashboardRoute" ></app-header>
   <main class="main-content">
     <router-outlet></router-outlet>
   </main>

@@ -1,5 +1,15 @@
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: calc(100vh - 320px);
+  padding: 24px 0;
+  background: #fff;
+}
+
 .bank-accounts-bg {
   background: #fff;
+  width: 100%;
 }
 
 .bank-accounts-container {
@@ -117,4 +127,10 @@
   font-weight: 500;
   margin-top: 2px;
   display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    display: block;
+  }
 }

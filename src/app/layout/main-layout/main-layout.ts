@@ -22,7 +22,7 @@ import { HeaderDashboard } from '../../shared/components/header-dashboard/header
 export class MainLayout implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   
-  isDashboardRoute = false;
+  isDashboardRoute = true;
   currentRoute = '';
 
   constructor(private router: Router) {}

@@ -1,78 +1,99 @@
-<div class="pix-list-bg">
-  <div class="pix-list-container">
-    <div class="pix-list-select-row">
-      <div class="pix-list-select-section" style="width: 40%; padding: 8px 18px;">
-        <span class="pix-list-select-title">Cliente</span>
-        <select id="pix-client-select" class="pix-list-select" style="background: #fff; width: 280px; margin-top: 8px;">
-          <option selected>123 Milhas</option>
-        </select>
+<div class="page-header">
+  <nav class="breadcrumb" *ngIf="headerInformation && headerInformation.breadcrumb.length > 0">
+    <a 
+      *ngFor="let item of headerInformation.breadcrumb; let last = last" 
+      [routerLink]="item.path" 
+      [class.active]="last"
+      class="breadcrumb-item">
+      {{ item.label }}
+      <span *ngIf="!last" class="separator">/</span>
+    </a>
+  </nav>
+  <div class="header-content">
+      <div class="header-info">
+        <h1 class="page-title">{{ headerInformation.pageTitle }}</h1>
+        <p class="page-subtitle" *ngIf="headerInformation && headerInformation.pageSubtitle">{{ headerInformation.pageSubtitle }}</p>
       </div>
-      <div class="pix-list-client-info" style="width: 60%; background: #f6f6f6; border-radius: 5px; padding: 12px 18px; display: flex; align-items: center; justify-content: flex-start; height: 86px;">
-        <span style="display: inline-flex; align-items: center; justify-content: center; background: #fff; border-radius: 50%; padding: 6px; margin-right: 12px;">
-          <img src="/img/house.svg" alt="Avatar" style="width: 32px; height: 32px; border-radius: 70%; object-fit: cover;">
-        </span>
-        <div>
-          <span class="pix-list-select-title">Cliente</span>
-          <div class="pix-list-select-subtitle">123 milhas</div>
+    </div>
+</div>
+<div class="main-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="pix-list-bg">
+      <div class="pix-list-container">
+        <div class="pix-list-select-row">
+          <div class="pix-list-select-section" style="width: 40%; padding: 8px 18px;">
+            <span class="pix-list-select-title">Cliente</span>
+            <select id="pix-client-select" class="pix-list-select" style="background: #fff; width: 280px; margin-top: 8px;">
+              <option selected>123 Milhas</option>
+            </select>
+          </div>
+          <div class="pix-list-client-info" style="width: 60%; background: #f6f6f6; border-radius: 5px; padding: 12px 18px; display: flex; align-items: center; justify-content: flex-start; height: 86px;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; background: #fff; border-radius: 50%; padding: 6px; margin-right: 12px;">
+              <img src="/img/house.svg" alt="Avatar" style="width: 32px; height: 32px; border-radius: 70%; object-fit: cover;">
+            </span>
+            <div>
+              <span class="pix-list-select-title">Cliente</span>
+              <div class="pix-list-select-subtitle">123 milhas</div>
+            </div>
+          </div>
+        </div>
+        <div class="pix-list-results-section">
+          <h2 class="pix-list-results-title">Resultado da pesquisa</h2>
+          <div class="pix-list-results-info-row" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="pix-list-results-subtitle">Abaixo estão os resultados encontrados</div>
+            <div style="color: #222; font-size: 1rem; font-weight: 500;">Total 3 Registros</div>
+          </div>
+          <table class="pix-list-results-table">
+            <thead>
+              <tr>
+                <th >Empresa</th>
+                <th>Tipo de chave</th>
+                <th>Chave PIX</th>
+                <th>Criado por</th>
+                <th>Criado em</th>
+                <th style="width: 50px;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="vertical-align: middle;">
+                <td style="padding-left: 50px;">123 Milhas</td>
+                <td style="padding-left: 50px;">CPF</td>
+                <td style="padding-left: 50px;">123.456.789-00</td>
+                <td style="padding-left: 50px;">lucas_adm</td>
+                <td style="padding-left: 50px;">03h09 - 12/03/2024</td>
+                <td style="text-align: center; vertical-align: middle;">
+                  <span class="pix-list-trash-icon" title="Excluir">
+                    <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px;">
+                  </span>
+                </td>
+              </tr>
+              <tr style="vertical-align: middle;">
+                <td style="padding-left: 50px;">123 Milhas Filial</td>
+                <td style="padding-left: 50px;">CNPJ</td>
+                <td style="padding-left: 50px;">12.345.678/0001-99</td>
+                <td style="padding-left: 50px;">miguel_user</td>
+                <td style="padding-left: 50px;">03h09 - 12/03/2024</td>
+                <td style="text-align: center; vertical-align: middle;">
+                  <span class="pix-list-trash-icon" title="Excluir">
+                    <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px;">
+                  </span>
+                </td>
+              </tr>
+              <tr style="vertical-align: middle;">
+                <td style="padding-left: 50px;">Agência XPTO</td>
+                <td style="padding-left: 50px;">E-mail</td>
+                <td style="padding-left: 50px;">contato@empresa.com</td>
+                <td style="padding-left: 50px;">kelvyn_admin</td>
+                <td style="padding-left: 50px;">03h09 - 12/03/2024</td>
+                <td style="text-align: center; vertical-align: middle;">
+                  <span class="pix-list-trash-icon" title="Excluir">
+                    <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px;">
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </div>
-    <div class="pix-list-results-section">
-      <h2 class="pix-list-results-title">Resultado da pesquisa</h2>
-      <div class="pix-list-results-info-row" style="display: flex; align-items: center; justify-content: space-between;">
-        <div class="pix-list-results-subtitle">Abaixo estão os resultados encontrados</div>
-        <div style="color: #222; font-size: 1rem; font-weight: 500;">Total 3 Registros</div>
-      </div>
-      <table class="pix-list-results-table">
-        <thead>
-          <tr>
-            <th >Empresa</th>
-            <th>Tipo de chave</th>
-            <th>Chave PIX</th>
-            <th>Criado por</th>
-            <th>Criado em</th>
-            <th style="width: 50px;"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="vertical-align: middle;">
-            <td style="padding-left: 50px;">123 Milhas</td>
-            <td style="padding-left: 50px;">CPF</td>
-            <td style="padding-left: 50px;">123.456.789-00</td>
-            <td style="padding-left: 50px;">lucas_adm</td>
-            <td style="padding-left: 50px;">03h09 - 12/03/2024</td>
-            <td style="text-align: center; vertical-align: middle;">
-              <span class="pix-list-trash-icon" title="Excluir">
-                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px;">
-              </span>
-            </td>
-          </tr>
-          <tr style="vertical-align: middle;">
-            <td style="padding-left: 50px;">123 Milhas Filial</td>
-            <td style="padding-left: 50px;">CNPJ</td>
-            <td style="padding-left: 50px;">12.345.678/0001-99</td>
-            <td style="padding-left: 50px;">miguel_user</td>
-            <td style="padding-left: 50px;">03h09 - 12/03/2024</td>
-            <td style="text-align: center; vertical-align: middle;">
-              <span class="pix-list-trash-icon" title="Excluir">
-                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px;">
-              </span>
-            </td>
-          </tr>
-          <tr style="vertical-align: middle;">
-            <td style="padding-left: 50px;">Agência XPTO</td>
-            <td style="padding-left: 50px;">E-mail</td>
-            <td style="padding-left: 50px;">contato@empresa.com</td>
-            <td style="padding-left: 50px;">kelvyn_admin</td>
-            <td style="padding-left: 50px;">03h09 - 12/03/2024</td>
-            <td style="text-align: center; vertical-align: middle;">
-              <span class="pix-list-trash-icon" title="Excluir">
-                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px;">
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </div>

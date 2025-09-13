@@ -111,6 +111,6 @@ export class Login implements OnInit {
     if (user.AvatarBse64) {
       return user.AvatarBse64;
     }
-    return 'assets/images/user-avatar.png';
+    return 'assets/images/avatar_login.png';
   }
 }

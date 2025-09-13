@@ -59,10 +59,10 @@ export class HeaderDashboard implements OnInit {
   imageLoaded = true;
   unreadNotifications = 0;
   addWalletPlaceholders: any[] = [];
-  greeting = '';
+  greeting = 'Bem-vindo novamente';
   isBalanceVisible = false;
 
-  userName = 'Antônio';
+  userName = 'Antônio Coutinho';
   userRole = 'Gerente de Contas';
   userEmail = 'antonio.coutinho@example.com';
   accountNumber = '#1132';
@@ -121,22 +121,10 @@ export class HeaderDashboard implements OnInit {
     this.updateActiveMenuItem(this.router.url);
     this.updateUnreadCount();
     this.setupWalletPlaceholders();
-    this.setGreeting();
   }
   
   toggleBalanceVisibility(): void {
     this.isBalanceVisible = !this.isBalanceVisible;
-  }
-
-  private setGreeting(): void {
-    const hour = new Date().getHours();
-    if (hour < 12) {
-      this.greeting = 'Bom dia';
-    } else if (hour < 18) {
-      this.greeting = 'Boa tarde';
-    } else {
-      this.greeting = 'Boa noite';
-    }
   }
 
   private setupWalletPlaceholders(): void {

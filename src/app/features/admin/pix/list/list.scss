@@ -1,3 +1,11 @@
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: calc(100vh - 320px);
+  padding: 24px 0;
+  background: #fff;
+}
 
 .pix-list-select-title {
   font-weight: 600;
@@ -11,6 +19,7 @@
 }
 .pix-list-bg {
   background: #fff;
+  width: 100%;
 }
 
 .pix-list-container {
@@ -156,4 +165,10 @@
 .pix-list-trash-icon:hover {
   background: #ffcdd2;
   color: #b71c1c;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    display: block;
+  }
 }

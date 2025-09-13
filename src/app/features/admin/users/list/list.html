@@ -1,109 +1,130 @@
-<body onclick="document.querySelectorAll('.users-list-actions-menu.show').forEach(function(menu){menu.classList.remove('show');})">
-<div class="users-list-bg">
-  <div class="users-list-container">
-    <div class="users-list-filters-section">
-      <div class="users-list-filters-row">
-        <label class="users-list-filter-label">
-          Cliente
-          <div style="position: relative; width: 100%;">
-            <img src="/img/lupa.svg" alt="Buscar" style="position: absolute; left: 12px; top: 55%; transform: translateY(-50%); width: 18px; height: 18px; pointer-events: none; opacity: 0.7;" />
-            <input type="text" placeholder="Buscar por algum cliente..." class="users-list-filter-input" style="padding-left: 38px;" />
-          </div>
-        </label>
-        <label class="users-list-filter-label">
-          Nome
-          <input type="text" placeholder="Nome do cliente" class="users-list-filter-input" />
-        </label>
-        <label class="users-list-filter-label">
-          CNPJ
-          <input type="text" placeholder="Número do CNPJ" class="users-list-filter-input" />
-        </label>
+<div class="page-header">
+  <nav class="breadcrumb" *ngIf="headerInformation && headerInformation.breadcrumb.length > 0">
+    <a 
+      *ngFor="let item of headerInformation.breadcrumb; let last = last" 
+      [routerLink]="item.path" 
+      [class.active]="last"
+      class="breadcrumb-item">
+      {{ item.label }}
+      <span *ngIf="!last" class="separator">/</span>
+    </a>
+  </nav>
+  <div class="header-content">
+      <div class="header-info">
+        <h1 class="page-title">{{ headerInformation.pageTitle }}</h1>
+        <p class="page-subtitle" *ngIf="headerInformation && headerInformation.pageSubtitle">{{ headerInformation.pageSubtitle }}</p>
       </div>
     </div>
-    <div class="users-list-results-section">
-      <h2 class="users-list-results-title">Resultado da pesquisa</h2>
-      <div class="users-list-results-info-row">
-        <span class="users-list-results-subtitle">Abaixo estão os resultados encontrados</span>
-        <span class="users-list-results-total">Total 9 registros</span>
+</div>
+<div class="main-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <!-- <body onclick="document.querySelectorAll('.users-list-actions-menu.show').forEach(function(menu){menu.classList.remove('show');})"> -->
+  <div class="users-list-bg">
+    <div class="users-list-container">
+      <div class="users-list-filters-section">
+        <div class="users-list-filters-row">
+          <label class="users-list-filter-label">
+            Cliente
+            <div style="position: relative; width: 100%;">
+              <img src="/img/lupa.svg" alt="Buscar" style="position: absolute; left: 12px; top: 55%; transform: translateY(-50%); width: 18px; height: 18px; pointer-events: none; opacity: 0.7;" />
+              <input type="text" placeholder="Buscar por algum cliente..." class="users-list-filter-input" style="padding-left: 38px;" />
+            </div>
+          </label>
+          <label class="users-list-filter-label">
+            Nome
+            <input type="text" placeholder="Nome do cliente" class="users-list-filter-input" />
+          </label>
+          <label class="users-list-filter-label">
+            CNPJ
+            <input type="text" placeholder="Número do CNPJ" class="users-list-filter-input" />
+          </label>
+        </div>
       </div>
-      <table class="users-list-results-table">
-        <thead>
-          <tr>
-            <th>Nome / E-mail</th>
-            <th>Razão social</th>
-            <th>Perfil/Login</th>
-            <th>Status</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody onclick="event.stopPropagation()">
-          <tr>
-            <td>
-              <div class="users-list-name">123 Milhas</div>
-              <div class="users-list-email">admin@123milhas.com</div>
-            </td>
-            <td>123 Milhas<br><span class="users-list-email">admin@123milhas.com</span></td>
-            <td>Cashin/Cashout<br><span class="users-list-email">admin@123milhas.com</span></td>
-            <td><span class="users-list-status-active" style="margin-right: 130px;">Active</span></td>
-            <td class="users-list-actions-cell">
-              <span class="users-list-actions-dots" style="font-size: 1.5rem; cursor: pointer; display: inline-block; line-height: 1;" onclick="document.getElementById('menu-1').classList.toggle('show')">&#8942;</span>
-              <div class="users-list-actions-menu" id="menu-1" style="min-width: 120px; max-width: 160px; padding: 6px 0;">
-                <div class="users-list-actions-item"><img src="/img/person.svg" style="width:13px;" /> Editar</div>
-                <div class="users-list-actions-item"><img src="/img/Frame.svg" style="width:13px;" /> Credenciais</div>
-                <div class="users-list-actions-item"><img src="/img/zap.svg" style="width:13px;" /> Vincular empresas</div>
-                <div class="users-list-actions-item"><img src="/img/house.svg" style="width:13px;" /> Desativar</div>
-                <div class="users-list-actions-item"><img src="/img/logs.svg" style="width:13px;" /> Ver logs</div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="users-list-name">Phoenix Baker</div>
-              <div class="users-list-email">lara.steiner@123milhas.com</div>
-            </td>
-            <td>Stark<br><span class="users-list-email">olivia@unittledui.com</span></td>
-            <td>Cashin/Cashout<br><span class="users-list-email">admin@123milhas.com</span></td>
-            <td><span class="users-list-status-active" style="margin-right: 32px;">Active</span></td>
-            <td class="users-list-actions-cell">
-              <span class="users-list-actions-dots" style="font-size: 1.5rem; cursor: pointer; display: inline-block; line-height: 1;" onclick="document.getElementById('menu-2').classList.toggle('show')">&#8942;</span>
-              <div class="users-list-actions-menu" id="menu-2" style="min-width: 120px; max-width: 160px; padding: 6px 0;">
-                <div class="users-list-actions-item"><img src="/img/person.svg" style="width:13px;" /> Editar</div>
-                <div class="users-list-actions-item"><img src="/img/Frame.svg" style="width:13px;" /> Credenciais</div>
-                <div class="users-list-actions-item"><img src="/img/zap.svg" style="width:13px;" /> Vincular empresas</div>
-                <div class="users-list-actions-item"><img src="/img/house.svg" style="width:13px;" /> Desativar</div>
-                <div class="users-list-actions-item"><img src="/img/logs.svg" style="width:13px;" /> Ver logs</div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="users-list-name">Lara Steiner</div>
-              <div class="users-list-email">lara.steiner@123milhas.com</div>
-            </td>
-            <td>Stark<br><span class="users-list-email">olivia@unittledui.com</span></td>
-            <td>Cashin/Cashout<br><span class="users-list-email">admin@123milhas.com</span></td>
-            <td><span class="users-list-status-active" style="margin-right: 32px;">Active</span></td>
-            <td class="users-list-actions-cell">
-              <span class="users-list-actions-dots" style="font-size: 1.5rem; cursor: pointer; display: inline-block; line-height: 1;" onclick="document.getElementById('menu-3').classList.toggle('show')">&#8942;</span>
-              <div class="users-list-actions-menu" id="menu-3" style="min-width: 120px; max-width: 160px; padding: 6px 0;">
-                <div class="users-list-actions-item"><img src="/img/person.svg" style="width:13px;" /> Editar</div>
-                <div class="users-list-actions-item"><img src="/img/Frame.svg" style="width:13px;" /> Credenciais</div>
-                <div class="users-list-actions-item"><img src="/img/zap.svg" style="width:13px;" /> Vincular empresas</div>
-                <div class="users-list-actions-item"><img src="/img/house.svg" style="width:13px;" /> Desativar</div>
-                <div class="users-list-actions-item"><img src="/img/logs.svg" style="width:13px;" /> Ver logs</div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="users-list-pagination">
-        <button class="users-list-page users-list-page-active">1</button>
-        <button class="users-list-page">2</button>
-        <button class="users-list-page">3</button>
-        <span class="users-list-page">...</span>
-        <button class="users-list-page">8</button>
-        <button class="users-list-page">9</button>
-        <button class="users-list-page">10</button>
+      <div class="users-list-results-section">
+        <h2 class="users-list-results-title">Resultado da pesquisa</h2>
+        <div class="users-list-results-info-row">
+          <span class="users-list-results-subtitle">Abaixo estão os resultados encontrados</span>
+          <span class="users-list-results-total">Total 9 registros</span>
+        </div>
+        <table class="users-list-results-table">
+          <thead>
+            <tr>
+              <th>Nome / E-mail</th>
+              <th>Razão social</th>
+              <th>Perfil/Login</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody onclick="event.stopPropagation()">
+            <tr>
+              <td>
+                <div class="users-list-name">123 Milhas</div>
+                <div class="users-list-email">admin@123milhas.com</div>
+              </td>
+              <td>123 Milhas<br><span class="users-list-email">admin@123milhas.com</span></td>
+              <td>Cashin/Cashout<br><span class="users-list-email">admin@123milhas.com</span></td>
+              <td><span class="users-list-status-active" style="margin-right: 130px;">Active</span></td>
+              <td class="users-list-actions-cell">
+                <span class="users-list-actions-dots" style="font-size: 1.5rem; cursor: pointer; display: inline-block; line-height: 1;" onclick="document.getElementById('menu-1').classList.toggle('show')">&#8942;</span>
+                <div class="users-list-actions-menu" id="menu-1" style="min-width: 120px; max-width: 160px; padding: 6px 0;">
+                  <div class="users-list-actions-item"><img src="/img/person.svg" style="width:13px;" /> Editar</div>
+                  <div class="users-list-actions-item"><img src="/img/Frame.svg" style="width:13px;" /> Credenciais</div>
+                  <div class="users-list-actions-item"><img src="/img/zap.svg" style="width:13px;" /> Vincular empresas</div>
+                  <div class="users-list-actions-item"><img src="/img/house.svg" style="width:13px;" /> Desativar</div>
+                  <div class="users-list-actions-item"><img src="/img/logs.svg" style="width:13px;" /> Ver logs</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="users-list-name">Phoenix Baker</div>
+                <div class="users-list-email">lara.steiner@123milhas.com</div>
+              </td>
+              <td>Stark<br><span class="users-list-email">olivia@unittledui.com</span></td>
+              <td>Cashin/Cashout<br><span class="users-list-email">admin@123milhas.com</span></td>
+              <td><span class="users-list-status-active" style="margin-right: 32px;">Active</span></td>
+              <td class="users-list-actions-cell">
+                <span class="users-list-actions-dots" style="font-size: 1.5rem; cursor: pointer; display: inline-block; line-height: 1;" onclick="document.getElementById('menu-2').classList.toggle('show')">&#8942;</span>
+                <div class="users-list-actions-menu" id="menu-2" style="min-width: 120px; max-width: 160px; padding: 6px 0;">
+                  <div class="users-list-actions-item"><img src="/img/person.svg" style="width:13px;" /> Editar</div>
+                  <div class="users-list-actions-item"><img src="/img/Frame.svg" style="width:13px;" /> Credenciais</div>
+                  <div class="users-list-actions-item"><img src="/img/zap.svg" style="width:13px;" /> Vincular empresas</div>
+                  <div class="users-list-actions-item"><img src="/img/house.svg" style="width:13px;" /> Desativar</div>
+                  <div class="users-list-actions-item"><img src="/img/logs.svg" style="width:13px;" /> Ver logs</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="users-list-name">Lara Steiner</div>
+                <div class="users-list-email">lara.steiner@123milhas.com</div>
+              </td>
+              <td>Stark<br><span class="users-list-email">olivia@unittledui.com</span></td>
+              <td>Cashin/Cashout<br><span class="users-list-email">admin@123milhas.com</span></td>
+              <td><span class="users-list-status-active" style="margin-right: 32px;">Active</span></td>
+              <td class="users-list-actions-cell">
+                <span class="users-list-actions-dots" style="font-size: 1.5rem; cursor: pointer; display: inline-block; line-height: 1;" onclick="document.getElementById('menu-3').classList.toggle('show')">&#8942;</span>
+                <div class="users-list-actions-menu" id="menu-3" style="min-width: 120px; max-width: 160px; padding: 6px 0;">
+                  <div class="users-list-actions-item"><img src="/img/person.svg" style="width:13px;" /> Editar</div>
+                  <div class="users-list-actions-item"><img src="/img/Frame.svg" style="width:13px;" /> Credenciais</div>
+                  <div class="users-list-actions-item"><img src="/img/zap.svg" style="width:13px;" /> Vincular empresas</div>
+                  <div class="users-list-actions-item"><img src="/img/house.svg" style="width:13px;" /> Desativar</div>
+                  <div class="users-list-actions-item"><img src="/img/logs.svg" style="width:13px;" /> Ver logs</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="users-list-pagination">
+          <button class="users-list-page users-list-page-active">1</button>
+          <button class="users-list-page">2</button>
+          <button class="users-list-page">3</button>
+          <span class="users-list-page">...</span>
+          <button class="users-list-page">8</button>
+          <button class="users-list-page">9</button>
+          <button class="users-list-page">10</button>
+        </div>
       </div>
     </div>
   </div>

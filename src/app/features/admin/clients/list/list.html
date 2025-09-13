@@ -1,125 +1,146 @@
-<div class="clients-list-bg">
-  <div class="clients-list-container">
-    <div class="clients-list-filters-section">
-      <div class="clients-list-filters-row" style="align-items: flex-start;">
-        <label style="display: flex; flex-direction: column; align-items: flex-start;; flex: 1; color: #344054; font-style: normal; font-weight: 500;">
-          Buscar por especificidade
-          <div style="position: relative; width: 100%;">
-            <img src="/img/lupa.svg" alt="Buscar" style="position: absolute; left: 12px; top: 55%; transform: translateY(-50%); width: 18px; height: 18px; pointer-events: none; opacity: 0.7;" />
-            <input type="text" placeholder="Busca por algum cliente..." class="clients-list-filter-input" style="padding-left: 38px;" />
-          </div>
-        </label>
-        <label style="display: flex; flex-direction: column; align-items: flex-start; flex: 1; color: #344054; font-style: normal; font-weight: 500;">
-          Nome
-          <input type="text" placeholder="Nome do cliente" class="clients-list-filter-input" />
-        </label>
-        <label style="display: flex; flex-direction: column; align-items: flex-start; flex: 1; color: #344054; font-style: normal; font-weight: 500;">
-          CNPJ
-          <input type="text" placeholder="Número do CNPJ" class="clients-list-filter-input" />
-        </label>
+<div class="page-header">
+  <nav class="breadcrumb" *ngIf="headerInformation && headerInformation.breadcrumb.length > 0">
+    <a 
+      *ngFor="let item of headerInformation.breadcrumb; let last = last" 
+      [routerLink]="item.path" 
+      [class.active]="last"
+      class="breadcrumb-item">
+      {{ item.label }}
+      <span *ngIf="!last" class="separator">/</span>
+    </a>
+  </nav>
+  <div class="header-content">
+      <div class="header-info">
+        <h1 class="page-title">{{ headerInformation.pageTitle }}</h1>
+        <p class="page-subtitle" *ngIf="headerInformation && headerInformation.pageSubtitle">{{ headerInformation.pageSubtitle }}</p>
       </div>
     </div>
-    <div class="clients-list-results-section">
-      <h2 class="clients-list-results-title">Resultado da pesquisa</h2>
-      <div class="clients-list-results-info-row">
-        <span class="clients-list-results-subtitle">Abaixo estão os resultados encontrados</span>
-        <span class="clients-list-results-total">Total 5 registros</span>
+</div>
+<div class="main-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="clients-list-bg">
+    <div class="clients-list-container">
+      <div class="clients-list-filters-section">
+        <div class="clients-list-filters-row" style="align-items: flex-start;">
+          <label style="display: flex; flex-direction: column; align-items: flex-start;; flex: 1; color: #344054; font-style: normal; font-weight: 500;">
+            Buscar por especificidade
+            <div style="position: relative; width: 100%;">
+              <img src="/img/lupa.svg" alt="Buscar" style="position: absolute; left: 12px; top: 55%; transform: translateY(-50%); width: 18px; height: 18px; pointer-events: none; opacity: 0.7;" />
+              <input type="text" placeholder="Busca por algum cliente..." class="clients-list-filter-input" style="padding-left: 38px;" />
+            </div>
+          </label>
+          <label style="display: flex; flex-direction: column; align-items: flex-start; flex: 1; color: #344054; font-style: normal; font-weight: 500;">
+            Nome
+            <input type="text" placeholder="Nome do cliente" class="clients-list-filter-input" />
+          </label>
+          <label style="display: flex; flex-direction: column; align-items: flex-start; flex: 1; color: #344054; font-style: normal; font-weight: 500;">
+            CNPJ
+            <input type="text" placeholder="Número do CNPJ" class="clients-list-filter-input" />
+          </label>
+        </div>
       </div>
-      <table class="clients-list-results-table">
-        <thead>
-          <tr>
-            <th style="padding-left: 16px;">Banco</th>
-            <th>Depósito PIX</th>
-            <th>Saques PIX</th>
-            <th>Envia PIX</th>
-            <th>Boleto</th>
-            <th>Cartão de crédito</th>
-            <th>Pgt. de contas</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div style="font-weight: 600; color: #222;">123 Milhas</div>
-              <div style="font-size: 0.92rem; color: #888;">2023.876000137</div>
-            </td>
-            <td>Stark</td>
-            <td>Stark</td>
-            <td>ASAAS</td>
-            <td>Bradesco</td>
-            <td>Empreendimento</td>
-            <td>-</td>
-            <td style="text-align: right;">
-              <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
-              <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div style="font-weight: 600; color: #222;">Phoenix Sauer</div>
-              <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
-            </td>
-            <td>Stark</td>
-            <td>Stark</td>
-            <td>ASAAS</td>
-            <td>Bradesco</td>
-            <td>Empreendimento</td>
-            <td>-</td>
-            <td style="text-align: right;">
-              <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
-              <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div style="font-weight: 600; color: #222;">Lena Striker</div>
-              <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
-            </td>
-            <td>Stark</td>
-            <td>Stark</td>
-            <td>ASAAS</td>
-            <td>Bradesco</td>
-            <td>Empreendimento</td>
-            <td>-</td>
-            <td style="text-align: right;">
-              <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
-              <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div style="font-weight: 600; color: #222;">Devi Wilkinson</div>
-              <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
-            </td>
-            <td>Stark</td>
-            <td>Stark</td>
-            <td>ASAAS</td>
-            <td>Bradesco</td>
-            <td>Empreendimento</td>
-            <td>-</td>
-            <td style="text-align: right;">
-              <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
-              <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div style="font-weight: 600; color: #222;">Centeic Wu</div>
-              <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
-            </td>
-            <td>Stark</td>
-            <td>Stark</td>
-            <td>ASAAS</td>
-            <td>Bradesco</td>
-            <td>Empreendimento</td>
-            <td>-</td>
-            <td style="text-align: right;">
-              <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
-              <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>     
+      <div class="clients-list-results-section">
+        <h2 class="clients-list-results-title">Resultado da pesquisa</h2>
+        <div class="clients-list-results-info-row">
+          <span class="clients-list-results-subtitle">Abaixo estão os resultados encontrados</span>
+          <span class="clients-list-results-total">Total 5 registros</span>
+        </div>
+        <table class="clients-list-results-table">
+          <thead>
+            <tr>
+              <th style="padding-left: 16px;">Banco</th>
+              <th>Depósito PIX</th>
+              <th>Saques PIX</th>
+              <th>Envia PIX</th>
+              <th>Boleto</th>
+              <th>Cartão de crédito</th>
+              <th>Pgt. de contas</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div style="font-weight: 600; color: #222;">123 Milhas</div>
+                <div style="font-size: 0.92rem; color: #888;">2023.876000137</div>
+              </td>
+              <td>Stark</td>
+              <td>Stark</td>
+              <td>ASAAS</td>
+              <td>Bradesco</td>
+              <td>Empreendimento</td>
+              <td>-</td>
+              <td style="text-align: right;">
+                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
+                <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="font-weight: 600; color: #222;">Phoenix Sauer</div>
+                <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
+              </td>
+              <td>Stark</td>
+              <td>Stark</td>
+              <td>ASAAS</td>
+              <td>Bradesco</td>
+              <td>Empreendimento</td>
+              <td>-</td>
+              <td style="text-align: right;">
+                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
+                <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="font-weight: 600; color: #222;">Lena Striker</div>
+                <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
+              </td>
+              <td>Stark</td>
+              <td>Stark</td>
+              <td>ASAAS</td>
+              <td>Bradesco</td>
+              <td>Empreendimento</td>
+              <td>-</td>
+              <td style="text-align: right;">
+                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
+                <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="font-weight: 600; color: #222;">Devi Wilkinson</div>
+                <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
+              </td>
+              <td>Stark</td>
+              <td>Stark</td>
+              <td>ASAAS</td>
+              <td>Bradesco</td>
+              <td>Empreendimento</td>
+              <td>-</td>
+              <td style="text-align: right;">
+                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
+                <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="font-weight: 600; color: #222;">Centeic Wu</div>
+                <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
+              </td>
+              <td>Stark</td>
+              <td>Stark</td>
+              <td>ASAAS</td>
+              <td>Bradesco</td>
+              <td>Empreendimento</td>
+              <td>-</td>
+              <td style="text-align: right;">
+                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
+                <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>     
+  </div>
 </div>

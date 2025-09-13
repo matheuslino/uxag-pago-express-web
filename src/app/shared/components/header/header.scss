@@ -342,18 +342,19 @@
 }
 @media (max-width: 992px) {
   .header-container {
-    padding: 0 0 24px 0;
+    padding: 0 0 12px 0;
   }
   .header-container {
     background-image: none;
+    border-bottom: none;
   }
   .header-content-wrapper {
-    padding: 0 16px;
+    padding: 0 8px;
     box-sizing: border-box;
   }
 
   .top-bar {
-    padding-top: 16px;
+    padding: 32px 16px 0px;
   }
   
   .desktop-logo, .horizontal-nav, .desktop-nav, .user-details {
@@ -366,6 +367,7 @@
   .search-bar-wrapper-mobile {
     display: block;
     margin-top: 16px;
+    padding: 0px 16px;
     .search-bar {
       display: flex;
       width: 100%;

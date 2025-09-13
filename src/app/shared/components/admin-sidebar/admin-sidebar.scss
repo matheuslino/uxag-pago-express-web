@@ -37,7 +37,6 @@
   font-style: normal;;
   justify-content: space-between;
   padding: 12px 20px;
-  text-align: left;
   color: #6b7280;
   font-size: 14px;
   font-weight: 500;
@@ -58,6 +57,8 @@
     color: #5C4896;
     font-weight: 600;
     background: #F6F3FF;
+    min-width: 144px;
+    text-align: left;
   }
 }
 
@@ -164,7 +165,9 @@
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 16px 0;
+    padding: 0 0 18px 0;
+    border-bottom: 1px solid #DADADA;
+    margin-bottom: 20px;
 
     &::-webkit-scrollbar {
       height: 0px;
@@ -203,6 +206,16 @@
   .sub-nav-link {
     padding-left: 16px;
     padding-right: 16px;
+    
+    &.active {
+      text-align: center;
+    }
+  }
+
+  .nav-link {
+    &.active {
+      min-width: unset;
+    }
   }
   
   .sub-nav-list {

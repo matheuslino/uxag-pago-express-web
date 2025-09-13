@@ -50,7 +50,8 @@
           type="button"
           (click)="hidePassword = !hidePassword"
         >
-          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          <mat-icon *ngIf="hidePassword">visibility_off</mat-icon>
+          <img *ngIf="!hidePassword" src="assets/images/solar_eye.svg" alt="eye" class="icon">
         </button>
         <mat-error>Dados inválidos</mat-error>
       </mat-form-field>
