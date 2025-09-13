@@ -20,6 +20,7 @@ import { PaymentLimitModalComponent } from '../../shared/components/payment-limi
 import { EmailConfigModalComponent } from '../../shared/components/email-config-modal.component/email-config-modal.component';
 import { CertificateModalComponent } from '../../shared/components/certificate-modal.component/certificate-modal.component';
 import { PixFeeConfigModalComponent } from '../../shared/components/pix-fee-config-modal.component/pix-fee-config-modal.component';
+import { WithdrawalFeeConfigModalComponent } from '../../shared/components/withdrawal-fee-config-modal/withdrawal-fee-config-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -234,7 +235,7 @@ export class Dashboard {
   }
 
     openTaxaSaqueModal() {
-    const dialogRef = this.dialog.open(CertificateModalComponent, {
+    const dialogRef = this.dialog.open(WithdrawalFeeConfigModalComponent, {
       width: '800px',
       maxWidth: '800px',
       maxHeight: '90vh',
