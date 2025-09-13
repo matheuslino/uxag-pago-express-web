@@ -18,6 +18,7 @@ import { IpConfigModalComponent } from '../../shared/components/ip-permission-mo
 import { LimitConfigModalComponent } from '../../shared/components/limit-config-modal.component/limit-config-modal.component';
 import { PaymentLimitModalComponent } from '../../shared/components/payment-limit-modal/payment-limit-modal.component';
 import { EmailConfigModalComponent } from '../../shared/components/email-config-modal.component/email-config-modal.component';
+import { CertificateModalComponent } from '../../shared/components/certificate-modal.component/certificate-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -197,6 +198,51 @@ export class Dashboard {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Configuração de transações salva:', result);
+      }
+    });
+  }
+
+  certificateModal() {
+    const dialogRef = this.dialog.open(CertificateModalComponent, {
+      width: '800px',
+      maxWidth: '800px',
+      maxHeight: '90vh',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Certificados configurados:', result);
+      }
+    });
+  }
+
+    openTaxasPixModal() {
+    const dialogRef = this.dialog.open(CertificateModalComponent, {
+      width: '800px',
+      maxWidth: '800px',
+      maxHeight: '90vh',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Certificados configurados:', result);
+      }
+    });
+  }
+
+    openTaxaSaqueModal() {
+    const dialogRef = this.dialog.open(CertificateModalComponent, {
+      width: '800px',
+      maxWidth: '800px',
+      maxHeight: '90vh',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Certificados configurados:', result);
       }
     });
   }
