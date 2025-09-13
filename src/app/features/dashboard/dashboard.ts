@@ -14,6 +14,7 @@ import { WalletTransferConfig, WalletTransferConfigModalComponent1 } from '../..
 import { WalletTransferConfigModalComponent } from '../../shared/components/wallet-transfer-config-modal-2/wallet-transfer-config-modal';
 import { IntegrationConfigModalComponent } from '../../shared/components/integration-config-modal/integration-config-modal.component';
 import { PixLimitsModalComponent } from '../../shared/components/pix-limits-modal/pix-limits-modal.component';
+import { IpConfigModalComponent } from '../../shared/components/ip-permission-modal/ip-permission-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -135,5 +136,19 @@ export class Dashboard {
 
     return dialogRef.afterClosed();
 
+  }
+  openConfigIpsModal(){
+    const dialogRef = this.dialog.open(IpConfigModalComponent, {
+      width: '800px',
+      maxWidth: '95vw',
+      disableClose: false,
+      autoFocus: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Configuração de transações salva:', result);
+      }
+    });
   }
 }

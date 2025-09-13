@@ -22,8 +22,7 @@ import { Company, PixLimits } from '../../../interface/pix-limits.interface';
         MatInputModule,
         MatButtonModule,
         MatIconModule,
-        MatProgressSpinnerModule,
-        CurrencyPipe
+        MatProgressSpinnerModule
     ],
     templateUrl: './pix-limits-modal.component.html',
     styleUrls: ['./pix-limits-modal.component.scss', '../transaction-config-modal/transaction-config-modal.scss']
