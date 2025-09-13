@@ -16,6 +16,7 @@ import { IntegrationConfigModalComponent } from '../../shared/components/integra
 import { PixLimitsModalComponent } from '../../shared/components/pix-limits-modal/pix-limits-modal.component';
 import { IpConfigModalComponent } from '../../shared/components/ip-permission-modal/ip-permission-modal.component';
 import { LimitConfigModalComponent } from '../../shared/components/limit-config-modal.component/limit-config-modal.component';
+import { PaymentLimitModalComponent } from '../../shared/components/payment-limit-modal/payment-limit-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -138,7 +139,7 @@ export class Dashboard {
     return dialogRef.afterClosed();
 
   }
-  openConfigIpsModal(){
+  openConfigIpsModal() {
     const dialogRef = this.dialog.open(IpConfigModalComponent, {
       width: '800px',
       maxWidth: '95vw',
@@ -153,10 +154,41 @@ export class Dashboard {
     });
   }
 
-  openLimitConfigModal(){
+  openLimitConfigModal() {
     const dialogRef = this.dialog.open(LimitConfigModalComponent, {
       width: '800px',
       maxWidth: '95vw',
+      disableClose: false,
+      autoFocus: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Configuração de transações salva:', result);
+      }
+    });
+  }
+
+  openLimitSaqConfigModal() {
+    const dialogRef = this.dialog.open(PaymentLimitModalComponent, {
+      width: '800px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      disableClose: false,
+      autoFocus: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Configuração de transações salva:', result);
+      }
+    });
+  }
+
+  openEmailConfigModal() {
+    const dialogRef = this.dialog.open(LimitConfigModalComponent, {
+      width: '800px',
+      maxHeight: '90vh',
       disableClose: false,
       autoFocus: true
     });
