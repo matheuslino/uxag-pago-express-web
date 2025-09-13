@@ -17,6 +17,7 @@ import { PixLimitsModalComponent } from '../../shared/components/pix-limits-moda
 import { IpConfigModalComponent } from '../../shared/components/ip-permission-modal/ip-permission-modal.component';
 import { LimitConfigModalComponent } from '../../shared/components/limit-config-modal.component/limit-config-modal.component';
 import { PaymentLimitModalComponent } from '../../shared/components/payment-limit-modal/payment-limit-modal.component';
+import { EmailConfigModalComponent } from '../../shared/components/email-config-modal.component/email-config-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -186,9 +187,9 @@ export class Dashboard {
   }
 
   openEmailConfigModal() {
-    const dialogRef = this.dialog.open(LimitConfigModalComponent, {
+    const dialogRef = this.dialog.open(EmailConfigModalComponent, {
       width: '800px',
-      maxHeight: '90vh',
+      maxWidth: '90vh',
       disableClose: false,
       autoFocus: true
     });
