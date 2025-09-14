@@ -1,28 +1,317 @@
+:host {
+  font-family: 'Inter', sans-serif;
+}
+
 .dashboard-container {
-      padding: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background-color: white;
+  min-height: 100vh;
+}
 
-    h1 {
-      margin-bottom: 24px;
-      color: #333;
-    }
+.main-layout {
+  display: flex;
+  gap: 24px;
+}
 
-    .config-card {
-      max-width: 600px;
-    }
+.main-content {
+  flex: 2;
+}
 
-    .current-config {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 
-    .current-config p {
-      margin: 0;
-    }
+section, .summary-card, .promo-banner {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 24px;
+  border: 1px solid #DADADA;
+}
 
-    mat-card-actions {
-      padding-top: 16px;
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #3A3A3A;
+  margin: 0 0 16px 0;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #3A3A3A;
+  margin: 0;
+}
+
+p {
+  color: #8A8A8A;
+  font-size: 13px;
+  margin: 4px 0 0 0;
+}
+
+.quick-actions {
+  border-color: transparent !important;
+  background-color: transparent;
+  padding: 0;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.action-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 16px;
+  background-color: #F5F5F5;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  font-weight: 500;
+  color: #5C4896;
+  min-height: 107px;
+
+  mat-icon { color: #5C4896; }
+  &:hover { opacity: 0.9; }
+  &:last-child {
+    background-color: transparent;
+    border: 1px dashed #DADADA;
+  }
+}
+
+.transactions { padding-bottom: 0; }
+
+.transactions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  background-color: #F8F8F8;
+  border: 1px solid #F1F1F1;
+  border-radius: 4px;
+  padding: 6px 12px;
+}
+
+.filter-btn {
+  padding: 2px 10px;
+  border-radius: 3px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
+  color: #949494;
+  transition: all 0.2s ease;
+
+  &.active {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
+.transactions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #DADADA;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 24px;
+  }
+}
+
+.agency-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+
+  .agency-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 5px;
+    border: 1px solid #DADADA;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000000;
+    flex-shrink: 0;
+
+    img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
     }
+  }
+
+  .agency-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #646464;
+    text-transform: uppercase;
+  }
+  .transaction-date {
+    font-size: 12px;
+    color: #A7A7A7;
+    margin-top: 4px;
+  }
+}
+
+.transaction-details {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: right;
+  flex-shrink: 0; 
+
+  .transaction-value {
+    font-weight: 600;
+    font-size: 12px;
+    color: #545050;
+    text-transform: uppercase;
+  }
+
+  .transaction-status {
+    background-color: #F6F3FF;
+    color: #5C4896;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.summary-header {
+  position: relative;
+  margin-bottom: 32px;
+  h3 { margin-bottom: 4px; }
+  span { font-size: 13px; color: #8A8A8A; }
+}
+
+.summary-stats {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  mat-icon { color: #5C4896; }
+
+  .stat-value-container {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .stat-value {
+    font-size: 32px;
+    font-weight: 500;
+    color: #000000;
+  }
+  .growth {
+    font-size: 12px;
+    color: #1F996E;
+    font-weight: 500;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: #8A8A8A;
+    font-weight: 500;
+  }
+}
+
+.promo-banner {
+  background-image: url('/assets/images/thumb_example.png');
+  background-size: contain; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  min-height: 170px;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+
+  .dashboard-container { padding: 24px 16px; }
+
+  .main-layout { flex-direction: column; }
+
+  .actions-grid {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    &::-webkit-scrollbar { display: none; }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .action-card { flex: 0 0 120px; }
+
+  .transaction-item {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px; 
+  }
+
+  .agency-info {
+    align-items: flex-start;
+  }
+
+  .transaction-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    gap: 8px;
+  }
+  
+  .transactions-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .summary-stats {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .stat-item .stat-value { font-size: 28px; }
+}

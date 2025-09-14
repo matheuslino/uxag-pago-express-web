@@ -1,113 +1,115 @@
-.auth-layout {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
 .auth-container {
-  max-width: 1000px;
-  width: 100%;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 600px;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-  }
+  grid-template-columns: 45% 55%;
+  width: 100%;
+  min-height: 100vh;
 }
 
-.auth-content {
-  padding: 40px;
+.auth-image-side {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
-  @media (max-width: 768px) {
-    padding: 30px 20px;
-  }
+  padding: 4rem;
+  color: #ffffff;
+  background-image: url('/assets/images/fundo_login.png');
+  background-size: cover;
+  background-position: center;
 }
 
-.auth-header {
+.auth-image-side::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 1;
+}
+
+.text-content {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  margin-bottom: 32px;
-  
-  .logo {
-    h1 {
-      margin: 0;
-      font-size: 32px;
-      font-weight: 700;
-      color: #1f2937;
-      margin-bottom: 4px;
-    }
-    
-    p {
-      margin: 0;
-      font-size: 16px;
-      color: #6b7280;
-    }
-  }
 }
 
-.auth-form {
-  flex: 1;
+.text-content .logo {
+  margin-bottom: 3.5rem;
+}
+
+.text-content .logo img {
+  width: 94px;
+  height: 38px;
+}
+
+.text-content h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 140%;
+  max-width: 516px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.text-content p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 140%;
+  opacity: 0.9;
+  max-width: 391px;
+  margin: 0 auto;
+}
+
+.auth-form-side {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-}
-
-.auth-footer {
-  text-align: center;
-  margin-top: 32px;
-  
-  p {
-    margin: 0;
-    font-size: 12px;
-    color: #9ca3af;
-  }
-}
-
-.auth-image {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  display: flex;
   align-items: center;
-  justify-content: center;
-  color: white;
-  
-  @media (max-width: 768px) {
-    display: none;
-  }
+  padding: 3rem;
+  background-color: #ffffff;
 }
 
-.image-placeholder {
-  text-align: center;
-  padding: 40px;
-  
-  mat-icon {
-    font-size: 80px;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 24px;
-    opacity: 0.9;
+@media (max-width: 992px) {
+  .auth-container {
+    display: block;
+    background-color: #ffffff;
   }
-  
-  h3 {
-    margin: 0 0 16px 0;
-    font-size: 24px;
-    font-weight: 600;
+
+  .auth-image-side {
+    height: 45vh;
+    justify-content: center;
+    padding: 2rem 1.5rem;
   }
-  
-  p {
+
+  .text-content {
+    text-align: center;
+  }
+
+  .text-content .logo {
+    margin-bottom: 2rem;
+  }
+
+  .text-content h2 {
+    font-size: 24px; 
+    max-width: 100%;
+    margin: 0 0 1rem 0;
+  }
+
+  .text-content p {
+    font-size: 14px; 
+    max-width: 100%;
     margin: 0;
-    font-size: 16px;
-    opacity: 0.8;
-    line-height: 1.5;
+  }
+
+  .auth-form-side {
+    margin-top: -32px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    align-items: flex-start;
+    padding: 2.5rem 1.5rem;
+    height: calc(55vh + 32px);
+    z-index: 10;
+    position: relative;
   }
 }

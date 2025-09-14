@@ -1,1 +1,100 @@
-<p>list works!</p>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="template-list-bg">
+    <div class="template-list-container">
+      <div class="template-list-select-row">
+        <div class="template-list-select-section">
+          <span class="template-list-select-title">Cliente</span>
+          <select 
+            id="template-client-select" 
+            class="template-list-select"
+            [(ngModel)]="clienteSelecionadoId"
+            (change)="onClienteChange()">
+            <option 
+              *ngFor="let cliente of clientes" 
+              [value]="cliente.id">
+              {{ cliente.nome }}
+            </option>
+          </select>
+        </div>
+        <div class="template-list-client-info" *ngIf="clienteSelecionado">
+          <span class="template-list-client-avatar">
+            <img 
+              [src]="clienteSelecionado.avatar || '/img/house.svg'" 
+              [alt]="clienteSelecionado.nome" />
+          </span>
+          <div>
+            <span class="template-list-select-title">Cliente</span>
+            <div class="template-list-select-subtitle">{{ clienteSelecionado.nome }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="template-list-results-section">
+        <h2 class="template-list-results-title">Resultado da pesquisa</h2>
+        <div class="template-list-results-info-row">
+          <div class="template-list-results-subtitle">
+            Abaixo estão os resultados encontrados
+          </div>
+          <div class="template-list-total">Total {{ totalRegistros }} Registros</div>
+        </div>
+        <div class="table-container">
+          <table class="template-list-results-table">
+            <thead>
+              <tr>
+                <th>
+                  <span class="table-header-content">
+                    Empresa
+                  </span>
+                </th>
+                <th class="hide-mobile">Tipo de chave</th>
+                <th class="hide-mobile-partial">Chave PIX</th>
+                <th class="hide-mobile">Criado por</th>
+                <th class="hide-mobile">Criado em</th>
+                <th class="actions-column"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let chave of chavesFiltradas">
+                <td>
+                  <div class="empresa-info">
+                    <span class="empresa-nome">{{ chave.empresa }}</span>
+                  </div>
+                </td>
+                <td class="hide-mobile">
+                  <span class="tipo-chave-cell">
+                    <img 
+                      [src]="getTipoChaveIcon(chave.tipoChave)" 
+                      [alt]="chave.tipoChave"
+                      class="tipo-icon" />
+                    {{ chave.tipoChave }}
+                  </span>
+                </td>
+                <td class="hide-mobile-partial chave-pix-cell">
+                  <span class="chave-pix-text">{{ chave.chavePix }}</span>
+                </td>
+                <td class="hide-mobile">{{ chave.criadoPor }}</td>
+                <td class="hide-mobile">{{ formatarDataHora(chave.criadoEm) }}</td>
+                <td class="actions-cell">
+                  <span 
+                    class="template-list-trash-icon" 
+                    title="Excluir"
+                    (click)="onExcluirChave(chave)">
+                    <img src="/img/trash-2.svg" alt="Excluir" />
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="empty-state" *ngIf="chavesFiltradas.length === 0">
+          <div class="empty-state-content">
+            <img src="/img/empty-box.svg" alt="Nenhum registro" class="empty-icon" />
+            <h3>Nenhuma chave PIX encontrada</h3>
+            <p>Este cliente ainda não possui chaves PIX cadastradas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

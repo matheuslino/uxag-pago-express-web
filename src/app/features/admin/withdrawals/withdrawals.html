@@ -1,1 +1,167 @@
-<p>withdrawals works!</p>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="template-list-bg">
+    <div class="template-list-container">
+      <div class="template-list-filters-section">
+        <div class="template-list-filters-row">
+          <label class="filter-label">
+            Empresa
+            <select 
+              class="template-list-select"
+              [(ngModel)]="filtros.empresaId">
+              <option 
+                *ngFor="let empresa of empresas" 
+                [value]="empresa.id">
+                {{ empresa.nome }}
+              </option>
+            </select>
+          </label>
+          <label class="filter-label">
+            Status
+            <select 
+              class="template-list-select"
+              [(ngModel)]="filtros.status">
+              <option 
+                *ngFor="let status of statusOptions" 
+                [value]="status.value">
+                {{ status.label }}
+              </option>
+            </select>
+          </label>
+          <label class="filter-label">
+            Período
+            <select 
+              class="template-list-select"
+              [(ngModel)]="filtros.periodo"
+              (change)="onPeriodoChange()">
+              <option value="todos">Todos</option>
+              <option value="hoje">Hoje</option>
+              <option value="semana">Últimos 7 dias</option>
+              <option value="mes">Últimos 30 dias</option>
+              <option value="custom">Personalizado</option>
+            </select>
+          </label>
+          <label class="filter-label">
+            Data início
+            <input 
+              class="template-list-filter-input date-input" 
+              type="date"
+              [(ngModel)]="filtros.dataInicio"
+              [disabled]="filtros.periodo !== 'custom'" />
+          </label>
+          <label class="filter-label">
+            Data fim
+            <input 
+              class="template-list-filter-input date-input" 
+              type="date"
+              [(ngModel)]="filtros.dataFim"
+              [disabled]="filtros.periodo !== 'custom'"
+              [min]="filtros.dataInicio" />
+          </label>
+        </div>
+      </div>
+
+      <div class="template-list-results-section">
+        <h2 class="template-list-results-title">Resultado da pesquisa</h2>
+        <div class="template-list-results-info-row">
+          <div class="template-list-results-subtitle">Abaixo estão os resultados encontrados</div>
+          <div class="template-list-results-total">Total {{ totalRegistros }} Registros</div>
+        </div>
+        <div class="table-container">
+          <table class="template-list-results-table">
+            <thead>
+              <tr>
+                <th>
+                  Solicitante / Valor
+                </th>
+                <th class="hide-mobile">Carteira</th>
+                <th class="hide-mobile">Chave PIX</th>
+                <th class="hide-mobile">Valor</th>
+                <th class="hide-mobile">Data/hora</th>
+                <th class="hide-mobile">Status</th>
+                <th class="hide-mobile">Aprovador</th>
+                <th class="actions-column">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let saque of saquesFiltrados">
+                <td>
+                  <div class="solicitante-info">
+                    <span class="solicitante-nome">{{ saque.solicitante }}</span>
+                    <span class="solicitante-usuario">({{ saque.usuarioSolicitante }})</span>
+                  </div>
+                </td>
+                <td class="hide-mobile">{{ saque.carteira }}</td>
+                <td class="hide-mobile">
+                  <span class="chave-pix">{{ saque.chavePix }}</span>
+                </td>
+                <td class="hide-mobile-partial valor-cell">{{ formatarValor(saque.valor) }}</td>
+                <td class="hide-mobile">{{ formatarDataHora(saque.dataHora) }}</td>
+                <td class="hide-mobile">
+                  <div [class]="getStatusClass(saque.status)">
+                    <span class="status-icon"></span>
+                    {{ saque.status }}
+                  </div>
+                </td>
+                <td class="hide-mobile">{{ saque.aprovador }}</td>
+                <td class="actions-cell">
+                  <div class="aprovador-actions" *ngIf="saque.statusAprovador === 'pendente'">
+                    <button 
+                      class="btn-approve"
+                      (click)="onAprovar(saque)"
+                      title="Aprovar">
+                      ✓
+                    </button>
+                    <button 
+                      class="btn-reject"
+                      (click)="onRejeitar(saque)"
+                      title="Rejeitar">
+                      ✗
+                    </button>
+                  </div>
+                  <div class="aprovador-status" *ngIf="saque.statusAprovador !== 'pendente'">
+                    <span 
+                      class="aprovador-icon"
+                      [class]="getAprovadorIconClass(saque.statusAprovador)">
+                      {{ saque.statusAprovador === 'aprovado' ? '✓' : '✗' }}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Seção de saques pendentes (opcional) -->
+        <div class="pending-section" *ngIf="saquesPendentes.length > 0">
+          <div class="pending-approval">
+            <span class="pending-message">
+              Você tem {{ saquesPendentes.length }} saque(s) pendente(s) para aprovar:
+              <strong>{{ formatarValor(valorTotalPendente) }}</strong>
+            </span>
+            <div class="pending-actions">
+              <button 
+                class="btn-approve-all"
+                (click)="aprovarTodos()">
+                Aprovar todos
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Estado vazio -->
+        <div class="empty-state" *ngIf="saquesFiltrados.length === 0">
+          <div class="empty-state-content">
+            <img src="/img/empty-withdrawals.svg" alt="Nenhum saque" class="empty-icon" />
+            <h3>Nenhum saque encontrado</h3>
+            <p>Não há saques que correspondam aos filtros selecionados.</p>
+            <button class="btn-clear-filters" (click)="limparFiltros()">
+              Limpar filtros
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

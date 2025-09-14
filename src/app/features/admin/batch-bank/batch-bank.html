@@ -1,1 +1,112 @@
-<p>batch-bank works!</p>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="main-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="batch-bank-bg">
+    <div class="batch-bank-container">
+      <div class="batch-bank-header">
+        <h2 class="batch-bank-title">Selecione os tipos dos campos a serem alterados</h2>
+        <div class="batch-bank-header-desc" style="font-size: 0.98rem; color: #888; margin-top: 4px;">
+          E em seguida, escolha os bancos que serão re-configurados
+        </div>
+        <hr style="border: none; border-top: 1.5px solid #e0e0e0; margin: 16px 0 24px 0;">
+        <div class="batch-bank-select-row">
+          <label class="batch-bank-label">
+            Pix-in
+            <select class="batch-bank-select">
+              <option selected>ASAS</option>
+            </select>
+          </label>
+          <label class="batch-bank-label">
+            Pix-out
+            <select class="batch-bank-select">
+              <option selected>ASAS</option>
+            </select>
+          </label>
+          <label class="batch-bank-label">
+            Boleto
+            <select class="batch-bank-select">
+              <option selected>ASAS</option>
+            </select>
+          </label>
+          <label class="batch-bank-label">
+            Enviar PIX
+            <select class="batch-bank-select">
+              <option selected>ASAS</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="batch-bank-results-section">
+        <h2 class="batch-bank-results-title">Resultado da pesquisa</h2>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <span style="font-size: 0.98rem; color: #888;">Abaixo estão os resultados encontrados</span>
+          <span style="font-size: 1rem; color: #222; font-weight: 500;">Total 2 Registros</span>
+        </div>
+        <table class="batch-bank-results-table">
+          <thead>
+            <tr>
+            <th style="vertical-align: middle; padding-left: 15px; text-align: left;">
+            <input type="checkbox" checked style="margin-right: 10px; vertical-align: middle;">
+              Solicitante
+              </th>
+              <th style="padding-left: 15px; text-align: left;">Carteira</th>
+              <th style="padding-left: 15px; text-align: left;">Chave PIX</th>
+              <th style="padding-left: 15px; text-align: left;">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding-left: 16px; vertical-align: middle;">
+                <input type="checkbox" checked style="margin-right: 10px; vertical-align: middle;">
+                Pago Express lucas_adm
+              </td>
+              <td style="padding-left: 16px; vertical-align: middle;">531 Wallet 2</td>
+              <td style="padding-left: 16px; vertical-align: middle;">cliente@pix.bcb.gov.br</td>
+              <td style="padding-left: 16px; vertical-align: middle;">R$ 239,12</td>
+            </tr>
+            <tr>
+              <td style="padding-left: 16px; vertical-align: middle;">
+                <input type="checkbox" checked style="margin-right: 10px; vertical-align: middle;">
+                Pago Express lucas_adm
+              </td>
+              <td style="padding-left: 16px; vertical-align: middle;">531 Wallet 2</td>
+              <td style="padding-left: 16px; vertical-align: middle;">cliente@pix.bcb.gov.br</td>
+              <td style="padding-left: 16px; vertical-align: middle;">R$ 3.810,12</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- <hr style="border: none; border-top: 2.5px solid #e0e0e0; margin: 0 0 18px 0;">
+      <div class="batch-bank-footer" style="display: flex; align-items: center; gap: 24px; justify-content: space-between; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: row; align-items: center; gap: 18px; justify-content: center; flex-wrap: wrap; width: auto; text-align: center;">
+          <div style="display: flex; flex-direction: column; align-items: center; min-width: 80px; padding-left: 180px;">
+            <span style="font-size: 0.98rem; color: #222; font-weight: 600;">Nome</span>
+            <span style="font-size: 0.88rem; color: #888; margin-top: 2px;">123 milhas</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; min-width: 80px;">
+            <span style="font-size: 0.98rem; color: #222; font-weight: 600;">Depósito PIX</span>
+            <span style="font-size: 0.88rem; color: #888; margin-top: 2px;">Bradesco</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; min-width: 80px;">
+            <span style="font-size: 0.98rem; color: #222; font-weight: 600;">Boleto</span>
+            <span style="font-size: 0.88rem; color: #888; margin-top: 2px;">Bradesco</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; min-width: 80px;">
+            <span style="font-size: 0.98rem; color: #222; font-weight: 600;">Saques PIX</span>
+            <span style="font-size: 0.88rem; color: #888; margin-top: 2px;">Bradesco</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; min-width: 80px;">
+            <span style="font-size: 0.98rem; color: #222; font-weight: 600;">Enviar PIX</span>
+            <span style="font-size: 0.88rem; color: #888; margin-top: 2px;">Bradesco</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button type="button" class="batch-bank-btn-cancel" style="padding: 8px 18px; font-size: 0.95rem;">Cancelar</button>
+          <button type="button" class="batch-bank-btn-confirm" style="padding: 8px 18px; font-size: 0.95rem;">Alterar</button>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>

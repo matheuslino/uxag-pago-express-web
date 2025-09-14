@@ -1,79 +1,108 @@
-<mat-toolbar class="header-toolbar">
-  <div class="header-content">
-    <!-- Left: Logo/Title -->
-    <div class="header-left">
-      <div class="logo-section">
-        <mat-icon class="logo-icon">account_balance</mat-icon>
-        <h2 class="app-title">PagExpress</h2>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" class="mobile-sidenav">
+    <a routerLink="/dashboard" routerLinkActive="active" class="sidenav-header">
+      <img src="assets/images/logo.svg" 
+        alt="User" />
+    </a>
+    <a *ngFor="let item of menuItems" 
+       [routerLink]="item.path" 
+       (click)="sidenav.close()" 
+       routerLinkActive="active-link"
+       class="sidenav-link">
+      {{ item.label }}
+    </a>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="header-container">
+      <div class="header-content-wrapper">
+        <mat-toolbar class="top-bar">
+          <div class="top-bar-content">
+            <div class="left-section">
+              <button mat-icon-button class="mobile-menu-button" (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+              </button>
+              <a routerLink="/dashboard" routerLinkActive="active" class="logo-section">
+                <img src="assets/images/logo.svg" 
+                  alt="User" />
+              </a>
+              <nav class="horizontal-nav">
+                <button 
+                  *ngFor="let item of menuItems" 
+                  mat-button 
+                  [routerLink]="item.path"
+                  routerLinkActive="active"
+                  class="nav-item"
+                  [class.active]="item.active">
+                  {{ item.label }}
+                </button>
+              </nav>
+              <div class="search-bar">
+                <div class="search-input-wrapper">
+                  <mat-icon>search</mat-icon>
+                  <input type="text" placeholder="Busque por algo..." />
+                </div>
+                <span class="search-shortcut">⌘ F</span>
+              </div>
+            </div>
+
+            <img src="assets/images/logo.svg" alt="PagoExpress Logo" class="logo mobile-logo" />
+
+            <div class="user-actions">
+              <button mat-icon-button class="action-btn" (click)="openMessages()">
+                <mat-icon>mail_outline</mat-icon>
+              </button>
+              <button mat-icon-button 
+                      [matMenuTriggerFor]="notificationMenu" 
+                      class="action-btn">
+                <mat-icon [matBadge]="unreadNotifications" 
+                          matBadgeColor="warn" 
+                          matBadgeSize="small"
+                          [matBadgeHidden]="unreadNotifications === 0">
+                  notifications_none
+                </mat-icon>
+              </button>
+              <button class="user-info-button" [matMenuTriggerFor]="userMenu">
+                <div class="user-info">
+                  <div class="user-avatar">
+                    <img src="assets/images/avatar.png" alt="User Avatar" />
+                  </div>
+                  <div class="user-details">
+                    <span class="user-name">{{ userName }}</span>
+                    <span class="user-role">{{ userRole }}</span>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </mat-toolbar>
+        
+        <div class="search-bar-wrapper-mobile">
+          <div class="search-bar">
+            <div class="search-input-wrapper">
+              <mat-icon>search</mat-icon>
+              <input type="text" placeholder="Busque por algo..." />
+            </div>
+            <span class="search-shortcut">⌘ F</span>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <!-- Center: Horizontal Navigation Menu -->
-    <div class="header-center">
-      <nav class="horizontal-nav">
-        <button 
-          *ngFor="let item of menuItems" 
-          mat-button 
-          [routerLink]="item.path"
-          routerLinkActive="active"
-          class="nav-item"
-          [class.active]="item.active">
-          <mat-icon>{{ item.icon }}</mat-icon>
-          <span>{{ item.label }}</span>
-        </button>
-      </nav>
-    </div>
-    
-    <!-- Right: User Actions -->
-    <div class="header-right">
-      <!-- Notifications -->
-      <button mat-icon-button 
-              [matMenuTriggerFor]="notificationMenu" 
-              class="notification-btn">
-        <mat-icon [matBadge]="unreadNotifications" 
-                  matBadgeColor="warn" 
-                  matBadgeSize="small"
-                  [matBadgeHidden]="unreadNotifications === 0">
-          notifications
-        </mat-icon>
-      </button>
-      
-      <!-- User Menu -->
-      <button mat-icon-button 
-              [matMenuTriggerFor]="userMenu" 
-              class="user-menu-btn">
-        <div class="user-avatar-small">
-          <img src="assets/images/user-avatar.png" 
-                alt="User"
-                (error)="onImageError($event)"
-                *ngIf="imageLoaded" />
-          <span *ngIf="!imageLoaded" class="avatar-initials">
-            {{ getUserInitials() }}
-          </span>
-        </div>
-      </button>
-    </div>
-  </div>
-</mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
-<!-- Notification Menu -->
 <mat-menu #notificationMenu="matMenu" class="notification-menu">
-  <div class="notification-header">
+  <div class="menu-header">
     <h4>Notificações</h4>
   </div>
-  <div class="notification-list" *ngIf="notifications.length > 0; else noNotifications">
-    <button mat-menu-item 
-            *ngFor="let notification of notifications" 
-            class="notification-item" 
-            [class.unread]="!notification.isRead"
-            (click)="markAsRead(notification)">
+  <ng-container *ngIf="notifications.length > 0; else noNotifications">
+    <button mat-menu-item *ngFor="let notification of notifications" class="notification-item" [class.unread]="!notification.isRead" (click)="markAsRead(notification)">
       <div class="notification-content">
         <h5>{{ notification.title }}</h5>
         <p>{{ notification.message }}</p>
         <small>{{ notification.createdAt | date:'short' }}</small>
       </div>
     </button>
-  </div>
+  </ng-container>
   <ng-template #noNotifications>
     <div class="no-notifications">
       <mat-icon>notifications_off</mat-icon>
@@ -81,44 +110,30 @@
     </div>
   </ng-template>
   <mat-divider></mat-divider>
-  <button mat-menu-item class="view-all-btn">
+  <button mat-menu-item class="view-all-btn" (click)="viewAllNotifications()">
     <mat-icon>visibility</mat-icon>
     <span>Ver todas</span>
   </button>
 </mat-menu>
 
-<!-- User Menu -->
 <mat-menu #userMenu="matMenu">
   <div class="user-menu-header">
-    <div class="user-info">
+    <div class="user-info-detailed">
       <div class="user-avatar-menu">
-        <img src="assets/images/user-avatar.png" 
-              alt="User"
-              (error)="onImageError($event)"
-              *ngIf="imageLoaded" />
-        <span *ngIf="!imageLoaded" class="avatar-initials">
-          {{ getUserInitials() }}
-        </span>
+        <img src="assets/images/avatar.png" 
+              alt="User" />
       </div>
       <div class="user-details">
-        <div class="user-name">Antônio Coutinho</div>
-        <div class="user-email">antonio@example.com</div>
+        <div class="user-name">{{ currentUser.name || 'Antônio Coutinho' }}</div>
+        <div class="user-email">{{ currentUser.email || 'antonio@example.com' }}</div>
+        <div class="user-role">{{ currentUser.role || 'Gerente de Contas' }}</div>
       </div>
     </div>
   </div>
   <mat-divider></mat-divider>
-  <button mat-menu-item routerLink="/settings/profile">
-    <mat-icon>person</mat-icon>
-    <span>Perfil</span>
-  </button>
-  <button mat-menu-item routerLink="/settings">
-    <mat-icon>settings</mat-icon>
-    <span>Configurações</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>help</mat-icon>
-    <span>Ajuda</span>
-  </button>
+  <button mat-menu-item routerLink="/settings/profile"><mat-icon>person</mat-icon><span>Perfil</span></button>
+  <button mat-menu-item routerLink="/settings"><mat-icon>settings</mat-icon><span>Configurações</span></button>
+  <button mat-menu-item><mat-icon>help</mat-icon><span>Ajuda</span></button>
   <mat-divider></mat-divider>
   <button mat-menu-item (click)="logout()" class="logout-item">
     <mat-icon>logout</mat-icon>
