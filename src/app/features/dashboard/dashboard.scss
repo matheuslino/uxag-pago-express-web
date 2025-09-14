@@ -67,10 +67,10 @@ p {
 }
 
 .action-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: end;
   gap: 15px;
   padding: 16px;
   background-color: #F5F5F5;
@@ -82,13 +82,16 @@ p {
   font-weight: 500;
   color: #5C4896;
   min-height: 107px;
-
-  mat-icon { color: #5C4896; }
+  
   &:hover { opacity: 0.9; }
   &:last-child {
     background-color: transparent;
     border: 1px dashed #DADADA;
   }
+}
+
+.action-card>span{
+  align-items: left!important;
 }
 
 .transactions { padding-bottom: 0; }
@@ -314,4 +317,11 @@ p {
   }
   
   .stat-item .stat-value { font-size: 28px; }
+}
+
+
+.icon-img {
+ position: absolute;
+ top:24px;
+ left: 32px;
 }
