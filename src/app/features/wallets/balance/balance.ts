@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HeaderTitle } from '../../../shared/components/header-title/header-title';
+import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 
 interface IBalance {
   razaoSocial: {
@@ -14,11 +16,21 @@ interface IBalance {
 @Component({
   selector: 'app-balance',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HeaderTitle, WalletSidebar],
   templateUrl: './balance.html',
   styleUrl: './balance.scss'
 })
 export class Balance {
+
+  public headerInformation = {
+    pageTitle: 'Saldo',
+    pageSubtitle: 'Consulte seu saldo',
+    breadcrumb: [
+      { label: 'Painel', path: '/dashboard' },
+      { label: 'Wallets', path: '/wallets' },
+      { label: 'Saldo', path: '/wallets/balance' }
+    ],
+  }
 
   public balances: IBalance[] = [
     {

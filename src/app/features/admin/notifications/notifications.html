@@ -1,39 +1,39 @@
 <app-header-title [headerInformation]="headerInformation"></app-header-title>
-<div class="main-content">
+<div class="template-content">
   <app-admin-sidebar></app-admin-sidebar>
-  <div class="notifications-bg">
-    <div class="notifications-container">
-      <div class="notifications-section">
-        <h2 class="notifications-title">Chamadas</h2>
-        <div class="notifications-desc">Complete as informações de acordo com a chave desejada</div>
-        <div class="notifications-row">
-          <div class="notifications-box">
-            <h3 class="notifications-subtitle" style="margin-top: 18px;">Por Webhook</h3>
-            <div class="notifications-fields-row" style="margin-top: -50px;">
-              <div class="notifications-fields-right">
-                <div class="notifications-field">
+  <div class="template-list-bg">
+    <div class="template-list-container">
+      <div class="template-list-section">
+        <h2 class="template-title">Chamadas</h2>
+        <div class="template-desc">Complete as informações de acordo com a chave desejada</div>
+        <div class="template-row">
+          <div class="template-box">
+            <h3 class="template-subtitle" style="margin-top: 18px;">Por Webhook</h3>
+            <div class="template-fields-row" style="margin-top: -50px;">
+              <div class="template-fields-right">
+                <div class="template-field">
                   <label for="webhook-cashin"> Cash-in</label>
                   <input id="webhook-cashin" type="text"  value="" placeholder="Insira a URL de Cash-in" />
                 </div>
-                <div class="notifications-field">
+                <div class="template-field">
                   <label for="webhook-cashout">Cash-out</label>
                   <input id="webhook-cashout" type="text" value="" placeholder="Insira a URL de Cash-out" />
                 </div>
               </div>
             </div>
           </div>
-          <div class="notifications-box">
-            <h3 class="notifications-subtitle" style="margin-top: 18px;">Por e-mail</h3>
-            <div class="notifications-fields-row" style="margin-top: -50px;">
-              <div class="notifications-fields-right">
-                <div class="notifications-field notifications-toggle-row">
-                  <div class="notifications-toggle-label-col">
-                    <label for="toggle-email" class="notifications-toggle-label">Notifica por e-mail</label>
-                    <span class="notifications-toggle-desc">caso deseja que aconteça essa notificação, deixe ligado</span>
+          <div class="template-box">
+            <h3 class="template-subtitle" style="margin-top: 18px;">Por e-mail</h3>
+            <div class="template-fields-row" style="margin-top: -50px;">
+              <div class="template-fields-right">
+                <div class="template-field template-toggle-row">
+                  <div class="template-toggle-label-col">
+                    <label for="toggle-email" class="template-toggle-label">Notifica por e-mail</label>
+                    <span class="template-toggle-desc">caso deseja que aconteça essa notificação, deixe ligado</span>
                   </div>
-                  <input id="toggle-email" type="checkbox" checked class="notifications-toggle" />
+                  <input id="toggle-email" type="checkbox" checked class="template-toggle" />
                 </div>
-                <div class="notifications-field">
+                <div class="template-field">
                   <label for="email-notification">E-mail de notificação</label>
                   <input id="email-notification" type="email" value="" placeholder="exemplo@email.com" />
                 </div>
