@@ -24,6 +24,7 @@ import { WithdrawalFeeConfigModalComponent } from '../../shared/components/withd
 import { CreditCardFeesModalComponent } from '../../shared/components/credit-card-fees-modal.component/credit-card-fees-modal.component';
 import { BoletoFeeConfigModalComponent } from '../../shared/components/boleto-tax-config-modal/boleto-tax-config-modal.component';
 import { SplitFeeConfigModalComponent } from '../../shared/components/split-tax-config-modal/sprit-tax-config-modal.component';
+import { ReturnFeeConfigModalComponent } from '../../shared/components/return-tax-config-modal/return-tax-config-modal';
 
 @Component({
   selector: 'app-dashboard',
@@ -222,7 +223,7 @@ export class Dashboard {
     });
   }
 
-    openTaxasPixModal() {
+  openTaxasPixModal() {
     const dialogRef = this.dialog.open(PixFeeConfigModalComponent, {
       width: '800px',
       maxWidth: '800px',
@@ -237,7 +238,7 @@ export class Dashboard {
     });
   }
 
-    openTaxaSaqueModal() {
+  openTaxaSaqueModal() {
     const dialogRef = this.dialog.open(WithdrawalFeeConfigModalComponent, {
       width: '800px',
       maxWidth: '800px',
@@ -252,7 +253,7 @@ export class Dashboard {
     });
   }
 
-   openTaxCredit() {
+  openTaxCredit() {
     const dialogRef = this.dialog.open(CreditCardFeesModalComponent, {
       width: '1000px',
       maxWidth: '1000px',
@@ -267,7 +268,7 @@ export class Dashboard {
     });
   }
 
-   openBoletoTaxConfigModal() {
+  openBoletoTaxConfigModal() {
     const dialogRef = this.dialog.open(BoletoFeeConfigModalComponent, {
       width: '1000px',
       maxWidth: '1000px',
@@ -282,9 +283,24 @@ export class Dashboard {
     });
   }
 
-  
-   openSplitTaxConfigModal() {
+
+  openSplitTaxConfigModal() {
     const dialogRef = this.dialog.open(SplitFeeConfigModalComponent, {
+      width: '1000px',
+      maxWidth: '1000px',
+      maxHeight: '90vh',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Certificados configurados:', result);
+      }
+    });
+  }
+
+  openBoletoReturnConfigModal() {
+    const dialogRef = this.dialog.open(ReturnFeeConfigModalComponent, {
       width: '1000px',
       maxWidth: '1000px',
       maxHeight: '90vh',
