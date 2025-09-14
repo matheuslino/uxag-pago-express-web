@@ -26,6 +26,7 @@ import { BoletoFeeConfigModalComponent } from '../../shared/components/boleto-ta
 import { SplitFeeConfigModalComponent } from '../../shared/components/split-tax-config-modal/sprit-tax-config-modal.component';
 import { ReturnFeeConfigModalComponent } from '../../shared/components/return-tax-config-modal/return-tax-config-modal';
 import { PixWalletConfigModalComponent } from '../../shared/components/pix-tax-config-modal/pix-tax-config-modal';
+import { LimitPaymentFeeConfigModalComponent } from '../../shared/components/limit-payment-tax-config-modal/limit-payment-tax-config-modal';
 
 @Component({
   selector: 'app-dashboard',
@@ -271,8 +272,8 @@ export class Dashboard {
 
   openBoletoTaxConfigModal() {
     const dialogRef = this.dialog.open(BoletoFeeConfigModalComponent, {
-      width: '1000px',
-      maxWidth: '1000px',
+      width: '800px',
+      maxWidth: '800px',
       maxHeight: '90vh',
       disableClose: true
     });
@@ -287,8 +288,8 @@ export class Dashboard {
 
   openSplitTaxConfigModal() {
     const dialogRef = this.dialog.open(SplitFeeConfigModalComponent, {
-      width: '1000px',
-      maxWidth: '1000px',
+      width: '800px',
+      maxWidth: '800px',
       maxHeight: '90vh',
       disableClose: true
     });
@@ -302,8 +303,8 @@ export class Dashboard {
 
   openBoletoReturnConfigModal() {
     const dialogRef = this.dialog.open(ReturnFeeConfigModalComponent, {
-      width: '1000px',
-      maxWidth: '1000px',
+      width: '800px',
+      maxWidth: '800px',
       maxHeight: '90vh',
       disableClose: true
     });
@@ -315,8 +316,23 @@ export class Dashboard {
     });
   }
 
-  openPixTaxConfigModal(){
-     const dialogRef = this.dialog.open( PixWalletConfigModalComponent, {
+  openPixTaxConfigModal() {
+    const dialogRef = this.dialog.open(PixWalletConfigModalComponent, {
+      width: '800px',
+      maxWidth: '800px',
+      maxHeight: '90vh',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Certificados configurados:', result);
+      }
+    });
+  }
+
+  openBLimitPaymentTaxConfigModal() {
+    const dialogRef = this.dialog.open(LimitPaymentFeeConfigModalComponent, {
       width: '800px',
       maxWidth: '800px',
       maxHeight: '90vh',
