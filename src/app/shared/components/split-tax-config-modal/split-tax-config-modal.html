@@ -1,0 +1,114 @@
+<div class="modal-header">
+  <h2 class="titleModal" mat-dialog-title>Configurar taxas split</h2>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="paddingLeft">
+  <p class="modal-subtitle">Texto complementar que vem abaixo</p>
+</div>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-content class="modal-content">
+  <!-- Seção da Empresa -->
+  <div class="company-section">
+    <div class="company-info">
+      <div class="company-icon">🏢</div>
+      <div>
+        <h3>Empresa</h3>
+        <p>{{ selectedCompany()?.name || '123 Milhas' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção BOLETO -->
+  <div class="split-section">
+    <h3 class="section-title">Divisão</h3>
+    <p class="section-subtitle">Texto complementar que vem abaixo</p>
+
+    <!-- Formulário -->
+    <form [formGroup]="splitFeeForm" class="config-form">
+      <!-- Primeira linha: Valor menor e Valor maior -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" floatLabel="always" class="w-50">
+          <mat-label>Valor menor</mat-label>
+          <input matInput type="number" step="0.01" formControlName="minValue" placeholder="0,0,0" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always" class="w-50">
+          <mat-label>Valor maior</mat-label>
+          <input matInput type="number" step="0.01" formControlName="maxValue" placeholder="0,0,0" />
+        </mat-form-field>
+      </div>
+
+      <!-- Segunda linha: Taxa, Mínimo e Máximo -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" floatLabel="always" class="w-50">
+          <mat-label>Taxa</mat-label>
+          <input matInput type="number" step="0.01" formControlName="feePercentage" placeholder="0,0,0" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always" class="w-25">
+          <mat-label>Mínimo</mat-label>
+          <input matInput type="number" step="0.01" formControlName="minFee" placeholder="0,0,0" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always" class="w-25">
+          <mat-label>Máximo</mat-label>
+          <input matInput type="number" step="0.01" formControlName="maxFee" placeholder="0,0,0" />
+        </mat-form-field>
+      </div>
+
+      <!-- Terceira linha: Fixo -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" floatLabel="always" class="w-50-6">
+          <mat-label>Fixo</mat-label>
+          <input matInput type="number" step="0.01" formControlName="fixedFee" placeholder="0,0,0" />
+        </mat-form-field>
+      </div>
+    </form>
+
+    <!-- Botão Salvar -->
+    <div class="form-actions">
+      <button mat-stroked-button color="primary" class="buttonSave" (click)="onAddRule()" [disabled]="splitFeeForm.invalid">
+        Salvar
+      </button>
+    </div>
+
+    <!-- Tabela de resumo -->
+    <div class="summary-table">
+      <div class="table-header">
+        <span>Valor menor</span>
+        <span>Valor maior</span>
+        <span>Taxa %</span>
+        <span>Mínimo</span>
+        <span>Máximo</span>
+        <span>Fixo</span>
+      </div>
+      <div class="table-row" *ngFor="let rule of splitList">
+        <span>R$ {{ rule.minValue | number:'1.2-2' }}</span>
+        <span>{{ rule.maxValue ? ('R$ ' + (rule.maxValue | number:'1.2-2')) : '-' }}</span>
+        <span>{{ rule.feePercentage ? (rule.feePercentage + '%') : '-' }}</span>
+        <span>{{ rule.minFee ? ('R$ ' + (rule.minFee | number:'1.2-2')) : '-' }}</span>
+        <span>{{ rule.maxFee ? ('R$ ' + (rule.maxFee | number:'1.2-2')) : '-' }}</span>
+        <span>R$ {{ rule.fixedFee | number:'1.2-2' }}</span>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-actions class="modal-actions">
+  <button mat-button (click)="onClose()" class="buttonCancel">Fechar</button>
+  <button mat-raised-button color="primary" class="buttonConfirm" (click)="onSave()"
+    [disabled]="splitFeeForm.invalid || isLoading()">
+    @if (isLoading()) {
+    <mat-spinner diameter="20"></mat-spinner>
+    } @else {
+    Concluir
+    }
+  </button>
+</mat-dialog-actions>
