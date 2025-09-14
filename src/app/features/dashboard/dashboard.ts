@@ -27,6 +27,7 @@ import { SplitFeeConfigModalComponent } from '../../shared/components/split-tax-
 import { ReturnFeeConfigModalComponent } from '../../shared/components/return-tax-config-modal/return-tax-config-modal';
 import { PixWalletConfigModalComponent } from '../../shared/components/pix-tax-config-modal/pix-tax-config-modal';
 import { LimitPaymentFeeConfigModalComponent } from '../../shared/components/limit-payment-tax-config-modal/limit-payment-tax-config-modal';
+import { PasswordChangeModalComponent } from '../../shared/components/change-password/change-password';
 
 @Component({
   selector: 'app-dashboard',
@@ -333,6 +334,21 @@ export class Dashboard {
 
   openBLimitPaymentTaxConfigModal() {
     const dialogRef = this.dialog.open(LimitPaymentFeeConfigModalComponent, {
+      width: '800px',
+      maxWidth: '800px',
+      maxHeight: '90vh',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Certificados configurados:', result);
+      }
+    });
+  }
+  
+  openChangePassword(){
+    const dialogRef = this.dialog.open(PasswordChangeModalComponent, {
       width: '800px',
       maxWidth: '800px',
       maxHeight: '90vh',
