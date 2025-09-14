@@ -1,0 +1,28 @@
+<div class="page-header">
+  <nav class="breadcrumb" *ngIf="headerInformation && headerInformation.breadcrumb && headerInformation.breadcrumb.length > 0">
+    <a 
+      *ngFor="let item of headerInformation.breadcrumb; let last = last" 
+      [routerLink]="item.path" 
+      [class.active]="last"
+      class="breadcrumb-item">
+      {{ item.label }}
+      <span *ngIf="!last" class="separator">/</span>
+    </a>
+  </nav>
+  <div class="header-content">
+    <div class="header-info">
+      <h1 class="page-title" *ngIf="headerInformation && headerInformation.pageTitle">{{ headerInformation.pageTitle }}</h1>
+      <p class="page-subtitle" *ngIf="headerInformation && headerInformation.pageSubtitle">{{ headerInformation.pageSubtitle }}</p>
+    </div>
+    <div class="header-actions" *ngIf="headerInformation && headerInformation.actionButton">
+      <button 
+        mat-raised-button
+        [disabled]="headerInformation.actionButton.disabled"
+        [class.inactive]="headerInformation.actionButton.disabled === true"
+        class="primary-action-btn"
+        (click)="headerInformation.actionButton.onClick()">
+        {{ headerInformation.actionButton.actionLabel }}
+      </button>
+    </div>
+  </div>
+</div>

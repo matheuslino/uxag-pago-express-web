@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule,
     MatIconModule,
-    AdminSidebar,
     CommonModule,
   ],
   templateUrl: './edit.html',

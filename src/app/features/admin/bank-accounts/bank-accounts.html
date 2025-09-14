@@ -1,22 +1,5 @@
-<div class="page-header">
-  <nav class="breadcrumb" *ngIf="headerInformation && headerInformation.breadcrumb.length > 0">
-    <a 
-      *ngFor="let item of headerInformation.breadcrumb; let last = last" 
-      [routerLink]="item.path" 
-      [class.active]="last"
-      class="breadcrumb-item">
-      {{ item.label }}
-      <span *ngIf="!last" class="separator">/</span>
-    </a>
-  </nav>
-  <div class="header-content">
-      <div class="header-info">
-        <h1 class="page-title">{{ headerInformation.pageTitle }}</h1>
-        <p class="page-subtitle" *ngIf="headerInformation && headerInformation.pageSubtitle">{{ headerInformation.pageSubtitle }}</p>
-      </div>
-    </div>
-</div>
-<div class="main-content">
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
   <app-admin-sidebar></app-admin-sidebar>
   <div class="bank-accounts-bg">
     <div class="bank-accounts-container">
@@ -24,64 +7,23 @@
         <h2 class="bank-accounts-title">Sua carteira de bancos</h2>
         <div class="bank-accounts-info-row">
           <div class="bank-accounts-subtitle">Abaixo estão os resultados encontrados</div>
-          <div class="bank-accounts-total">Total: 6 registros</div>
+          <div class="bank-accounts-total">Total: {{ totalRecords }} registros</div>
         </div>
         <table class="bank-accounts-table">
           <thead>
             <tr>
-              <th style="text-align: left;">Banco</th>
-              <th style="text-align: right; width: 80px;">Ações</th>
+              <th class="bank-column">Banco</th>
+              <th class="actions-column">Ações</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <span class="bank-name">Asaas</span><br>
-                <span class="bank-code">481</span>
+            <tr *ngFor="let bank of bankAccounts">
+              <td class="bank-cell">
+                <span class="bank-name">{{ bank.name }}</span><br>
+                <span class="bank-code">{{ bank.code }}</span>
               </td>
-              <td style="text-align: right;">
-                <img src="/img/Frame.svg" alt="Editar" style="width: 20px; height: 20px; margin-left: 8px; vertical-align: middle;">
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="bank-name">Banco do Brasil</span><br>
-                <span class="bank-code">237</span>
-              </td>
-              <td style="text-align: right;">
-                <img src="/img/Frame.svg" alt="Editar" style="width: 20px; height: 20px; margin-left: 8px; vertical-align: middle;">
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="bank-name">Bradesco</span><br>
-                <span class="bank-code">011</span>
-            <td style="text-align: right;">
-                <img src="/img/Frame.svg" alt="Editar" style="width: 20px; height: 20px; margin-left: 8px; vertical-align: middle;">
-              </td>
-            <tr>
-              <td>
-                <span class="bank-name">Itaú</span><br>
-                <span class="bank-code">159</span>
-              <td style="text-align: right;">
-                <img src="/img/Frame.svg" alt="Editar" style="width: 20px; height: 20px; margin-left: 8px; vertical-align: middle;">
-              </td>
-            <tr>
-              <td>
-                <span class="bank-name">Neon</span><br>
-                <span class="bank-code">450</span>
-              </td>
-              <td style="text-align: right;">
-                <img src="/img/Frame.svg" alt="Editar" style="width: 20px; height: 20px; margin-left: 8px; vertical-align: middle;">
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="bank-name">Inter</span><br>
-                <span class="bank-code">077</span>
-              </td>
-              <td style="text-align: right;">
-                <img src="/img/Frame.svg" alt="Editar" style="width: 20px; height: 20px; margin-left: 8px; vertical-align: middle;">
+              <td class="actions-cell">
+                <img src="/img/Frame.svg" alt="Editar" class="action-icon">
               </td>
             </tr>
           </tbody>

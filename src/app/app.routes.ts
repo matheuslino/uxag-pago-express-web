@@ -102,21 +102,42 @@ export const routes: Routes = [
           },
           {
             path: 'users',
-            component: ListUser,
-            data: {
-              pageTitle: 'Usuários',
-              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Administração', path: '/administracao' },
-                { label: 'Usuários', path: '/administracao/users' }
-              ],
-              actionButton: {
-                show: true,
-                label: '+ Adicionar novo usuário',
-                icon: 'add'
-              }
-            }
+            children: [
+              {
+                path: '',
+                component: ListUser,
+                data: {
+                  pageTitle: 'Usuários',
+                  pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+                  breadcrumb: [
+                    { label: 'Painel', path: '/dashboard' },
+                    { label: 'Administração', path: '/administracao' },
+                    { label: 'Usuários', path: '/administracao/users' }
+                  ],
+                  actionButton: {
+                    show: true,
+                    label: '+ Adicionar novo usuário',
+                    icon: 'add'
+                  }
+                },
+              },
+              {
+                path: 'edit',
+                component: EditUser,
+              },
+              {
+                path: 'credentials',
+                component: Credentials,
+              },
+              {
+                path: 'link-companies',
+                component: LinkCompanies,
+              },
+              {
+                path: 'logs',
+                component: LogsUser,
+              },
+            ]
           },
           {
             path: 'pix',
@@ -211,28 +232,6 @@ export const routes: Routes = [
             }
           },
         ]
-      },
-      {
-        path: 'users',
-        component: Users,
-        children: [
-          {
-            path: 'edit',
-            component: EditUser,
-          },
-          {
-            path: 'credentials',
-            component: Credentials,
-          },
-          {
-            path: 'link-companies',
-            component: LinkCompanies,
-          },
-          {
-            path: 'logs',
-            component: LogsUser,
-          },
-        ],
       },
       {
         path: 'pix',

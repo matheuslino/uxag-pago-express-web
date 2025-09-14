@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AdminSidebar } from '../../shared/components/admin-sidebar/admin-sidebar';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { Subject } from 'rxjs';
@@ -16,7 +15,6 @@ interface BreadcrumbItem {
   imports: [
     RouterModule,
     MatIconModule,
-    AdminSidebar,
     CommonModule,
   ],
   templateUrl: './admin.html',

@@ -1,5 +1,4 @@
 .admin-layout {
-  display: flex;
   flex-direction: row;
   padding: 0 64px;
 }
@@ -134,10 +133,11 @@
   }
   
   .admin-layout {
-    padding: 0 16px;
+    padding: 0
   }
 
   .admin-content {
+    width: 85vw;
     flex-direction: column!important;
   }
 
@@ -156,7 +156,8 @@
   }
   
   .admin-layout {
-    padding: 0 16px;
+    width: 85vw;
+    padding: 0;
   }
 
   .admin-content {
@@ -169,6 +170,5 @@
 }
 
 .admin-content {
-  width: 100%;
   flex-direction: row;
 }

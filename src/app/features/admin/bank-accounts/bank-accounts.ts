@@ -3,6 +3,12 @@ import { Component } from '@angular/core';
 import { AdminSidebar } from '../../../shared/components/admin-sidebar/admin-sidebar';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { HeaderTitle } from '../../../shared/components/header-title/header-title';
+
+interface BankAccount {
+  name: string;
+  code: string;
+}
 
 @Component({
   selector: 'app-bank-accounts',
@@ -10,6 +16,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     MatIconModule,
     AdminSidebar,
+    HeaderTitle,
     CommonModule,
   ],
   templateUrl: './bank-accounts.html',
@@ -25,6 +32,18 @@ export class BankAccounts {
       { label: 'Administração', path: '/administracao' },
       { label: 'Contas bancárias', path: '/administracao/bank-accounts' }
     ],
+  }
+
+  public bankAccounts: BankAccount[] = [
+    { name: 'Asaas', code: '481' },
+    { name: 'Banco do Brasil', code: '237' },
+    { name: 'Bradesco', code: '011' },
+    { name: 'Itaú', code: '159' },
+    { name: 'Neon', code: '450' },
+  ];
+
+  get totalRecords(): number {
+    return this.bankAccounts.length;
   }
 
 }

@@ -1,6 +1,15 @@
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: calc(100vh - 320px);
+  padding: 24px 0;
+  background: #fff;
+}
+
 .pix-list-bg {
   background: #fff;
-  padding: 40px 0;
+  width: 100%;
 }
 
 .pix-list-container {

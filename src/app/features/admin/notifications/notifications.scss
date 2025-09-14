@@ -1,5 +1,15 @@
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: calc(100vh - 320px);
+  padding: 24px 0;
+  background: #fff;
+}
+
 .notifications-bg {
   background: #fff;
+  width: 100%;
 }
 
 .notifications-container {

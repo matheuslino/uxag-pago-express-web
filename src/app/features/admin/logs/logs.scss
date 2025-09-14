@@ -1,5 +1,15 @@
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: calc(100vh - 320px);
+  padding: 24px 0;
+  background: #fff;
+}
+
 .logs-bg {
   background: #fff;
+  width: 100%;
 }
 
 .logs-container {
@@ -146,4 +156,10 @@
 
 .logs-download-btn:hover {
   background: #5a32a3;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    display: block;
+  }
 }

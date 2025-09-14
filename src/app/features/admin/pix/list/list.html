@@ -1,114 +1,99 @@
-<div class="page-header">
-  <nav
-    class="breadcrumb"
-    *ngIf="headerInformation && headerInformation.breadcrumb.length > 0"
-  >
-    <a
-      *ngFor="let item of headerInformation.breadcrumb; let last = last"
-      [routerLink]="item.path"
-      [class.active]="last"
-      class="breadcrumb-item"
-    >
-      {{ item.label }}
-      <span *ngIf="!last" class="separator">/</span>
-    </a>
-  </nav>
-
-  <div class="header-content">
-    <div class="header-info">
-      <h1 class="page-title">{{ headerInformation.pageTitle }}</h1>
-      <p
-        class="page-subtitle"
-        *ngIf="headerInformation && headerInformation.pageSubtitle"
-      >
-        {{ headerInformation.pageSubtitle }}
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="main-content">
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
   <app-admin-sidebar></app-admin-sidebar>
-  <div class="pix-list-bg">
-    <div class="pix-list-container">
-      <div class="pix-list-select-row">
-        <div class="pix-list-select-section">
-          <span class="pix-list-select-title">Cliente</span>
-          <select id="pix-client-select" class="pix-list-select">
-            <option selected>123 Milhas</option>
+  <div class="template-list-bg">
+    <div class="template-list-container">
+      <div class="template-list-select-row">
+        <div class="template-list-select-section">
+          <span class="template-list-select-title">Cliente</span>
+          <select 
+            id="template-client-select" 
+            class="template-list-select"
+            [(ngModel)]="clienteSelecionadoId"
+            (change)="onClienteChange()">
+            <option 
+              *ngFor="let cliente of clientes" 
+              [value]="cliente.id">
+              {{ cliente.nome }}
+            </option>
           </select>
         </div>
-
-        <div class="pix-list-client-info">
-          <span class="pix-list-client-avatar">
-            <img src="/img/house.svg" alt="Avatar" />
+        <div class="template-list-client-info" *ngIf="clienteSelecionado">
+          <span class="template-list-client-avatar">
+            <img 
+              [src]="clienteSelecionado.avatar || '/img/house.svg'" 
+              [alt]="clienteSelecionado.nome" />
           </span>
           <div>
-            <span class="pix-list-select-title">Cliente</span>
-            <div class="pix-list-select-subtitle">123 milhas</div>
+            <span class="template-list-select-title">Cliente</span>
+            <div class="template-list-select-subtitle">{{ clienteSelecionado.nome }}</div>
           </div>
         </div>
       </div>
-
-      <div class="pix-list-results-section">
-        <h2 class="pix-list-results-title">Resultado da pesquisa</h2>
-        <div class="pix-list-results-info-row">
-        <div class="pix-list-results-subtitle">
-          Abaixo estão os resultados encontrados
+      <div class="template-list-results-section">
+        <h2 class="template-list-results-title">Resultado da pesquisa</h2>
+        <div class="template-list-results-info-row">
+          <div class="template-list-results-subtitle">
+            Abaixo estão os resultados encontrados
+          </div>
+          <div class="template-list-total">Total {{ totalRegistros }} Registros</div>
         </div>
-        <div class="pix-list-total">Total 3 Registros</div>
-      </div>
-
-        <table class="pix-list-results-table">
-          <thead>
-            <tr>
-              <th>Empresa</th>
-              <th>Tipo de chave</th>
-              <th>Chave PIX</th>
-              <th>Criado por</th>
-              <th>Criado em</th>
-              <th style="width: 50px;"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>123 Milhas</td>
-              <td>CPF</td>
-              <td>123.456.789-00</td>
-              <td>lucas_adm</td>
-              <td>03h09 - 12/03/2024</td>
-              <td>
-                <span class="pix-list-trash-icon" title="Excluir">
-                  <img src="/img/trash-2.svg" alt="Excluir" />
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>123 Milhas Filial</td>
-              <td>CNPJ</td>
-              <td>12.345.678/0001-99</td>
-              <td>miguel_user</td>
-              <td>03h09 - 12/03/2024</td>
-              <td>
-                <span class="pix-list-trash-icon" title="Excluir">
-                  <img src="/img/trash-2.svg" alt="Excluir" />
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>Agência XPTO</td>
-              <td>E-mail</td>
-              <td>contato@empresa.com</td>
-              <td>kelvyn_admin</td>
-              <td>03h09 - 12/03/2024</td>
-              <td>
-                <span class="pix-list-trash-icon" title="Excluir">
-                  <img src="/img/trash-2.svg" alt="Excluir" />
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-container">
+          <table class="template-list-results-table">
+            <thead>
+              <tr>
+                <th>
+                  <span class="table-header-content">
+                    Empresa
+                  </span>
+                </th>
+                <th class="hide-mobile">Tipo de chave</th>
+                <th class="hide-mobile-partial">Chave PIX</th>
+                <th class="hide-mobile">Criado por</th>
+                <th class="hide-mobile">Criado em</th>
+                <th class="actions-column"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let chave of chavesFiltradas">
+                <td>
+                  <div class="empresa-info">
+                    <span class="empresa-nome">{{ chave.empresa }}</span>
+                  </div>
+                </td>
+                <td class="hide-mobile">
+                  <span class="tipo-chave-cell">
+                    <img 
+                      [src]="getTipoChaveIcon(chave.tipoChave)" 
+                      [alt]="chave.tipoChave"
+                      class="tipo-icon" />
+                    {{ chave.tipoChave }}
+                  </span>
+                </td>
+                <td class="hide-mobile-partial chave-pix-cell">
+                  <span class="chave-pix-text">{{ chave.chavePix }}</span>
+                </td>
+                <td class="hide-mobile">{{ chave.criadoPor }}</td>
+                <td class="hide-mobile">{{ formatarDataHora(chave.criadoEm) }}</td>
+                <td class="actions-cell">
+                  <span 
+                    class="template-list-trash-icon" 
+                    title="Excluir"
+                    (click)="onExcluirChave(chave)">
+                    <img src="/img/trash-2.svg" alt="Excluir" />
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="empty-state" *ngIf="chavesFiltradas.length === 0">
+          <div class="empty-state-content">
+            <img src="/img/empty-box.svg" alt="Nenhum registro" class="empty-icon" />
+            <h3>Nenhuma chave PIX encontrada</h3>
+            <p>Este cliente ainda não possui chaves PIX cadastradas.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,5 +1,15 @@
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: calc(100vh - 320px);
+  padding: 24px 0;
+  background: #fff;
+}
+
 .batch-bank-bg {
   background: #fff;
+  width: 100%;
 }
 
 .batch-bank-container {
@@ -271,4 +281,10 @@
   position: absolute;
   top: 5px;
   left: 5px;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    display: block;
+  }
 }

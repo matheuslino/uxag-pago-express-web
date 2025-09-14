@@ -1,146 +1,88 @@
-<div class="page-header">
-  <nav class="breadcrumb" *ngIf="headerInformation && headerInformation.breadcrumb.length > 0">
-    <a 
-      *ngFor="let item of headerInformation.breadcrumb; let last = last" 
-      [routerLink]="item.path" 
-      [class.active]="last"
-      class="breadcrumb-item">
-      {{ item.label }}
-      <span *ngIf="!last" class="separator">/</span>
-    </a>
-  </nav>
-  <div class="header-content">
-      <div class="header-info">
-        <h1 class="page-title">{{ headerInformation.pageTitle }}</h1>
-        <p class="page-subtitle" *ngIf="headerInformation && headerInformation.pageSubtitle">{{ headerInformation.pageSubtitle }}</p>
-      </div>
-    </div>
-</div>
-<div class="main-content">
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
   <app-admin-sidebar></app-admin-sidebar>
-  <div class="clients-list-bg">
-    <div class="clients-list-container">
-      <div class="clients-list-filters-section">
-        <div class="clients-list-filters-row" style="align-items: flex-start;">
-          <label style="display: flex; flex-direction: column; align-items: flex-start;; flex: 1; color: #344054; font-style: normal; font-weight: 500;">
+  <div class="template-list-bg">
+    <div class="template-list-container">
+      <div class="template-list-filters-section">
+        <div class="template-list-filters-row">
+          <label class="filter-label">
             Buscar por especificidade
-            <div style="position: relative; width: 100%;">
-              <img src="/img/lupa.svg" alt="Buscar" style="position: absolute; left: 12px; top: 55%; transform: translateY(-50%); width: 18px; height: 18px; pointer-events: none; opacity: 0.7;" />
-              <input type="text" placeholder="Busca por algum cliente..." class="clients-list-filter-input" style="padding-left: 38px;" />
+            <div class="search-input-container">
+              <img src="/img/lupa.svg" alt="Buscar" class="search-icon" />
+              <input 
+                type="text" 
+                placeholder="Busca por algum cliente..." 
+                class="template-list-filter-input search-input"
+                [(ngModel)]="filtros.buscar" />
             </div>
           </label>
-          <label style="display: flex; flex-direction: column; align-items: flex-start; flex: 1; color: #344054; font-style: normal; font-weight: 500;">
+          <label class="filter-label">
             Nome
-            <input type="text" placeholder="Nome do cliente" class="clients-list-filter-input" />
+            <input 
+              type="text" 
+              placeholder="Nome do cliente" 
+              class="template-list-filter-input"
+              [(ngModel)]="filtros.nome" />
           </label>
-          <label style="display: flex; flex-direction: column; align-items: flex-start; flex: 1; color: #344054; font-style: normal; font-weight: 500;">
+          <label class="filter-label">
             CNPJ
-            <input type="text" placeholder="Número do CNPJ" class="clients-list-filter-input" />
+            <input 
+              type="text" 
+              placeholder="Número do CNPJ" 
+              class="template-list-filter-input"
+              [(ngModel)]="filtros.cnpj" />
           </label>
         </div>
       </div>
-      <div class="clients-list-results-section">
-        <h2 class="clients-list-results-title">Resultado da pesquisa</h2>
-        <div class="clients-list-results-info-row">
-          <span class="clients-list-results-subtitle">Abaixo estão os resultados encontrados</span>
-          <span class="clients-list-results-total">Total 5 registros</span>
+      <div class="template-list-results-section">
+        <h2 class="template-list-results-title">Resultado da pesquisa</h2>
+        <div class="template-list-results-info-row">
+          <span class="template-list-results-subtitle">Abaixo estão os resultados encontrados</span>
+          <span class="template-list-results-total">Total {{ totalRegistros }} registros</span>
         </div>
-        <table class="clients-list-results-table">
-          <thead>
-            <tr>
-              <th style="padding-left: 16px;">Banco</th>
-              <th>Depósito PIX</th>
-              <th>Saques PIX</th>
-              <th>Envia PIX</th>
-              <th>Boleto</th>
-              <th>Cartão de crédito</th>
-              <th>Pgt. de contas</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div style="font-weight: 600; color: #222;">123 Milhas</div>
-                <div style="font-size: 0.92rem; color: #888;">2023.876000137</div>
-              </td>
-              <td>Stark</td>
-              <td>Stark</td>
-              <td>ASAAS</td>
-              <td>Bradesco</td>
-              <td>Empreendimento</td>
-              <td>-</td>
-              <td style="text-align: right;">
-                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
-                <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div style="font-weight: 600; color: #222;">Phoenix Sauer</div>
-                <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
-              </td>
-              <td>Stark</td>
-              <td>Stark</td>
-              <td>ASAAS</td>
-              <td>Bradesco</td>
-              <td>Empreendimento</td>
-              <td>-</td>
-              <td style="text-align: right;">
-                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
-                <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div style="font-weight: 600; color: #222;">Lena Striker</div>
-                <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
-              </td>
-              <td>Stark</td>
-              <td>Stark</td>
-              <td>ASAAS</td>
-              <td>Bradesco</td>
-              <td>Empreendimento</td>
-              <td>-</td>
-              <td style="text-align: right;">
-                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
-                <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div style="font-weight: 600; color: #222;">Devi Wilkinson</div>
-                <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
-              </td>
-              <td>Stark</td>
-              <td>Stark</td>
-              <td>ASAAS</td>
-              <td>Bradesco</td>
-              <td>Empreendimento</td>
-              <td>-</td>
-              <td style="text-align: right;">
-                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
-                <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div style="font-weight: 600; color: #222;">Centeic Wu</div>
-                <div style="font-size: 0.92rem; color: #888;">dina@starkmail.com</div>
-              </td>
-              <td>Stark</td>
-              <td>Stark</td>
-              <td>ASAAS</td>
-              <td>Bradesco</td>
-              <td>Empreendimento</td>
-              <td>-</td>
-              <td style="text-align: right;">
-                <img src="/img/trash-2.svg" alt="Excluir" style="width: 20px; height: 20px; cursor: pointer; margin-right: 12px;" />
-                <img src="/img/lápis.svg" alt="Editar" style="width: 20px; height: 20px; margin-right: 8px; cursor: pointer;" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-container">
+          <table class="template-list-results-table">
+            <thead>
+              <tr>
+                <th class="first-column">Banco</th>
+                <th class="hide-mobile">Depósito PIX</th>
+                <th class="hide-mobile">Saques PIX</th>
+                <th class="hide-mobile">Envia PIX</th>
+                <th class="hide-mobile">Boleto</th>
+                <th class="hide-mobile">Cartão de crédito</th>
+                <th class="hide-mobile">Pgt. de contas</th>
+                <th class="actions-column"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of clientes">
+                <td>
+                  <div class="template-name">{{ cliente.nome }}</div>
+                  <div class="template-identifier">{{ cliente.identificador }}</div>
+                </td>
+                <td class="hide-mobile">{{ cliente.depositoPix }}</td>
+                <td class="hide-mobile">{{ cliente.saquesPix }}</td>
+                <td class="hide-mobile">{{ cliente.enviaPix }}</td>
+                <td class="hide-mobile">{{ cliente.boleto }}</td>
+                <td class="hide-mobile">{{ cliente.cartaoCredito }}</td>
+                <td class="hide-mobile">{{ cliente.pgtoContas }}</td>
+                <td class="actions-cell">
+                  <img 
+                    src="/img/trash-2.svg" 
+                    alt="Excluir" 
+                    class="action-icon delete-icon"
+                    (click)="onExcluirCliente(cliente)" />
+                  <img 
+                    src="/img/lápis.svg" 
+                    alt="Editar" 
+                    class="action-icon edit-icon"
+                    (click)="onEditarCliente(cliente)" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>     
+    </div>
   </div>
 </div>
