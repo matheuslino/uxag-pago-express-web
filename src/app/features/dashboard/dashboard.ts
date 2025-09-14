@@ -25,6 +25,7 @@ import { CreditCardFeesModalComponent } from '../../shared/components/credit-car
 import { BoletoFeeConfigModalComponent } from '../../shared/components/boleto-tax-config-modal/boleto-tax-config-modal.component';
 import { SplitFeeConfigModalComponent } from '../../shared/components/split-tax-config-modal/sprit-tax-config-modal.component';
 import { ReturnFeeConfigModalComponent } from '../../shared/components/return-tax-config-modal/return-tax-config-modal';
+import { PixWalletConfigModalComponent } from '../../shared/components/pix-tax-config-modal/pix-tax-config-modal';
 
 @Component({
   selector: 'app-dashboard',
@@ -303,6 +304,21 @@ export class Dashboard {
     const dialogRef = this.dialog.open(ReturnFeeConfigModalComponent, {
       width: '1000px',
       maxWidth: '1000px',
+      maxHeight: '90vh',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Certificados configurados:', result);
+      }
+    });
+  }
+
+  openPixTaxConfigModal(){
+     const dialogRef = this.dialog.open( PixWalletConfigModalComponent, {
+      width: '800px',
+      maxWidth: '800px',
       maxHeight: '90vh',
       disableClose: true
     });
