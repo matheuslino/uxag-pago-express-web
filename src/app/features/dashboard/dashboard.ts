@@ -10,6 +10,7 @@ interface Transacao {
   dataTransacao: string;
   valorTransacao: number;
   statusTransacao: 'Processada';
+  tipo: 'entrada' | 'saida';
 }
 
 @Component({
@@ -24,41 +25,60 @@ export class Dashboard {
   percentualCrescimento: number = 11;
   carteirasAtivas: number = 12;
   pagamentosAtrasados: number = 2;
-transacoes: Transacao[] = [
-  {
-    transacaoId: 1,
-    agenciaNome: 'UX AGENCY',
-    agenciaID: 'UA',
-    dataTransacao: 'Mar 07, 2025 • 15h58',
-    valorTransacao: 250.00,
-    statusTransacao: 'Processada'
-  },
-  {
-    transacaoId: 2,
-    agenciaNome: 'Paypal',
-    agenciaID: 'P',
-    agenciaLogo: 'assets/images/paypal.png',
-    dataTransacao: 'Mar 12, 2025 • 11h32',
-    valorTransacao: 9480.00,
-    statusTransacao: 'Processada'
-  },
-  {
-    transacaoId: 3,
-    agenciaNome: 'AWS',
-    agenciaID: 'AWS',
-    agenciaLogo: 'assets/images/aws.png',
-    dataTransacao: 'Jan 31, 2025 • 09h08',
-    valorTransacao: 2250.00,
-    statusTransacao: 'Processada'
-  },
-  {
-    transacaoId: 4,
-    agenciaNome: 'CSO Homol',
-    agenciaID: 'CH',
-    dataTransacao: 'Jan 07, 2025 • 15h58',
-    valorTransacao: 121.00,
-    statusTransacao: 'Processada'
-  }
-];
+  transacoes: Transacao[] = [
+    {
+      transacaoId: 1,
+      agenciaNome: 'UX AGENCY',
+      agenciaID: 'UA',
+      dataTransacao: 'Mar 07, 2025 • 15h58',
+      valorTransacao: 950.50,
+      statusTransacao: 'Processada',
+      tipo: 'entrada'
+    },
+    {
+      transacaoId: 2,
+      agenciaNome: 'Paypal',
+      agenciaID: 'P',
+      agenciaLogo: 'assets/images/paypal.png',
+      dataTransacao: 'Mar 12, 2025 • 11h32',
+      valorTransacao: -100.20,
+      statusTransacao: 'Processada',
+      tipo: 'saida'
+    },
+    {
+      transacaoId: 3,
+      agenciaNome: 'AWS',
+      agenciaID: 'AWS',
+      agenciaLogo: 'assets/images/aws.png',
+      dataTransacao: 'Jan 31, 2025 • 09h08',
+      valorTransacao: 2250.00,
+      statusTransacao: 'Processada',
+      tipo: 'entrada'
+    },
+    {
+      transacaoId: 4,
+      agenciaNome: 'CSO Homol',
+      agenciaID: 'CH',
+      dataTransacao: 'Jan 07, 2025 • 15h58',
+      valorTransacao: -121.00,
+      statusTransacao: 'Processada',
+      tipo: 'saida'
+    }
+  ];
 
+  filteredTransactions: Transacao[] = [];
+  activeFilter: string = 'todos';
+
+  constructor() {
+    this.filterTransactions('todos');
+  }
+
+  filterTransactions(type: 'todos' | 'entrada' | 'saida') {
+    this.activeFilter = type;
+    if (type === 'todos') {
+      this.filteredTransactions = this.transacoes;
+    } else {
+      this.filteredTransactions = this.transacoes.filter(t => t.tipo === type);
+    }
+  }
 }

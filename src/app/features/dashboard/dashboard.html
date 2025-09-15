@@ -35,14 +35,14 @@
             <h2>Últimas transações</h2>
             <p>Acompanhe as suas últimas movimentações.</p>
           </div>
-          <div class="filters">
-            <button class="filter-btn active">Todos</button>
-            <button class="filter-btn">Cashin</button>
-            <button class="filter-btn">Cashout</button>
+                    <div class="filters">
+            <button class="filter-btn" [class.active]="activeFilter === 'todos'" (click)="filterTransactions('todos')">Todos</button>
+            <button class="filter-btn" [class.active]="activeFilter === 'entrada'" (click)="filterTransactions('entrada')">Cashin</button>
+            <button class="filter-btn" [class.active]="activeFilter === 'saida'" (click)="filterTransactions('saida')">Cashout</button>
           </div>
         </div>
         <ul class="transactions-list">
-          <li *ngFor="let transacao of transacoes" class="transaction-item">
+          <li *ngFor="let transacao of filteredTransactions" class="transaction-item">
             <div class="agency-info">
               <div class="agency-logo">
                 <img *ngIf="transacao.agenciaLogo" [src]="transacao.agenciaLogo" [alt]="transacao.agenciaNome">
@@ -54,7 +54,7 @@
               </div>
             </div>
             <div class="transaction-details">
-              <span class="transaction-value">R$ {{ transacao.valorTransacao | number:'1.2-2' }}</span>
+              <span class="transaction-value" [class.positive]="transacao.tipo === 'entrada'" [class.negative]="transacao.tipo === 'saida'">R$ {{ transacao.valorTransacao | number:'1.2-2' }}</span>
               <span class="transaction-status">{{ transacao.statusTransacao }}</span>
             </div>
           </li>
