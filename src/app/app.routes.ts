@@ -20,7 +20,7 @@ import { Withdrawals } from './features/admin/withdrawals/withdrawals';
 import { LinkCompanies } from './features/admin/users/link-companies/link-companies';
 import { Credentials } from './features/admin/users/credentials/credentials';
 import { Edit as EditUser } from './features/admin/users/edit/edit';
-import { Edit as EditClient } from './features/admin/clients/edit/edit';
+import { EditClient } from './features/admin/clients/edit/edit';
 import { Edit as EditWallet } from './features/wallets/edit/edit';
 import { List as ListClient } from './features/admin/clients/list/list';
 import { List as ListPix } from './features/admin/pix/list/list';
@@ -89,16 +89,25 @@ export const routes: Routes = [
           },
           {
             path: 'clients',
-            component: ListClient,
-            data: {
-              pageTitle: 'Clientes',
-              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Administração', path: '/administracao' },
-                { label: 'Clientes', path: '/administracao/clients' }
-              ],
-            }
+            children: [
+              {
+                path: '',
+                component: ListClient,
+                data: {
+                  pageTitle: 'Clientes',
+                  pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+                  breadcrumb: [
+                    { label: 'Painel', path: '/dashboard' },
+                    { label: 'Administração', path: '/administracao' },
+                    { label: 'Clientes', path: '/administracao/clients' }
+                  ],
+                }
+              },
+              {
+                path: 'edit/:id',
+                component: EditClient,
+              }
+            ]
           },
           {
             path: 'users',
