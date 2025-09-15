@@ -5,8 +5,10 @@ import { Router, RouterModule } from '@angular/router';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { MatIconModule } from '@angular/material/icon';
 import { AdminSidebar } from '../../../shared/components/admin-sidebar/admin-sidebar';
+import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 
 interface Empresa {
+  id: number;
   razaoSocial: string;
   cnpj: string;
   numeroCarteira: string;
@@ -22,7 +24,7 @@ interface Empresa {
     HeaderTitle,
     RouterModule,
     MatIconModule,
-    AdminSidebar,
+    WalletSidebar,
   ],
   templateUrl: './list.html',
   styleUrl: './list.scss'
@@ -31,12 +33,14 @@ export class List {
 
   public empresas: Empresa[] = [
     {
+      id: 1,
       razaoSocial: 'FASTCOMMERCE',
       cnpj: '34.192.109/0001-23',
       numeroCarteira: '5131',
       apelido: 'Primeira carteira'
     },
     {
+      id: 2,
       razaoSocial: 'Smart Fit',
       cnpj: '34.192.109/0001-23',
       numeroCarteira: '0123',
@@ -45,16 +49,21 @@ export class List {
   ];
 
   public headerInformation = {
-    pageTitle: 'Contas bancárias',
+    pageTitle: 'Wallets',
     pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
     breadcrumb: [
       { label: 'Painel', path: '/dashboard' },
-      { label: 'Administração', path: '/administracao' },
-      { label: 'Carteiras', path: '/wallets/list' }
+      { label: 'Wallets', path: '/wallets' },
+      { label: 'Visualização', path: '/wallets/list' }
     ],
-  };
-
-  
+    actionButton: {
+      actionLabel: '+ Adicionar nova carteira',
+      disabled: false,
+      onClick: () => {
+        this.router.navigate(['/wallets/new']);
+      }
+    }
+  }
 
   public menuAbertoIndex: number | null = null;
 
@@ -75,16 +84,18 @@ export class List {
   }
 
   public editar(empresa: Empresa): void {
-    this.router.navigateByUrl("/edit");
+    this.router.navigateByUrl(`/wallets/edit/${empresa.id}`);
     this.fecharMenu();
   }
 
   public configurar(empresa: Empresa): void {
+    this.router.navigateByUrl(`/wallets/config/${empresa.id}`);
     console.log('Configurar clicado para:', empresa.razaoSocial);
     this.fecharMenu();
   }
 
   public verLogs(empresa: Empresa): void {
+    this.router.navigateByUrl(`/wallets/logs/${empresa.id}`);
     console.log('Ver logs clicado para:', empresa.razaoSocial);
     this.fecharMenu();
   }

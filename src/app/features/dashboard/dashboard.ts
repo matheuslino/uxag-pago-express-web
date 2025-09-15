@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { HeaderDashboard } from '../../shared/components/header-dashboard/header-dashboard';
 interface Transacao {
   transacaoId: number;
   agenciaNome: string;
@@ -14,7 +15,7 @@ interface Transacao {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, HeaderDashboard],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.scss']
 })

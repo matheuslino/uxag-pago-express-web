@@ -1,34 +1,28 @@
 :host {
-  display: block;
-  background-color: #ffffff; 
-  padding: 32px;
-  width: 100%;
-  box-sizing: border-box;
-  min-height: 100vh;
-  font-family: 'Inter', sans-serif;
-
-}
-.main-content[_ngcontent-ng-c683844770]{
-    background: white !important;
-}
-
-:host {
-  --primary-text-color: #212529;
+  --primary-text-color: #333;
   --secondary-text-color: #6c757d;
   --border-color: #e9ecef;
-  --card-background-color: #f9f9f9; 
+  --background-color: white;
+  --card-background-color: #F9F9F9;
+  --primary-color: #007bff;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   --border-radius: 8px;
     font-family: 'Inter', sans-serif;
+}
+
+.container {
+  width: 100%;
+  font-family: 'Inter', sans-serif; 
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
 }
 
 .form-card {
   background-color: var(--card-background-color); 
   border-radius: var(--border-radius);
   padding: 32px;
-  max-width: 1350px;
   margin: 0 auto; 
 }
-
 
 .card-header {
   h1 {

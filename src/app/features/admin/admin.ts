@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Subject } from 'rxjs';
 import { filter, takeUntil, map, switchMap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
+import { Header } from '../../shared/components/header/header';
 
 interface BreadcrumbItem {
   label: string;
@@ -13,6 +14,7 @@ interface BreadcrumbItem {
 @Component({
   selector: 'app-admin',
   imports: [
+    Header,
     RouterModule,
     MatIconModule,
     CommonModule,
