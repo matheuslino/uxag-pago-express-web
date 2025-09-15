@@ -52,11 +52,14 @@
 
 .page-container {
   width: 100%;
-  max-width: 1200px;
   background: #f6f6f6;
   border-radius: 8px;
   padding: 32px;
   box-sizing: border-box;
+}
+
+.edit-user-form{
+  width: 100%;
 }
 
 .edit-client-header {

@@ -263,7 +263,7 @@ export class List implements OnInit {
 
   private editarUsuario(usuario: Usuario): void {
     console.log('Editar usuário:', usuario);
-    // Implementar navegação para edição
+    this.router.navigate(['/administracao/users/edit']);
   }
 
   private gerenciarCredenciais(usuario: Usuario): void {
