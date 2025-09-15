@@ -17,7 +17,9 @@
   margin: 0 2px 0 12px;
   vertical-align: middle;
   color: #fff;
+  cursor: pointer;
 }
+
 .aprovador-icon-green {
   background: #4caf50;
   border: 2px solid #388e3c;
@@ -35,6 +37,7 @@
   margin-bottom: 18px;
   margin-top: -8px;
 }
+
 .results-subtitle {
   background: #f5f6fa;
   font-size: 0.98rem;
@@ -42,23 +45,12 @@
   margin-bottom: 18px;
   margin-top: -5px;
 }
+
 .results-total {
   font-size: 1rem;
   color: #222;
   font-weight: 500;
   margin-top: -5px;
-}
-
-.withdrawals-bg {
-  background: #fff;
-  width: 100%;
-}
-
-.withdrawals-container {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
 }
 
 .filters-section,
@@ -174,7 +166,7 @@
 
 
 .status-pendente {
-  background: #ECFDF3;
+  background: #FFFAEB;
   color: #d6a100;
   font-weight: 500;
   border-radius: 10px;
@@ -197,10 +189,10 @@
 .pending-section {
   background: #fff;
   border-radius: 12px;
-  padding: 24px 32px 24px 32px; /* padding reduzido para dar mais espaço embaixo */
+  padding: 24px 32px 24px 32px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* empurra o conteúdo para baixo */
+  justify-content: flex-end;
   position: relative;
 }
 
@@ -208,26 +200,25 @@
   content: "";
   display: block;
   width: 100%;
-  height: 1px; /* linha fina */
-  background: #ccc; /* cinza claro */
+  height: 1px;
+  background: #ccc;
   border-radius: 1px;
   position: absolute;
-  bottom: 72px; /* posiciona a linha acima do texto; ajuste se necessário */
+  bottom: 72px;
   left: 0;
 }
 
 .pending-approval {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end; /* mantém os itens alinhados embaixo */
-  padding: 0; /* remove padding extra */
+  align-items: flex-end;
+  padding: 0;
   font-size: 16px;
   color: black;
   font-weight: 500;
   width: 100%;
 }
 
-/* Mensagem pendente */
 .pending-message {
   align-self: center;
   margin: 0;
@@ -236,7 +227,6 @@
   margin-left: 15px;
 }
 
-/* Botões de ação */
 .pending-actions {
   display: flex;
   gap: 12px;

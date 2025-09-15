@@ -30,25 +30,11 @@
             </select>
           </label>
           <label class="filter-label">
-            Período
-            <select 
-              class="template-list-select"
-              [(ngModel)]="filtros.periodo"
-              (change)="onPeriodoChange()">
-              <option value="todos">Todos</option>
-              <option value="hoje">Hoje</option>
-              <option value="semana">Últimos 7 dias</option>
-              <option value="mes">Últimos 30 dias</option>
-              <option value="custom">Personalizado</option>
-            </select>
-          </label>
-          <label class="filter-label">
             Data início
             <input 
               class="template-list-filter-input date-input" 
               type="date"
-              [(ngModel)]="filtros.dataInicio"
-              [disabled]="filtros.periodo !== 'custom'" />
+              [(ngModel)]="filtros.dataInicio" />
           </label>
           <label class="filter-label">
             Data fim
@@ -56,7 +42,6 @@
               class="template-list-filter-input date-input" 
               type="date"
               [(ngModel)]="filtros.dataFim"
-              [disabled]="filtros.periodo !== 'custom'"
               [min]="filtros.dataInicio" />
           </label>
         </div>
@@ -81,11 +66,11 @@
                 <th class="hide-mobile">Data/hora</th>
                 <th class="hide-mobile">Status</th>
                 <th class="hide-mobile">Aprovador</th>
-                <th class="actions-column">Ações</th>
+                <th class="actions-column"></th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let saque of saquesFiltrados">
+              <tr *ngFor="let saque of saques">
                 <td>
                   <div class="solicitante-info">
                     <span class="solicitante-nome">{{ saque.solicitante }}</span>
@@ -106,60 +91,20 @@
                 </td>
                 <td class="hide-mobile">{{ saque.aprovador }}</td>
                 <td class="actions-cell">
-                  <div class="aprovador-actions" *ngIf="saque.statusAprovador === 'pendente'">
-                    <button 
-                      class="btn-approve"
-                      (click)="onAprovar(saque)"
-                      title="Aprovar">
-                      ✓
-                    </button>
-                    <button 
-                      class="btn-reject"
-                      (click)="onRejeitar(saque)"
-                      title="Rejeitar">
-                      ✗
-                    </button>
-                  </div>
-                  <div class="aprovador-status" *ngIf="saque.statusAprovador !== 'pendente'">
+                  <div class="aprovador-status" *ngIf="saque.status === 'Pendente'">
                     <span 
-                      class="aprovador-icon"
-                      [class]="getAprovadorIconClass(saque.statusAprovador)">
-                      {{ saque.statusAprovador === 'aprovado' ? '✓' : '✗' }}
+                      class="aprovador-icon aprovador-icon-green">
+                      ✓
+                    </span>
+                    <span 
+                      class="aprovador-icon aprovador-icon-red">
+                      ✗
                     </span>
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
-        </div>
-
-        <!-- Seção de saques pendentes (opcional) -->
-        <div class="pending-section" *ngIf="saquesPendentes.length > 0">
-          <div class="pending-approval">
-            <span class="pending-message">
-              Você tem {{ saquesPendentes.length }} saque(s) pendente(s) para aprovar:
-              <strong>{{ formatarValor(valorTotalPendente) }}</strong>
-            </span>
-            <div class="pending-actions">
-              <button 
-                class="btn-approve-all"
-                (click)="aprovarTodos()">
-                Aprovar todos
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Estado vazio -->
-        <div class="empty-state" *ngIf="saquesFiltrados.length === 0">
-          <div class="empty-state-content">
-            <img src="/img/empty-withdrawals.svg" alt="Nenhum saque" class="empty-icon" />
-            <h3>Nenhum saque encontrado</h3>
-            <p>Não há saques que correspondam aos filtros selecionados.</p>
-            <button class="btn-clear-filters" (click)="limparFiltros()">
-              Limpar filtros
-            </button>
-          </div>
         </div>
       </div>
     </div>

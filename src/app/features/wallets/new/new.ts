@@ -10,7 +10,6 @@ import { HeaderTitle } from '../../../shared/components/header-title/header-titl
   selector: 'app-new',
   standalone: true, 
   imports: [
-    Header,
     WalletSidebar,
     HeaderTitle,
     CommonModule,

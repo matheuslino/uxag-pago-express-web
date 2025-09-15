@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
+import { MatIconModule } from '@angular/material/icon';
+import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 export interface IPendingWithdrawal {
   solicitante: {
     name: string;
@@ -21,7 +25,11 @@ export interface IPendingWithdrawal {
   standalone: true,
   imports: [
     CommonModule, 
-    FormsModule 
+    FormsModule,
+    HeaderTitle,
+    RouterModule,
+    MatIconModule,
+    WalletSidebar,
   ], 
   templateUrl: './transfer.html',
   styleUrl: './transfer.scss'
@@ -37,6 +45,21 @@ export class Transfer {
     chavePix: '',
     valor: null as number | null
   };
+
+  public headerInformation = {
+    pageTitle: 'Transferência',
+    pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+    breadcrumb: [
+      { label: 'Painel', path: '/dashboard' },
+      { label: 'Wallets', path: '/wallets' },
+      { label: 'Visualização', path: '/wallets/list' }
+    ],
+    saldo: 1000,
+  }
+
+  public menuAbertoIndex: number | null = null;
+
+  constructor(private router: Router) { }
 
   openConfirmationModal(): void {
     if (this.transferData.chavePix && this.transferData.valor) {

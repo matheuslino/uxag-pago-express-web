@@ -1,5 +1,10 @@
 <div class="page-header">
-  <nav class="breadcrumb" *ngIf="headerInformation && headerInformation.breadcrumb && headerInformation.breadcrumb.length > 0">
+  <div *ngIf="headerInformation && headerInformation.saldo">
+    <div class="page-header-saldo">
+
+    </div>
+  </div>
+  <nav class="breadcrumb" *ngIf="headerInformation && !headerInformation.saldo && headerInformation.breadcrumb && headerInformation.breadcrumb.length > 0">
     <a 
       *ngFor="let item of headerInformation.breadcrumb; let last = last" 
       [routerLink]="item.path" 

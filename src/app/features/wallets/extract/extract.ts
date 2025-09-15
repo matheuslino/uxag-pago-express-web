@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HeaderTitle } from '../../../shared/components/header-title/header-title';
+import { MatIconModule } from '@angular/material/icon';
+import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 
 export interface Transaction {
   type: string;
@@ -16,7 +21,12 @@ export interface Transaction {
   selector: 'app-extract',
   standalone: true,
   imports: [
-    CommonModule 
+    CommonModule,
+    FormsModule,
+    HeaderTitle,
+    RouterModule,
+    MatIconModule,
+    WalletSidebar,
   ],
   templateUrl: './extract.html',
   styleUrl: './extract.scss'
@@ -115,4 +125,19 @@ export class Extract {
       id: 1126
     }
   ];
+
+  public headerInformation = {
+    pageTitle: 'Extrato',
+    pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+    breadcrumb: [
+      { label: 'Painel', path: '/dashboard' },
+      { label: 'Wallets', path: '/wallets' },
+      { label: 'Visualização', path: '/wallets/list' }
+    ],
+    saldo: 1000,
+  }
+
+  public menuAbertoIndex: number | null = null;
+
+  constructor(private router: Router) { }
 }

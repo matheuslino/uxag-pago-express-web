@@ -106,32 +106,6 @@ export class Withdrawals implements OnInit {
       aprovador: 'tech_admin',
       statusAprovador: 'aprovado'
     },
-    {
-      id: 4,
-      empresaId: 3,
-      solicitante: 'Stark Industries',
-      usuarioSolicitante: 'stark_fin',
-      carteira: 'Stark Vault',
-      chavePix: 'payments@stark.com',
-      valor: 5000.00,
-      dataHora: new Date('2025-03-14T16:45:00'),
-      status: 'Rejeitado',
-      aprovador: 'stark_admin',
-      statusAprovador: 'rejeitado'
-    },
-    {
-      id: 5,
-      empresaId: 1,
-      solicitante: '123 Milhas',
-      usuarioSolicitante: 'joao_ops',
-      carteira: '123 Secondary',
-      chavePix: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
-      valor: 890.75,
-      dataHora: new Date('2025-03-13T11:20:00'),
-      status: 'Processando',
-      aprovador: 'admin_123',
-      statusAprovador: 'aprovado'
-    }
   ];
 
   public filtros = {
@@ -143,7 +117,6 @@ export class Withdrawals implements OnInit {
   };
 
   ngOnInit(): void {
-    // Definir período padrão (últimos 7 dias)
     this.filtros.periodo = 'semana';
     this.onPeriodoChange();
   }

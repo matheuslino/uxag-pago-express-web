@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
   imports: [
     CommonModule,
     FormsModule,
-    Header,
     HeaderTitle,
     WalletSidebar,
   ],

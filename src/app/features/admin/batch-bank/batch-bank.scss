@@ -12,7 +12,7 @@
 }
 
 .batch-bank-container {
-  margin: 0 auto;
+  margin: 24px auto;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -67,6 +67,7 @@
 
 .batch-bank-label {
   display: flex;
+  flex: 1;
   flex-direction: column;
   font-weight: 500;
   color: #444;
@@ -80,8 +81,7 @@
   border-radius: 6px;
   font-size: 15px;
   background: #fff;
-  min-width: 220px;
-  width: 260px;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -285,5 +285,9 @@
 @media (max-width: 768px) {
   .main-content {
     display: block;
+  }
+
+  .batch-bank-select-row {
+    flex-direction: column;
   }
 }

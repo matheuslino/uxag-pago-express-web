@@ -35,14 +35,18 @@
 }
 
 .nav-link {
-  font-style: normal;;
+  display: inline-block;
+  font-style: normal;
   justify-content: space-between;
   padding: 12px 20px;
+  text-align: left;
   color: #6b7280;
+  min-width: 144px;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.2s ease;
+  border-radius: 1000px;
 
   span {
     flex: 1;
