@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
-import { WalletSidebar } from '../../shared/components/wallet-sidebar/wallet-sidebar';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { filter, map, Subject, switchMap, takeUntil } from 'rxjs';
+import { Header } from '../../shared/components/header/header';
 
 interface BreadcrumbItem {
   label: string;
@@ -16,6 +16,7 @@ interface BreadcrumbItem {
     RouterModule,
     MatIconModule,
     CommonModule,
+    Header,
   ],
   templateUrl: './wallets.html',
   styleUrl: './wallets.scss'

@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { MatIconModule } from '@angular/material/icon';
 import { AdminSidebar } from '../../../shared/components/admin-sidebar/admin-sidebar';
+import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 
 interface Empresa {
   razaoSocial: string;
@@ -22,7 +23,7 @@ interface Empresa {
     HeaderTitle,
     RouterModule,
     MatIconModule,
-    AdminSidebar,
+    WalletSidebar,
   ],
   templateUrl: './list.html',
   styleUrl: './list.scss'
@@ -45,16 +46,21 @@ export class List {
   ];
 
   public headerInformation = {
-    pageTitle: 'Contas bancárias',
+    pageTitle: 'Wallets',
     pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
     breadcrumb: [
       { label: 'Painel', path: '/dashboard' },
-      { label: 'Administração', path: '/administracao' },
-      { label: 'Carteiras', path: '/wallets/list' }
+      { label: 'Wallets', path: '/wallets' },
+      { label: 'Visualização', path: '/wallets/list' }
     ],
-  };
-
-  
+    actionButton: {
+      actionLabel: '+ Adicionar nova carteira',
+      disabled: false,
+      onClick: () => {
+        this.router.navigate(['/wallets/new']);
+      }
+    }
+  }
 
   public menuAbertoIndex: number | null = null;
 

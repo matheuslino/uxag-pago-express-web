@@ -445,6 +445,7 @@ body {
   font-weight: 600;
   line-height: normal;
   border: none;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -496,7 +497,7 @@ body {
   }
 }
 
-.notifications-bg {
+.template-bg {
   background: #fff;
   width: 100%;
 }

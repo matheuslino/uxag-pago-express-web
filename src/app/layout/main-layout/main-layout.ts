@@ -4,8 +4,6 @@ import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import { Header } from '../../shared/components/header/header';
-import { HeaderDashboard } from '../../shared/components/header-dashboard/header-dashboard';
 
 @Component({
   selector: 'app-main-layout',
@@ -13,8 +11,6 @@ import { HeaderDashboard } from '../../shared/components/header-dashboard/header
     RouterOutlet,
     CommonModule,
     MatSidenavModule,
-    Header,
-    HeaderDashboard
   ],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss'
