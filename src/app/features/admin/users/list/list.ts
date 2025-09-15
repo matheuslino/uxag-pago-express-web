@@ -5,6 +5,8 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HeaderTitle } from '../../../../shared/components/header-title/header-title';
+import { ConfirmDeactivateModalComponent } from '../../../../shared/components/confirm-deactivate-modal.component/confirm-deactivate-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface Usuario {
   id: number;
@@ -38,7 +40,8 @@ export interface MenuAcao {
 })
 export class List implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router , private dialog: MatDialog) {}
+
 
   ngOnInit(): void {
     this.atualizarPaginacao();
@@ -196,7 +199,7 @@ export class List implements OnInit {
       }
     } else {
       paginas.push(1);
-      
+
       if (atual <= 4) {
         for (let i = 2; i <= 5; i++) {
           paginas.push(i);
@@ -268,21 +271,30 @@ export class List implements OnInit {
 
   private gerenciarCredenciais(usuario: Usuario): void {
     console.log('Gerenciar credenciais:', usuario);
-    // Implementar gerenciamento de credenciais
+    this.router.navigate(['/administracao/users/credentials']);
   }
 
   private vincularEmpresas(usuario: Usuario): void {
     console.log('Vincular empresas:', usuario);
-    // Implementar vinculação de empresas
+    this.router.navigate(['/administracao/users/credentials']);
+
   }
 
   private desativarUsuario(usuario: Usuario): void {
     console.log('Desativar usuário:', usuario);
-    // Implementar desativação
+      const dialogRef = this.dialog.open(ConfirmDeactivateModalComponent, {
+        data: { name: 'Adeilton Alves Junior' }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          console.log('Usuário confirmado para desativação');
+        }
+      });
   }
 
   private verLogs(usuario: Usuario): void {
     console.log('Ver logs:', usuario);
-    // Implementar visualização de logs
+    this.router.navigate(['/administracao/users/logs']);
   }
 }
