@@ -39,6 +39,7 @@ import { Extract } from './features/wallets/extract/extract';
 import { SendPix } from './features/wallets/send-pix/send-pix';
 import { TransferWallet } from './features/wallets/transfer-wallet/transfer-wallet';
 import { Transfer } from './features/wallets/transfer/transfer';
+import { Config } from './features/wallets/config/config';
 
 
 export const routes: Routes = [
@@ -262,8 +263,7 @@ export const routes: Routes = [
         children: [
           {
             path: '',
-            pathMatch: 'full',
-            redirectTo: '/wallets/list',
+            component: ListWallet,
           },
           {
             path: 'new',
@@ -284,7 +284,7 @@ export const routes: Routes = [
             }
           },
           {
-            path: 'edit',
+            path: 'edit/:id',
             component: EditWallet,
             data: {
               pageTitle: 'Wallets',
@@ -302,15 +302,15 @@ export const routes: Routes = [
             }
           },
           {
-            path: 'list',
-            component: ListWallet,
+            path: 'config/:id',
+            component: Config,
             data: {
               pageTitle: 'Wallets',
               pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
               breadcrumb: [
                 { label: 'Painel', path: '/dashboard' },
                 { label: 'Wallets', path: '/wallets' },
-                { label: 'Visualização', path: '/wallets/list' }
+                { label: 'Visualização', path: '/wallets/edit' }
               ],
               actionButton: {
                 show: true,
@@ -359,7 +359,7 @@ export const routes: Routes = [
             }
           },
           {
-            path: 'logs',
+            path: 'logs/:id',
             component: LogsWallet,
             data: {
               pageTitle: 'Logs da Carteira',

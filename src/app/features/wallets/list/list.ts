@@ -8,6 +8,7 @@ import { AdminSidebar } from '../../../shared/components/admin-sidebar/admin-sid
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 
 interface Empresa {
+  id: number;
   razaoSocial: string;
   cnpj: string;
   numeroCarteira: string;
@@ -32,12 +33,14 @@ export class List {
 
   public empresas: Empresa[] = [
     {
+      id: 1,
       razaoSocial: 'FASTCOMMERCE',
       cnpj: '34.192.109/0001-23',
       numeroCarteira: '5131',
       apelido: 'Primeira carteira'
     },
     {
+      id: 2,
       razaoSocial: 'Smart Fit',
       cnpj: '34.192.109/0001-23',
       numeroCarteira: '0123',
@@ -81,16 +84,18 @@ export class List {
   }
 
   public editar(empresa: Empresa): void {
-    this.router.navigateByUrl("/edit");
+    this.router.navigateByUrl(`/wallets/edit/${empresa.id}`);
     this.fecharMenu();
   }
 
   public configurar(empresa: Empresa): void {
+    this.router.navigateByUrl(`/wallets/config/${empresa.id}`);
     console.log('Configurar clicado para:', empresa.razaoSocial);
     this.fecharMenu();
   }
 
   public verLogs(empresa: Empresa): void {
+    this.router.navigateByUrl(`/wallets/logs/${empresa.id}`);
     console.log('Ver logs clicado para:', empresa.razaoSocial);
     this.fecharMenu();
   }

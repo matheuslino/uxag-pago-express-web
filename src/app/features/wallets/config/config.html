@@ -1,52 +1,52 @@
-<main class="config-container">
-
-  <section class="top-section">
-    <div class="info-card">
-      <div class="icon-wrapper">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/></svg>
-      </div>
-      <div class="text-wrapper">
-        <span class="title">Carteira</span>
-        <span class="details">6671 • Default</span>
-      </div>
-    </div>
-
-    <div class="action-card">
-      <div class="input-group">
-        <label for="usuario-input">Usuário</label>
-        <div class="input-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
-          <input id="usuario-input" type="text" placeholder="--" [(ngModel)]="newUserInput">
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-wallet-sidebar></app-wallet-sidebar>
+  <main class="template-bg">
+    <section class="top-section">
+      <div class="info-card">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/></svg>
+        </div>
+        <div class="text-wrapper">
+          <span class="title">Carteira</span>
+          <span class="details">6671 • Default</span>
         </div>
       </div>
-      <button class="btn-link" (click)="addUser()" [disabled]="!newUserInput.trim()">Vincular</button>
-    </div>
-  </section>
-
-  <section class="results-card">
-    <header class="card-header">
-      <div class="title-group">
-        <h2>Resultado da pesquisa</h2>
-        <p>Abaixo estão os resultados encontrados</p>
-      </div>
-      <span class="total-records">Total {{ linkedUsers.length }} registros</span>
-    </header>
-
-    <div class="user-list-container">
-      <div class="user-list-header">
-        <span class="col-cpf">CPF/CNPJ</span>
-        <span class="col-name">Nome ↓</span>
-      </div>
-      @for (user of linkedUsers; track $index) {
-        <div class="user-list-row">
-          <span class="col-cpf">{{ user.cpfCnpj }}</span>
-          <span class="col-name">{{ user.name }}</span>
-          <button class="btn-delete" (click)="removeUser($index)">
-            <span class="material-symbols-outlined">delete</span>
-          </button>
+      <div class="action-card">
+        <div class="input-group">
+          <label for="usuario-input">Usuário</label>
+          <div class="input-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+            <input id="usuario-input" type="text" placeholder="--" [(ngModel)]="newUserInput">
+          </div>
         </div>
-      }
-    </div>
-  </section>
+        <button class="btn-link" (click)="addUser()" [disabled]="!newUserInput.trim()">Vincular</button>
+      </div>
+    </section>
+    <section class="results-card">
+      <header class="card-header">
+        <div class="title-group">
+          <h2>Resultado da pesquisa</h2>
+          <p>Abaixo estão os resultados encontrados</p>
+        </div>
+        <span class="total-records">Total {{ linkedUsers.length }} registros</span>
+      </header>
 
-</main>
+      <div class="user-list-container">
+        <div class="user-list-header">
+          <span class="col-cpf">CPF/CNPJ</span>
+          <span class="col-name">Nome ↓</span>
+        </div>
+        @for (user of linkedUsers; track $index) {
+          <div class="user-list-row">
+            <span class="col-cpf">{{ user.cpfCnpj }}</span>
+            <span class="col-name">{{ user.name }}</span>
+            <button class="btn-delete" (click)="removeUser($index)">
+              <span class="material-symbols-outlined">delete</span>
+            </button>
+          </div>
+        }
+      </div>
+    </section>
+  </main>
+</div>
