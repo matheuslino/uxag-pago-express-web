@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AdminSidebar } from '../../../../shared/components/admin-sidebar/admin-sidebar';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HeaderTitle } from '../../../../shared/components/header-title/header-title';
 import { FormsModule } from '@angular/forms';
 
@@ -32,7 +32,7 @@ export interface Cliente {
   styleUrl: './list.scss'
 })
 export class List {
-  
+  constructor(private router: Router) { }
   public headerInformation = {
     pageTitle: 'Clientes',
     pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
@@ -112,7 +112,7 @@ export class List {
   }
 
   onEditarCliente(cliente: Cliente): void {
-    console.log('Editar cliente:', cliente);
+    this.router.navigate(['/administracao/clients/edit', cliente.id]);
   }
 
   onExcluirCliente(cliente: Cliente): void {
