@@ -1,3 +1,4 @@
+<!-- bank-accounts.html (atualizado) -->
 <app-header-title [headerInformation]="headerInformation"></app-header-title>
 <div class="template-content">
   <app-admin-sidebar></app-admin-sidebar>
@@ -22,8 +23,11 @@
                 <span class="bank-name">{{ bank.name }}</span><br>
                 <span class="bank-code">{{ bank.code }}</span>
               </td>
+
               <td class="actions-cell">
-                <img src="/img/Frame.svg" alt="Editar" class="action-icon">
+                <button class="bank-action-icon" (click)="openAlertConfig(bank)" title="Configurar alertas">
+                  <img src="/img/Frame.svg" alt="Editar" class="action-icon">
+                </button>
               </td>
             </tr>
           </tbody>

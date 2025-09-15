@@ -1,0 +1,64 @@
+<div class="modal-container">
+  <!-- Header do Modal -->
+  <div class="modal-header">
+    <h2 class="modal-title">Configuração de alertas</h2>
+    <button mat-icon-button class="close-button" (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Conteúdo do Modal -->
+  <div class="modal-content">
+    <p class="modal-description">
+      Esta transação não poderá ser desfeita, confira as informações.
+    </p>
+
+    <div class="company-section">
+      <div class="company-info">
+        <div class="company-icon">🏢</div>
+        <div>
+          <h3>{{ data.bankName }}</h3>
+          <p>{{ data.bankCode }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Configurações de Alerta -->
+    <form [formGroup]="alertForm" class="alert-form">
+      <div class="alert-section" *ngFor="let alert of alertConfigs; trackBy: trackByAlertId">
+        <div class="alert-header">
+          <span class="alert-title">{{ alert.name }}</span>
+          <mat-slide-toggle [formControlName]="'alert_' + alert.id" class="alert-toggle">
+          </mat-slide-toggle>
+        </div>
+
+        <div class="alert-description">
+          {{ getAlertDescription(alert.id) }}
+        </div>
+
+        <!-- Configuração de Horário (se aplicável) -->
+        <div class="time-config" *ngIf="alert.id === 'deposits' && alertForm.get('alert_' + alert.id)?.value">
+          <div class="time-label">Hora</div>
+          <mat-form-field appearance="outline" class="time-select">
+            <mat-select [formControlName]="'time_' + alert.id" placeholder="Sem definição">
+              <mat-option value="">Sem definição</mat-option>
+              <mat-option *ngFor="let time of timeOptions" [value]="time.value">
+                {{ time.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer do Modal -->
+  <div class="modal-footer">
+    <button mat-button class="cancel-button" (click)="onCancel()">
+      Cancelar
+    </button>
+    <button mat-raised-button class="save-button" (click)="onSave()">
+      Salvar
+    </button>
+  </div>
+</div>

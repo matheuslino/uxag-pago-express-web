@@ -4,6 +4,9 @@ import { AdminSidebar } from '../../../shared/components/admin-sidebar/admin-sid
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertConfigModalComponent } from '../../../shared/components/alert-config-modal.component/alert-config-modal.component';
+
 
 interface BankAccount {
   name: string;
@@ -23,6 +26,8 @@ interface BankAccount {
   styleUrl: './bank-accounts.scss'
 })
 export class BankAccounts {
+
+  constructor(private dialog: MatDialog) {}
 
   public headerInformation = {
     pageTitle: 'Contas bancárias',
@@ -46,4 +51,22 @@ export class BankAccounts {
     return this.bankAccounts.length;
   }
 
+  openAlertConfig(bank: BankAccount): void {
+    const dialogRef = this.dialog.open(AlertConfigModalComponent, {
+      width: '600px',
+      maxWidth: '95vw',
+      disableClose: false,
+      data: {
+        bankName: bank.name,
+        bankCode: bank.code,
+        alertConfigs: [] // Será preenchido pelo componente
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.saved) {
+        console.log('Configurações salvas:', result.alertConfigs);
+      }
+    });
+  }
 }
