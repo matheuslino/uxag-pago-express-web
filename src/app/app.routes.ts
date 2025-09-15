@@ -40,6 +40,9 @@ import { SendPix } from './features/wallets/send-pix/send-pix';
 import { TransferWallet } from './features/wallets/transfer-wallet/transfer-wallet';
 import { Transfer } from './features/wallets/transfer/transfer';
 import { Config } from './features/wallets/config/config';
+import { Relatorios } from './features/relatorios/relatorios';
+import { DepositoRelatorio } from './features/relatorios/deposito/deposito';
+import { SaquesRelatorio } from './features/relatorios/saques/saques';
 
 
 export const routes: Routes = [
@@ -451,6 +454,43 @@ export const routes: Routes = [
             component: MyCompany,
           },
         ],
+      },
+      {
+        path: 'relatorios',
+        component: Relatorios,
+        children: [
+          {
+            path: '',
+            redirectTo: 'deposito',
+            pathMatch: 'full'
+          },
+          {
+            path: 'deposito',
+            component: DepositoRelatorio,
+            data: {
+              pageTitle: 'Relatório de Depósitos',
+              pageSubtitle: 'Consulte os depósitos realizados',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Relatórios', path: '/relatorios' },
+                { label: 'Depósitos', path: '/relatorios/deposito' }
+              ],
+            }
+          },
+          {
+            path: 'saques',
+            component: SaquesRelatorio,
+            data: {
+              pageTitle: 'Relatório de Saques',
+              pageSubtitle: 'Consulte os saques realizados',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Relatórios', path: '/relatorios' },
+                { label: 'Saques', path: '/relatorios/saques' }
+              ],
+            }
+          },
+        ]
       },
     ]
   },
