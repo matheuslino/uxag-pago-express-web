@@ -129,11 +129,11 @@
         <div class="user-role">{{ currentUser.role || 'Gerente de Contas' }}</div>
       </div>
     </div>
-  </div>
+  </div>   
   <mat-divider></mat-divider>
-  <button mat-menu-item routerLink="/settings/profile"><mat-icon>person</mat-icon><span>Perfil</span></button>
-  <button mat-menu-item routerLink="/settings"><mat-icon>settings</mat-icon><span>Configurações</span></button>
-  <button mat-menu-item><mat-icon>help</mat-icon><span>Ajuda</span></button>
+  <button mat-menu-item routerLink="/settings/profile"><mat-icon>person</mat-icon><span>Meus Dados</span></button>
+  <button mat-menu-item routerLink="/settings"><mat-icon>settings</mat-icon><span>Alterar Senha</span></button>
+  <button mat-menu-item><mat-icon>help</mat-icon><span>Idioma</span></button>
   <mat-divider></mat-divider>
   <button mat-menu-item (click)="logout()" class="logout-item">
     <mat-icon>logout</mat-icon>
