@@ -265,36 +265,29 @@ export class List implements OnInit {
   }
 
   private editarUsuario(usuario: Usuario): void {
-    console.log('Editar usuário:', usuario);
-    this.router.navigate(['/administracao/users/edit']);
+    this.router.navigate([`/administracao/users/edit/${usuario.id}`]);
   }
 
   private gerenciarCredenciais(usuario: Usuario): void {
-    console.log('Gerenciar credenciais:', usuario);
-    this.router.navigate(['/administracao/users/credentials']);
+    this.router.navigate([`/administracao/users/credentials/${usuario.id}`]);
   }
 
   private vincularEmpresas(usuario: Usuario): void {
-    console.log('Vincular empresas:', usuario);
-    this.router.navigate(['/administracao/users/credentials']);
-
+    this.router.navigate([`/administracao/users/link-companies/${usuario.id}`]);
   }
 
   private desativarUsuario(usuario: Usuario): void {
-    console.log('Desativar usuário:', usuario);
-      const dialogRef = this.dialog.open(ConfirmDeactivateModalComponent, {
-        data: { name: 'Adeilton Alves Junior' }
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          console.log('Usuário confirmado para desativação');
-        }
-      });
+    const dialogRef = this.dialog.open(ConfirmDeactivateModalComponent, {
+      data: { name: 'Adeilton Alves Junior' }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Usuário confirmado para desativação');
+      }
+    });
   }
 
   private verLogs(usuario: Usuario): void {
-    console.log('Ver logs:', usuario);
-    this.router.navigate(['/administracao/users/logs']);
+    this.router.navigate([`/administracao/users/logs/${usuario.id}`]);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,6 +22,9 @@ interface MenuState {
   styleUrl: './admin-sidebar.scss'
 })
 export class AdminSidebar implements OnInit {
+
+  @Input() id?: number;
+  @Input() menuSelected?: string;
 
   currentUrl = '';
   expandedMenus: MenuState = {};

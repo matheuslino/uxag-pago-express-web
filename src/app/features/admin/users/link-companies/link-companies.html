@@ -18,12 +18,35 @@
 
 
       <div class="associacao-company-info">
-        <span class="associacao-company-title">Empresa</span>
-        <div class="associacao-search-wrapper">
-          <img src="/img/lupa.svg" alt="Buscar" class="associacao-search-icon">
-          <input type="text" placeholder="Stark mobilias" class="associacao-search-input">
+        <div class="associacao-company-info-container">
+          <span class="associacao-company-title">Empresa</span>
+          <div class="associacao-search-wrapper">
+            <img src="/img/lupa.svg" alt="Buscar" class="associacao-search-icon">
+            <input
+              type="text"
+              placeholder="Stark mobilias"
+              class="associacao-search-input" 
+              [(ngModel)]="searchTerm"
+              (input)="filterCompanies()"
+            >
+            <ul *ngIf="filteredCompanies.length > 0" class="autocomplete-list">
+              <li
+                class="autocomplete-item"
+                *ngFor="let company of filteredCompanies"
+                (click)="selectCompany(company)"
+              >
+                {{ company }}
+              </li>
+            </ul>
+          </div>
         </div>
-        <button class="associacao-btn-vincular">Vincular</button>
+        <button
+          [disabled]="userForm.value.empresa === ''"
+          [class.active]="userForm.value.empresa !== ''"
+          class="associacao-btn-vincular"
+        >
+          Vincular
+        </button>
       </div>
 
     </div>

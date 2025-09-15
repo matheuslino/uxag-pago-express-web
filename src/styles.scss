@@ -407,7 +407,7 @@ body {
   align-items: flex-end;
   gap: 24px;
   padding: 0 0 32px 0;
-  margin: 0 64px 0 64px;
+  margin: 0 68px 0 68px;
   border-bottom: 1px solid #DADADA;
 }
 
@@ -632,7 +632,8 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding: 0px 64px;
+  height: 100%;
+  padding: 0px 68px;
   background: #fff;
 }
 
@@ -857,6 +858,10 @@ body {
     background: #E3D9FF;
     color: #6B46C1;
   }
+}
+
+.input-inactive {
+  color: rgba(16, 24, 40, 0.46);
 }
 
 @media (max-width: 1024px) {

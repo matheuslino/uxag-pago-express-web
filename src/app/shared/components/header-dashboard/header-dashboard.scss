@@ -134,12 +134,16 @@
   }
 
   .search-shortcut {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 25px;
     font-family: 'Inter';
     font-weight: 500;
     font-size: 14px;
     color: #000000;
     background: #FFFFFF;
-    padding: 4px 6px;
     border-radius: 4px;
   }
 }

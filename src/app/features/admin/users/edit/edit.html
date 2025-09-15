@@ -1,7 +1,6 @@
 <app-header-title [headerInformation]="headerInformation"></app-header-title>
 <div class="template-content">
-  <app-admin-sidebar></app-admin-sidebar>
-
+  <app-admin-sidebar [menuSelected]="usuarioMenu" [id]="usuarioId"></app-admin-sidebar>
   <div class="page-wrapper">
     <div class="pix-list-client-info">
       <span class="pix-avatar">
@@ -9,41 +8,34 @@
       </span>
       <div>
         <h2 class="pix-user-name">Usuário</h2>
-        <p class="pix-user-role">Adeilton alves junior</p>
+        <p class="pix-user-role">{{this.userForm.value.login}}</p>
       </div>
     </div>
-
-
     <div class="page-container">
-      <form class="edit-user-form">
-
-
+      <form [formGroup]="userForm" class="edit-user-form">
         <div class="edit-client-header">
           <h1>Informações do usuário</h1>
           <p>Complete as informações do usuário conforme necessário</p>
         </div>
-
         <hr />
-
-
         <div class="edit-client-section">
           <div class="edit-client-section-title">Dados pessoais</div>
           <div class="edit-client-fields-grid">
             <div class="edit-client-field">
               <label for="cnpj">CNPJ</label>
-              <input id="cnpj" type="text" value="26.669.170/0001-57">
+              <input id="cnpj" type="text" formControlName="cnpj">
             </div>
             <div class="edit-client-field">
               <label for="nome">Nome</label>
-              <input id="nome" type="text" value="123 Milhas">
+              <input id="nome" type="text" formControlName="nome">
             </div>
             <div class="edit-client-field">
               <label for="telefone">Telefone</label>
-              <input id="telefone" type="text" value="(00) 0000-0000">
+              <input id="telefone" type="text" formControlName="phone">
             </div>
             <div class="edit-client-field">
               <label for="email">E-mail</label>
-              <input id="email" type="email" value="adilton.jr@outlook.com">
+              <input id="email" type="email" formControlName="email">
             </div>
           </div>
         </div>
@@ -56,11 +48,11 @@
           <div class="edit-client-fields-grid">
             <div class="edit-client-field">
               <label for="login">Login</label>
-              <input id="login" type="text" value="adilton.jr@outlook.com" disabled>
+              <input class="input-inactive" id="login" type="text" formControlName="login" [readonly]="true">
             </div>
             <div class="edit-client-field">
               <label for="empresa">Empresa</label>
-              <input id="empresa" type="text" value="3 FACES - 44.195.498/0001-24 " disabled>
+              <input class="input-inactive" id="empresa" type="text" formControlName="empresa" [readonly]="true">
             </div>
           </div>
         </div>
@@ -73,17 +65,22 @@
           <div class="edit-client-fields-grid">
             <div class="edit-client-field">
               <label for="data-nascimento">País</label>
-              <input id="data-nascimento" type="text" value="Brasil">
+              <input id="data-nascimento" type="text" formControlName="pais">
             </div>
             <div class="edit-client-field">
               <label for="funcao">Perfil</label>
-              <input id="funcao" type="text" value="Adeilton alves junior">
+              <input id="funcao" type="text" formControlName="perfil">
             </div>
           </div>
         </div>
-
       </form>
     </div>
   </div>
-
 </div>
+<app-footer-info
+  [context]="'Dados do usuário'"
+  [information]="userForm.value.empresa"
+  [label]="userForm.value.nome"
+  (submit)="submit()"
+  (cancel)="cancel()">
+</app-footer-info>

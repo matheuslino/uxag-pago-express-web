@@ -135,19 +135,19 @@ export const routes: Routes = [
                 },
               },
               {
-                path: 'edit',
+                path: 'edit/:id',
                 component: EditUser,
               },
               {
-                path: 'credentials',
+                path: 'credentials/:id',
                 component: Credentials,
               },
               {
-                path: 'link-companies',
+                path: 'link-companies/:id',
                 component: LinkCompanies,
               },
               {
-                path: 'logs',
+                path: 'logs/:id',
                 component: LogsUser,
               },
             ]

@@ -1,4 +1,5 @@
 <app-header-title [headerInformation]="headerInformation"></app-header-title>
+
 <div class="template-content">
   <app-admin-sidebar></app-admin-sidebar>
   <div class="pix-list-bg">
@@ -7,7 +8,7 @@
         <div class="pix-list-select-section">
           <span class="pix-list-select-title">Cliente</span>
           <select id="pix-client-select" class="pix-list-select">
-            <option selected>123 Milhas</option>
+            <option selected>{{ empresa.cliente }}</option>
           </select>
         </div>
         <div class="pix-list-client-info">
@@ -15,8 +16,8 @@
             <img src="/img/house.svg" alt="Avatar">
           </span>
           <div>
-            <span class="pix-list-select-title">Cliente</span>
-            <div class="pix-list-select-subtitle">123 milhas</div>
+            <span class="pix-list-select-title">{{ empresa.nome }}</span>
+            <div class="pix-list-select-subtitle">{{ empresa.cliente }}</div>
           </div>
         </div>
       </div>
@@ -30,47 +31,38 @@
         <hr class="pix-divider">
         <div class="pix-form-section">
           <div class="pix-section-title">Dados básicos</div>
-          <form class="pix-new-key-form">
-            
-            <!-- Primeira linha -->
+          <form [formGroup]="pixForm" class="pix-new-key-form">
             <div class="pix-form-row">
               <div class="pix-new-form-group">
                 <label for="pix-key-name">Nome</label>
-                <input id="pix-key-name" type="text" value="Pix principal">
+                <input id="pix-key-name" type="text" formControlName="nome">
               </div>
               <div class="pix-new-form-group">
                 <label for="pix-key-type">Tipo de chave</label>
-                <select id="pix-key-type">
-                  <option selected>E-mail</option>
+                <select id="pix-key-type" formControlName="tipo">
+                  <option>E-mail</option>
                   <option>CPF</option>
                   <option>CNPJ</option>
                   <option>Telefone</option>
                 </select>
               </div>
             </div>
-
-            <!-- Segunda linha -->
             <div class="pix-form-row">
               <div class="pix-key-value-group">
                 <label for="pix-key-value">Chave PIX</label>
-                <input id="pix-key-value" type="text" placeholder="Digite a chave PIX">
+                <input id="pix-key-value" type="text" formControlName="chave" placeholder="Digite a chave PIX">
               </div>
             </div>
-
           </form>
         </div>
       </div>
-    <!-- <hr class="pix-divider-strong">
-      <div class="pix-footer">
-        <div class="pix-footer-text">
-          Cadastro chave PIX: 123 Milhas
-        </div>
-        <div class="pix-footer-actions">
-          <button type="button" class="pix-btn-cancel"
-            onclick="window.location.href='/admin/pix/list'">Cancelar</button>
-          <button type="submit" class="pix-btn-save">Salvar</button>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>
+<app-footer-info
+  [context]="'Cadastro chave PIX'"
+  [information]="pixForm.value.chave"
+  [label]="empresa.cliente"
+  (submit)="submit()"
+  (cancel)="cancel()">
+</app-footer-info>

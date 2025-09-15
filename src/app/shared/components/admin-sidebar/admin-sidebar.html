@@ -17,6 +17,30 @@
           <span>Usuário</span>
         </a>
       </li>
+      <div class="nav-submenu" *ngIf="menuSelected && menuSelected === 'usuario'">
+        <ul class="sub-nav-list">
+          <li class="sub-nav-item">
+            <a [routerLink]="`/administracao/users/edit/${id}`" routerLinkActive="active" class="sub-nav-link">
+              <span>Editar</span>
+            </a>
+          </li>
+          <li class="sub-nav-item">
+            <a [routerLink]="`/administracao/users/credentials/${id}`" routerLinkActive="active" class="sub-nav-link">
+              <span>Credenciais</span>
+            </a>
+          </li>
+          <li class="sub-nav-item">
+            <a [routerLink]="`/administracao/users/link-companies/${id}`" routerLinkActive="active" class="sub-nav-link">
+              <span>Vincular empresas</span>
+            </a>
+          </li>
+          <li class="sub-nav-item">
+            <a [routerLink]="`/administracao/users/logs/${id}`" routerLinkActive="active" class="sub-nav-link">
+              <span>Logs</span>
+            </a>
+          </li>
+        </ul>
+      </div>
       <li class="nav-item">
         <a routerLink="/administracao/pix/list" 
            [class.active]="isActiveRoute(['/administracao/pix/list', '/administracao/pix/new'])" 

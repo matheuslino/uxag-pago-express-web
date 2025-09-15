@@ -1,0 +1,19 @@
+<div class="footer">
+  <div class="footer-info">
+    <div class="footer-info-left">
+      <span class="footer-info-tag">#{{ information }}</span>
+    </div>
+
+    <div class="footer-info-center">
+      <span class="footer-info-context">
+        {{ context }}:
+      </span>
+      <span class="footer-info-sub">{{ label }}</span>
+    </div>
+
+    <div class="footer-info-right">
+      <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+      <button type="button" class="btn-submit" (click)="onSubmit()">Salvar</button>
+    </div>
+  </div>
+</div>
