@@ -15,7 +15,6 @@ interface BreadcrumbItem {
   imports: [
     RouterModule,
     MatIconModule,
-    WalletSidebar,
     CommonModule,
   ],
   templateUrl: './wallets.html',

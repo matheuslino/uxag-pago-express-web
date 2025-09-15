@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { HeaderTitle } from '../../../shared/components/header-title/header-title';
+import { MatIconModule } from '@angular/material/icon';
+import { AdminSidebar } from '../../../shared/components/admin-sidebar/admin-sidebar';
 
 interface Empresa {
   razaoSocial: string;
@@ -15,7 +18,11 @@ interface Empresa {
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    HeaderTitle,
+    RouterModule,
+    MatIconModule,
+    AdminSidebar,
   ],
   templateUrl: './list.html',
   styleUrl: './list.scss'
@@ -36,6 +43,18 @@ export class List {
       apelido: 'Segunda carteira'
     }
   ];
+
+  public headerInformation = {
+    pageTitle: 'Contas bancárias',
+    pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+    breadcrumb: [
+      { label: 'Painel', path: '/dashboard' },
+      { label: 'Administração', path: '/administracao' },
+      { label: 'Carteiras', path: '/wallets/list' }
+    ],
+  };
+
+  
 
   public menuAbertoIndex: number | null = null;
 

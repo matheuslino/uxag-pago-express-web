@@ -1,11 +1,12 @@
-<main class="container" (click)="fecharMenu()">
-
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-admin-sidebar></app-admin-sidebar>
   <section class="filters-card">
     <div class="form-group">
       <label for="razaoSocial">Razão Social</label>
       <select id="razaoSocial">
         <option value="123milhas">123 Milhas</option>
-        </select>
+      </select>
     </div>
     <div class="form-group">
       <label for="numeroCarteira">Número da carteira</label>
@@ -45,25 +46,25 @@
         <div class="actions-cell">
           <button class="kebab-menu" (click)="toggleMenu(i, $event)">
             <span>&#8942;</span> </button>
-          
-            <div class="dropdown-menu" *ngIf="menuAbertoIndex === i">
+
+          <div class="dropdown-menu" *ngIf="menuAbertoIndex === i">
             <a (click)="editar(empresa)">
-                <i class="material-icons-outlined">person</i>
-                <span>Editar</span>
+              <i class="material-icons-outlined">person</i>
+              <span>Editar</span>
             </a>
             <a (click)="configurar(empresa)">
-                <i class="material-icons-outlined">settings</i>
-                <span>Configurar</span>
+              <i class="material-icons-outlined">settings</i>
+              <span>Configurar</span>
             </a>
             <a (click)="verLogs(empresa)">
-                <i class="material-icons-outlined">home</i>
-                <span>Ver logs</span>
+              <i class="material-icons-outlined">home</i>
+              <span>Ver logs</span>
             </a>
-            </div>
+          </div>
         </div>
       </div>
 
     </div>
   </section>
 
-</main>
+</div>
