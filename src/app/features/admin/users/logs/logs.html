@@ -1,27 +1,21 @@
 <app-header-title [headerInformation]="headerInformation"></app-header-title>
 <div class="template-content">
-
-  <app-admin-sidebar></app-admin-sidebar>
+  <app-admin-sidebar [menuSelected]="usuarioMenu" [id]="usuarioId"></app-admin-sidebar>
   <div class="page-wrapper">
-
     <div class="pix-list-client-info">
       <span class="pix-avatar">
         <img src="/img/house.svg" alt="Avatar">
       </span>
       <div>
         <h2 class="pix-user-name">Usuário</h2>
-        <p class="pix-user-role">Adeilton alves junior</p>
+        <p class="pix-user-role">{{this.userForm.value.login}}</p>
       </div>
     </div>
-
-
     <div class="page-container">
-
       <div class="edit-client-header">
         <h1>Histórico de log</h1>
         <p>Complete as informações de acordo com o texto abaixo</p>
       </div>
-
       <div class="edit-client-section">
         <table class="edit-client-table">
           <thead>
@@ -32,7 +26,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>04h16min17s, 01/08/2024</td>
+              <td>04h16min17s<br />01/08/2024</td>
               <td>Credenciais alteradas, esb.page</td>
             </tr>
           </tbody>

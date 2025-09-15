@@ -32,14 +32,43 @@ export class LinkCompanies implements OnInit, OnDestroy {
 
   private subscription = new Subscription();
 
+
+  empresas: any[] = [
+    {
+      cnpj: '26.669.170/0001-57',
+      nomeFantasia: 'Stark Mobilias',
+      razaoSocial: 'Stark Mobilias',
+    },
+  ];
   userForm!: FormGroup;
 
   usuarioMenu: string = 'usuario';
   nomeUsuarioAtual = '';
   empresaUsuarioAtual = '';
   searchTerm = '';
-  companies = ['Stark Mobilias', 'Wayne Enterprises', 'Oscorp', 'Umbrella Corp'];
-  filteredCompanies: string[] = [];
+  companies = [
+    {
+      cnpj: '26.669.170/0001-57',
+      nomeFantasia: 'Stark Mobilias',
+      razaoSocial: 'Stark Mobilias',
+    },
+    {
+      cnpj: '26.669.170/0001-57',
+      nomeFantasia: 'Wayne Enterprises',
+      razaoSocial: 'Wayne Enterprises',
+    },
+    {
+      cnpj: '26.669.170/0001-57',
+      nomeFantasia: 'Oscorp',
+      razaoSocial: 'Oscorp',
+    },
+    {
+      cnpj: '26.669.170/0001-57',
+      nomeFantasia: 'Umbrella Corp',
+      razaoSocial: 'Umbrella Corp',
+    }
+  ];
+  filteredCompanies: any[] = [];
 
   constructor(
     private router: Router,
@@ -62,28 +91,26 @@ export class LinkCompanies implements OnInit, OnDestroy {
   filterCompanies() {
     const term = this.searchTerm.toLowerCase();
     this.filteredCompanies = this.companies.filter(c =>
-      c.toLowerCase().includes(term)
+      c.razaoSocial.toLowerCase().includes(term)
     );
+    if (term.length === 0) {
+      this.userForm.setValue({ ...this.userForm.value, 'empresa': '' });
+      this.filteredCompanies = [];
+    }
   }
 
-  selectCompany(company: string) {
-    this.searchTerm = company;
+  selectCompany(company: any) {
+    this.searchTerm = company.razaoSocial;
     this.filteredCompanies = [];
-    this.userForm.setValue({ 'empresa': company });
+    this.userForm.setValue({ ...this.userForm.value, 'empresa': company.razaoSocial });
   }
 
   private initializeForm() {
     this.userForm = this.fb.group({
       nome: ['123 Milhas', Validators.required],
       login: ['adilton.jr@outlook.com', Validators.required],
-      empresa: ['3 FACES - 44.195.498/0001-24', Validators.required],
-      clientId: ['', Validators.required],
-      clientSecret: ['', Validators.required],
+      empresa: ['', Validators.required],
     });
-  }
-
-  get nomeUsuario(): string {
-    return this.nomeUsuarioAtual || this.userForm?.get('nome')?.value || '';
   }
 
   cancel() {
@@ -92,9 +119,11 @@ export class LinkCompanies implements OnInit, OnDestroy {
 
   submit() {
     if (this.userForm.valid) {
-      alert('Form enviado com sucesso!\n' + JSON.stringify(this.userForm.value));
+      this.empresas.push(this.companies.find(c => c.razaoSocial === this.userForm.value.empresa));
+      this.searchTerm = '';
+      this.filteredCompanies = [];
+      this.userForm.setValue({ ...this.userForm.value, 'empresa': '' });
     } else {
-      alert('Form inválido');
       this.userForm.markAllAsTouched();
     }
   }
