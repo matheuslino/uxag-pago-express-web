@@ -1,0 +1,153 @@
+/* ===== Modal Container ===== */
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  padding: 0;
+  max-width: 650px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Header ===== */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+
+  .modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: #111827;
+  }
+
+  .close-button {
+    color: #6b7280;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #111827;
+    }
+  }
+}
+
+/* ===== Subtítulo ===== */
+.modal-subtitle {
+  padding: 0 24px 16px 24px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ===== Empresa ===== */
+.company-section {
+  padding: 16px 24px;
+  background: #fafafa;
+  border-radius: 8px;
+  margin: 0 24px 24px 24px;
+
+  .company-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .company-details {
+      display: flex;
+      flex-direction: column;
+
+      .company-name {
+        font-size: 16px;
+        font-weight: 500;
+        color: #111827;
+      }
+
+      .company-document {
+        font-size: 14px;
+        color: #6b7280;
+      }
+    }
+  }
+
+
+}
+
+.company-icon {
+  background: #f3f4f6;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    font-size: 24px;
+    color: #6b7280;
+  }
+}
+
+/* ===== Form ===== */
+.form-section {
+  padding: 0 24px;
+
+  .form-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+
+    .form-field {
+      flex: 1;
+    }
+  }
+
+  .required {
+    color: #d32f2f;
+    margin-left: 4px;
+  }
+
+  ::ng-deep .mat-form-field-outline {
+    border-radius: 8px;
+  }
+
+  ::ng-deep .mat-form-field-infix {
+    padding: 12px 0;
+  }
+
+  ::ng-deep .mat-error {
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  input.error {
+    border-color: #d32f2f;
+  }
+}
+
+/* ===== Ações ===== */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 24px;
+
+  .cancel-button {
+    color: #6b7280;
+  }
+
+  .save-button {
+    background-color: #6d28d9;
+    /* Roxo igual da imagem */
+    color: #fff;
+    font-weight: 500;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: #5b21b6;
+    }
+
+    .button-spinner {
+      margin-right: 8px;
+    }
+  }
+}

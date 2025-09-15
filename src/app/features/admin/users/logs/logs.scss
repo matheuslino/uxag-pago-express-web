@@ -1,0 +1,105 @@
+.page-wrapper {
+  background: #fff;
+  min-height: 100vh;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.pix-list-client-info {
+  width: 100%;
+  background: #f6f6f6;
+  border-radius: 5px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 86px;
+  margin-bottom: 32px;
+}
+
+.pix-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+  margin-right: 12px;
+}
+
+.pix-avatar img {
+  width: 32px;
+  height: 32px;
+  border-radius: 70%;
+  object-fit: cover;
+}
+
+.pix-user-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+
+.pix-user-role {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+.page-container {
+  width: 100%;
+  background: #f6f6f6;
+  border-radius: 8px;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.edit-client-header {
+  margin-bottom: 32px;
+}
+
+.edit-client-header h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.edit-client-header p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.edit-client-section {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.edit-client-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.edit-client-table th,
+.edit-client-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.edit-client-table th {
+  background: #f6f6f6;
+  font-weight: 600;
+  color: #555;
+}
+
+.edit-client-table tbody tr:last-child td {
+  border-bottom: none;
+}

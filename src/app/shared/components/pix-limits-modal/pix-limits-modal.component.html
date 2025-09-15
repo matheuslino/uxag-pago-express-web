@@ -1,0 +1,146 @@
+<div class="modal-container">
+  <!-- Header do Modal -->
+  <div class="modal-header">
+    <h2 class="modal-title">Configurar limite de valores para enviar no pix</h2>
+    <button mat-icon-button class="close-button" (click)="onCancel()" [disabled]="isLoading()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Subtítulo -->
+  <div class="modal-subtitle">
+    Texto complementar que vem abaixo
+  </div>
+<div class="lineSeparation"></div>
+
+   <!-- Seção da Empresa -->
+  <div class="company-section">
+    <div class="company-info">
+      <div class="company-icon">🏢</div>
+      <div>
+        <h3>Empresa</h3>
+        <p>123 Milhas</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Formulário de Limites -->
+  <div class="form-section">
+    <form [formGroup]="limitsForm" class="limits-form">
+      <!-- Horários -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Horário início</mat-label>
+          <input matInput 
+                 formControlName="startTime" 
+                 placeholder="--:--"
+                 mask="00:00"
+                 [class.error]="startTime?.invalid && startTime?.touched">
+          @if (startTime?.invalid && startTime?.touched) {
+            <mat-error>Horário obrigatório (formato HH:MM)</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Horário final</mat-label>
+          <input matInput 
+                 formControlName="endTime" 
+                 placeholder="--:--"
+                 mask="00:00"
+                 [class.error]="endTime?.invalid && endTime?.touched">
+          @if (endTime?.invalid && endTime?.touched) {
+            <mat-error>Horário obrigatório (formato HH:MM)</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Valores Limite -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Valor limite diário <span class="required">*</span></mat-label>
+          <input matInput 
+                 type="number"
+                 formControlName="dailyValueLimit" 
+                 placeholder="--,--"
+                 min="0"
+                 step="0.01"
+                 [class.error]="dailyValueLimit?.invalid && dailyValueLimit?.touched">
+          @if (dailyValueLimit?.invalid && dailyValueLimit?.touched) {
+            <mat-error>Valor obrigatório e maior que zero</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Valor limite mensal <span class="required">*</span></mat-label>
+          <input matInput 
+                 type="number"
+                 formControlName="monthlyValueLimit" 
+                 placeholder="--,--"
+                 min="0"
+                 step="0.01"
+                 [class.error]="monthlyValueLimit?.invalid && monthlyValueLimit?.touched">
+          @if (monthlyValueLimit?.invalid && monthlyValueLimit?.touched) {
+            <mat-error>Valor obrigatório e maior que zero</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <!-- Quantidade e Porcentagem -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Quantidade limite diário <span class="required">*</span></mat-label>
+          <input matInput 
+                 type="number"
+                 formControlName="dailyQuantityLimit" 
+                 placeholder="0,00"
+                 min="1"
+                 step="1"
+                 [class.error]="dailyQuantityLimit?.invalid && dailyQuantityLimit?.touched">
+          @if (dailyQuantityLimit?.invalid && dailyQuantityLimit?.touched) {
+            <mat-error>Quantidade obrigatória e maior que zero</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Porcentagem limite carteira <span class="required">*</span></mat-label>
+          <input matInput 
+                 type="number"
+                 formControlName="walletPercentageLimit" 
+                 placeholder="%"
+                 min="0"
+                 max="100"
+                 step="0.01"
+                 [class.error]="walletPercentageLimit?.invalid && walletPercentageLimit?.touched">
+          @if (walletPercentageLimit?.invalid && walletPercentageLimit?.touched) {
+            <mat-error>Porcentagem entre 0.01% e 100%</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+<div class="lineSeparation"></div>
+
+  <!-- Ações do Modal -->
+  <div class="modal-actions">
+    <button mat-button 
+            class="cancel-button" 
+            (click)="onCancel()"
+            [disabled]="isLoading()">
+      Cancelar
+    </button>
+    
+    <button mat-raised-button 
+            color="primary" 
+            class="save-button" 
+            (click)="onSave()"
+            [disabled]="limitsForm.invalid || isLoading()">
+      @if (isLoading()) {
+        <mat-spinner diameter="20" class="button-spinner"></mat-spinner>
+        Salvando...
+      } @else {
+        Salvar
+      }
+    </button>
+  </div>
+</div>

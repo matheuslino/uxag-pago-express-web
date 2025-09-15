@@ -1,0 +1,135 @@
+.relatorios-main-container {
+  display: flex;
+  gap: 24px;
+}
+
+.relatorios-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.filtros-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+
+  .filtro-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #344054;
+  }
+
+  input {
+    box-sizing: border-box;
+    padding: 10px 12px;
+    height: 35px;
+    background: #FFFFFF;
+    border: 1px solid #D0D5DD;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #101828;
+    min-width: 230px;
+  }
+}
+
+.resultado-container {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 32px;
+  gap: 16px;
+  background: #F9F9F9;
+  border-radius: 6px;
+
+  .resultado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .resultado-titulo {
+    h2 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: #3A3A3A;
+      margin: 0 0 4px 0;
+    }
+    p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: #8A8A8A;
+      margin: 0;
+    }
+  }
+  
+  .resultado-total span {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #3A3A3A;
+  }
+}
+
+.tabela-card {
+  background: #FFFFFF;
+  border: 1px solid #E9EAEB;
+  border-radius: 12px;
+  overflow: hidden;
+
+  .tabela-header, .tabela-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    border-bottom: 1px solid #E9EAEB;
+  }
+
+  .tabela-header {
+    background: #FAFAFA;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: #535862;
+  }
+  
+  .tabela-body {
+    .tabela-linha {
+      padding: 16px 24px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      color: #535862;
+    }
+
+    .tabela-linha:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .coluna-data {
+    flex-basis: 80%; 
+  }
+  
+  .coluna-total {
+    flex-basis: 20%; 
+    text-align: right;
+  }
+}
+
+.relatorio-layout {
+  display: flex;
+  flex-direction: row;
+}
+

@@ -1,22 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import {
-  MatIconModule,
-} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
+
+interface MenuState {
+  [key: string]: boolean;
+}
 
 @Component({
   selector: 'app-admin-sidebar',
+  standalone: true,
   imports: [
+    CommonModule,
     RouterModule,
     MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './admin-sidebar.html',
   styleUrl: './admin-sidebar.scss'
 })
-export class AdminSidebar  implements OnInit {
+export class AdminSidebar implements OnInit {
+
+  @Input() id?: number;
+  @Input() menuSelected?: string;
 
   currentUrl = '';
+  expandedMenus: MenuState = {};
 
   constructor(private router: Router) {
     this.router.events
@@ -26,10 +37,21 @@ export class AdminSidebar  implements OnInit {
       });
   }
 
-  isActiveRoute(routes: string[]): boolean {
-    return routes.some(route => this.currentUrl === route || this.currentUrl.startsWith(route + '/'));
+  ngOnInit(): void {
+    this.currentUrl = this.router.url;
   }
 
-  ngOnInit(): void {
+  toggleMenu(menuKey: string): void {
+    this.expandedMenus[menuKey] = !this.expandedMenus[menuKey];
+  }
+
+  isMenuExpanded(menuKey: string): boolean {
+    return this.expandedMenus[menuKey] || false;
+  }
+
+  isActiveRoute(routes: string[]): boolean {
+    return routes.some(route => 
+      this.currentUrl === route || this.currentUrl.startsWith(route + '/')
+    );
   }
 }

@@ -1,0 +1,122 @@
+<!-- ip-config-modal.component.html -->
+<div class="modal-header">
+  <h2 class="titleModal" mat-dialog-title>Configurar IPS permitidos</h2>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="paddingLeft">
+  <p class="modal-subtitle">Texto complementar que vem abaixo</p>
+</div>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-content class="modal-content">
+  <!-- Seção da Empresa -->
+  <div class="company-section">
+    <div class="company-info">
+      <div class="company-icon">🏢</div>
+      <div>
+        <h3>Empresa</h3>
+        <p>{{ selectedCompany()?.name || 'Selecione uma empresa' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulário para adicionar IP -->
+  <form [formGroup]="ipForm" class="ip-form">
+    <div class="form-row-ip">
+      <mat-form-field appearance="outline" floatLabel="always" class="ip-input">
+        <mat-label>IP permitido</mat-label>
+        <input 
+          matInput 
+          formControlName="ipAddress" 
+          placeholder="0.0.0.0"
+          [class.error]="ipForm.get('ipAddress')?.invalid && ipForm.get('ipAddress')?.touched"
+        />
+        @if (ipForm.get('ipAddress')?.invalid && ipForm.get('ipAddress')?.touched) {
+          <mat-error>{{ getIpError() }}</mat-error>
+        }
+      </mat-form-field>
+      
+      <button 
+        mat-raised-button 
+        color="primary" 
+        class="buttonIncluir"
+        (click)="onAddIp()" 
+        [disabled]="ipForm.invalid || isAddingIp()"
+        type="button"
+      >
+        @if (isAddingIp()) {
+          <mat-spinner diameter="20"></mat-spinner>
+        } @else {
+          Incluir
+        }
+      </button>
+    </div>
+  </form>
+
+  <!-- Lista de IPs ou estado vazio -->
+  @if (isLoading()) {
+    <div class="loading-container">
+      <mat-spinner diameter="40"></mat-spinner>
+    </div>
+  } @else if (ipPermissions().length === 0) {
+    <!-- Estado vazio -->
+    <div class="empty-state">
+      <div class="empty-icon">⚠️</div>
+      <h3>Nenhum IP configurado ainda</h3>
+      <p>Você pode incluir o IP digitando ele acima e depois ir em <strong>incluir</strong>.</p>
+    </div>
+  } @else {
+    <!-- Tabela de IPs -->
+    <div class="ip-table-container">
+      <table mat-table [dataSource]="ipPermissions()" class="ip-table">
+        <!-- Coluna IP -->
+        <ng-container matColumnDef="ip">
+          <th mat-header-cell *matHeaderCellDef>IP Permitido</th>
+          <td mat-cell *matCellDef="let element">{{ element.ip }}</td>
+        </ng-container>
+
+        <!-- Coluna Criado por -->
+        <ng-container matColumnDef="createdBy">
+          <th mat-header-cell *matHeaderCellDef>Criado por</th>
+          <td mat-cell *matCellDef="let element">{{ element.createdBy }}</td>
+        </ng-container>
+
+        <!-- Coluna Criado em -->
+        <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef>Criado em</th>
+          <td mat-cell *matCellDef="let element">{{ formatDate(element.createdAt) }}</td>
+        </ng-container>
+
+        <!-- Coluna Ações -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let element">
+            <button 
+              mat-icon-button 
+              color="warn" 
+              (click)="onRemoveIp(element.id)"
+              matTooltip="Remover IP"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  }
+</mat-dialog-content>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-actions class="modal-actions">
+  <button mat-raised-button color="primary" class="buttonConfirm" (click)="onClose()">
+    Fechar
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,67 @@
+<div class="modal-header">
+  <h2 class="titleModal" mat-dialog-title>Configurar e-mail técnico</h2>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="paddingLeft">
+  <p class="modal-subtitle">Texto complementar que vem abaixo</p>
+</div>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-content class="modal-content">
+  <!-- Seção da Empresa -->
+  <div class="company-section">
+    <div class="company-info">
+      <div class="company-icon">{{ selectedCompany()?.icon || '🏢' }}</div>
+      <div>
+        <h3>Empresa</h3>
+        <p>{{ selectedCompany()?.name || 'Selecione uma empresa' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulário -->
+  <form [formGroup]="emailConfigForm" class="config-form">
+    <div class="form-row">
+      <mat-form-field appearance="outline" floatLabel="always" class="full-width">
+        <mat-label>E-mail</mat-label>
+        <input 
+          matInput 
+          formControlName="email" 
+          placeholder="danilo@12dev.com.br"
+          type="email"
+          class="inputsConfigColor inputsConfigBorder" />
+        
+        @if (emailConfigForm.get('email')?.hasError('required') && emailConfigForm.get('email')?.touched) {
+          <mat-error>E-mail é obrigatório</mat-error>
+        }
+        
+        @if (emailConfigForm.get('email')?.hasError('email') && emailConfigForm.get('email')?.touched) {
+          <mat-error>Digite um e-mail válido</mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-actions class="modal-actions">
+  <button mat-button mat-dialog-close class="buttonCancel">Cancelar</button>
+  <button 
+    mat-raised-button 
+    color="primary" 
+    class="buttonConfirm" 
+    (click)="onSave()" 
+    [disabled]="emailConfigForm.invalid || isLoading()">
+    
+    @if (isLoading()) {
+      <mat-spinner diameter="20"></mat-spinner>
+    } @else {
+      Salvar
+    }
+  </button>
+</mat-dialog-actions>

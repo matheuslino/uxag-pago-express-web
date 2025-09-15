@@ -1,1 +1,88 @@
-<p>list works!</p>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="template-list-bg">
+    <div class="template-list-container">
+      <div class="template-list-filters-section">
+        <div class="template-list-filters-row">
+          <label class="filter-label">
+            Buscar por especificidade
+            <div class="search-input-container">
+              <img src="/img/lupa.svg" alt="Buscar" class="search-icon" />
+              <input 
+                type="text" 
+                placeholder="Busca por algum cliente..." 
+                class="template-list-filter-input search-input"
+                [(ngModel)]="filtros.buscar" />
+            </div>
+          </label>
+          <label class="filter-label">
+            Nome
+            <input 
+              type="text" 
+              placeholder="Nome do cliente" 
+              class="template-list-filter-input"
+              [(ngModel)]="filtros.nome" />
+          </label>
+          <label class="filter-label">
+            CNPJ
+            <input 
+              type="text" 
+              placeholder="Número do CNPJ" 
+              class="template-list-filter-input"
+              [(ngModel)]="filtros.cnpj" />
+          </label>
+        </div>
+      </div>
+      <div class="template-list-results-section">
+        <h2 class="template-list-results-title">Resultado da pesquisa</h2>
+        <div class="template-list-results-info-row">
+          <span class="template-list-results-subtitle">Abaixo estão os resultados encontrados</span>
+          <span class="template-list-results-total">Total {{ totalRegistros }} registros</span>
+        </div>
+        <div class="table-container">
+          <table class="template-list-results-table">
+            <thead>
+              <tr>
+                <th class="first-column">Banco</th>
+                <th class="hide-mobile">Depósito PIX</th>
+                <th class="hide-mobile">Saques PIX</th>
+                <th class="hide-mobile">Envia PIX</th>
+                <th class="hide-mobile">Boleto</th>
+                <th class="hide-mobile">Cartão de crédito</th>
+                <th class="hide-mobile">Pgt. de contas</th>
+                <th class="actions-column"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of clientes">
+                <td>
+                  <div class="template-name">{{ cliente.nome }}</div>
+                  <div class="template-identifier">{{ cliente.identificador }}</div>
+                </td>
+                <td class="hide-mobile">{{ cliente.depositoPix }}</td>
+                <td class="hide-mobile">{{ cliente.saquesPix }}</td>
+                <td class="hide-mobile">{{ cliente.enviaPix }}</td>
+                <td class="hide-mobile">{{ cliente.boleto }}</td>
+                <td class="hide-mobile">{{ cliente.cartaoCredito }}</td>
+                <td class="hide-mobile">{{ cliente.pgtoContas }}</td>
+                <td class="actions-cell">
+                  <img 
+                    src="/img/trash-2.svg" 
+                    alt="Excluir" 
+                    class="action-icon delete-icon"
+                    (click)="onExcluirCliente(cliente)" />
+                  <img 
+                    src="/img/lápis.svg" 
+                    alt="Editar" 
+                    class="action-icon edit-icon"
+                    (click)="onEditarCliente(cliente)" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>     
+    </div>
+  </div>
+</div>

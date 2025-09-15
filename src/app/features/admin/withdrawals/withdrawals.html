@@ -1,1 +1,112 @@
-<p>withdrawals works!</p>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="template-list-bg">
+    <div class="template-list-container">
+      <div class="template-list-filters-section">
+        <div class="template-list-filters-row">
+          <label class="filter-label">
+            Empresa
+            <select 
+              class="template-list-select"
+              [(ngModel)]="filtros.empresaId">
+              <option 
+                *ngFor="let empresa of empresas" 
+                [value]="empresa.id">
+                {{ empresa.nome }}
+              </option>
+            </select>
+          </label>
+          <label class="filter-label">
+            Status
+            <select 
+              class="template-list-select"
+              [(ngModel)]="filtros.status">
+              <option 
+                *ngFor="let status of statusOptions" 
+                [value]="status.value">
+                {{ status.label }}
+              </option>
+            </select>
+          </label>
+          <label class="filter-label">
+            Data início
+            <input 
+              class="template-list-filter-input date-input" 
+              type="date"
+              [(ngModel)]="filtros.dataInicio" />
+          </label>
+          <label class="filter-label">
+            Data fim
+            <input 
+              class="template-list-filter-input date-input" 
+              type="date"
+              [(ngModel)]="filtros.dataFim"
+              [min]="filtros.dataInicio" />
+          </label>
+        </div>
+      </div>
+
+      <div class="template-list-results-section">
+        <h2 class="template-list-results-title">Resultado da pesquisa</h2>
+        <div class="template-list-results-info-row">
+          <div class="template-list-results-subtitle">Abaixo estão os resultados encontrados</div>
+          <div class="template-list-results-total">Total {{ totalRegistros }} Registros</div>
+        </div>
+        <div class="table-container">
+          <table class="template-list-results-table">
+            <thead>
+              <tr>
+                <th>
+                  Solicitante / Valor
+                </th>
+                <th class="hide-mobile">Carteira</th>
+                <th class="hide-mobile">Chave PIX</th>
+                <th class="hide-mobile">Valor</th>
+                <th class="hide-mobile">Data/hora</th>
+                <th class="hide-mobile">Status</th>
+                <th class="hide-mobile">Aprovador</th>
+                <th class="actions-column"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let saque of saques">
+                <td>
+                  <div class="solicitante-info">
+                    <span class="solicitante-nome">{{ saque.solicitante }}</span>
+                    <span class="solicitante-usuario">({{ saque.usuarioSolicitante }})</span>
+                  </div>
+                </td>
+                <td class="hide-mobile">{{ saque.carteira }}</td>
+                <td class="hide-mobile">
+                  <span class="chave-pix">{{ saque.chavePix }}</span>
+                </td>
+                <td class="hide-mobile-partial valor-cell">{{ formatarValor(saque.valor) }}</td>
+                <td class="hide-mobile">{{ formatarDataHora(saque.dataHora) }}</td>
+                <td class="hide-mobile">
+                  <div [class]="getStatusClass(saque.status)">
+                    <span class="status-icon"></span>
+                    {{ saque.status }}
+                  </div>
+                </td>
+                <td class="hide-mobile">{{ saque.aprovador }}</td>
+                <td class="actions-cell">
+                  <div class="aprovador-status" *ngIf="saque.status === 'Pendente'">
+                    <span 
+                      class="aprovador-icon aprovador-icon-green">
+                      ✓
+                    </span>
+                    <span 
+                      class="aprovador-icon aprovador-icon-red">
+                      ✗
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

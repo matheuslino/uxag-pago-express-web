@@ -1,1 +1,84 @@
-<p>link-companies works!</p>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-admin-sidebar [menuSelected]="usuarioMenu" [id]="usuarioId"></app-admin-sidebar>
+  <div class="associacao-bg">
+    <div class="associacao-top-row">
+      <div class="associacao-user-info">
+        <span class="associacao-avatar">
+          <img src="/img/house.svg" alt="Avatar">
+        </span>
+        <div>
+          <h2 class="associacao-user-name">Usuário</h2>
+          <p class="associacao-user-role">{{this.userForm.value.nome}}</p>
+        </div>
+      </div>
+      <div class="associacao-company-info">
+        <div class="associacao-company-info-container">
+          <span class="associacao-company-title">Empresa</span>
+          <div class="associacao-search-wrapper">
+            <img src="/img/lupa.svg" alt="Buscar" class="associacao-search-icon">
+            <input
+              type="text"
+              placeholder="Stark mobilias"
+              class="associacao-search-input" 
+              [(ngModel)]="searchTerm"
+              (input)="filterCompanies()"
+            >
+            <ul *ngIf="filteredCompanies.length > 0" class="autocomplete-list">
+              <li
+                class="autocomplete-item"
+                *ngFor="let company of filteredCompanies"
+                (click)="selectCompany(company)"
+              >
+                {{ company.razaoSocial }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button
+          mat-button
+          type="button"
+          (click)="submit()"
+          [disabled]="searchTerm === ''"
+          [class.active]="userForm.get('empresa')?.valid"
+          class="associacao-btn-vincular"
+        >
+          Vincular
+        </button>
+      </div>
+    </div>
+    <div class="associacao-section">
+      <h2 class="associacao-section-title">Associação de empresas</h2>
+      <p class="associacao-section-subtitle">Complete as informações de acordo com a chave desejada</p>
+      <table class="associacao-table">
+        <thead>
+          <tr>
+            <th>CNPJ</th>
+            <th>Razão Social</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empresa of empresas">
+            <td>
+              {{empresa.nomeFantasia}}<br>
+              <span class="associacao-cnpj">{{empresa.cnpj}}</span>
+            </td>
+            <td>{{empresa.razaoSocial}}</td>
+            <td>
+              <img src="/img/trash-2.svg" alt="Excluir" class="associacao-trash-icon" >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+<app-footer-info
+  [context]="'Vincular usuário'"
+  [information]="userForm.value.nome"
+  [label]="userForm.value.login"
+  (submit)="submit()"
+  (cancel)="cancel()">
+</app-footer-info>

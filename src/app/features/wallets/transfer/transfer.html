@@ -1,1 +1,157 @@
-<p>transfer works!</p>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-wallet-sidebar></app-wallet-sidebar>
+  <main class="transfer-container">
+    <section class="card form-card">
+      <header class="card-header">
+        <h2>Informações para envio</h2>
+        <p>Complete as informações de acordo com a chave desejada</p>
+      </header>
+      <hr class="separator">
+      <div class="form-section">
+        <h3 class="form-section-title">Seus dados</h3>
+        <div class="inputs-row">
+          <div class="input-group">
+            <label for="cliente">Cliente</label>
+            <input id="cliente" type="text" value="123 Milhas - 26.669.170/0001-57" readonly>
+          </div>
+          <div class="input-group">
+            <label for="carteira">Carteira</label>
+            <input id="carteira" type="text" value="6671 - Padrão" readonly>
+          </div>
+        </div>
+      </div>
+      <hr class="separator">
+      <div class="form-section">
+        <h3 class="form-section-title">Chave e valores</h3>
+        <div class="inputs-row">
+          <div class="input-group">
+            <label for="chave-pix">Chave pix</label>
+            <input id="chave-pix" type="text" placeholder="CNPJ, CPF" [(ngModel)]="transferData.chavePix">
+          </div>
+          <div class="input-group">
+            <label for="valor">Valor</label>
+            <input id="valor" type="number" placeholder="R$ 0,00" [(ngModel)]="transferData.valor">
+          </div>
+        </div>
+      </div>
+      <hr class="separator">
+      <div class="form-section">
+        <h3 class="form-section-title">Segurança</h3>
+        <div class="inputs-row">
+          <div class="input-group">
+            <label for="senha">Senha</label>
+            <input id="senha" type="password" placeholder="*****">
+          </div>
+        </div>
+      </div>
+      <div class="temporary-button-container">
+        <button class="btn-transfer" (click)="openConfirmationModal()">Transferir</button>
+      </div>
+    </section>
+    <section class="card pending-card">
+      <header class="card-header-pending">
+        <div class="title-group">
+          <h2>Saques pendentes</h2>
+          <p>Abaixo estão os resultados encontrados</p>
+        </div>
+        @if (hasPendingWithdrawals) {
+          <span class="total-records">Total {{ pendingWithdrawals.length }} registros</span>
+        }
+      </header>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Solicitante</th>
+              <th>Carteira</th>
+              <th>Chave PIX</th>
+              <th>
+                Valor
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"/></svg>
+              </th>
+              <th>Data/hora</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (hasPendingWithdrawals) {
+              @for (saque of pendingWithdrawals; track $index) {
+                <tr>
+                  <td>
+                    <div class="solicitante-info">
+                      <span class="name">{{ saque.solicitante.name }}</span>
+                      <span class="email">{{ saque.solicitante.email }}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="carteira-info">
+                      <span class="id">{{ saque.carteira.id }}</span>
+                      <span class="name">{{ saque.carteira.name }}</span>
+                    </div>
+                  </td>
+                  <td>{{ saque.chavePix }}</td>
+                  <td>{{ saque.valor | currency:'BRL' }}</td>
+                  <td>{{ saque.dataHora }}</td>
+                  <td><span class="status status--pending">{{ saque.status }}</span></td>
+                </tr>
+              }
+            } @else {
+              <tr>
+                <td colspan="6">
+                  <div class="empty-state">
+                    <div class="empty-state__icon">
+                      <span class="material-symbols-outlined">info</span>
+                    </div>
+                    <h3 class="empty-state__title">Nenhum saque para aprovar ainda</h3>
+                    <p class="empty-state__subtitle">Você pode incluir os limites digitando ele acima e depois ir em <strong>incluir</strong>.</p>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  @if (isModalVisible) {
+    <div class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title">
+            <h2>Autorização de transferência</h2>
+            <p>Esta operação não poderá ser desfeita</p>
+          </div>
+          <button class="modal-close" (click)="closeConfirmationModal()">×</button>
+        </div>
+        
+        <hr class="modal-divider">
+        
+        <div class="modal-body">
+          <div class="transfer-details">
+            <div class="detail-icon">
+              <span class="material-symbols-outlined">account_balance_wallet</span>
+            </div>
+            <div class="detail-item">
+              <span>Solicitante</span>
+              <strong>Lucas Admin</strong>
+            </div>
+            <div class="detail-item">
+              <span>Chave</span>
+              <strong>{{ transferData.chavePix }}</strong>
+            </div>
+            <div class="detail-item valor">
+              <span>Valor</span>
+              <strong>{{ transferData.valor | currency:'BRL' }}</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn btn-cancel" (click)="closeConfirmationModal()">Cancelar</button>
+          <button class="btn btn-confirm" (click)="confirmTransfer()">Enviar</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

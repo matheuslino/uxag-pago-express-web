@@ -1,0 +1,116 @@
+<div class="modal-container">
+    <!-- Header -->
+    <div class="modal-header">
+        <h2 class="modal-title">Configurar taxas pix</h2>
+        <button mat-icon-button (click)="onClose()" class="close-button">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div class="modal-subtitle">
+        <p>Texto complementar que vem abaixo</p>
+    </div>
+    <div class="lineSeparation"></div>
+    <br>
+    <!-- Company Section -->
+    <div class="company-section">
+        <div class="company-info">
+            <div class="company-icon">🏢</div>
+            <div class="company-details">
+                <h3>Empresa</h3>
+                <p>{{ selectedCompany()?.name || '123 Milhas' }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PIX-IN Section -->
+    <div class="pix-section">
+        <h3 class="section-title">PIX-IN</h3>
+        <p class="section-subtitle">Texto complementar que vem abaixo</p>
+
+        <form [formGroup]="pixFeeConfigForm" class="config-form">
+            <!-- Primeira linha: Valor menor e Valor maior -->
+            <div class="form-row">
+                <div class="form-field">
+                    <label>Valor menor</label>
+                    <input type="number" formControlName="valorMenor" placeholder="0.0.0.0" step="0.01"
+                        class="form-input">
+                </div>
+                <div class="form-field">
+                    <label>Valor maior</label>
+                    <input type="number" formControlName="valorMaior" placeholder="0.0.0.0" step="0.01"
+                        class="form-input">
+                </div>
+            </div>
+
+            <!-- Segunda linha: Taxa, Mínimo e Máximo -->
+            <div class="form-row">
+                <div class="form-field">
+                    <label>Taxa</label>
+                    <input type="number" formControlName="taxa" placeholder="0.0.0.0" step="0.01" class="form-input">
+                </div>
+                <div class="form-field form-field-small">
+                    <label>Mínimo</label>
+                    <input type="number" formControlName="minimo" placeholder="0.0.0.0" step="0.01" class="form-input">
+                </div>
+                <div class="form-field form-field-small">
+                    <label>Máximo</label>
+                    <input type="number" formControlName="maximo" placeholder="0.0.0.0" step="0.01" class="form-input">
+                </div>
+            </div>
+
+            <!-- Terceira linha: Fixo -->
+            <div class="form-row">
+                <div class="form-field">
+                    <label>Fixo</label>
+                    <input type="number" formControlName="fixo" placeholder="0.0.0.0" step="0.01" class="form-input">
+                </div>
+                <div class="form-field">
+                    <label>Fixo</label>
+                    <input type="number" value="0.0.0.0" readonly class="form-input readonly">
+                </div>
+            </div>
+        </form>
+
+        <div class="form-actions removedborder">
+            <button type="button" class="btn-secondary" (click)="onSaveToTable()">
+                Salvar
+            </button>
+        </div>
+        <br>
+        <!-- Tabela de resumo -->
+        <div class="summary-table">
+            <div class="table-header">
+                <span>Valor menor</span>
+                <span>Valor maior</span>
+                <span>Taxa %</span>
+                <span>Mínimo</span>
+                <span>Máximo</span>
+                <span>Fixo</span>
+            </div>
+            <div class="table-row">
+                <span>R$ {{ (pixFeeConfigForm.get('valorMenor')?.value || 0.01) | number:'1.2-2' }}</span>
+                <span>-</span>
+                <span>-</span>
+                <span>-</span>
+                <span>-</span>
+                <span>R$ {{ (pixFeeConfigForm.get('fixo')?.value || 0.01) | number:'1.2-2' }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="modal-actions">
+        <button type="button" class="btn-secondary" (click)="onClose()">
+            Fechar
+        </button>
+        <button type="button" class="btn-primary" (click)="onConclude()"
+            [disabled]="pixFeeConfigForm.invalid || isLoading()">
+            @if (isLoading()) {
+            <mat-spinner diameter="16"></mat-spinner>
+            } @else {
+            Concluir
+            }
+        </button>
+    </div>
+</div>

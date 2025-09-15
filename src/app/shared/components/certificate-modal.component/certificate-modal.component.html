@@ -1,0 +1,116 @@
+<div class="modal-header">
+  <h2 class="titleModal" mat-dialog-title>Configurar certificado digital</h2>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="paddingLeft">
+  <p class="modal-subtitle">Texto complementar que vem abaixo</p>
+</div>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-content class="modal-content">
+  <!-- Seção de Upload -->
+  <div class="certificate-section">
+    <div class="certificate-header">
+      <div class="certificate-icon">
+        <mat-icon>description</mat-icon>
+      </div>
+      <div class="certificate-info">
+        <h3>Certificado</h3>
+        <button 
+          mat-button 
+          class="generate-button"
+          (click)="fileInput.click()"
+          [disabled]="isUploading()">
+          
+          @if (isUploading()) {
+            <mat-spinner diameter="16"></mat-spinner>
+            Enviando...
+          } @else {
+            Gerar agora
+          }
+        </button>
+        
+        <input 
+          #fileInput 
+          type="file" 
+          accept=".p12,.pfx,.crt,.pem" 
+          (change)="onFileSelected($event)"
+          style="display: none;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de Certificados -->
+  @if (isLoading()) {
+    <div class="loading-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Carregando certificados...</p>
+    </div>
+  } @else {
+    <div class="certificates-table">
+      <!-- Cabeçalho da tabela -->
+      <div class="table-header">
+        <div class="col-created">Criado em</div>
+        <div class="col-valid">Data validade</div>
+        <div class="col-status">Status</div>
+        <div class="col-actions">Ações</div>
+      </div>
+
+      <!-- Linhas dos certificados -->
+      @for (certificate of certificates(); track certificate.id) {
+        <div class="table-row">
+          <div class="col-created">
+            <span class="created-date">{{ certificate.createdAt }}</span>
+          </div>
+          
+          <div class="col-valid">
+            <span class="valid-date">{{ certificate.validUntil }}</span>
+          </div>
+          
+          <div class="col-status">
+            <span class="status-badge" [ngClass]="getStatusClass(certificate.status)">
+              {{ certificate.status }}
+            </span>
+          </div>
+          
+          <div class="col-actions">
+            <button 
+              mat-icon-button 
+              class="delete-button"
+              (click)="deleteCertificate(certificate.id)"
+              matTooltip="Excluir certificado">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      }
+
+      @if (certificates().length === 0) {
+        <div class="empty-state">
+          <mat-icon>description</mat-icon>
+          <p>Nenhum certificado configurado</p>
+          <span>Faça upload do seu certificado digital para começar</span>
+        </div>
+      }
+    </div>
+  }
+</mat-dialog-content>
+
+<div class="lineSeparation"></div>
+
+<mat-dialog-actions class="modal-actions">
+  <button mat-button class="buttonCancel" (click)="onCancel()">
+    Cancelar
+  </button>
+  <button 
+    mat-raised-button 
+    color="primary" 
+    class="buttonConfirm" 
+    (click)="onClose()">
+    Fechar
+  </button>
+</mat-dialog-actions>

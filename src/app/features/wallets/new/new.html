@@ -1,1 +1,28 @@
-<p>new works!</p>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-wallet-sidebar></app-wallet-sidebar>
+  <main class="container">
+    <div class="form-card"> 
+      <header class="card-header">
+        <h1>Informações da carteira</h1>
+        <p>Complete as informações de acordo com a chave desejada</p>
+      </header>
+      <hr class="divider">
+      <section class="form-section">
+        <div class="section-title">
+          <h2>Dados básicos</h2>
+        </div>
+        <div class="section-fields"> 
+          <div class="form-group">
+            <label for="razaoSocial">Razão Social</label>
+            <input type="text" id="razaoSocial" placeholder="123 Milhas" [(ngModel)]="razaoSocial">
+          </div>
+          <div class="form-group">
+            <label for="apelido">Apelido</label>
+            <input type="text" id="apelido" placeholder="Ex: Dê um apelido" [(ngModel)]="apelido">
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>

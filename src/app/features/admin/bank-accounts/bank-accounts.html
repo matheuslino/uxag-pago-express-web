@@ -1,1 +1,38 @@
-<p>bank-accounts works!</p>
+<!-- bank-accounts.html (atualizado) -->
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="bank-accounts-bg">
+    <div class="bank-accounts-container">
+      <div class="bank-accounts-section">
+        <h2 class="bank-accounts-title">Sua carteira de bancos</h2>
+        <div class="bank-accounts-info-row">
+          <div class="bank-accounts-subtitle">Abaixo estão os resultados encontrados</div>
+          <div class="bank-accounts-total">Total: {{ totalRecords }} registros</div>
+        </div>
+        <table class="bank-accounts-table">
+          <thead>
+            <tr>
+              <th class="bank-column">Banco</th>
+              <th class="actions-column">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bank of bankAccounts">
+              <td class="bank-cell">
+                <span class="bank-name">{{ bank.name }}</span><br>
+                <span class="bank-code">{{ bank.code }}</span>
+              </td>
+
+              <td class="actions-cell">
+                <button class="bank-action-icon" (click)="openAlertConfig(bank)" title="Configurar alertas">
+                  <img src="/img/Frame.svg" alt="Editar" class="action-icon">
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,96 @@
-<p>dashboard works!</p>
+
+<app-header-dashboard></app-header-dashboard>
+<div class="dashboard-container">
+  <section class="quick-actions">
+    <h2>Pra você</h2>
+    <div class="actions-grid">
+      <button class="action-card">
+        <img src="assets/images/pixIcone.png" alt="QR Code" class="icon-img" />
+        <span>Pagar no PIX</span>
+      </button>
+      <button class="action-card">
+        <img src="assets\images\Vector.png" alt="seta" class="icon-img" />
+        <span>Receber PIX</span>
+      </button>
+      <button class="action-card">
+        <img src="assets/images/frame.png" alt="frame" class="icon-img" />
+        <span>Enviar PIX</span>
+      </button>
+      <button class="action-card">
+        <img src="assets/images/file.png" alt="File" class="icon-img" />
+        <span>Pagar boleto</span>
+      </button>
+      <button class="action-card">
+        <img src="assets/images/setaHorizontal.png" alt="setaHorizontal" class="icon-img" />
+        <span>Ver mais</span>
+      </button>
+    </div>
+  </section>
+
+  <div class="main-layout">
+    <main class="main-content">
+      <section class="transactions">
+        <div class="transactions-header">
+          <div>
+            <h2>Últimas transações</h2>
+            <p>Acompanhe as suas últimas movimentações.</p>
+          </div>
+          <div class="filters">
+            <button class="filter-btn active">Todos</button>
+            <button class="filter-btn">Cashin</button>
+            <button class="filter-btn">Cashout</button>
+          </div>
+        </div>
+        <ul class="transactions-list">
+          <li *ngFor="let transacao of transacoes" class="transaction-item">
+            <div class="agency-info">
+              <div class="agency-logo">
+                <img *ngIf="transacao.agenciaLogo" [src]="transacao.agenciaLogo" [alt]="transacao.agenciaNome">
+                <span *ngIf="!transacao.agenciaLogo">{{ transacao.agenciaID }}</span>
+              </div>
+              <div>
+                <span class="agency-name">{{ transacao.agenciaNome }}</span>
+                <span class="transaction-date">{{ transacao.dataTransacao }}</span>
+              </div>
+            </div>
+            <div class="transaction-details">
+              <span class="transaction-value">R$ {{ transacao.valorTransacao | number:'1.2-2' }}</span>
+              <span class="transaction-status">{{ transacao.statusTransacao }}</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <aside class="sidebar">
+      <div class="summary-card">
+        <div class="summary-header">
+          <h3>Resumo operacional</h3>
+          <span>últimos 30 dias</span>
+        </div>
+        <div class="summary-stats">
+          <div class="stat-item">
+            <mat-icon>sync_alt</mat-icon>
+            <div class="stat-value-container">
+              <span class="stat-value">{{ totalTransacoes }}</span>
+              <span class="growth">↑ {{ percentualCrescimento }}%</span>
+            </div>
+            <span class="stat-label">Total de transações</span>
+          </div>
+          <div class="stat-item">
+            <mat-icon>credit_card</mat-icon>
+            <span class="stat-value">{{ carteirasAtivas }}</span>
+            <span class="stat-label">Carteiras ativas</span>
+          </div>
+          <div class="stat-item">
+            <mat-icon>notifications_active</mat-icon>
+            <span class="stat-value">{{ pagamentosAtrasados }}</span>
+            <span class="stat-label">Pgt. atrasados</span>
+          </div>
+        </div>
+      </div>
+      <div class="promo-banner">
+      </div>
+    </aside>
+  </div>
+</div>

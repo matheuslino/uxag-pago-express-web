@@ -274,7 +274,7 @@ export const MOCK_BANKS = [
   {
     code: '237',
     name: 'Banco Bradesco S.A.',
-    shortName: 'Bradesco',
+    shortName: 'Bradescot',
     logo: ''
   }
 ];

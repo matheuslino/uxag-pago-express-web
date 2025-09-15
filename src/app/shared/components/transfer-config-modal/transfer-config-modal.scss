@@ -1,0 +1,170 @@
+.modal-container {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 0;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.close-button {
+  color: #666;
+}
+
+.modal-subtitle {
+  color: #666;
+  font-size: 14px;
+  margin: 8px 24px 0;
+  padding: 0;
+}
+
+.modal-content {
+  padding: 24px;
+  max-height: 65vh;
+}
+
+.transfer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+.company-section {
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.company-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.company-icon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+}
+
+.company-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.company-info p {
+  margin: 4px 0 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.lineSeparation {
+  padding-top: 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.company-miles {
+  font-size: 12px;
+  color: #666;
+}
+
+.config-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.config-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.config-field {
+  width: 100%;
+}
+
+.minmax-section {
+  margin-top: 16px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 4px 0;
+}
+
+.section-subtitle {
+  color: #666;
+  font-size: 14px;
+  margin: 0 0 16px 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px 24px;
+  border-top: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+
+.cancel-button {
+  color: #666;
+  border: 1px solid #e5e7eb;
+}
+
+.save-button {
+  background: #7c3aed;
+  color: white;
+  min-width: 100px;
+}
+
+.loading-icon {
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .config-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-container {
+    max-width: 95vw;
+    margin: 20px;
+  }
+}

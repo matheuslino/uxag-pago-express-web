@@ -1,0 +1,85 @@
+.template-list-name {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+.template-list-email {
+  font-size: 0.92rem;
+  color: #888;
+}
+
+.template-list-company {
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+.template-list-profile {
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+// Status badges
+.template-list-status {
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 4px 16px;
+  font-size: 0.90rem;
+  margin-right: 32px;
+  display: inline-block;
+
+  &.template-list-status-active {
+    background: #ECFDF3;
+    color: #027A48;
+  }
+
+  &.template-list-status-inactive {
+    background: #FEF3F2;
+    color: #B42318;
+  }
+}
+
+// Responsividade para mobile
+@media (max-width: 768px) {
+  .template-list-name,
+  .template-list-company,
+  .template-list-profile {
+    font-size: 0.9rem;
+  }
+
+  .template-list-email {
+    font-size: 0.8rem;
+  }
+
+  .template-list-status {
+    font-size: 0.8rem;
+    padding: 3px 12px;
+    margin-right: 16px;
+  }
+}
+
+// Responsividade para telas muito pequenas
+@media (max-width: 480px) {
+  .template-list-name,
+  .template-list-company,
+  .template-list-profile {
+    font-size: 0.85rem;
+  }
+
+  .template-list-email {
+    font-size: 0.75rem;
+  }
+
+  .template-list-status {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+  }
+
+  .template-list-page {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    min-width: 32px;
+  }
+}

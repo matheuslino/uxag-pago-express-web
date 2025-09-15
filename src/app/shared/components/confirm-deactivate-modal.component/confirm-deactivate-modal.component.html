@@ -1,0 +1,29 @@
+<div class="modal-container">
+    <div class="modal-header">
+        <h2>Confirma a desativação?</h2>
+        <p>O usuário perderá o acesso ao sistema</p>
+        <button mat-icon-button (click)="onCancel()" aria-label="Fechar">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="lineSeparation"></div>
+
+    <div class="company-section">
+        <div class="company-info">
+            <div class="company-icon">🏢</div>
+            <div>
+                <h3 class="modal-user-title">Usuário</h3>
+
+                <p class="modal-user-name">{{ data.name }}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="lineSeparation"></div>
+
+    <div class="modal-actions">
+        <button mat-stroked-button (click)="onCancel()">Cancelar</button>
+        <button mat-flat-button color="primary" (click)="onConfirm()">Confirmar</button>
+    </div>
+</div>

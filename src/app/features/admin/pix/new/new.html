@@ -1,1 +1,68 @@
-<p>new works!</p>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+
+<div class="template-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="pix-list-bg">
+    <div class="pix-list-container">
+      <div class="pix-list-select-row">
+        <div class="pix-list-select-section">
+          <span class="pix-list-select-title">Cliente</span>
+          <select id="pix-client-select" class="pix-list-select">
+            <option selected>{{ empresa.cliente }}</option>
+          </select>
+        </div>
+        <div class="pix-list-client-info">
+          <span class="pix-avatar">
+            <img src="/img/house.svg" alt="Avatar">
+          </span>
+          <div>
+            <span class="pix-list-select-title">{{ empresa.nome }}</span>
+            <div class="pix-list-select-subtitle">{{ empresa.cliente }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="pix-list-results-section">
+        <h2 class="pix-list-results-title">Informações da chave</h2>
+        <div class="pix-list-results-info-row">
+          <div class="pix-list-results-subtitle">
+            Complete as informações de acordo com a chave desejada
+          </div>
+        </div>
+        <hr class="pix-divider">
+        <div class="pix-form-section">
+          <div class="pix-section-title">Dados básicos</div>
+          <form [formGroup]="pixForm" class="pix-new-key-form">
+            <div class="pix-form-row">
+              <div class="pix-new-form-group">
+                <label for="pix-key-name">Nome</label>
+                <input id="pix-key-name" type="text" formControlName="nome">
+              </div>
+              <div class="pix-new-form-group">
+                <label for="pix-key-type">Tipo de chave</label>
+                <select id="pix-key-type" formControlName="tipo">
+                  <option>E-mail</option>
+                  <option>CPF</option>
+                  <option>CNPJ</option>
+                  <option>Telefone</option>
+                </select>
+              </div>
+            </div>
+            <div class="pix-form-row">
+              <div class="pix-key-value-group">
+                <label for="pix-key-value">Chave PIX</label>
+                <input id="pix-key-value" type="text" formControlName="chave" placeholder="Digite a chave PIX">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer-info
+  [context]="'Cadastro chave PIX'"
+  [information]="pixForm.value.chave"
+  [label]="empresa.cliente"
+  (submit)="submit()"
+  (cancel)="cancel()">
+</app-footer-info>

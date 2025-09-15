@@ -1,0 +1,104 @@
+:host {
+  --primary-text-color: #333;
+  --secondary-text-color: #6c757d;
+  --border-color: #e9ecef;
+  --background-color: white;
+  --card-background-color: #F9F9F9;
+  --primary-color: #007bff;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.container {
+  width: 100%;
+  font-family: 'Inter', sans-serif; 
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+}
+
+.form-card {
+  background-color: #F9F9F9;
+  border-radius: 4px;
+  padding: 32px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card-header {
+  h1 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    color: #393939;
+    margin: 0 0 10px 0;
+  }
+
+  p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: #393939;
+    margin: 0;
+  }
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #DADADA;
+  width: 100%;
+  margin: 0;
+}
+
+.form-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.section-title {
+  flex-basis: 200px; 
+  flex-shrink: 0;
+  
+  h2 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #333333;
+    margin: 0;
+  }
+}
+
+.section-fields {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1; 
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #344054;
+  }
+
+  input {
+    background-color: #FFFFFF;
+    border: 1px solid #D0D5DD;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    color: #8A8A8A;
+    height: 35px;
+    box-sizing: border-box;
+  }
+}
