@@ -30,6 +30,7 @@
   color: #ffffff;
   padding: 0 0 32px 0; 
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: padding-top 0.3s ease;
 }
 
 .header-content-wrapper {
@@ -219,6 +220,9 @@
 
 .main-header-content {
   padding-top: 28px;
+  transition: opacity 0.3s ease, visibility 0.3s ease, max-height 0.5s ease;
+  max-height: 1000px; 
+  overflow: hidden;
 }
 
 .welcome-section {
@@ -272,6 +276,7 @@
 .section-divider {
   border-color: #747474;
   margin: 30px 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .balance-overview {
@@ -471,6 +476,46 @@
   border-radius: 8px;
 }
 
+.user-actions .user-info-button {
+  position: relative;
+  top: 2px;
+}
+
+.header-container.scrolled {
+  background-image: none;
+  background-color: #2a2155;
+  padding-top: 74px; 
+  padding-bottom: 0;
+  
+  .top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #2a2155;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    padding: 0;
+    height: 74px;
+    
+    .top-bar-content {
+      padding: 0 68px;
+    }
+  }
+
+  .main-header-content, .section-divider {
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+}
+
+
+
+
 ::ng-deep .mat-mdc-menu-panel {
   backdrop-filter: blur(10px);
 }
@@ -635,5 +680,17 @@
 
   .wallets-section .wallet-card {
     flex: 0 0 240px;
+  }
+
+  .header-container.scrolled {
+    padding-top: 60px;
+    
+    .top-bar {
+      height: 60px;
+
+      .top-bar-content {
+        padding: 0 16px;
+      }
+    }
   }
 }

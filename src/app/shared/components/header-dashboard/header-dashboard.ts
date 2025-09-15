@@ -1,4 +1,4 @@
-import { Component, OnInit, LOCALE_ID } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, HostListener } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -61,6 +61,7 @@ export class HeaderDashboard implements OnInit {
   addWalletPlaceholders: any[] = [];
   greeting = 'Bem-vindo novamente';
   isBalanceVisible = false;
+  isScrolled = false;
 
   userName = 'Antônio Coutinho';
   userRole = 'Gerente de Contas';
@@ -107,6 +108,11 @@ export class HeaderDashboard implements OnInit {
   ];
 
   constructor(private router: Router) { }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    this.isScrolled = window.scrollY > 10;
+  }
 
   ngOnInit(): void {
     this.router.events
