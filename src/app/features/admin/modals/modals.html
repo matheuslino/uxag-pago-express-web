@@ -1,0 +1,68 @@
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-admin-sidebar></app-admin-sidebar>
+  <div class="modals-bg">
+    <div class="modals-container">
+      
+      <div class="modals-filters">
+        <div class="filter-section">
+          <label for="category-select" class="filter-label">Filtrar por categoria:</label>
+          <select 
+            id="category-select" 
+            class="filter-select" 
+            [value]="selectedCategory"
+            (change)="filterByCategory($any($event.target).value)">
+            <option *ngFor="let category of getCategories()" [value]="category">
+              {{ category === 'all' ? 'Todas as categorias' : category }}
+            </option>
+          </select>
+        </div>
+        <div class="results-info">
+          <span class="results-count">{{ filteredModals.length }} modais encontrados</span>
+        </div>
+      </div>
+
+      <div class="modals-results-section">
+        <h2 class="modals-results-title">Modais Disponíveis</h2>
+        <div class="modals-results-info-row">
+          <div class="modals-results-subtitle">Clique em "Exibir" para visualizar o modal</div>
+        </div>
+        
+        <table class="modals-results-table">
+          <thead>
+            <tr>
+              <th style="text-align: left; width: 30%;">Nome</th>
+              <th style="text-align: left; width: 20%;">Categoria</th>
+              <th style="text-align: left; width: 40%;">Descrição</th>
+              <th style="text-align: center; width: 10%;">Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let modal of filteredModals">
+              <td class="modal-name">{{ modal.name }}</td>
+              <td class="modal-category">
+                <span class="category-badge" [class]="'category-' + modal.category.toLowerCase()">
+                  {{ modal.category }}
+                </span>
+              </td>
+              <td class="modal-description">{{ modal.description }}</td>
+              <td class="modal-action" style="text-align: center;">
+                <button 
+                  class="exibir-btn"
+                  (click)="openModal(modal)">
+                  <mat-icon>visibility</mat-icon>
+                  Exibir
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div *ngIf="filteredModals.length === 0" class="no-results">
+          <mat-icon>info</mat-icon>
+          <p>Nenhum modal encontrado para a categoria selecionada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

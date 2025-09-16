@@ -43,6 +43,7 @@ import { Config } from './features/wallets/config/config';
 import { Relatorios } from './features/relatorios/relatorios';
 import { DepositoRelatorio } from './features/relatorios/deposito/deposito';
 import { SaquesRelatorio } from './features/relatorios/saques/saques';
+import { Modals } from './features/admin/modals/modals';
 
 
 export const routes: Routes = [
@@ -241,6 +242,19 @@ export const routes: Routes = [
                 { label: 'Painel', path: '/dashboard' },
                 { label: 'Administração', path: '/administracao' },
                 { label: 'Aprovar Saques', path: '/administracao/withdrawals' }
+              ],
+            }
+          },
+          {
+            path: 'modals',
+            component: Modals,
+            data: {
+              pageTitle: 'Modais do Sistema',
+              pageSubtitle: 'Visualize e teste todos os modais disponíveis no sistema',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Administração', path: '/administracao' },
+                { label: 'Modais', path: '/administracao/modals' }
               ],
             }
           },
