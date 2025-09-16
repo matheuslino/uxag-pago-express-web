@@ -68,8 +68,8 @@ export class SaquesRelatorio {
     pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
     breadcrumb: [
       { label: 'Painel', path: '/dashboard' },
-      { label: 'Relatórios', path: '/reports' },
-      { label: 'Saques', path: '/reports/withdrawals' }
+      { label: 'Relatórios', path: '/relatorios' },
+      { label: 'Saques', path: '/relatorios/withdrawals' }
     ],
   }
 }
