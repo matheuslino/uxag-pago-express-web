@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-my-data',
-  imports: [],
   templateUrl: './my-data.html',
-  styleUrl: './my-data.scss'
+  styleUrls: ['./my-data.scss'],
+  standalone: true,
 })
 export class MyData {
 

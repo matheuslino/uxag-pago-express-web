@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-my-company',
-  imports: [],
   templateUrl: './my-company.html',
-  styleUrl: './my-company.scss'
+  styleUrls: ['./my-company.scss'],
+  standalone: true,
 })
 export class MyCompany {
 

@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { Header } from '../../shared/components/header/header';
+import { ProfileSidebarComponent } from '../../shared/components/profile-sidebar/profile-sidebar';
 
 @Component({
   selector: 'app-profile',
-  imports: [],
   templateUrl: './profile.html',
-  styleUrl: './profile.scss'
+  styleUrls: ['./profile.scss'],
+  standalone: true,
+  imports: [RouterModule, Header, ProfileSidebarComponent]
 })
-export class Profile {
+export class ProfileComponent {
 
 }

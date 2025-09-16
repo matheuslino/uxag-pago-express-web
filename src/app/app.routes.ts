@@ -28,7 +28,7 @@ import { List as ListWallet } from './features/wallets/list/list';
 import { List as ListUser } from './features/admin/users/list/list';
 import { New as NewPix } from './features/admin/pix/new/new';
 import { New as NewWallet } from './features/wallets/new/new';
-import { Profile } from './features/profile/profile';
+import { ProfileComponent } from './features/profile/profile';
 import { MyCompany } from './features/profile/my-company/my-company';
 import { MyData } from './features/profile/my-data/my-data';
 import { Balance } from './features/wallets/balance/balance';
@@ -475,7 +475,7 @@ export const routes: Routes = [
       },
       {
         path: 'profile',
-        component: Profile,
+        component: ProfileComponent,
         children: [
           {
             path: 'my-data',
