@@ -1,12 +1,16 @@
-<div class="sidebar-container">
-    <div class="menu-container">
-        <div class="menu-item" routerLink="/profile/my-data" routerLinkActive="active">
-            <img src="/assets/icons/user.svg" alt="">
-            <p>Meus dados</p>
-        </div>
-        <div class="menu-item" routerLink="/profile/my-company" routerLinkActive="active">
-            <img src="/assets/icons/settings.svg" alt="">
-            <p>Minha Empresa</p>
-        </div>
-    </div>
+<div class="sidebar">
+  <nav class="sidebar-nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a routerLink="/perfil/my-data" routerLinkActive="active" class="nav-link">
+          <span>Meus Dados</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/carteira/my-company" routerLinkActive="active" class="nav-link">
+          <span>Minha empresa</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </div>

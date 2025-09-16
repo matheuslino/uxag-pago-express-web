@@ -1,3 +1,16 @@
-<div>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-profile-sidebar></app-profile-sidebar>
+  <div>
     <h2>Meus dados</h2>
+  </div>
 </div>
+<app-footer-info
+  [information]="footerInformation"
+  [context]="footerContext"
+  [label]="footerLabel"
+  [confirmCancelLabel]="`Cancelar`"
+  [confirmSubmitLabel]="sendLabel"
+  (cancel)="onCancel()"
+  (submit)="onSubmit()">
+</app-footer-info>

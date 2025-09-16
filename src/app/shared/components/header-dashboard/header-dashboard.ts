@@ -176,7 +176,7 @@ export class HeaderDashboard implements OnInit {
   }
 
   goToProfile(): void {
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/perfil']);
   }
 
   goToSettings(): void {

@@ -1,4 +1,4 @@
-.profile-layout {
+.transaction-layout {
   flex-direction: row;
   padding-top: 112px;
   height: calc(100vh);
@@ -134,11 +134,11 @@
     justify-content: center;
   }
   
-  .profile-layout {
+  .transaction-layout {
     padding: 24px
   }
 
-  .profile-content {
+  .transaction-content {
     width: 100%;
     flex-direction: column!important;
   }
@@ -157,12 +157,12 @@
     font-size: 12px;
   }
   
-  .profile-layout {
+  .transaction-layout {
     width: 100%;
     padding: 24px
   }
 
-  .profile-content {
+  .transaction-content {
     width: 100%;
     flex-direction: column!important;
   }
@@ -172,7 +172,7 @@
   }
 }
 
-.profile-content {
+.transaction-content {
   flex-direction: row;
   height: 100%;
   width: 100%;

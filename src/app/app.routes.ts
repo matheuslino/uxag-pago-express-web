@@ -361,6 +361,11 @@ export const routes: Routes = [
         component: ProfileComponent,
         children: [
           {
+            path: '',
+            redirectTo: '/perfil/my-data',
+            pathMatch: 'full'
+          },
+          {
             path: 'my-data',
             component: MyData,
           },

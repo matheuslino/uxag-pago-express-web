@@ -126,7 +126,7 @@ export class Header implements OnInit {
   }
 
   goToProfile(): void {
-    this.router.navigate(['/settings/profile']);
+    this.router.navigate(['/perfil']);
   }
 
   goToSettings(): void {
