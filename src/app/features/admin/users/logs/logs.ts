@@ -4,7 +4,6 @@ import { HeaderTitle } from '../../../../shared/components/header-title/header-t
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FooterInfo } from '../../../../shared/components/footer-info/footer-info';
 import { CommonModule, Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 
@@ -14,7 +13,6 @@ import { Subscription } from 'rxjs';
       RouterModule,
       MatIconModule,
       ReactiveFormsModule,
-      FooterInfo,
       AdminSidebar,
       HeaderTitle,
       CommonModule,

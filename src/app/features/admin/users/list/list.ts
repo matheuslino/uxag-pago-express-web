@@ -8,7 +8,6 @@ import { HeaderTitle } from '../../../../shared/components/header-title/header-t
 import { ConfirmDeactivateModalComponent } from '../../../../shared/components/confirm-deactivate-modal.component/confirm-deactivate-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeDetectorRef } from '@angular/core';
-import { CustomTable } from '../../../../shared/components/custom-table/custom-table';
 
 export interface Usuario {
   id: number;
@@ -35,8 +34,7 @@ export interface MenuAcao {
     AdminSidebar,
     HeaderTitle,
     CommonModule,
-    FormsModule,
-    CustomTable
+    FormsModule
   ],
   templateUrl: './list.html',
   styleUrls: ['./list.scss']
