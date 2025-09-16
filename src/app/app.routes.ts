@@ -15,7 +15,7 @@ import { Logs } from './features/admin/logs/logs';
 import { Logs as LogsUser } from './features/admin/users/logs/logs';
 import { Logs as LogsWallet } from './features/wallets/logs/logs';
 import { Notifications } from './features/admin/notifications/notifications';
-import { Users } from './features/admin/users/users';
+import { Notifications as NotificationClient } from './features/admin/clients/notifications/notifications';
 import { Withdrawals } from './features/admin/withdrawals/withdrawals';
 import { LinkCompanies } from './features/admin/users/link-companies/link-companies';
 import { Credentials } from './features/admin/users/credentials/credentials';
@@ -110,7 +110,20 @@ export const routes: Routes = [
               {
                 path: 'edit/:id',
                 component: EditClient,
-              }
+              },
+              {
+                path: 'notifications/:id',
+                component: NotificationClient,
+                data: {
+                  pageTitle: 'Notificações',
+                  pageSubtitle: 'Texto complementar abaixo',
+                  breadcrumb: [
+                    { label: 'Painel', path: '/dashboard' },
+                    { label: 'Administração', path: '/administracao' },
+                    { label: 'Notificações', path: '/administracao/notifications' }
+                  ],
+                }
+              },
             ]
           },
           {
