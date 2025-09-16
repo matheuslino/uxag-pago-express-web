@@ -1,97 +1,219 @@
-<main class="payment-container">
-  <div class="content-wrapper">
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-wallet-sidebar></app-wallet-sidebar>
+  <main class="payment-container">
 
-    <header class="search-bar">
-      <div class="search-input-wrapper">
-        <span class="material-symbols-outlined">search</span>
-        <input type="text" placeholder="Busque por algum cliente..." [(ngModel)]="searchTerm" (ngModelChange)="applyFilters()">
+    <div class="stepper-container">
+      <div class="step-item" [ngClass]="{'active': currentStep >= 1}">
+        <div class="line"></div>
+        <div class="label-group">
+          <span class="number">1</span>
+          <span class="label-text">Etapa de pagamento</span>
+        </div>
       </div>
-      <div class="filters-container">
-        <button class="filter-button" (click)="toggleFilterPopup()">
-          Filtros
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-308 198-252H282l198 252Zm0 0Z"/></svg>
-        </button>
+      <div class="step-item" [ngClass]="{'active': currentStep >= 2}">
+        <div class="line"></div>
+        <div class="label-group">
+          <span class="number">2</span>
+          <span class="label-text">Confirmação das informações</span>
+        </div>
+      </div>
+      <div class="step-item" [ngClass]="{'active': currentStep >= 3}">
+        <div class="line"></div>
+        <div class="label-group">
+          <span class="number">3</span>
+          <span class="label-text">Revisão e pagamento</span>
+        </div>
+      </div>
+    </div>
 
-        @if (isFilterPopupVisible) {
-          <div class="filter-popup">
-            <div class="filter-row">
-              <div class="filter-group"><label>Cliente</label><input type="text" placeholder="Empresa Maira" [(ngModel)]="filterCriteria.cliente"></div>
-              <div class="filter-group"><label>Critério</label><input type="text" placeholder="382912" [(ngModel)]="filterCriteria.criterio"></div>
-            </div>
-            <div class="filter-row">
-              <div class="filter-group"><label>Data início</label><input type="text" placeholder="DD/MM/AAA" [(ngModel)]="filterCriteria.dataInicio"></div>
-              <div class="filter-group"><label>Fim de dados</label><input type="text" placeholder="DD/MM/AAA" [(ngModel)]="filterCriteria.dataFim"></div>
-            </div>
-            <div class="filter-row">
-              <div class="filter-group"><label>Estado</label><input type="text" placeholder="--" [(ngModel)]="filterCriteria.estado"></div>
+
+    <section class="card payment-card">
+      <header class="card-header">
+        <h2>Informações para envio</h2>
+        <p>Complete as informações de acordo com a chave desejada</p>
+      </header>
+      <hr class="separator">
+
+      @switch (currentStep) {
+
+        @case (1) {
+          <div class="form-section">
+            <h3 class="form-section-title">Informações principais</h3>
+            <div class="form-section-inputs">
+              <div class="inputs-row">
+                <div class="input-group">
+                  <label for="cliente">Cliente</label>
+                  <select id="cliente" [(ngModel)]="paymentData.cliente">
+                    <option value="" disabled selected>Selecione um cliente</option>
+                    <option *ngFor="let client of clientList" [value]="client.name">{{ client.name }}</option>
+                  </select>
+                </div>
+                <div class="input-group">
+                  <label for="carteira">Carteira</label>
+                  <select id="carteira" [(ngModel)]="paymentData.carteira">
+                    <option value="" disabled selected>Selecione uma carteira</option>
+                    <option *ngFor="let wallet of walletList" [value]="wallet.name">{{ wallet.name }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="inputs-row">
+                <div class="input-group full-width">
+                  <label for="linha-digitavel">Linha digitável</label>
+                  <div class="input-with-icon">
+                    <input id="linha-digitavel" type="text" placeholder="Cole ou digite a linha do boleto" [(ngModel)]="paymentData.linhaDigitavel">
+                    <button class="icon-button">
+                      <mat-icon>content_paste</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         }
-      </div>
-    </header>
 
-    <div class="active-filters">
-      @for(filter of activeFilters; track filter.key) {
-        <div class="filter-pill">
-          {{ filter.value }}
-          <button (click)="removeFilter(filter.key)">×</button>
-        </div>
+        @case (2) {
+          <div class="form-section">
+            <h3 class="form-section-title">Informações principais</h3>
+            <div class="form-section-inputs readonly-section">
+              <div class="inputs-row">
+                <div class="input-group">
+                  <label for="cliente-ro">Cliente</label>
+                  <input id="cliente-ro" type="text" value="{{paymentData.cliente}}" readonly>
+                </div>
+                <div class="input-group">
+                  <label for="carteira-ro">Carteira</label>
+                  <input id="carteira-ro" type="text" value="{{paymentData.carteira}}" readonly>
+                </div>
+              </div>
+               <div class="inputs-row">
+                <div class="input-group full-width">
+                   <label for="linha-digitavel-ro">Linha digitável</label>
+                   <input id="linha-digitavel-ro" type="text" value="{{paymentData.linhaDigitavel}}" readonly>
+                 </div>
+               </div>
+            </div>
+          </div>
+          <hr class="separator short">
+          <div class="form-section">
+            <h3 class="form-section-title">Dados do beneficiário</h3>
+            <div class="form-section-inputs">
+              <div class="inputs-row">
+                <div class="input-group">
+                  <label for="beneficiario-nome">Nome/Nome fantasia</label>
+                  <input id="beneficiario-nome" type="text" [(ngModel)]="paymentData.beneficiario.nome">
+                </div>
+                <div class="input-group">
+                  <label for="beneficiario-doc">CPF(CNPJ)</label>
+                  <input id="beneficiario-doc" type="text" [(ngModel)]="paymentData.beneficiario.cpfCnpj">
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="separator short">
+          <div class="form-section">
+            <h3 class="form-section-title">Dados do pagador</h3>
+            <div class="form-section-inputs">
+              <div class="inputs-row">
+                <div class="input-group">
+                  <label for="pagador-nome">Nome/Nome fantasia</label>
+                  <input id="pagador-nome" type="text" [(ngModel)]="paymentData.pagador.nome">
+                </div>
+                <div class="input-group">
+                  <label for="pagador-doc">CPF(CNPJ)</label>
+                  <input id="pagador-doc" type="text" [(ngModel)]="paymentData.pagador.cpfCnpj">
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        @case (3) {
+          <div class="review-container">
+
+            <div class="review-section-wrapper">
+              <h3 class="review-section-title">Resumo do pagamento</h3>
+              <div class="review-section-content">
+                <div class="content-item">
+                  <span class="item-label">Linha digitável:</span>
+                  <span class="item-value">{{ paymentData.linhaDigitavel }}</span>
+                </div>
+                <div class="content-item">
+                  <span class="item-label">Banco cedente:</span>
+                  <span class="item-value">{{ paymentData.resumo.bancoCedente }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-section-wrapper">
+              <h3 class="review-section-title">Dados do beneficiário</h3>
+              <div class="review-section-content">
+                <div class="content-item">
+                  <span class="item-label">Nome fantasia:</span>
+                  <span class="item-value">{{ paymentData.beneficiario.nome }}</span>
+                </div>
+                <div class="content-item">
+                  <span class="item-label">CPF/CNPJ:</span>
+                  <span class="item-value">{{ paymentData.beneficiario.cpfCnpj }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-section-wrapper">
+              <h3 class="review-section-title">Dados do pagador</h3>
+              <div class="review-section-content">
+                  <div class="content-item">
+                  <span class="item-label">Nome fantasia:</span>
+                  <span class="item-value">{{ paymentData.pagador.nome }}</span>
+                </div>
+                  <div class="content-item">
+                    <span class="item-label">CPF/CNPJ:</span>
+                    <span class="item-value">{{ paymentData.pagador.cpfCnpj }}</span>
+                </div>
+                  <div class="content-item">
+                  <span class="item-label">Instituição de pagamento:</span>
+                  <span class="item-value">{{ paymentData.resumo.instituicaoPagamento }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-section-wrapper">
+              <h3 class="review-section-title">Valores</h3>
+              <div class="review-section-content">
+                <div class="values-container">
+                  <div class="value-box">
+                    <span class="item-label-valor">Valor nominal</span>
+                    <strong class="item-value money">{{ paymentData.valores.nominal | currency:'BRL' }}</strong>
+                  </div>
+                  <div class="value-box">
+                    <span class="item-label-valor">Desconto</span>
+                    <strong class="item-value money">{{ paymentData.valores.desconto | currency:'BRL' }}</strong>
+                  </div>
+                  <div class="value-box">
+                    <span class="item-label-valor">Multa</span>
+                    <strong class="item-value money">{{ paymentData.valores.multa | currency:'BRL' }}</strong>
+                  </div>
+                  <div class="value-box">
+                    <span class="item-label-valor">Juros</span>
+                    <strong class="item-value money">{{ paymentData.valores.juros | currency:'BRL' }}</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        }
       }
-    </div>
-
-    <section class="results-card">
-      <header class="card-header">
-        <div class="title-group">
-          <h2>Resultado da pesquisa</h2>
-          <p>Abaixo estão os resultados encontrados</p>
-        </div>
-        <span class="total-records">Total {{ filteredPayments.length }} registros</span>
-      </header>
-
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Beneficiário</th>
-              <th>Pagador ↓</th>
-              <th>Vencimento <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M478-240q21 0 35.5-14.5T528-290q0-21-14.5-35.5T478-340q-21 0-35.5 14.5T428-290q0 21 14.5 35.5T478-240Zm-36-154h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg></th>
-              <th>Valentia</th>
-              <th>Status</th>
-              <th>Dados do pagamento</th>
-              <th>Valor pago</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (payment of paginatedPayments; track $index) {
-              <tr>
-                <td><div class="cell-content text-bold">{{ payment.beneficiario.id }}</div><div class="cell-content text-light">{{ payment.beneficiario.code }}</div></td>
-                <td><div class="cell-content text-bold">{{ payment.pagador.id }}</div><div class="cell-content text-light">{{ payment.pagador.wallet }}</div></td>
-                <td><span class="status-tag status--criada">{{ payment.vencimento }}</span></td>
-                <td>{{ payment.valentia ?? '-' }}</td>
-                <td>{{ payment.status }}</td>
-                <td>{{ payment.dadosPagamento }}</td>
-                <td>{{ payment.valorPago | currency:'BRL' }}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-
-      <footer class="pagination-footer">
-        <div class="pagination">
-          @for(page of paginationNumbers; track $index) {
-            @if(page === '...') {
-              <span class="dots">...</span>
-            } @else {
-              <button [class.active]="page === currentPage" (click)="goToPage(+page)">{{ page }}</button>
-            }
-          }
-        </div>
-        <button class="btn-next" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">
-          Próxima
-          <span class="material-symbols-outlined">arrow_forward</span>
-        </button>
-      </footer>
     </section>
-  </div>
-</main>
+  </main>
+</div>
+
+<app-footer-info
+  [information]="footerInformation"
+  [context]="footerContext"
+  [label]="footerLabel"
+  [confirmCancelLabel]="confirmCancelLabel"
+  [confirmSubmitLabel]="confirmSubmitLabel"
+  (cancel)="onCancel()"
+  (submit)="onSubmit()">
+</app-footer-info>

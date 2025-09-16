@@ -15,6 +15,8 @@ export interface Transaction {
   commissionValue: number | null;
   status: 'Crédito' | 'Devolução';
   id: number;
+  client: string;
+  wallet: string;
 }
 
 @Component({
@@ -32,7 +34,6 @@ export interface Transaction {
   styleUrl: './extract.scss'
 })
 export class Extract {
-
   transactions: Transaction[] = [
     {
       type: 'Envio',
@@ -42,7 +43,9 @@ export class Extract {
       clientValue: 7.00,
       commissionValue: null,
       status: 'Crédito',
-      id: 1132
+      id: 1132,
+      client: 'Client A',
+      wallet: 'Wallet 1'
     },
     {
       type: 'Envio',
@@ -52,7 +55,9 @@ export class Extract {
       clientValue: 7.00,
       commissionValue: null,
       status: 'Crédito',
-      id: 1133
+      id: 1133,
+      client: 'Client B',
+      wallet: 'Wallet 2'
     },
     {
       type: 'Envio',
@@ -62,7 +67,9 @@ export class Extract {
       clientValue: 7.00,
       commissionValue: null,
       status: 'Devolução',
-      id: 1134 
+      id: 1134,
+      client: 'Client A',
+      wallet: 'Wallet 1'
     },
     {
       type: 'Envio',
@@ -72,7 +79,9 @@ export class Extract {
       clientValue: 15.00,
       commissionValue: null,
       status: 'Crédito',
-      id: 1131
+      id: 1131,
+      client: 'Client C',
+      wallet: 'Wallet 3'
     },
     {
       type: 'Recebimento',
@@ -82,7 +91,9 @@ export class Extract {
       clientValue: 99.00,
       commissionValue: null,
       status: 'Crédito',
-      id: 1130
+      id: 1130,
+      client: 'Client B',
+      wallet: 'Wallet 2'
     },
     {
       type: 'Envio',
@@ -92,7 +103,9 @@ export class Extract {
       clientValue: 24.75,
       commissionValue: null,
       status: 'Crédito',
-      id: 1129
+      id: 1129,
+      client: 'Client A',
+      wallet: 'Wallet 1'
     },
     {
       type: 'Envio',
@@ -102,7 +115,9 @@ export class Extract {
       clientValue: 4.99,
       commissionValue: null,
       status: 'Crédito',
-      id: 1128
+      id: 1128,
+      client: 'Client C',
+      wallet: 'Wallet 3'
     },
     {
       type: 'Devolução',
@@ -112,7 +127,9 @@ export class Extract {
       clientValue: 50.00,
       commissionValue: null,
       status: 'Devolução',
-      id: 1127
+      id: 1127,
+      client: 'Client B',
+      wallet: 'Wallet 2'
     },
     {
       type: 'Envio',
@@ -122,7 +139,9 @@ export class Extract {
       clientValue: 8.00,
       commissionValue: null,
       status: 'Crédito',
-      id: 1126
+      id: 1126,
+      client: 'Client A',
+      wallet: 'Wallet 1'
     }
   ];
 
@@ -139,5 +158,39 @@ export class Extract {
 
   public menuAbertoIndex: number | null = null;
 
-  constructor(private router: Router) { }
+  // Filter properties
+  startDate: string = '';
+  endDate: string = '';
+  selectedClient: string = '';
+  selectedWallet: string = '';
+
+  clients: string[] = ['Client A', 'Client B', 'Client C'];
+  wallets: string[] = ['Wallet 1', 'Wallet 2', 'Wallet 3'];
+
+  filteredTransactions: Transaction[] = [];
+
+  constructor(private router: Router) {
+    this.applyFilters();
+  }
+
+  applyFilters(): void {
+    let filtered = this.transactions;
+
+    if (this.startDate && this.endDate) {
+      const start = new Date(this.startDate);
+      const end = new Date(this.endDate);
+      end.setHours(23, 59, 59, 999); 
+      filtered = filtered.filter(t => t.date >= start && t.date <= end);
+    }
+
+    if (this.selectedClient) {
+      filtered = filtered.filter(t => t.client === this.selectedClient);
+    }
+
+    if (this.selectedWallet) {
+      filtered = filtered.filter(t => t.wallet === this.selectedWallet);
+    }
+
+    this.filteredTransactions = filtered;
+  }
 }
