@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderTitle } from '../../../../shared/components/header-title/header-title';
 import { ConfirmDeactivateModalComponent } from '../../../../shared/components/confirm-deactivate-modal.component/confirm-deactivate-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ChangeDetectorRef } from '@angular/core';
 
 export interface Usuario {
   id: number;
@@ -36,12 +37,11 @@ export interface MenuAcao {
     FormsModule,
   ],
   templateUrl: './list.html',
-  styleUrl: './list.scss'
+  styleUrls: ['./list.scss']
 })
 export class List implements OnInit {
 
-  constructor(private router: Router , private dialog: MatDialog) {}
-
+  constructor(private router: Router, private dialog: MatDialog, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.atualizarPaginacao();
@@ -58,103 +58,18 @@ export class List implements OnInit {
   };
 
   public usuarios: Usuario[] = [
-    {
-      id: 1,
-      nome: '123 Milhas',
-      email: 'admin@123milhas.com',
-      razaoSocial: '123 Milhas',
-      emailRazaoSocial: 'admin@123milhas.com',
-      perfil: 'Cashin/Cashout',
-      emailPerfil: 'admin@123milhas.com',
-      status: 'Active'
-    },
-    {
-      id: 2,
-      nome: 'Phoenix Baker',
-      email: 'lara.steiner@123milhas.com',
-      razaoSocial: 'Stark',
-      emailRazaoSocial: 'olivia@unittledui.com',
-      perfil: 'Cashin/Cashout',
-      emailPerfil: 'admin@123milhas.com',
-      status: 'Active'
-    },
-    {
-      id: 3,
-      nome: 'Lara Steiner',
-      email: 'lara.steiner@123milhas.com',
-      razaoSocial: 'Stark',
-      emailRazaoSocial: 'olivia@unittledui.com',
-      perfil: 'Cashin/Cashout',
-      emailPerfil: 'admin@123milhas.com',
-      status: 'Active'
-    },
-    {
-      id: 4,
-      nome: 'João Silva',
-      email: 'joao@empresa.com',
-      razaoSocial: 'Silva & Associados',
-      emailRazaoSocial: 'contato@silva.com',
-      perfil: 'Admin',
-      emailPerfil: 'admin@silva.com',
-      status: 'Inactive'
-    },
-    {
-      id: 5,
-      nome: 'Maria Santos',
-      email: 'maria@tech.com',
-      razaoSocial: 'Tech Solutions',
-      emailRazaoSocial: 'info@tech.com',
-      perfil: 'User',
-      emailPerfil: 'user@tech.com',
-      status: 'Active'
-    },
-    {
-      id: 6,
-      nome: 'Pedro Costa',
-      email: 'pedro@costa.com',
-      razaoSocial: 'Costa Ltda',
-      emailRazaoSocial: 'contato@costa.com',
-      perfil: 'Manager',
-      emailPerfil: 'manager@costa.com',
-      status: 'Active'
-    },
-    {
-      id: 7,
-      nome: 'Ana Oliveira',
-      email: 'ana@oliveira.com',
-      razaoSocial: 'Oliveira Corp',
-      emailRazaoSocial: 'corp@oliveira.com',
-      perfil: 'User',
-      emailPerfil: 'user@oliveira.com',
-      status: 'Inactive'
-    },
-    {
-      id: 8,
-      nome: 'Carlos Lima',
-      email: 'carlos@lima.com',
-      razaoSocial: 'Lima Enterprises',
-      emailRazaoSocial: 'enterprise@lima.com',
-      perfil: 'Admin',
-      emailPerfil: 'admin@lima.com',
-      status: 'Active'
-    },
-    {
-      id: 9,
-      nome: 'Luciana Ferreira',
-      email: 'luciana@ferreira.com',
-      razaoSocial: 'Ferreira & Cia',
-      emailRazaoSocial: 'cia@ferreira.com',
-      perfil: 'Manager',
-      emailPerfil: 'manager@ferreira.com',
-      status: 'Active'
-    }
+    { id: 1, nome: '123 Milhas', email: 'admin@123milhas.com', razaoSocial: '123 Milhas', emailRazaoSocial: 'admin@123milhas.com', perfil: 'Cashin/Cashout', emailPerfil: 'admin@123milhas.com', status: 'Active' },
+    { id: 2, nome: 'Phoenix Baker', email: 'lara.steiner@123milhas.com', razaoSocial: 'Stark', emailRazaoSocial: 'olivia@unittledui.com', perfil: 'Cashin/Cashout', emailPerfil: 'admin@123milhas.com', status: 'Active' },
+    { id: 3, nome: 'Lara Steiner', email: 'lara.steiner@123milhas.com', razaoSocial: 'Stark', emailRazaoSocial: 'olivia@unittledui.com', perfil: 'Cashin/Cashout', emailPerfil: 'admin@123milhas.com', status: 'Active' },
+    { id: 4, nome: 'João Silva', email: 'joao@empresa.com', razaoSocial: 'Silva & Associados', emailRazaoSocial: 'contato@silva.com', perfil: 'Admin', emailPerfil: 'admin@silva.com', status: 'Inactive' },
+    { id: 5, nome: 'Maria Santos', email: 'maria@tech.com', razaoSocial: 'Tech Solutions', emailRazaoSocial: 'info@tech.com', perfil: 'User', emailPerfil: 'user@tech.com', status: 'Active' },
+    { id: 6, nome: 'Pedro Costa', email: 'pedro@costa.com', razaoSocial: 'Costa Ltda', emailRazaoSocial: 'contato@costa.com', perfil: 'Manager', emailPerfil: 'manager@costa.com', status: 'Active' },
+    { id: 7, nome: 'Ana Oliveira', email: 'ana@oliveira.com', razaoSocial: 'Oliveira Corp', emailRazaoSocial: 'corp@oliveira.com', perfil: 'User', emailPerfil: 'user@oliveira.com', status: 'Inactive' },
+    { id: 8, nome: 'Carlos Lima', email: 'carlos@lima.com', razaoSocial: 'Lima Enterprises', emailRazaoSocial: 'enterprise@lima.com', perfil: 'Admin', emailPerfil: 'admin@lima.com', status: 'Active' },
+    { id: 9, nome: 'Luciana Ferreira', email: 'luciana@ferreira.com', razaoSocial: 'Ferreira & Cia', emailRazaoSocial: 'cia@ferreira.com', perfil: 'Manager', emailPerfil: 'manager@ferreira.com', status: 'Active' }
   ];
 
-  public filtros = {
-    cliente: '',
-    nome: '',
-    cnpj: ''
-  };
+  public filtros = { cliente: '', nome: '', cnpj: '' };
 
   public menuAcoes: MenuAcao[] = [
     { label: 'Editar', icon: '/img/person.svg', action: 'editar' },
@@ -173,54 +88,56 @@ export class List implements OnInit {
   // Menu dropdown
   public menuAbertoId: number | null = null;
 
+  get usuariosFiltrados(): Usuario[] {
+    const cnpjFiltroNumeros = this.filtros.cnpj.replace(/\D/g, '');
+    return this.usuarios.filter(usuario => {
+      const clienteMatch = usuario.nome.toLowerCase().includes(this.filtros.cliente.toLowerCase());
+      const nomeMatch = usuario.nome.toLowerCase().includes(this.filtros.nome.toLowerCase());
+      const cnpjUsuarioNumeros = usuario.razaoSocial.replace(/\D/g, '');
+      const cnpjMatch = cnpjUsuarioNumeros.includes(cnpjFiltroNumeros);
+      return clienteMatch && nomeMatch && cnpjMatch;
+    });
+  }
+
   get totalRegistros(): number {
-    return this.usuarios.length;
+    return this.usuariosFiltrados.length;
   }
 
   get usuariosPaginados(): Usuario[] {
     const inicio = (this.paginaAtual - 1) * this.itensPorPagina;
     const fim = inicio + this.itensPorPagina;
-    return this.usuarios.slice(inicio, fim);
+    return this.usuariosFiltrados.slice(inicio, fim);
   }
 
   atualizarPaginacao(): void {
-    this.totalPaginas = Math.ceil(this.totalRegistros / this.itensPorPagina);
+    this.totalPaginas = Math.ceil(this.totalRegistros / this.itensPorPagina) || 1;
+    if (this.paginaAtual > this.totalPaginas) this.paginaAtual = this.totalPaginas;
     this.paginas = this.gerarPaginas();
   }
 
   gerarPaginas(): (number | string)[] {
     const paginas: (number | string)[] = [];
-    const totalPaginas = this.totalPaginas;
+    const total = this.totalPaginas;
     const atual = this.paginaAtual;
 
-    if (totalPaginas <= 7) {
-      for (let i = 1; i <= totalPaginas; i++) {
-        paginas.push(i);
-      }
+    if (total <= 7) {
+      for (let i = 1; i <= total; i++) paginas.push(i);
     } else {
       paginas.push(1);
-
       if (atual <= 4) {
-        for (let i = 2; i <= 5; i++) {
-          paginas.push(i);
-        }
+        for (let i = 2; i <= 5; i++) paginas.push(i);
         paginas.push('...');
-        paginas.push(totalPaginas);
-      } else if (atual >= totalPaginas - 3) {
+        paginas.push(total);
+      } else if (atual >= total - 3) {
         paginas.push('...');
-        for (let i = totalPaginas - 4; i <= totalPaginas; i++) {
-          paginas.push(i);
-        }
+        for (let i = total - 4; i <= total; i++) paginas.push(i);
       } else {
         paginas.push('...');
-        for (let i = atual - 1; i <= atual + 1; i++) {
-          paginas.push(i);
-        }
+        for (let i = atual - 1; i <= atual + 1; i++) paginas.push(i);
         paginas.push('...');
-        paginas.push(totalPaginas);
+        paginas.push(total);
       }
     }
-
     return paginas;
   }
 
@@ -246,21 +163,11 @@ export class List implements OnInit {
     this.menuAbertoId = null;
 
     switch (acao) {
-      case 'editar':
-        this.editarUsuario(usuario);
-        break;
-      case 'credenciais':
-        this.gerenciarCredenciais(usuario);
-        break;
-      case 'vincular':
-        this.vincularEmpresas(usuario);
-        break;
-      case 'desativar':
-        this.desativarUsuario(usuario);
-        break;
-      case 'logs':
-        this.verLogs(usuario);
-        break;
+      case 'editar': this.editarUsuario(usuario); break;
+      case 'credenciais': this.gerenciarCredenciais(usuario); break;
+      case 'vincular': this.vincularEmpresas(usuario); break;
+      case 'desativar': this.desativarUsuario(usuario); break;
+      case 'logs': this.verLogs(usuario); break;
     }
   }
 
@@ -275,17 +182,48 @@ export class List implements OnInit {
   private vincularEmpresas(usuario: Usuario): void {
     this.router.navigate([`/administracao/users/link-companies/${usuario.id}`]);
   }
-
   private desativarUsuario(usuario: Usuario): void {
     const dialogRef = this.dialog.open(ConfirmDeactivateModalComponent, {
-      data: { name: 'Adeilton Alves Junior' }
+      data: { name: usuario.nome }
     });
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Usuário confirmado para desativação');
+        usuario.status = 'Inactive';
+
+        // Força Angular a atualizar a view imediatamente
+        this.cdr.detectChanges();
+
+        // Atualiza paginação se necessário
+        this.atualizarPaginacao();
       }
     });
+
+
   }
+
+  onCnpjChange(valor: string) {
+    // Remove tudo que não for número
+    let numeros = valor.replace(/\D/g, '');
+
+    // Limita a 14 dígitos
+    numeros = numeros.substring(0, 14);
+
+    // Aplica a máscara CNPJ
+    if (numeros.length > 12) {
+      numeros = numeros.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2})$/, "$1.$2.$3/$4-$5");
+    } else if (numeros.length > 8) {
+      numeros = numeros.replace(/^(\d{2})(\d{3})(\d{3})(\d{0,4})$/, "$1.$2.$3/$4");
+    } else if (numeros.length > 5) {
+      numeros = numeros.replace(/^(\d{2})(\d{3})(\d{0,3})$/, "$1.$2.$3");
+    } else if (numeros.length > 2) {
+      numeros = numeros.replace(/^(\d{2})(\d{0,3})$/, "$1.$2");
+    }
+
+    this.filtros.cnpj = numeros;
+    this.atualizarPaginacao();
+  }
+
 
   private verLogs(usuario: Usuario): void {
     this.router.navigate([`/administracao/users/logs/${usuario.id}`]);

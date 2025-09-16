@@ -3,37 +3,33 @@
   <app-admin-sidebar></app-admin-sidebar>
   <div class="template-list-bg">
     <div class="template-list-container">
+
+      <!-- Filtros -->
       <div class="template-list-filters-section">
         <div class="template-list-filters-row">
           <label class="filter-label">
             Cliente
             <div class="search-input-container">
               <img src="/img/lupa.svg" alt="Buscar" class="search-icon" />
-              <input 
-                type="text" 
-                placeholder="Buscar por algum cliente..." 
-                class="template-list-filter-input search-input"
-                [(ngModel)]="filtros.cliente" />
+              <input type="text" placeholder="Buscar por algum cliente..."
+                class="template-list-filter-input search-input" [(ngModel)]="filtros.cliente"
+                (ngModelChange)="atualizarPaginacao()" />
             </div>
           </label>
           <label class="filter-label">
             Nome
-            <input 
-              type="text" 
-              placeholder="Nome do cliente" 
-              class="template-list-filter-input"
-              [(ngModel)]="filtros.nome" />
+            <input type="text" placeholder="Nome do cliente" class="template-list-filter-input"
+              [(ngModel)]="filtros.nome" (ngModelChange)="atualizarPaginacao()" />
           </label>
           <label class="filter-label">
             CNPJ
-            <input 
-              type="text" 
-              placeholder="Número do CNPJ" 
-              class="template-list-filter-input"
-              [(ngModel)]="filtros.cnpj" />
+            <input type="text" placeholder="Número do CNPJ" class="template-list-filter-input"
+              [(ngModel)]="filtros.cnpj" (ngModelChange)="onCnpjChange($event)" max="18"/>
           </label>
         </div>
       </div>
+
+      <!-- Resultados -->
       <div class="template-list-results-section">
         <h2 class="template-list-results-title">Resultado da pesquisa</h2>
         <div class="template-list-results-info-row">
@@ -66,25 +62,17 @@
                   <div class="template-list-email">{{ usuario.emailPerfil }}</div>
                 </td>
                 <td>
-                  <span 
-                    class="template-list-status"
-                    [class.template-list-status-active]="usuario.status === 'Active'"
+                  <span class="template-list-status" [class.template-list-status-active]="usuario.status === 'Active'"
                     [class.template-list-status-inactive]="usuario.status === 'Inactive'">
                     {{ usuario.status }}
                   </span>
                 </td>
                 <td class="actions-cell">
-                  <span 
-                    class="template-list-actions-dots"
-                    (click)="toggleMenu(usuario.id, $event)">
+                  <span class="template-list-actions-dots" (click)="toggleMenu(usuario.id, $event)">
                     &#8942;
                   </span>
-                  <div 
-                    class="template-list-actions-menu"
-                    [class.show]="menuAbertoId === usuario.id">
-                    <div 
-                      *ngFor="let acao of menuAcoes"
-                      class="template-list-actions-item"
+                  <div class="template-list-actions-menu" [class.show]="menuAbertoId === usuario.id">
+                    <div *ngFor="let acao of menuAcoes" class="template-list-actions-item"
                       (click)="executarAcao(acao.action, usuario, $event)">
                       <img [src]="acao.icon" [alt]="acao.label" class="action-icon" />
                       {{ acao.label }}
@@ -95,17 +83,17 @@
             </tbody>
           </table>
         </div>
+
+        <!-- Paginação -->
         <div class="template-list-pagination" *ngIf="totalPaginas > 1">
-          <button 
-            *ngFor="let pagina of paginas"
-            class="template-list-page"
-            [class.template-list-page-active]="pagina === paginaAtual"
-            [disabled]="typeof pagina === 'string'"
+          <button *ngFor="let pagina of paginas" class="template-list-page"
+            [class.template-list-page-active]="pagina === paginaAtual" [disabled]="typeof pagina === 'string'"
             (click)="irParaPagina(pagina)">
             {{ pagina }}
           </button>
         </div>
       </div>
+
     </div>
   </div>
 </div>
