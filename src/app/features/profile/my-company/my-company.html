@@ -1,3 +1,16 @@
-<div>
-    <h2>Minha Empresa</h2>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-profile-sidebar></app-profile-sidebar>
+
+  
 </div>
+
+<app-footer-info
+  [information]="footerInformation"
+  [context]="footerContext"
+  [label]="footerLabel"
+  [confirmCancelLabel]="'Cancelar'"
+  [confirmSubmitLabel]="sendLabel"
+  (cancel)="onCancel()"
+  (submit)="onSubmit()">
+</app-footer-info>

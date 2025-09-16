@@ -1,15 +1,79 @@
 <app-header-title [headerInformation]="headerInformation"></app-header-title>
 <div class="template-content">
   <app-profile-sidebar></app-profile-sidebar>
-  <div>
-    <h2>Meus dados</h2>
+
+  <div class="my-data-container">
+    <div class="card user-header">
+      <div class="user-info">
+        <div class="avatar">J</div>
+        <div class="user-text">
+          <span class="name">Adeilton Alves Junior</span>
+          <span class="email">adeilton.silva@gmail.com</span>
+        </div>
+      </div>
+      <div class="user-identifiers">
+        <div class="identifier-item">
+          <span class="label">Identificação</span>
+          <span class="value">829.***.110-**</span>
+        </div>
+        <div class="identifier-item">
+          <span class="label">Telefone</span>
+          <span class="value">(11) 98230-2931</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="card form-section" [formGroup]="userForm">
+      <div class="form-header">
+        <h3>Informações do usuário</h3>
+        <p>Complete as informações de acordo com a chave desejada</p>
+      </div>
+      <hr class="divider">
+      <div class="form-content">
+        <span class="form-content-title">Dados pessoais</span>
+        <div class="form-fields">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nome</label>
+              <input id="name" type="text" formControlName="name">
+            </div>
+            <div class="form-group">
+              <label for="cpf">CPF</label>
+              <input id="cpf" type="text" formControlName="cpf">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Telefone</label>
+              <input id="phone" type="text" formControlName="phone">
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input id="email" type="text" formControlName="email">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="card auth-method">
+      <div class="auth-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.25C12 2.25 5.25 3.75 5.25 9.75V15.75L12 21.75L18.75 15.75V9.75C18.75 3.75 12 2.25 12 2.25ZM10.5 15.75L6.75 12L8.0625 10.6875L10.5 13.125L15.9375 7.6875L17.25 9L10.5 15.75Z" fill="#5C4896"/></svg>
+      </div>
+      <div class="auth-text">
+        <span class="title">Método de autenticação</span>
+        <span class="description">A autenticação de dois fatores adiciona uma camada extra de segurança à sua conta. Para fazer login, você também precisará fornecer um código de 6 dígitos.</span>
+      </div>
+      <button class="activate-btn">Ativar</button>
+    </div>
   </div>
 </div>
+
 <app-footer-info
   [information]="footerInformation"
   [context]="footerContext"
   [label]="footerLabel"
-  [confirmCancelLabel]="`Cancelar`"
+  [confirmCancelLabel]="'Cancelar'"
   [confirmSubmitLabel]="sendLabel"
   (cancel)="onCancel()"
   (submit)="onSubmit()">

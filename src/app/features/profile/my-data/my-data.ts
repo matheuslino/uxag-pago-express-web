@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, Location } from '@angular/common';
 import { ProfileSidebarComponent } from '../../../shared/components/profile-sidebar/profile-sidebar';
-import { ActivatedRoute } from '@angular/router';
 import { FooterInfo } from '../../../shared/components/footer-info/footer-info';
 
 @Component({
@@ -20,7 +19,7 @@ import { FooterInfo } from '../../../shared/components/footer-info/footer-info';
   styleUrls: ['./my-data.scss'],
   standalone: true,
 })
-export class MyData {
+export class MyData implements OnInit {
 
   public headerInformation = {
     pageTitle: 'Perfil',
@@ -30,25 +29,61 @@ export class MyData {
       { label: 'Transacões', path: '/transacoes' },
       { label: 'Pagamento', path: '/transacoes/payment' }
     ],
-  }
+  };
 
-  public sendLabel: string = 'Salvar';
-  public footerInformation: string = '001';
-  public footerContext: string = 'Perfil';
-  public footerLabel: string = '';
+  public sendLabel: string = 'Entrar em modo de edição';
+  public footerInformation: string = '#1132';
+  public footerContext: string = 'Dados do usuário:';
+  public footerLabel: string = 'Adeilton Alves Junior';
+
+  public isEditing: boolean = false;
+  public userForm!: FormGroup; 
+
+  private user = {
+    name: 'Lucas Aba Cliente',
+    cpf: '829.***.120-**',
+    phone: '(11) 98230-2931',
+    email: 'adeilton.silva@gmail.com'
+  };
 
   constructor(
-    private route: ActivatedRoute,
     private location: Location,
-  ) {
+    private fb: FormBuilder
+  ) { }
+
+  ngOnInit(): void {
+    this.userForm = this.fb.group({
+      name: [this.user.name],
+      cpf: [this.user.cpf],
+      phone: [this.user.phone],
+      email: [this.user.email]
+    });
+
+    this.userForm.disable();
   }
 
   onCancel(): void {
-    this.location.back();
+    if (this.isEditing) {
+      this.isEditing = false;
+      this.sendLabel = 'Entrar em modo de edição';
+      this.userForm.reset(this.user);
+      this.userForm.disable();
+    } else {
+      this.location.back();
+    }
   }
 
   onSubmit(): void {
-    alert('salvar');
-  }
+    this.isEditing = !this.isEditing;
 
+    if (this.isEditing) {
+      this.sendLabel = 'Salvar';
+      this.userForm.enable();
+    } else {
+      console.log('Dados salvos:', this.userForm.value);
+      this.sendLabel = 'Entrar em modo de edição';
+      this.userForm.disable();
+      this.user = this.userForm.value;
+    }
+  }
 }
