@@ -2,13 +2,13 @@
   <nav class="sidebar-nav">
     <ul class="nav-list">
       <li class="nav-item">
-        <a routerLink="/reports/withdrawals" routerLinkActive="active" class="nav-link parent-link">
+        <a routerLink="/relatorios/withdrawals" routerLinkActive="active" class="nav-link parent-link">
           <span>Saques</span>
         </a>
         <div class="nav-submenu" *ngIf="menuSelected && menuSelected === 'withdrawals'">
           <ul class="sub-nav-list">
             <li class="sub-nav-item">
-              <a routerLink="/reports/withdrawals" routerLinkActive="active" class="sub-nav-link">
+              <a routerLink="/relatorios/withdrawals" routerLinkActive="active" class="sub-nav-link">
                 <span>Cash-out</span>
               </a>
             </li>
@@ -16,13 +16,13 @@
         </div>
       </li>
       <li class="nav-item">
-        <a routerLink="/reports/deposits" routerLinkActive="active" class="nav-link parent-link">
+        <a routerLink="/relatorios/deposits" routerLinkActive="active" class="nav-link parent-link">
           <span>Depósito</span>
         </a>
         <div class="nav-submenu" *ngIf="menuSelected && menuSelected === 'deposits'">
           <ul class="sub-nav-list">
             <li class="sub-nav-item">
-              <a routerLink="/reports/deposits" routerLinkActive="active" class="sub-nav-link">
+              <a routerLink="/relatorios/deposits" routerLinkActive="active" class="sub-nav-link">
                 <span>Cash-in</span>
               </a>
             </li>

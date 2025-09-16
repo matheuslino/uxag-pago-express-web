@@ -31,6 +31,7 @@ import { MyCompany } from './features/profile/my-company/my-company';
 import { MyData } from './features/profile/my-data/my-data';
 import { Balance } from './features/wallets/balance/balance';
 import { Deposit } from './features/wallets/deposit/deposit';
+import { Deposit as DepositClient } from './features/transactions/deposit/deposit';
 import { NewItemWallet } from './features/wallets/new-item-wallet/new-item-wallet';
 import { Payment } from './features/wallets/payment/payment';
 import { Payment as PaymentClient } from './features/transactions/payment/payment';
@@ -44,7 +45,6 @@ import { DepositoRelatorio } from './features/relatorios/deposito/deposito';
 import { SaquesRelatorio } from './features/relatorios/saques/saques';
 import { Modals } from './features/admin/modals/modals';
 import { Transactions } from './features/transactions/transactions';
-
 
 export const routes: Routes = [
   {
@@ -98,15 +98,6 @@ export const routes: Routes = [
               {
                 path: '',
                 component: ListClient,
-                data: {
-                  pageTitle: 'Clientes',
-                  pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-                  breadcrumb: [
-                    { label: 'Painel', path: '/dashboard' },
-                    { label: 'Administração', path: '/administracao' },
-                    { label: 'Clientes', path: '/administracao/clients' }
-                  ],
-                }
               },
               {
                 path: 'edit/:id',
@@ -115,15 +106,6 @@ export const routes: Routes = [
               {
                 path: 'notifications/:id',
                 component: NotificationClient,
-                data: {
-                  pageTitle: 'Notificações',
-                  pageSubtitle: 'Texto complementar abaixo',
-                  breadcrumb: [
-                    { label: 'Painel', path: '/dashboard' },
-                    { label: 'Administração', path: '/administracao' },
-                    { label: 'Notificações', path: '/administracao/notifications' }
-                  ],
-                }
               },
             ]
           },
@@ -133,20 +115,6 @@ export const routes: Routes = [
               {
                 path: '',
                 component: ListUser,
-                data: {
-                  pageTitle: 'Usuários',
-                  pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-                  breadcrumb: [
-                    { label: 'Painel', path: '/dashboard' },
-                    { label: 'Administração', path: '/administracao' },
-                    { label: 'Usuários', path: '/administracao/users' }
-                  ],
-                  actionButton: {
-                    show: true,
-                    label: '+ Adicionar novo usuário',
-                    icon: 'add'
-                  }
-                },
               },
               {
                 path: 'edit/:id',
@@ -172,20 +140,6 @@ export const routes: Routes = [
               {
                 path: 'list',
                 component: ListPix,
-                data: {
-                  pageTitle: 'Chaves PIX',
-                  pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-                  breadcrumb: [
-                    { label: 'Painel', path: '/dashboard' },
-                    { label: 'Administração', path: '/administracao' },
-                    { label: 'Chaves PIX', path: '/administracao/pix/list' }
-                  ],
-                  actionButton: {
-                    show: true,
-                    label: '+ Adicionar nova chave',
-                    icon: 'add'
-                  }
-                }
               },
               {
                 path: 'new',
@@ -196,80 +150,26 @@ export const routes: Routes = [
           {
             path: 'bank-accounts',
             component: BankAccounts,
-            data: {
-              pageTitle: 'Contas bancárias',
-              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Administração', path: '/administracao' },
-                { label: 'Contas bancárias', path: '/administracao/bank-accounts' }
-              ],
-            }
           },
           {
             path: 'batch-bank',
             component: BatchBank,
-            data: {
-              pageTitle: 'Banco em lote',
-              pageSubtitle: 'Texto complementar abaixo',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Administração', path: '/administracao' },
-                { label: 'Banco em lote', path: '/administracao/batch-bank' }
-              ],
-            }
           },
           {
             path: 'logs',
             component: Logs,
-            data: {
-              pageTitle: 'Relatório de logs',
-              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Administração', path: '/administracao' },
-                { label: 'Relatório de logs', path: '/administracao/logs' }
-              ],
-            }
           },
           {
             path: 'notifications',
             component: Notifications,
-            data: {
-              pageTitle: 'Notificações',
-              pageSubtitle: 'Texto complementar abaixo',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Administração', path: '/administracao' },
-                { label: 'Notificações', path: '/administracao/notifications' }
-              ],
-            }
           },
           {
             path: 'withdrawals',
             component: Withdrawals,
-            data: {
-              pageTitle: 'Aprovar Saques',
-              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Administração', path: '/administracao' },
-                { label: 'Aprovar Saques', path: '/administracao/withdrawals' }
-              ],
-            }
           },
           {
             path: 'modals',
             component: Modals,
-            data: {
-              pageTitle: 'Modais do Sistema',
-              pageSubtitle: 'Visualize e teste todos os modais disponíveis no sistema',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Administração', path: '/administracao' },
-                { label: 'Modais', path: '/administracao/modals' }
-              ],
-            }
           },
         ]
       },
@@ -348,11 +248,15 @@ export const routes: Routes = [
           {
             path: '',
             pathMatch: 'full',
-            redirectTo: '/transacoes/payment',
+            redirectTo: '/transacoes/deposit',
           },
           {
             path: 'payment',
             component: PaymentClient,
+          },
+          {
+            path: 'deposit',
+            component: DepositClient,
           },
         ]
       },
@@ -381,34 +285,16 @@ export const routes: Routes = [
         children: [
           {
             path: '',
-            redirectTo: '/reports/withdrawals',
+            redirectTo: '/relatorios/withdrawals',
             pathMatch: 'full'
           },
           {
             path: 'deposits',
             component: DepositoRelatorio,
-            data: {
-              pageTitle: 'Relatório de Depósitos',
-              pageSubtitle: 'Consulte os depósitos realizados',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Relatórios', path: '/reports' },
-                { label: 'Depósitos', path: '/reports/deposits' }
-              ],
-            }
           },
           {
             path: 'withdrawals',
             component: SaquesRelatorio,
-            data: {
-              pageTitle: 'Relatório de Saques',
-              pageSubtitle: 'Consulte os saques realizados',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Relatórios', path: '/reports' },
-                { label: 'Saques', path: '/reports/withdrawals' }
-              ],
-            }
           },
         ]
       },
