@@ -2,8 +2,13 @@
   <nav class="sidebar-nav">
     <ul class="nav-list">
       <li class="nav-item">
-        <a mat-button routerLink="/clients/edit" routerLinkActive="active" class="nav-link">
+        <a [routerLink]="`/administracao/clients/edit/${id}`" routerLinkActive="active" class="nav-link">
           <span>Dados</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="`/administracao/clients/notifications/${id}`" routerLinkActive="active" class="nav-link">
+          <span>Notificações por webhook</span>
         </a>
       </li>
     </ul>

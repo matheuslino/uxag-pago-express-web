@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { FooterInfo } from '../../../shared/components/footer-info/footer-info';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { RelatoriosSidebar } from '../../../shared/components/relatorios-sidebar/relatorios-sidebar.component';
 
@@ -15,7 +14,6 @@ import { RelatoriosSidebar } from '../../../shared/components/relatorios-sidebar
     RouterModule,
     MatIconModule,
     ReactiveFormsModule,
-    FooterInfo,
     RelatoriosSidebar,
     HeaderTitle,
     CommonModule,

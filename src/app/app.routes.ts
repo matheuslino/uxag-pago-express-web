@@ -15,7 +15,7 @@ import { Logs } from './features/admin/logs/logs';
 import { Logs as LogsUser } from './features/admin/users/logs/logs';
 import { Logs as LogsWallet } from './features/wallets/logs/logs';
 import { Notifications } from './features/admin/notifications/notifications';
-import { Users } from './features/admin/users/users';
+import { Notifications as NotificationClient } from './features/admin/clients/notifications/notifications';
 import { Withdrawals } from './features/admin/withdrawals/withdrawals';
 import { LinkCompanies } from './features/admin/users/link-companies/link-companies';
 import { Credentials } from './features/admin/users/credentials/credentials';
@@ -43,6 +43,7 @@ import { Config } from './features/wallets/config/config';
 import { Relatorios } from './features/relatorios/relatorios';
 import { DepositoRelatorio } from './features/relatorios/deposito/deposito';
 import { SaquesRelatorio } from './features/relatorios/saques/saques';
+import { Modals } from './features/admin/modals/modals';
 
 
 export const routes: Routes = [
@@ -110,7 +111,20 @@ export const routes: Routes = [
               {
                 path: 'edit/:id',
                 component: EditClient,
-              }
+              },
+              {
+                path: 'notifications/:id',
+                component: NotificationClient,
+                data: {
+                  pageTitle: 'Notificações',
+                  pageSubtitle: 'Texto complementar abaixo',
+                  breadcrumb: [
+                    { label: 'Painel', path: '/dashboard' },
+                    { label: 'Administração', path: '/administracao' },
+                    { label: 'Notificações', path: '/administracao/notifications' }
+                  ],
+                }
+              },
             ]
           },
           {
@@ -241,6 +255,19 @@ export const routes: Routes = [
                 { label: 'Painel', path: '/dashboard' },
                 { label: 'Administração', path: '/administracao' },
                 { label: 'Aprovar Saques', path: '/administracao/withdrawals' }
+              ],
+            }
+          },
+          {
+            path: 'modals',
+            component: Modals,
+            data: {
+              pageTitle: 'Modais do Sistema',
+              pageSubtitle: 'Visualize e teste todos os modais disponíveis no sistema',
+              breadcrumb: [
+                { label: 'Painel', path: '/dashboard' },
+                { label: 'Administração', path: '/administracao' },
+                { label: 'Modais', path: '/administracao/modals' }
               ],
             }
           },
