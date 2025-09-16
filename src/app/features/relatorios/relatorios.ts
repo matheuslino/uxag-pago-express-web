@@ -18,7 +18,6 @@ interface BreadcrumbItem {
     MatIconModule,
     CommonModule,
     Header,
-    RelatoriosSidebar
   ],
   templateUrl: './relatorios.html',
   styleUrls: ['./relatorios.scss']

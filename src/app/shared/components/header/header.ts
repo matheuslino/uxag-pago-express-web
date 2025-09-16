@@ -67,23 +67,6 @@ export class Header implements OnInit {
     { label: 'Relatórios', path: '/reports', active: false }
   ];
 
-  notifications: Notification[] = [
-    {
-      id: '1',
-      title: 'Nova transação',
-      message: 'Você recebeu um pagamento de R$ 1.250,00',
-      isRead: false,
-      createdAt: new Date()
-    },
-    {
-      id: '2',
-      title: 'Relatório mensal',
-      message: 'Seu relatório mensal está disponível',
-      isRead: false,
-      createdAt: new Date(Date.now() - 3600000)
-    }
-  ];
-
   currentUser: User = {
     name: 'Antônio Coutinho',
     email: 'antonio@example.com',
@@ -97,10 +80,6 @@ export class Header implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-  }
-
-  get unreadNotifications(): number {
-    return this.notifications.filter(n => !n.isRead).length;
   }
 
   getUserInitials(): string {

@@ -63,9 +63,9 @@ export class HeaderDashboard implements OnInit {
   isBalanceVisible = false;
   isScrolled = false;
 
-  userName = 'Antônio Coutinho';
+  userName = 'Adeilton Junior';
   userRole = 'Gerente de Contas';
-  userEmail = 'antonio.coutinho@example.com';
+  userEmail = 'adeilton@gmail.com';
   accountNumber = '#1132';
   totalBalance = 12200.50;
   balanceChangePercentage = 9;
@@ -74,8 +74,8 @@ export class HeaderDashboard implements OnInit {
     { path: '/dashboard', label: 'Painel' },
     { path: '/administracao', label: 'Administração' },
     { path: '/wallets', label: 'Carteira' },
-    { path: '/transacoes', label: 'Transações' },
-    { path: '/relatorios', label: 'Relatórios' }
+    { path: '/transactions', label: 'Transações' },
+    { path: '/reports', label: 'Relatórios' }
   ];
 
   wallets: Wallet[] = [

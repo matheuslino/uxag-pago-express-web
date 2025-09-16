@@ -11,6 +11,11 @@
   font-style: normal;
 }
 
+::ng-deep .cdk-overlay-connected-position-bounding-box {
+  margin-top: 35px !important;
+  margin-left: -75px !important;
+}
+
 :host {
   font-family: 'Inter', sans-serif;
   display: block;
@@ -167,6 +172,37 @@
   display: flex;
 }
 
+.icon-info-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: 0;
+  background-color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.icon-text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon-title {
+  color: #414651;
+  text-align: left;
+}
+
+.icon-subtitle {
+  color: #929292;
+  text-align: left;
+  font-size: 12px;
+}
+
 .user-info-detailed {
   display: flex;
   align-items: center;
@@ -196,6 +232,7 @@
 }
 
 .user-details {
+  min-width: 166px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -476,6 +513,15 @@
   border-radius: 8px;
 }
 
+::ng-deep .mat-mdc-menu-content {
+  background-color: #ffffff;
+}
+
+::ng-deep .mat-mdc-menu-panel {
+  backdrop-filter: blur(10px);
+  background-color: #fff;
+}
+
 .user-actions .user-info-button {
   position: relative;
   top: 2px;
@@ -522,7 +568,6 @@
 
 .menu-header, .user-menu-header {
   padding: 16px;
-  border-bottom: 1px solid #e5e7eb;
   h4 { margin: 0; font-size: 16px; font-weight: 600; color: #1f2937; }
 }
 .notification-menu { max-width: 360px; min-width: 320px; }
@@ -550,9 +595,27 @@
   img { width: 100%; height: 100%; object-fit: cover; }
   .avatar-initials { color: white; font-size: 14px; font-weight: 600; }
 }
+.icon-menu {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #EEEEEE;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+  }
+}
 .user-details-menu {
-  .user-name-menu { font-size: 14px; font-weight: 600; color: #1f2937; margin-bottom: 2px; }
-  .user-email-menu { font-size: 12px; color: #6b7280; }
+  text-align: left;
+  .user-name-menu { font-size: 14px; font-weight: bold; color: #3a3a3a; margin-bottom: 2px; }
+  .user-email-menu { font-size: 13px; color: #9d9d9d; font-weight: 500; }
 }
 .logout-item { color: #dc2626 !important; mat-icon { color: #dc2626 !important; } }
 ::ng-deep .mat-menu-item { mat-icon { margin-right: 12px; color: #6b7280; } }

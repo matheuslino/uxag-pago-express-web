@@ -8,6 +8,7 @@ import { HeaderTitle } from '../../../../shared/components/header-title/header-t
 import { ConfirmDeactivateModalComponent } from '../../../../shared/components/confirm-deactivate-modal.component/confirm-deactivate-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeDetectorRef } from '@angular/core';
+import { CustomTable } from '../../../../shared/components/custom-table/custom-table';
 
 export interface Usuario {
   id: number;
@@ -35,6 +36,7 @@ export interface MenuAcao {
     HeaderTitle,
     CommonModule,
     FormsModule,
+    CustomTable
   ],
   templateUrl: './list.html',
   styleUrls: ['./list.scss']
@@ -56,6 +58,12 @@ export class List implements OnInit {
       { label: 'Usuários', path: '/administracao/users' }
     ],
   };
+
+  columns = [
+    { field: 'nome', field2: 'email', field2Type: 'column', header: 'Nome / E-mail', sortable: true },
+    { field: 'razaoSocial', field2: 'emailRazaoSocial', field2Type: 'column', header: 'Razão social', sortable: true },
+    { field: 'perfil', field2: 'emailPerfil', field2Type: 'column', header: 'Perfil/Login' }
+  ];
 
   public usuarios: Usuario[] = [
     { id: 1, nome: '123 Milhas', email: 'admin@123milhas.com', razaoSocial: '123 Milhas', emailRazaoSocial: 'admin@123milhas.com', perfil: 'Cashin/Cashout', emailPerfil: 'admin@123milhas.com', status: 'Active' },
@@ -79,13 +87,10 @@ export class List implements OnInit {
     { label: 'Ver logs', icon: '/img/logs.svg', action: 'logs' }
   ];
 
-  // Paginação
   public paginaAtual = 1;
   public itensPorPagina = 10;
   public totalPaginas = 0;
   public paginas: (number | string)[] = [];
-
-  // Menu dropdown
   public menuAbertoId: number | null = null;
 
   get usuariosFiltrados(): Usuario[] {
@@ -190,11 +195,7 @@ export class List implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         usuario.status = 'Inactive';
-
-        // Força Angular a atualizar a view imediatamente
         this.cdr.detectChanges();
-
-        // Atualiza paginação se necessário
         this.atualizarPaginacao();
       }
     });
@@ -203,13 +204,8 @@ export class List implements OnInit {
   }
 
   onCnpjChange(valor: string) {
-    // Remove tudo que não for número
     let numeros = valor.replace(/\D/g, '');
-
-    // Limita a 14 dígitos
     numeros = numeros.substring(0, 14);
-
-    // Aplica a máscara CNPJ
     if (numeros.length > 12) {
       numeros = numeros.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2})$/, "$1.$2.$3/$4-$5");
     } else if (numeros.length > 8) {
@@ -219,7 +215,6 @@ export class List implements OnInit {
     } else if (numeros.length > 2) {
       numeros = numeros.replace(/^(\d{2})(\d{0,3})$/, "$1.$2");
     }
-
     this.filtros.cnpj = numeros;
     this.atualizarPaginacao();
   }
@@ -227,5 +222,22 @@ export class List implements OnInit {
 
   private verLogs(usuario: Usuario): void {
     this.router.navigate([`/administracao/users/logs/${usuario.id}`]);
+  }
+
+  onRowSelected(selected: any[]) {
+    console.log('Linhas selecionadas:', selected);
+  }
+
+  onSortChanged(sort: any) {
+    if (!sort || (sort && !sort.direction)) {
+      return;
+    }
+    this.usuarios = [...this.usuarios].sort((a: any, b: any) => {
+      const valueA = a[sort.column];
+      const valueB = b[sort.column];
+      if (valueA < valueB) return sort.direction === 'asc' ? -1 : 1;
+      if (valueA > valueB) return sort.direction === 'asc' ? 1 : -1;
+      return 0;
+    });
   }
 }

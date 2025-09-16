@@ -164,21 +164,49 @@
 
 <mat-menu #userMenu="matMenu">
   <div class="user-menu-header">
-    <div class="user-info-menu">
+    <div class="user-info-detailed">
       <div class="user-avatar-menu">
-        <img *ngIf="imageLoaded" src="assets/images/user-avatar.png" alt="User Avatar" (error)="onImageError()" />
-        <span *ngIf="!imageLoaded" class="avatar-initials">{{ getUserInitials() }}</span>
+        <img src="assets/images/avatar.png" 
+              alt="User" />
       </div>
       <div class="user-details-menu">
         <div class="user-name-menu">{{ userName }}</div>
         <div class="user-email-menu">{{ userEmail }}</div>
       </div>
     </div>
-  </div>
+  </div>   
   <mat-divider></mat-divider>
-  <button mat-menu-item routerLink="/settings/profile"><mat-icon>person</mat-icon><span>Perfil</span></button>
-  <button mat-menu-item routerLink="/settings"><mat-icon>settings</mat-icon><span>Configurações</span></button>
-  <button mat-menu-item><mat-icon>help</mat-icon><span>Ajuda</span></button>
-  <mat-divider></mat-divider>
-  <button mat-menu-item (click)="logout()" class="logout-item"><mat-icon>logout</mat-icon><span>Sair</span></button>
+  <button class="icon-info-container" routerLink="/settings/profile">
+    <div class="icon-menu">
+      <img src="assets/icons/user.svg" alt="user" />
+    </div>
+    <div class="icon-text-container">
+      <span class="icon-title">Meus Dados</span>
+      <span class="icon-subtitle">Gerenciar informações pessoais</span>
+    </div>
+  </button>
+  <button class="icon-info-container" routerLink="/settings">
+    <div class="icon-menu">
+      <img src="assets/icons/settings.svg" alt="settings" />
+    </div>
+    <div class="icon-text-container">
+      <span class="icon-title">Alterar Senha</span>
+      <span class="icon-subtitle">Explore outra senha sua</span>
+    </div>
+  </button>
+  <button class="icon-info-container">
+    <div class="icon-menu">
+      <img src="assets/icons/idioma.svg" alt="idioma" />
+    </div>
+    <div class="icon-text-container">
+      <span class="icon-title">Idioma</span>
+      <span class="icon-subtitle">Trocar para outra linguagem</span>
+    </div>
+  </button>
+  <button class="icon-info-container" (click)="logout()">
+    <div class="icon-menu">
+      <img src="assets/icons/sair.svg" alt="sair" />
+    </div>
+    <span class="icon-title">Sair</span>
+  </button>
 </mat-menu>

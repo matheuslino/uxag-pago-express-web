@@ -89,7 +89,7 @@ export const routes: Routes = [
           {
             path: '',
             pathMatch: 'full',
-            redirectTo: '/administracao/users',
+            redirectTo: '/administracao/bank-accounts',
           },
           {
             path: 'clients',
@@ -266,6 +266,11 @@ export const routes: Routes = [
         children: [
           {
             path: '',
+            pathMatch: 'full',
+            redirectTo: '/wallets/list',
+          },
+          {
+            path: 'list',
             component: ListWallet,
           },
           {
@@ -456,37 +461,37 @@ export const routes: Routes = [
         ],
       },
       {
-        path: 'relatorios',
+        path: 'reports',
         component: Relatorios,
         children: [
           {
             path: '',
-            redirectTo: 'deposito',
+            redirectTo: '/reports/withdrawals',
             pathMatch: 'full'
           },
           {
-            path: 'deposito',
+            path: 'deposits',
             component: DepositoRelatorio,
             data: {
               pageTitle: 'Relatório de Depósitos',
               pageSubtitle: 'Consulte os depósitos realizados',
               breadcrumb: [
                 { label: 'Painel', path: '/dashboard' },
-                { label: 'Relatórios', path: '/relatorios' },
-                { label: 'Depósitos', path: '/relatorios/deposito' }
+                { label: 'Relatórios', path: '/reports' },
+                { label: 'Depósitos', path: '/reports/deposits' }
               ],
             }
           },
           {
-            path: 'saques',
+            path: 'withdrawals',
             component: SaquesRelatorio,
             data: {
               pageTitle: 'Relatório de Saques',
               pageSubtitle: 'Consulte os saques realizados',
               breadcrumb: [
                 { label: 'Painel', path: '/dashboard' },
-                { label: 'Relatórios', path: '/relatorios' },
-                { label: 'Saques', path: '/relatorios/saques' }
+                { label: 'Relatórios', path: '/reports' },
+                { label: 'Saques', path: '/reports/withdrawals' }
               ],
             }
           },

@@ -1,7 +1,7 @@
 <div class="footer">
   <div class="footer-info">
     <div class="footer-info-left">
-      <span class="footer-info-tag">#{{ information }}</span>
+      <span class="footer-info-tag">{{ information }}</span>
     </div>
 
     <div class="footer-info-center">
@@ -12,8 +12,9 @@
     </div>
 
     <div class="footer-info-right">
-      <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
-      <button type="button" class="btn-submit" (click)="onSubmit()">Salvar</button>
+      <button type="button" class="btn-cancel" (click)="onCancel()">{{ confirmCancelLabel !== '' ? confirmCancelLabel : 'Cancelar' }}
+      </button>
+      <button type="button" class="btn-submit" (click)="onSubmit()">{{ confirmSubmitLabel !== '' ? confirmSubmitLabel : 'Salvar' }}</button>
     </div>
   </div>
 </div>

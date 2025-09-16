@@ -83,17 +83,17 @@
             </tbody>
           </table>
         </div>
-
-        <!-- Paginação -->
-        <div class="template-list-pagination" *ngIf="totalPaginas > 1">
-          <button *ngFor="let pagina of paginas" class="template-list-page"
-            [class.template-list-page-active]="pagina === paginaAtual" [disabled]="typeof pagina === 'string'"
+        <div class="template-list-pagination">
+          <button 
+            *ngFor="let pagina of paginas"
+            class="template-list-page"
+            [class.template-list-page-active]="pagina === paginaAtual"
+            [disabled]="typeof pagina === 'string'"
             (click)="irParaPagina(pagina)">
             {{ pagina }}
           </button>
         </div>
       </div>
-
     </div>
   </div>
 </div>

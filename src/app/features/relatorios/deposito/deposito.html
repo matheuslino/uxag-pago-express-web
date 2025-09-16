@@ -1,38 +1,46 @@
-<div class="filtros-container">
-  <div class="filtro-item">
-    <label for="periodo">Período</label>
-    <input type="text" id="periodo" value="Jan 6, 2024 - Jan 13, 2024">
-  </div>
-  <div class="filtro-item">
-    <label for="razao-social">Razão social</label>
-    <input type="text" id="razao-social" value="123 Milhas - 26.669.170/0001-57">
-  </div>
-  <div class="filtro-item">
-    <label for="carteira">Carteira</label>
-    <input type="text" id="carteira" value="6671 - Padrão">
-  </div>
-</div>
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-relatorios-sidebar [menuSelected]="reportMenu"></app-relatorios-sidebar>
+  <div class="template-list-bg">
+    <div class="template-list-container">
+      <div class="filtros-container">
+        <div class="filtro-item">
+          <label for="periodo">Período</label>
+          <input type="text" id="periodo" value="Jan 6, 2024 - Jan 13, 2024">
+        </div>
+        <div class="filtro-item">
+          <label for="razao-social">Razão social</label>
+          <input type="text" id="razao-social" value="123 Milhas - 26.669.170/0001-57">
+        </div>
+        <div class="filtro-item">
+          <label for="carteira">Carteira</label>
+          <input type="text" id="carteira" value="6671 - Padrão">
+        </div>
+      </div>
 
-<div class="resultado-container">
-  <div class="resultado-header">
-    <div class="resultado-titulo">
-      <h2>Resultado da pesquisa</h2>
-      <p>Abaixo estão os resultados encontrados</p>
-    </div>
-    <div class="resultado-total">
-      <span>Total 2 registros</span>
-    </div>
-  </div>
+      <div class="resultado-container">
+        <div class="resultado-header">
+          <div class="resultado-titulo">
+            <h2>Resultado da pesquisa</h2>
+            <p>Abaixo estão os resultados encontrados</p>
+          </div>
+          <div class="resultado-total">
+            <span>Total {{ registros.length }} registros</span>
+          </div>
+        </div>
 
-  <div class="tabela-card">
-    <div class="tabela-header">
-      <span class="coluna-data">Data</span>
-      <span class="coluna-total">Total</span>
-    </div>
-    <div class="tabela-body">
-      <div class="tabela-linha" *ngFor="let registro of registros">
-        <span class="coluna-data">{{ registro.data }}</span>
-        <span class="coluna-total">{{ registro.total }}</span>
+        <div class="tabela-card">
+          <div class="tabela-header">
+            <span class="coluna-data">Data</span>
+            <span class="coluna-total">Total</span>
+          </div>
+          <div class="tabela-body">
+            <div class="tabela-linha" *ngFor="let registro of registros">
+              <span class="coluna-data">{{ registro.data }}</span>
+              <span class="coluna-total">{{ registro.total }}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

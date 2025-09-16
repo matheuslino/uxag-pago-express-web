@@ -1,0 +1,58 @@
+<div class="custom-select-container" [class.disabled]="disabled" [class.focused]="isOpen">
+  <label *ngIf="label" class="custom-select-label">
+    {{ label }}
+    <span *ngIf="required" class="required-indicator">*</span>
+  </label>    
+  <div class="custom-select-wrapper" [class.error]="hasError">
+    <div 
+      class="custom-select-trigger" 
+      [class.open]="isOpen"
+      [class.placeholder]="!selectedOption"
+      (click)="toggleDropdown()"
+      (keydown)="onKeyDown($event)"
+      tabindex="0"
+      role="combobox"
+      [attr.aria-expanded]="isOpen"
+      [attr.aria-haspopup]="true">     
+      <span class="selected-text">
+        {{ selectedOption?.label || placeholder }}
+      </span>
+      <div class="custom-select-arrow" [class.rotated]="isOpen">
+        <img src="/assets/icons/chevron-down.svg" alt="check">
+      </div>
+    </div>
+    <div 
+      class="custom-select-dropdown" 
+      [class.open]="isOpen"
+      *ngIf="isOpen">
+      <div class="dropdown-content">
+        <div 
+          *ngFor="let option of options; trackBy: trackByValue"
+          class="select-option"
+          [class.selected]="option.value === value"
+          [class.disabled]="option.disabled"
+          [class.highlighted]="option === highlightedOption"
+          (click)="selectOption(option)"
+          (mouseenter)="highlightedOption = option"
+          role="option"
+          [attr.aria-selected]="option.value === value">
+          {{ option.label }}
+        </div>
+        <div *ngIf="options.length === 0" class="empty-state">
+          {{ emptyMessage }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="errorMessage && hasError" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="helpText" class="help-text">
+    {{ helpText }}
+  </div>
+</div>
+<div 
+  *ngIf="isOpen" 
+  class="select-backdrop" 
+  (click)="closeDropdown()">
+</div>

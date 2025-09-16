@@ -18,6 +18,8 @@ export class FooterInfo {
   @Input() information: string = '';
   @Input() label: string = '';
   @Input() context: string = '';
+  @Input() confirmSubmitLabel: string = '';
+  @Input() confirmCancelLabel: string = '';
 
   @Output() cancel = new EventEmitter<void>();
   @Output() submit = new EventEmitter<void>();
