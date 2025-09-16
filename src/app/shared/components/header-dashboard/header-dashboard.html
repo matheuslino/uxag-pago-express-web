@@ -97,11 +97,11 @@
                 <span>{{ balanceChangePercentage }}%</span> últimos 30 dias
               </div>
               <div class="action-buttons">
-                <button mat-stroked-button class="action-btn solicit-btn">
+                <button mat-stroked-button class="action-btn solicit-btn" (click)="goToDeposit()">
                   Solicitar
                   <mat-icon class="icon-space-left">swap_vert</mat-icon>
                 </button>
-                <button mat-flat-button class="action-btn transfer-btn">
+                <button mat-flat-button class="action-btn transfer-btn" (click)="goToTransfer()">
                   Transferir <mat-icon class="icon-space-left">arrow_outward</mat-icon>
                 </button>
               </div>

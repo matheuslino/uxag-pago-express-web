@@ -179,7 +179,15 @@ export class HeaderDashboard implements OnInit {
     this.router.navigate(['/settings/profile']);
   }
 
-  goToSettings(): void {
+    goToSettings(): void {
     this.router.navigate(['/settings']);
+  }
+
+  goToDeposit(): void {
+    this.router.navigate(['/wallets/deposit']);
+  }
+
+  goToTransfer(): void {
+    this.router.navigate(['/wallets/transfer']);
   }
 }

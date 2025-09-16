@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderDashboard } from '../../shared/components/header-dashboard/header-dashboard';
+import { Router } from '@angular/router';
+
 interface Transacao {
   transacaoId: number;
   agenciaNome: string;
@@ -69,7 +71,7 @@ export class Dashboard {
   filteredTransactions: Transacao[] = [];
   activeFilter: string = 'todos';
 
-  constructor() {
+  constructor(private router: Router) {
     this.filterTransactions('todos');
   }
 
@@ -80,5 +82,21 @@ export class Dashboard {
     } else {
       this.filteredTransactions = this.transacoes.filter(t => t.tipo === type);
     }
+  }
+
+  goToEnviarPix() {
+    this.router.navigate(['wallets/send-pix']);
+  }
+
+  goToPagarBoleto() {
+    this.router.navigate(['wallets/payment']);
+  }
+
+  goToTransferir() {
+    this.router.navigate(['wallets/transfer']);
+  }
+
+  goToSolicitar() {
+    this.router.navigate(['wallets/deposit']);
   }
 }
