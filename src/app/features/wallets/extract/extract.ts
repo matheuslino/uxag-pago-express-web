@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { MatIconModule } from '@angular/material/icon';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
+import { CustomSelect } from '../../../shared/components/custom-select/custom-select';
 
 export interface Transaction {
   type: string;
@@ -25,10 +26,12 @@ export interface Transaction {
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HeaderTitle,
     RouterModule,
     MatIconModule,
     WalletSidebar,
+    CustomSelect
   ],
   templateUrl: './extract.html',
   styleUrl: './extract.scss'
@@ -156,19 +159,39 @@ export class Extract {
     values: {
       value: 'R$ 189,000',
       percentage: '7%',
+      filterDays: 7,
     },
+    actionButton: {
+      actionLabel: 'movimentar',
+      disabled: false,
+      onClick: () => {}
+    },
+    actionButton2: {
+      actionLabel: 'exportar',
+      disabled: false,
+      onClick: () => {}
+    }
   }
 
   public menuAbertoIndex: number | null = null;
 
-  // Filter properties
   startDate: string = '';
   endDate: string = '';
-  selectedClient: string = '';
+
+  public clientControl = new FormControl('');
+  public walletControl = new FormControl('');
+
   selectedWallet: string = '';
 
-  clients: string[] = ['Client A', 'Client B', 'Client C'];
-  wallets: string[] = ['Wallet 1', 'Wallet 2', 'Wallet 3'];
+  public clients = [
+    { value: '123 Milhas - 26.669.170/0001-57', label: '123 Milhas - 26.669.170/0001-57' },
+    { value: 'Cliente 2', label: 'Cliente 2' }
+  ];
+
+  public wallets = [
+    { value: '6671 - Padrão', label: '6671 - Padrão' },
+    { value: 'Carteira 2', label: 'Carteira 2' }
+  ];
 
   filteredTransactions: Transaction[] = [];
 
@@ -186,12 +209,12 @@ export class Extract {
       filtered = filtered.filter(t => t.date >= start && t.date <= end);
     }
 
-    if (this.selectedClient) {
-      filtered = filtered.filter(t => t.client === this.selectedClient);
+    if (this.clientControl.value) {
+      filtered = filtered.filter(t => t.client === this.clientControl.value);
     }
 
-    if (this.selectedWallet) {
-      filtered = filtered.filter(t => t.wallet === this.selectedWallet);
+    if (this.walletControl.value) {
+      filtered = filtered.filter(t => t.wallet === this.walletControl.value);
     }
 
     this.filteredTransactions = filtered;

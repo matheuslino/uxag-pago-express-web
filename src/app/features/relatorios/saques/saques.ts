@@ -62,6 +62,21 @@ export class SaquesRelatorio implements OnInit, OnDestroy {
       { label: 'Relatórios', path: '/relatorios' },
       { label: 'Saques', path: '/relatorios/withdrawals' }
     ],
+    values: {
+      value: 'R$ 189,000',
+      percentage: '7%',
+      filterDays: 7,
+    },
+    actionButton: {
+      actionLabel: 'movimentar',
+      disabled: false,
+      onClick: () => {}
+    },
+    actionButton2: {
+      actionLabel: 'exportar',
+      disabled: false,
+      onClick: () => {}
+    }
   };
 
   constructor(

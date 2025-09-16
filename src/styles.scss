@@ -466,6 +466,23 @@ body {
   cursor: pointer;
 }
 
+.secondary-action-btn {
+  display: flex;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 1000px;
+  background-color: #fff;
+  border: 1px solid #5C4896;
+  color: #5C4896;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .page-header {
     border-bottom: none;

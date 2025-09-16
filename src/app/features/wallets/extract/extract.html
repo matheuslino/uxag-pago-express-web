@@ -12,25 +12,17 @@
       </div>
       <div class="filter-group">
         <label for="client">Cliente</label>
-        <div class="input-wrapper">
-          <select id="client" [(ngModel)]="selectedClient" (ngModelChange)="applyFilters()">
-            <option value="">Todos</option>
-            @for (client of clients; track client) {
-              <option [value]="client">{{ client }}</option>
-            }
-          </select>
-        </div>
+          <app-custom-select
+            [options]="clients"
+            [formControl]="clientControl">
+          </app-custom-select>
       </div>
       <div class="filter-group">
         <label for="wallet">Carteira</label>
-        <div class="input-wrapper">
-          <select id="wallet" [(ngModel)]="selectedWallet" (ngModelChange)="applyFilters()">
-            <option value="">Todas</option>
-            @for (wallet of wallets; track wallet) {
-              <option [value]="wallet">{{ wallet }}</option>
-            }
-          </select>
-        </div>
+          <app-custom-select
+            [options]="wallets"
+            [formControl]="walletControl">
+          </app-custom-select>
       </div>
     </header>
 

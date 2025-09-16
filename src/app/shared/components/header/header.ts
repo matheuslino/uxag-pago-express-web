@@ -9,6 +9,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { PasswordChangeModalComponent } from '../change-password/change-password';
 
 interface MenuItem {
   label: string;
@@ -46,6 +48,7 @@ interface User {
     MatBadgeModule,
     MatDividerModule,
     MatSidenavModule,
+    MatDialogModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' }
@@ -77,7 +80,7 @@ export class Header implements OnInit {
   currentLanguage: string = 'F';
   imageLoaded: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {
   }
@@ -106,6 +109,21 @@ export class Header implements OnInit {
     if (this.searchQuery.trim()) {
       this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
     }
+  }
+
+  public openModal(): void {
+    const modal = {
+      name: 'Teste 1',
+      description: 'Description',
+    }
+    this.dialog.open(PasswordChangeModalComponent, {
+      width: '80%',
+      maxWidth: '800px',
+      data: {
+        title: modal.name,
+        description: modal.description
+      }
+    });
   }
 
   openMessages(): void {

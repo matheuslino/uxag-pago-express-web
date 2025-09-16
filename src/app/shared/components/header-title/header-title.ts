@@ -1,19 +1,21 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 interface HeaderTitleModel {
-  pageTitle: string,
-  pageSubtitle: string,
-  breadcrumb: BreadcrumbsModel[],
-  actionButton?: ActionButton,
+  pageTitle: string;
+  pageSubtitle: string;
+  breadcrumb: BreadcrumbsModel[];
+  actionButton?: ActionButton;
+  actionButton2?: ActionButton;
   values?: ValueModel;
 }
 
 interface ValueModel {
   value?: string;
   percentage?: string;
+  filterDays?: number;
 }
 
 interface BreadcrumbsModel {
@@ -40,5 +42,12 @@ interface ActionButton {
 export class HeaderTitle {
 
   @Input() headerInformation: HeaderTitleModel | undefined;
+
+  constructor(private router: Router) {
+  }
+
+  goBack() {
+    this.router.navigate(['/dashboard'])
+  }
 
 }

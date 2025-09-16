@@ -1,6 +1,10 @@
 <div class="page-header">
   <div *ngIf="headerInformation && headerInformation.values">
     <div class="page-header-saldo">
+      <button class="saldo-voltar" (click)="goBack()">
+        <img src="/assets/icons/back.svg" alt="back" />
+        <span class="back-text">Voltar a página inicial</span>
+      </button>
       <nav class="breadcrumb" *ngIf="headerInformation && headerInformation.breadcrumb && headerInformation.breadcrumb.length > 0">
         <a 
           *ngFor="let item of headerInformation.breadcrumb; let last = last" 
@@ -11,7 +15,42 @@
           <span *ngIf="!last" class="separator">/</span>
         </a>
       </nav>
-      <hr />
+      <div class="divider"></div>
+      <div class="saldo-container-actions">
+        <div *ngIf="headerInformation?.values as values" class="saldo-info">
+          <p class="saldo-label">Saldo</p>
+          <div class="saldo-value-wrapper">
+            <h1 class="saldo-value">{{ values.value }}</h1>
+            <mat-icon class="info-icon">info_outline</mat-icon>
+          </div>
+          <div class="saldo-percentage">
+            <img src="/assets/icons/arrow.svg" alt="arrowup" />
+            <span>{{ values.percentage }}</span>
+            Nos ultimos {{values.filterDays}} dias
+          </div>
+        </div>
+        <div class="header-actions" *ngIf="headerInformation && headerInformation.actionButton">
+          <button 
+            mat-raised-button
+            *ngIf="headerInformation.actionButton2"
+            [disabled]="headerInformation.actionButton2.disabled"
+            [class.inactive]="headerInformation.actionButton2.disabled === true"
+            class="secondary-action-btn btn-saldos"
+            (click)="headerInformation.actionButton2.onClick()">
+            {{ headerInformation.actionButton2.actionLabel }}
+            <img src="/assets/icons/exportar.svg" />
+          </button>
+          <button 
+            mat-raised-button
+            [disabled]="headerInformation.actionButton.disabled"
+            [class.inactive]="headerInformation.actionButton.disabled === true"
+            class="primary-action-btn btn-saldos"
+            (click)="headerInformation.actionButton.onClick()">
+            {{ headerInformation.actionButton.actionLabel }}
+            <img src="/assets/icons/movimentar.svg" />
+          </button>
+        </div>
+      </div>
     </div>
   </div>
   <nav class="breadcrumb" *ngIf="headerInformation && !headerInformation.values && headerInformation.breadcrumb && headerInformation.breadcrumb.length > 0">
@@ -26,22 +65,11 @@
   </nav>
   
   <div class="header-content">
-    <div *ngIf="headerInformation?.values as values" class="saldo-info">
-      <p class="saldo-label">Saldo</p>
-      <div class="saldo-value-wrapper">
-        <h1 class="saldo-value">{{ values.value }}</h1>
-        <mat-icon class="info-icon">info_outline</mat-icon>
-      </div>
-      <div class="saldo-percentage">
-        <mat-icon class="positive-icon">arrow_upward</mat-icon>
-        <span>{{ values.percentage }}</span>
-      </div>
-    </div>
     <div class="header-info">
       <h1 class="page-title" *ngIf="headerInformation && headerInformation.pageTitle">{{ headerInformation.pageTitle }}</h1>
       <p class="page-subtitle" *ngIf="headerInformation && headerInformation.pageSubtitle">{{ headerInformation.pageSubtitle }}</p>
     </div>
-    <div class="header-actions" *ngIf="headerInformation && headerInformation.actionButton">
+    <div class="header-actions" *ngIf="headerInformation && !headerInformation.values && headerInformation.actionButton">
       <button 
         mat-raised-button
         [disabled]="headerInformation.actionButton.disabled"

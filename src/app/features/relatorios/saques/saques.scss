@@ -1,7 +1,6 @@
 :host {
   font-family: 'Inter', sans-serif;
   color: #344054;
-  padding: 24px;
   display: block;
 }
 
@@ -9,6 +8,7 @@
   display: flex;
   flex-wrap: wrap; 
   justify-content: flex-start; 
+  padding: 24px;
   gap: 16px;
   margin-bottom: 32px;
 

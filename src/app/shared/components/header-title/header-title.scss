@@ -7,12 +7,45 @@
   --font-special: 'Futuru', sans-serif; 
 }
 
+.back-text {
+  margin-left: 5px;
+}
+
+.saldo-voltar {
+  margin-left: 68px;
+  display: flex;
+  width: auto;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+
+}
+
+.divider {
+    width: auto;
+    height: 1px;
+    background-color: #DADADA;
+    margin: 0 68px;
+}
+
+.saldo-container-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+
+.header-actions {
+  margin-right: 68px;  
+}
 
 .saldo-info {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    
+    padding: 24px 64px 0 64px;
+    gap: 8px;    
     .saldo-label {
         font-size: 14px;
         font-weight: 500;

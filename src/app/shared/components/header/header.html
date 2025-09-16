@@ -108,15 +108,15 @@
       <span class="icon-subtitle">Gerenciar informações pessoais</span>
     </div>
   </button>
-  <button class="icon-info-container" routerLink="/settings">
+  <div class="icon-info-container">
     <div class="icon-menu">
       <img src="assets/icons/settings.svg" alt="settings" />
     </div>
-    <div class="icon-text-container">
+    <div (click)="openModal()" class="icon-text-container">
       <span class="icon-title">Alterar Senha</span>
       <span class="icon-subtitle">Explore outra senha sua</span>
     </div>
-  </button>
+  </div>
   <button class="icon-info-container">
     <div class="icon-menu">
       <img src="assets/icons/idioma.svg" alt="idioma" />

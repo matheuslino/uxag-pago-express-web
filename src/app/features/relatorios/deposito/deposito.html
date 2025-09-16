@@ -3,20 +3,27 @@
   <app-relatorios-sidebar [menuSelected]="reportMenu"></app-relatorios-sidebar>
   <div class="template-list-bg">
     <div class="template-list-container">
-      <div class="filtros-container">
+      <form class="filtros-container" [formGroup]="reportForm">
         <div class="filtro-item">
-          <label for="periodo">Período</label>
-          <input type="text" id="periodo" value="Jan 6, 2024 - Jan 13, 2024">
+          <label for="dateInit">Período De</label>
+          <input type="date" id="dateInit" formControlName="dateInit">
+        </div>
+        <div class="filtro-item">
+          <label for="dateFinal">Período Até</label>
+          <input type="date" id="dateFinal" formControlName="dateFinal">
         </div>
         <div class="filtro-item">
           <label for="razao-social">Razão social</label>
-          <input type="text" id="razao-social" value="123 Milhas - 26.669.170/0001-57">
+          <input type="text" id="razao-social" formControlName="razaoSocial" placeholder="Digite a razão social">
         </div>
         <div class="filtro-item">
           <label for="carteira">Carteira</label>
-          <input type="text" id="carteira" value="6671 - Padrão">
+          <select id="carteira" formControlName="wallet">
+            <option value="">Todas</option>
+            <option *ngFor="let wallet of wallets" [value]="wallet">{{ wallet }}</option>
+          </select>
         </div>
-      </div>
+      </form>
 
       <div class="resultado-container">
         <div class="resultado-header">
