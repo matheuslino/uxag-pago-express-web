@@ -1,0 +1,48 @@
+<div class="modal-container">
+  <!-- Header -->
+  <div class="modal-header">
+    <h2 class="modal-title">Autorização de saque</h2>
+    <button mat-icon-button class="close-button" (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Subtítulo -->
+  <div class="modal-subtitle">
+    Esta operação não poderá ser desfeita
+  </div>
+
+  <!-- Conteúdo -->
+  <div class="modal-content">
+    <div class="info-card">
+      <!-- Ícone -->
+      <div class="info-icon">
+        <mat-icon>account_balance</mat-icon>
+      </div>
+
+      <!-- Informações -->
+      <div class="info-details">
+        <div class="info-row">
+          <span class="label">Solicitante</span>
+          <span class="value">{{ data.solicitante }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Chave</span>
+          <span class="value">{{ data.chave }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Valor</span>
+          <span class="value value-highlight">R$ {{ data.valor }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="modal-footer">
+    <button mat-button class="cancel-button" (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button color="primary" class="approve-button" (click)="onApprove()">
+      Aprovar
+    </button>
+  </div>
+</div>
