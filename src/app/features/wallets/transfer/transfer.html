@@ -155,3 +155,12 @@
     </div>
   }
 </div>
+<app-footer-info
+  [information]="footerInformation"
+  [context]="footerContext"
+  [label]="footerLabel"
+  [confirmCancelLabel]="`Cancelar transação`"
+  [confirmSubmitLabel]="sendLabel"
+  (cancel)="onCancel()"
+  (submit)="onSubmit()">
+</app-footer-info>

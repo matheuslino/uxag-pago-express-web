@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
+import { FooterInfo } from '../../../shared/components/footer-info/footer-info';
 export interface IPendingWithdrawal {
   solicitante: {
     name: string;
@@ -30,6 +31,7 @@ export interface IPendingWithdrawal {
     RouterModule,
     MatIconModule,
     WalletSidebar,
+    FooterInfo,
   ], 
   templateUrl: './transfer.html',
   styleUrl: './transfer.scss'
@@ -57,9 +59,15 @@ export class Transfer {
     saldo: 1000,
   }
 
+  public sendLabel: string = 'Enviar';
+  public footerInformation: string = '001';
+  public footerContext: string = 'Transferencia';
+  public footerLabel: string = '';
+
   public menuAbertoIndex: number | null = null;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private location: Location) { }
 
   openConfirmationModal(): void {
     if (this.transferData.chavePix && this.transferData.valor) {
@@ -67,6 +75,14 @@ export class Transfer {
     } else {
       alert('Por favor, preencha a Chave PIX e o Valor.');
     }
+  }
+
+  onCancel(): void {
+    this.location.back();
+  }
+
+  onSubmit(): void {
+    this.openConfirmationModal();
   }
 
   closeConfirmationModal(): void {

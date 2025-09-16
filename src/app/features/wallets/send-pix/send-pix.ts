@@ -1,13 +1,23 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HeaderTitle } from '../../../shared/components/header-title/header-title';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
+import { FooterInfo } from '../../../shared/components/footer-info/footer-info';
 
 @Component({
   selector: 'app-send-pix',
   standalone: true,
   imports: [
-    CommonModule,
-    FormsModule 
+    CommonModule, 
+    FormsModule,
+    HeaderTitle,
+    RouterModule,
+    MatIconModule,
+    WalletSidebar,
+    FooterInfo,
   ],
   templateUrl: './send-pix.html',
   styleUrl: './send-pix.scss'
@@ -22,6 +32,22 @@ export class SendPix {
     chavePix: '',
     valor: null as number | null
   };
+
+  public headerInformation = {
+    pageTitle: 'Enviar Pix',
+    pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+    breadcrumb: [
+      { label: 'Painel', path: '/dashboard' },
+      { label: 'Wallets', path: '/wallets' },
+      { label: 'Visualização', path: '/wallets/send-pix' }
+    ],
+    saldo: 1000,
+  }
+
+  public sendLabel: string = 'Enviar';
+  public footerInformation: string = '001';
+  public footerContext: string = 'Enviar pix';
+  public footerLabel: string = '';
   
   public accountData = {
     name: 'PixPay LTDA',
@@ -30,6 +56,12 @@ export class SendPix {
     keyType: 'E-MAIL',
     provider: 'Celcoin'
   };
+
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+  ) {
+  }
 
   onChavePixChange(key: string): void {
     if (key && key.length >= 5) {
@@ -49,6 +81,14 @@ export class SendPix {
 
   closeConfirmationModal(): void {
     this.isModalVisible = false;
+  }
+
+  onCancel(): void {
+    this.location.back();
+  }
+
+  onSubmit(): void {
+    this.openConfirmationModal();
   }
 
   confirmTransfer(): void {

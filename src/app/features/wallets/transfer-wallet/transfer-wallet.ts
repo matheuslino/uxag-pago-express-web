@@ -86,6 +86,6 @@ export class TransferWallet {
   }
 
   onSubmit(): void {
-    this.confirmTransfer();
+    this.openConfirmationModal();
   }
 }

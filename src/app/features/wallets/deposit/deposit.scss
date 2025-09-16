@@ -13,7 +13,7 @@
 }
 
 .deposit-container {
-  display: flex; flex-direction: column; gap: 20px; padding: 24px; background-color: var(--color-background-page); font-family: var(--font-family-primary);
+  display: flex; flex-direction: column; width: 100%; gap: 20px; padding: 24px; background-color: var(--color-background-page); font-family: var(--font-family-primary);
 }
 
 .card {
