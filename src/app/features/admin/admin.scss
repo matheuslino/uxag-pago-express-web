@@ -138,7 +138,7 @@
   }
 
   .admin-content {
-    width: 85vw;
+    width: 100%;
     flex-direction: column!important;
   }
 
@@ -157,11 +157,12 @@
   }
   
   .admin-layout {
-    width: 85vw;
-    padding: 0;
+    width: 100%;
+    padding: 24px
   }
 
   .admin-content {
+    width: 100%;
     flex-direction: column!important;
   }
 
@@ -173,4 +174,5 @@
 .admin-content {
   flex-direction: row;
   height: 100%;
+  width: 100%;
 }
