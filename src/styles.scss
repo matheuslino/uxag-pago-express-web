@@ -880,7 +880,7 @@ body {
   }
 
   .template-list-filter-input {
-    min-width: 200px;
+    min-width: 175px;
   }
 }
 
@@ -1022,5 +1022,29 @@ body {
 
   .template-identifier {
     font-size: 0.75rem;
+  }
+}
+
+/* Breakpoint intermediário: esconde colunas antes de quebrar */
+@media (max-width: 992px) {
+  .template-list-results-table {
+    .hide-mobile {
+      display: none;
+    }
+
+    th, td {
+      font-size: 0.95rem;
+      padding: 8px 12px;
+    }
+  }
+
+  .template-list-filters-row {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .template-list-filter-input {
+    min-width: auto;
+    flex: 1;
   }
 }

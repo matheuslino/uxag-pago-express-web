@@ -32,7 +32,8 @@ export interface Cliente {
   styleUrl: './list.scss'
 })
 export class List {
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
+
   public headerInformation = {
     pageTitle: 'Clientes',
     pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
@@ -101,14 +102,60 @@ export class List {
     }
   ];
 
-  public filtros = {
-    buscar: '',
-    nome: '',
-    cnpj: ''
-  };
+public filtros = {
+  buscar: '',
+  nome: '',
+  cnpj: ''
+};
+
+// formata e atualiza o CNPJ em tempo real
+onCnpjInput(event: any): void {
+  let value = event.target.value.replace(/\D/g, ''); // só números
+
+  // limita a 14 dígitos (CNPJ)
+  if (value.length > 14) {
+    value = value.substring(0, 14);
+  }
+
+  // aplica a máscara: 00.000.000/0000-00
+  if (value.length > 12) {
+    value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2}).*/, '$1.$2.$3/$4-$5');
+  } else if (value.length > 8) {
+    value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{0,4}).*/, '$1.$2.$3/$4');
+  } else if (value.length > 5) {
+    value = value.replace(/^(\d{2})(\d{3})(\d{0,3}).*/, '$1.$2.$3');
+  } else if (value.length > 2) {
+    value = value.replace(/^(\d{2})(\d{0,3}).*/, '$1.$2');
+  }
+
+  this.filtros.cnpj = value;
+}
+  // lista já filtrada (getter)
+  get clientesFiltrados(): Cliente[] {
+    return this.clientes.filter(cliente => {
+      const busca = this.filtros.buscar.toLowerCase();
+      const nome = this.filtros.nome.toLowerCase();
+      const cnpj = this.filtros.cnpj.toLowerCase();
+
+      return (
+        // busca geral: checa em nome ou identificador
+        (busca === '' ||
+          cliente.nome.toLowerCase().includes(busca) ||
+          cliente.identificador.toLowerCase().includes(busca)) &&
+
+        // filtro nome específico
+        (nome === '' ||
+          cliente.nome.toLowerCase().includes(nome)) &&
+
+        // filtro cnpj específico
+        (cnpj === '' ||
+          cliente.identificador.toLowerCase().includes(cnpj))
+      );
+    });
+  }
 
   get totalRegistros(): number {
-    return this.clientes.length;
+    return this.clientesFiltrados.length;
   }
 
   onEditarCliente(cliente: Cliente): void {
