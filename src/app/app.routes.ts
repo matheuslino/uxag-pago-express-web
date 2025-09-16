@@ -3,14 +3,12 @@ import { MainLayout } from './layout/main-layout/main-layout';
 import { AuthLayout } from './layout/auth-layout/auth-layout';
 import { Login } from './features/auth/login/login';
 import { Dashboard } from './features/dashboard/dashboard';
-import { Pix } from './features/admin/pix/pix';
 import { Wallets } from './features/wallets/wallets';
 import { NewPassword } from './features/auth/new-password/new-password';
 import { RecoveryPassword } from './features/auth/recovery-password/recovery-password';
 import { Admin } from './features/admin/admin';
 import { BankAccounts } from './features/admin/bank-accounts/bank-accounts';
 import { BatchBank } from './features/admin/batch-bank/batch-bank';
-import { Clients } from './features/admin/clients/clients';
 import { Logs } from './features/admin/logs/logs';
 import { Logs as LogsUser } from './features/admin/users/logs/logs';
 import { Logs as LogsWallet } from './features/wallets/logs/logs';
@@ -35,6 +33,7 @@ import { Balance } from './features/wallets/balance/balance';
 import { Deposit } from './features/wallets/deposit/deposit';
 import { NewItemWallet } from './features/wallets/new-item-wallet/new-item-wallet';
 import { Payment } from './features/wallets/payment/payment';
+import { Payment as PaymentClient } from './features/transactions/payment/payment';
 import { Extract } from './features/wallets/extract/extract';
 import { SendPix } from './features/wallets/send-pix/send-pix';
 import { TransferWallet } from './features/wallets/transfer-wallet/transfer-wallet';
@@ -44,6 +43,7 @@ import { Relatorios } from './features/relatorios/relatorios';
 import { DepositoRelatorio } from './features/relatorios/deposito/deposito';
 import { SaquesRelatorio } from './features/relatorios/saques/saques';
 import { Modals } from './features/admin/modals/modals';
+import { Transactions } from './features/transactions/transactions';
 
 
 export const routes: Routes = [
@@ -274,207 +274,90 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'pix',
-        component: Pix,
-      },
-      {
-        path: 'clients',
-        component: Clients,
-        children: [
-          {
-            path: 'edit',
-            component: EditClient,
-          },
-        ],
-      },
-      {
-        path: 'wallets',
+        path: 'carteira',
         component: Wallets,
         children: [
           {
             path: '',
             pathMatch: 'full',
-            redirectTo: '/wallets/list',
+            redirectTo: '/carteira/wallets',
           },
           {
-            path: 'list',
-            component: ListWallet,
-          },
-          {
-            path: 'new',
-            component: NewWallet,
-            data: {
-              pageTitle: 'Wallets',
-              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Visualização', path: '/wallets/new' }
-              ],
-              actionButton: {
-                show: true,
-                label: '+ Adicionar nova carteira',
-                icon: 'add'
-              }
-            }
-          },
-          {
-            path: 'edit/:id',
-            component: EditWallet,
-            data: {
-              pageTitle: 'Wallets',
-              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Visualização', path: '/wallets/edit' }
-              ],
-              actionButton: {
-                show: true,
-                label: '+ Adicionar nova carteira',
-                icon: 'add'
-              }
-            }
-          },
-          {
-            path: 'config/:id',
-            component: Config,
-            data: {
-              pageTitle: 'Wallets',
-              pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Visualização', path: '/wallets/edit' }
-              ],
-              actionButton: {
-                show: true,
-                label: '+ Adicionar nova carteira',
-                icon: 'add'
-              }
-            }
+            path: 'wallets',
+            children: [
+              {
+                path: '',
+                component: ListWallet,
+              },
+              {
+                path: 'new',
+                component: NewWallet,
+              },
+              {
+                path: 'edit/:id',
+                component: EditWallet,
+              },
+              {
+                path: 'config/:id',
+                component: Config,
+              },
+              {
+                path: 'logs/:id',
+                component: LogsWallet,
+              },
+            ]
           },
           {
             path: 'transfer',
             component: Transfer,
-            data: {
-              pageTitle: 'Transferência',
-              pageSubtitle: 'Transfira dinheiro entre contas',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Transferência', path: '/wallets/transfer' }
-              ],
-            }
           },
           {
             path: 'balance',
             component: Balance,
-            data: {
-              pageTitle: 'Saldo',
-              pageSubtitle: 'Consulte seu saldo',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Saldo', path: '/wallets/balance' }
-              ],
-            }
           },
           {
             path: 'deposit',
             component: Deposit,
-            data: {
-              pageTitle: 'Depósito',
-              pageSubtitle: 'Faça um depósito em sua carteira',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Depósito', path: '/wallets/deposit' }
-              ],
-            }
-          },
-          {
-            path: 'logs/:id',
-            component: LogsWallet,
-            data: {
-              pageTitle: 'Logs da Carteira',
-              pageSubtitle: 'Consulte os logs da sua carteira',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Logs', path: '/wallets/logs' }
-              ],
-            }
           },
           {
             path: 'new-item-wallet',
             component: NewItemWallet,
-            data: {
-              pageTitle: 'Novo Item na Carteira',
-              pageSubtitle: 'Adicione um novo item à sua carteira',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Novo Item', path: '/wallets/new-item-wallet' }
-              ],
-            }
           },
           {
             path: 'payment',
             component: Payment,
-            data: {
-              pageTitle: 'Pagamento',
-              pageSubtitle: 'Realize um pagamento',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Pagamento', path: '/wallets/payment' }
-              ],
-            }
           },
           {
             path: 'extract',
             component: Extract,
-            data: {
-              pageTitle: 'Extrato',
-              pageSubtitle: 'Consulte seu extrato',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Extrato', path: '/wallets/extract' }
-              ],
-            }
           },
           {
             path: 'send-pix',
             component: SendPix,
-            data: {
-              pageTitle: 'Enviar PIX',
-              pageSubtitle: 'Envie um PIX para qualquer conta',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Enviar PIX', path: '/wallets/send-pix' }
-              ],
-            }
           },
           {
             path: 'transfer-wallet',
             component: TransferWallet,
-            data: {
-              pageTitle: 'Transferência entre Carteiras',
-              pageSubtitle: 'Transfira valores entre suas carteiras',
-              breadcrumb: [
-                { label: 'Painel', path: '/dashboard' },
-                { label: 'Wallets', path: '/wallets' },
-                { label: 'Transferência entre Carteiras', path: '/wallets/transfer-wallet' }
-              ],
-            }
           },
         ],
       },
       {
-        path: 'profile',
+        path: 'transacoes',
+        component: Transactions,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: '/transacoes/payment',
+          },
+          {
+            path: 'payment',
+            component: PaymentClient,
+          },
+        ]
+      },
+      {
+        path: 'perfil',
         component: ProfileComponent,
         children: [
           {
@@ -488,7 +371,7 @@ export const routes: Routes = [
         ],
       },
       {
-        path: 'reports',
+        path: 'relatorios',
         component: Relatorios,
         children: [
           {

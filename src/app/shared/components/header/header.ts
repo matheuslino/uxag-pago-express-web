@@ -62,9 +62,9 @@ export class Header implements OnInit {
   menuItems: MenuItem[] = [
     { label: 'Painel', path: '/dashboard', active: true },
     { label: 'Administração', path: '/administracao', active: false },
-    { label: 'Carteira', path: '/wallets', active: false },
-    { label: 'Transações', path: '/transactions', active: false },
-    { label: 'Relatórios', path: '/reports', active: false }
+    { label: 'Carteira', path: '/carteira', active: false },
+    { label: 'Transações', path: '/transacoes', active: false },
+    { label: 'Relatórios', path: '/relatorios', active: false }
   ];
 
   currentUser: User = {

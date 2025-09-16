@@ -85,18 +85,18 @@ export class Dashboard {
   }
 
   goToEnviarPix() {
-    this.router.navigate(['wallets/send-pix']);
+    this.router.navigate(['carteira/send-pix']);
   }
 
   goToPagarBoleto() {
-    this.router.navigate(['wallets/payment']);
+    this.router.navigate(['carteira/payment']);
   }
 
   goToTransferir() {
-    this.router.navigate(['wallets/transfer']);
+    this.router.navigate(['carteira/transfer']);
   }
 
   goToSolicitar() {
-    this.router.navigate(['wallets/deposit']);
+    this.router.navigate(['carteira/deposit']);
   }
 }

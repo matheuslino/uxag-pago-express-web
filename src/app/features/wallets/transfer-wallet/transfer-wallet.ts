@@ -31,8 +31,8 @@ export class TransferWallet {
     pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
     breadcrumb: [
       { label: 'Painel', path: '/dashboard' },
-      { label: 'Wallets', path: '/wallets' },
-      { label: 'Visualização', path: '/wallets/transfer-wallet' }
+      { label: 'Wallets', path: '/carteira' },
+      { label: 'Visualização', path: '/carteira/transfer-wallet' }
     ],
     saldo: 1000,
   }

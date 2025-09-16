@@ -41,7 +41,6 @@
   padding: 12px 20px;
   text-align: left;
   color: #6b7280;
-  min-width: 144px;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
@@ -62,6 +61,7 @@
     color: #5C4896;
     font-weight: 600;
     background: #F6F3FF;
+    text-align: left;
   }
 }
 
@@ -91,9 +91,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  background: #f8fafc;
-  border-left: 2px solid #e5e7eb;
-  margin-left: 20px;
+  margin-left: 32px;
   animation: slideDown 0.2s ease;
 }
 
@@ -134,16 +132,6 @@
     color: #5C4896;
     font-weight: 600;
     background: #ffffff;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: #5C4896;
-    }
   }
 }
 
@@ -168,7 +156,9 @@
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 16px 0;
+    padding: 0 0 18px 0;
+    border-bottom: 1px solid #DADADA;
+    margin-bottom: 20px;
 
     &::-webkit-scrollbar {
       height: 0px;
@@ -207,9 +197,27 @@
   .sub-nav-link {
     padding-left: 16px;
     padding-right: 16px;
+    
+    &.active {
+      text-align: center;
+    }
+  }
+
+  .nav-link {
+    &.active {
+      min-width: unset;
+    }
   }
   
   .sub-nav-list {
     margin-left: 16px;
   }
+}
+
+.nav-submenu {
+  margin-top: 4px; // ajuste fino
+}
+
+.sub-nav-list {
+  margin-left: 16px; // pode reduzir se quiser menos recuo
 }

@@ -73,9 +73,9 @@ export class HeaderDashboard implements OnInit {
   menuItems: MenuItem[] = [
     { path: '/dashboard', label: 'Painel' },
     { path: '/administracao', label: 'Administração' },
-    { path: '/wallets', label: 'Carteira' },
-    { path: '/transactions', label: 'Transações' },
-    { path: '/reports', label: 'Relatórios' }
+    { path: '/carteira', label: 'Carteira' },
+    { path: '/transacoes', label: 'Transações' },
+    { path: '/relatorios', label: 'Relatórios' }
   ];
 
   wallets: Wallet[] = [
@@ -176,18 +176,18 @@ export class HeaderDashboard implements OnInit {
   }
 
   goToProfile(): void {
-    this.router.navigate(['/settings/profile']);
+    this.router.navigate(['/profile']);
   }
 
-    goToSettings(): void {
+  goToSettings(): void {
     this.router.navigate(['/settings']);
   }
 
   goToDeposit(): void {
-    this.router.navigate(['/wallets/deposit']);
+    this.router.navigate(['/carteira/deposit']);
   }
 
   goToTransfer(): void {
-    this.router.navigate(['/wallets/transfer']);
+    this.router.navigate(['/carteita/transfer']);
   }
 }

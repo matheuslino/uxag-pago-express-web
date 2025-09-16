@@ -84,18 +84,18 @@ export class List {
   }
 
   public editar(empresa: Empresa): void {
-    this.router.navigateByUrl(`/wallets/edit/${empresa.id}`);
+    this.router.navigateByUrl(`/carteira/wallets/edit/${empresa.id}`);
     this.fecharMenu();
   }
 
   public configurar(empresa: Empresa): void {
-    this.router.navigateByUrl(`/wallets/config/${empresa.id}`);
+    this.router.navigateByUrl(`/carteira/wallets/config/${empresa.id}`);
     console.log('Configurar clicado para:', empresa.razaoSocial);
     this.fecharMenu();
   }
 
   public verLogs(empresa: Empresa): void {
-    this.router.navigateByUrl(`/wallets/logs/${empresa.id}`);
+    this.router.navigateByUrl(`/carteira/wallets/logs/${empresa.id}`);
     console.log('Ver logs clicado para:', empresa.razaoSocial);
     this.fecharMenu();
   }

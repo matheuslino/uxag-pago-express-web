@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Header } from '../../../shared/components/header/header';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
   standalone: true,
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     HeaderTitle,
     WalletSidebar,
@@ -19,6 +20,10 @@ import { Router } from '@angular/router';
   styleUrl: './edit.scss'
 })
 export class Edit {
+
+  public walletId: number | undefined;
+
+  walletMenu: string = 'wallet';
 
   public razaoSocial: string = '123 Milhas';
   public apelido: string = 'Default';
@@ -42,6 +47,14 @@ export class Edit {
     }
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+  ) { }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.walletId = Number(params.get('id') || '0');
+    });
+  }
 
 }

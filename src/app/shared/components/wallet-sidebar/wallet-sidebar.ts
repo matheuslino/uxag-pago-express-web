@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
@@ -21,6 +21,9 @@ interface MenuState {
   styleUrl: './wallet-sidebar.scss'
 })
 export class WalletSidebar implements OnInit {
+
+  @Input() id?: number;
+  @Input() menuSelected?: string;
 
   currentUrl = '';
   expandedMenus: MenuState = {};

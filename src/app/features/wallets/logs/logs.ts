@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 import { MatIconModule } from '@angular/material/icon';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
+import { ReactiveFormsModule } from '@angular/forms';
 
 interface ILogEntry {
   timestamp: string;
@@ -20,6 +21,7 @@ interface ILogEntry {
   imports: [
     CommonModule,
     HeaderTitle,
+    ReactiveFormsModule,
     RouterModule,
     MatIconModule,
     WalletSidebar,
@@ -28,6 +30,10 @@ interface ILogEntry {
   styleUrl: './logs.scss'
 })
 export class Logs {
+
+  public walletId: number | undefined;
+
+  walletMenu: string = 'wallet';
 
   public logHistory: ILogEntry[] = [
     {
@@ -73,6 +79,14 @@ export class Logs {
     }
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+  ) { }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.walletId = Number(params.get('id') || '0');
+    });
+  }
 
 }
