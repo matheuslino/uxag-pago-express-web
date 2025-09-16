@@ -153,7 +153,10 @@ export class Extract {
       { label: 'Wallets', path: '/wallets' },
       { label: 'Visualização', path: '/wallets/list' }
     ],
-    saldo: 1000,
+    values: {
+      value: 'R$ 189,000',
+      percentage: '7%',
+    },
   }
 
   public menuAbertoIndex: number | null = null;

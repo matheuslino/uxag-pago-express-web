@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { FooterInfo } from '../../../shared/components/footer-info/footer-info';
+import { CustomSelect } from '../../../shared/components/custom-select/custom-select';
 
 @Component({
   selector: 'app-payment',
@@ -13,11 +14,13 @@ import { FooterInfo } from '../../../shared/components/footer-info/footer-info';
   imports: [
     CommonModule, 
     FormsModule,
+    ReactiveFormsModule,
     HeaderTitle,
     RouterModule,
     MatIconModule,
     WalletSidebar,
     FooterInfo,
+    CustomSelect,
   ],
   templateUrl: './payment.html',
   styleUrl: './payment.scss'
@@ -27,13 +30,13 @@ export class Payment {
   public currentStep: number = 1;
 
   public clientList = [
-    { id: '1', name: '123 Milhas - 26.669.170/0001-57' },
-    { id: '2', name: 'Cliente 2' }
+    { value: '123 Milhas - 26.669.170/0001-57', label: '123 Milhas - 26.669.170/0001-57' },
+    { value: 'Cliente 2', label: 'Cliente 2' }
   ];
 
   public walletList = [
-    { id: '1', name: '6671 - Padrão' },
-    { id: '2', name: 'Carteira 2' }
+    { value: '6671 - Padrão', label: '6671 - Padrão' },
+    { value: 'Carteira 2', label: 'Carteira 2' }
   ];
 
   public paymentData = {
@@ -60,6 +63,9 @@ export class Payment {
     }
   };
 
+  public clienteControl = new FormControl('');
+  public walletControl = new FormControl('');
+
   public headerInformation = {
     pageTitle: 'Pagamento',
     pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
@@ -73,7 +79,7 @@ export class Payment {
   
   // --- Footer Properties ---
   public footerInformation: string = 'Boleto';
-  public footerContext: string = 'Pagamento de boleto:';
+  public footerContext: string = 'Pagamento de boleto';
   public footerLabel: string = 'Informe o código de barras para o pagamento';
   public confirmSubmitLabel: string = 'Prosseguir';
   public confirmCancelLabel: string = 'Cancelar';

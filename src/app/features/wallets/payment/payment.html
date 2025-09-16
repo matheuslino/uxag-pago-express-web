@@ -43,18 +43,18 @@
             <div class="form-section-inputs">
               <div class="inputs-row">
                 <div class="input-group">
-                  <label for="cliente">Cliente</label>
-                  <select id="cliente" [(ngModel)]="paymentData.cliente">
-                    <option value="" disabled selected>Selecione um cliente</option>
-                    <option *ngFor="let client of clientList" [value]="client.name">{{ client.name }}</option>
-                  </select>
+                  <app-custom-select
+                    [options]="clientList"
+                    [formControl]="clienteControl"
+                    label="Cliente">
+                  </app-custom-select>
                 </div>
                 <div class="input-group">
-                  <label for="carteira">Carteira</label>
-                  <select id="carteira" [(ngModel)]="paymentData.carteira">
-                    <option value="" disabled selected>Selecione uma carteira</option>
-                    <option *ngFor="let wallet of walletList" [value]="wallet.name">{{ wallet.name }}</option>
-                  </select>
+                  <app-custom-select
+                    [options]="walletList"
+                    [formControl]="walletControl"
+                    label="Carteira">
+                  </app-custom-select>
                 </div>
               </div>
               <div class="inputs-row">
@@ -79,11 +79,11 @@
               <div class="inputs-row">
                 <div class="input-group">
                   <label for="cliente-ro">Cliente</label>
-                  <input id="cliente-ro" type="text" value="{{paymentData.cliente}}" readonly>
+                  <input id="cliente-ro" type="text" value="{{clienteControl.value}}" readonly>
                 </div>
                 <div class="input-group">
                   <label for="carteira-ro">Carteira</label>
-                  <input id="carteira-ro" type="text" value="{{paymentData.carteira}}" readonly>
+                  <input id="carteira-ro" type="text" value="{{walletControl.value}}" readonly>
                 </div>
               </div>
                <div class="inputs-row">

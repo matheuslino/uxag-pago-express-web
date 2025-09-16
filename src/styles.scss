@@ -354,9 +354,17 @@ body {
 
 .page-header-saldo {
   display: flex;
+  flex-direction: column;
   padding: 24px 0 32px 0;
   margin-bottom: 24px;
   background-color: #F9F9F9;
+
+  hr {
+    width: auto;
+    height: 1px;
+    color: #DADADA;
+    margin: 0px 68px;
+  }
 }
 
 .page-header {

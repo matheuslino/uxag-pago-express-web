@@ -8,7 +8,12 @@ interface HeaderTitleModel {
   pageSubtitle: string,
   breadcrumb: BreadcrumbsModel[],
   actionButton?: ActionButton,
-  saldo?: number;
+  values?: ValueModel;
+}
+
+interface ValueModel {
+  value?: string;
+  percentage?: string;
 }
 
 interface BreadcrumbsModel {

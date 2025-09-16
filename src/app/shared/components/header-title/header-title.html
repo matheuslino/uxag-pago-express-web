@@ -1,10 +1,20 @@
 <div class="page-header">
-  <div *ngIf="headerInformation && headerInformation.saldo">
+  <div *ngIf="headerInformation && headerInformation.values">
     <div class="page-header-saldo">
-
+      <nav class="breadcrumb" *ngIf="headerInformation && headerInformation.breadcrumb && headerInformation.breadcrumb.length > 0">
+        <a 
+          *ngFor="let item of headerInformation.breadcrumb; let last = last" 
+          [routerLink]="item.path" 
+          [class.active]="last"
+          class="breadcrumb-item">
+          {{ item.label }}
+          <span *ngIf="!last" class="separator">/</span>
+        </a>
+      </nav>
+      <hr />
     </div>
   </div>
-  <nav class="breadcrumb" *ngIf="headerInformation && !headerInformation.saldo && headerInformation.breadcrumb && headerInformation.breadcrumb.length > 0">
+  <nav class="breadcrumb" *ngIf="headerInformation && !headerInformation.values && headerInformation.breadcrumb && headerInformation.breadcrumb.length > 0">
     <a 
       *ngFor="let item of headerInformation.breadcrumb; let last = last" 
       [routerLink]="item.path" 
