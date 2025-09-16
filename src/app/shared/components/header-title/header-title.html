@@ -24,7 +24,19 @@
       <span *ngIf="!last" class="separator">/</span>
     </a>
   </nav>
+  
   <div class="header-content">
+    <div *ngIf="headerInformation?.values as values" class="saldo-info">
+      <p class="saldo-label">Saldo</p>
+      <div class="saldo-value-wrapper">
+        <h1 class="saldo-value">{{ values.value }}</h1>
+        <mat-icon class="info-icon">info_outline</mat-icon>
+      </div>
+      <div class="saldo-percentage">
+        <mat-icon class="positive-icon">arrow_upward</mat-icon>
+        <span>{{ values.percentage }}</span>
+      </div>
+    </div>
     <div class="header-info">
       <h1 class="page-title" *ngIf="headerInformation && headerInformation.pageTitle">{{ headerInformation.pageTitle }}</h1>
       <p class="page-subtitle" *ngIf="headerInformation && headerInformation.pageSubtitle">{{ headerInformation.pageSubtitle }}</p>

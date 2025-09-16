@@ -1,4 +1,53 @@
-.inactive {
-    background-color: #dadada;
-    border: none;
+:host {
+  --text-primary: #3A3A3A;
+  --border-color: #DADADA;
+  --primary-color: #5C4896;
+  --positive-change: #1F996E;
+  --font-main: 'Inter', sans-serif;
+  --font-special: 'Futuru', sans-serif; 
+}
+
+
+.saldo-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    .saldo-label {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin: 0;
+    }
+    .saldo-value-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .saldo-value {
+            font-family: var(--font-special);
+            font-size: 38px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1;
+        }
+        .info-icon {
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+        }
+    }
+    .saldo-percentage {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        .positive-icon {
+            color: var(--positive-change);
+        }
+        span {
+            color: var(--positive-change);
+        }
+    }
 }
