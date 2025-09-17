@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { MatIconModule } from '@angular/material/icon';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
@@ -36,14 +37,14 @@ export interface Transaction {
   templateUrl: './extract.html',
   styleUrl: './extract.scss'
 })
-export class Extract {
+export class Extract implements OnInit, OnDestroy {
   transactions: Transaction[] = [
     {
       type: 'Envio',
       date: new Date('2025-03-07T15:58:00'),
       totalValue: 7.01,
       taxValue: 0.01,
-      clientValue: 7.00,
+      clientValue: 7.0,
       commissionValue: null,
       status: 'Crédito',
       id: 1132,
@@ -55,7 +56,7 @@ export class Extract {
       date: new Date('2025-03-07T15:58:00'),
       totalValue: 7.01,
       taxValue: 0.01,
-      clientValue: 7.00,
+      clientValue: 7.0,
       commissionValue: null,
       status: 'Crédito',
       id: 1133,
@@ -67,7 +68,7 @@ export class Extract {
       date: new Date('2025-03-07T15:58:00'),
       totalValue: 7.01,
       taxValue: 0.01,
-      clientValue: 7.00,
+      clientValue: 7.0,
       commissionValue: null,
       status: 'Devolução',
       id: 1134,
@@ -77,9 +78,9 @@ export class Extract {
     {
       type: 'Envio',
       date: new Date('2025-03-06T11:20:00'),
-      totalValue: 15.50,
-      taxValue: 0.50,
-      clientValue: 15.00,
+      totalValue: 15.5,
+      taxValue: 0.5,
+      clientValue: 15.0,
       commissionValue: null,
       status: 'Crédito',
       id: 1131,
@@ -89,9 +90,9 @@ export class Extract {
     {
       type: 'Recebimento',
       date: new Date('2025-03-06T09:05:00'),
-      totalValue: 100.00,
-      taxValue: 1.00,
-      clientValue: 99.00,
+      totalValue: 100.0,
+      taxValue: 1.0,
+      clientValue: 99.0,
       commissionValue: null,
       status: 'Crédito',
       id: 1130,
@@ -101,7 +102,7 @@ export class Extract {
     {
       type: 'Envio',
       date: new Date('2025-03-05T18:45:00'),
-      totalValue: 25.00,
+      totalValue: 25.0,
       taxValue: 0.25,
       clientValue: 24.75,
       commissionValue: null,
@@ -113,7 +114,7 @@ export class Extract {
     {
       type: 'Envio',
       date: new Date('2025-03-05T14:30:00'),
-      totalValue: 5.00,
+      totalValue: 5.0,
       taxValue: 0.01,
       clientValue: 4.99,
       commissionValue: null,
@@ -125,9 +126,9 @@ export class Extract {
     {
       type: 'Devolução',
       date: new Date('2025-03-04T12:00:00'),
-      totalValue: 50.00,
-      taxValue: 0.00,
-      clientValue: 50.00,
+      totalValue: 50.0,
+      taxValue: 0.0,
+      clientValue: 50.0,
       commissionValue: null,
       status: 'Devolução',
       id: 1127,
@@ -137,9 +138,9 @@ export class Extract {
     {
       type: 'Envio',
       date: new Date('2025-03-04T10:15:00'),
-      totalValue: 8.10,
-      taxValue: 0.10,
-      clientValue: 8.00,
+      totalValue: 8.1,
+      taxValue: 0.1,
+      clientValue: 8.0,
       commissionValue: null,
       status: 'Crédito',
       id: 1126,
@@ -159,7 +160,7 @@ export class Extract {
     values: {
       value: 'R$ 189,000',
       percentage: '7%',
-      filterDays: 7,
+      filterDays: 7
     },
     actionButton: {
       actionLabel: 'movimentar',
@@ -171,7 +172,7 @@ export class Extract {
       disabled: false,
       onClick: () => {}
     }
-  }
+  };
 
   public menuAbertoIndex: number | null = null;
 
@@ -181,22 +182,35 @@ export class Extract {
   public clientControl = new FormControl('');
   public walletControl = new FormControl('');
 
-  selectedWallet: string = '';
-
   public clients = [
-    { value: '123 Milhas - 26.669.170/0001-57', label: '123 Milhas - 26.669.170/0001-57' },
-    { value: 'Cliente 2', label: 'Cliente 2' }
+    { value: 'Client A', label: 'Client A' },
+    { value: 'Client B', label: 'Client B' },
+    { value: 'Client C', label: 'Client C' }
   ];
 
   public wallets = [
-    { value: '6671 - Padrão', label: '6671 - Padrão' },
-    { value: 'Carteira 2', label: 'Carteira 2' }
+    { value: 'Wallet 1', label: 'Wallet 1' },
+    { value: 'Wallet 2', label: 'Wallet 2' },
+    { value: 'Wallet 3', label: 'Wallet 3' }
   ];
 
   filteredTransactions: Transaction[] = [];
+  private subs: Subscription[] = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
     this.applyFilters();
+
+    // reatividade nos selects
+    this.subs.push(
+      this.clientControl.valueChanges.subscribe(() => this.applyFilters()),
+      this.walletControl.valueChanges.subscribe(() => this.applyFilters())
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(s => s.unsubscribe());
   }
 
   applyFilters(): void {
@@ -205,7 +219,7 @@ export class Extract {
     if (this.startDate && this.endDate) {
       const start = new Date(this.startDate);
       const end = new Date(this.endDate);
-      end.setHours(23, 59, 59, 999); 
+      end.setHours(23, 59, 59, 999);
       filtered = filtered.filter(t => t.date >= start && t.date <= end);
     }
 
@@ -218,5 +232,13 @@ export class Extract {
     }
 
     this.filteredTransactions = filtered;
+  }
+
+  resetFilters(): void {
+    this.startDate = '';
+    this.endDate = '';
+    this.clientControl.setValue('');
+    this.walletControl.setValue('');
+    this.applyFilters();
   }
 }
