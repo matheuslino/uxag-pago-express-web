@@ -20,7 +20,7 @@
 .filters-card,
 .results-card {
   background-color: var(--card-background-color);
-  padding: 24px;
+  padding: 32px;
   border-radius: var(--border-radius);
 }
 
@@ -83,13 +83,15 @@
 
 .results-table {
   width: 100%;
+  border-radius: 12px;
+  border: 1px solid #ccc;
 }
 
 .table-header, .table-row {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 0.5fr; 
   align-items: center;
-  padding: 16px 0;
+  padding: 16px 12px;
   gap: 16px;
 }
 
@@ -104,6 +106,7 @@
 .table-row {
   border-bottom: 1px solid var(--border-color);
   font-size: 12px;
+  background-color: white;
 }
 
 .razao-social-cell {

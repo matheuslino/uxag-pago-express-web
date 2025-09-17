@@ -188,6 +188,10 @@ export class HeaderDashboard implements OnInit {
   }
 
   goToTransfer(): void {
-    this.router.navigate(['/carteita/transfer']);
+    this.router.navigate(['/carteira/transfer']);
+  }
+
+  AddCarteira(): void {
+    this.router.navigate(['/carteira/wallets/new']);
   }
 }

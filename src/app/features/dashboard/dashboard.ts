@@ -99,4 +99,8 @@ export class Dashboard {
   goToSolicitar() {
     this.router.navigate(['carteira/deposit']);
   }
+
+  goToVerMais() {
+    this.router.navigate(['carteira']);
+  }
 }

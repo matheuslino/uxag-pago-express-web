@@ -34,17 +34,13 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-}
-
-
-.header-actions {
-  margin-right: 68px;  
+    padding: 0 68px;
 }
 
 .saldo-info {
     display: flex;
     flex-direction: column;
-    padding: 24px 64px 0 64px;
+    padding: 24px 0 0 0;
     gap: 8px;    
     .saldo-label {
         font-size: 14px;

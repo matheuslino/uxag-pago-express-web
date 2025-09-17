@@ -38,12 +38,8 @@
             <img src="assets/images/logoEX.png" alt="PagoExpress Logo" class="logo mobile-logo" />
 
             <div class="user-actions">
-              <button mat-icon-button>
-                <mat-icon>email</mat-icon>
-              </button>
-              <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
-                <mat-icon [matBadge]="unreadNotifications" aria-hidden="false" matBadgeColor="warn" matBadgeSize="small" [matBadgeHidden]="unreadNotifications === 0">notifications_none</mat-icon>
-              </button>
+              <img src="/assets/icons/mensagens.svg" alt="message" />
+              <img src="/assets/icons/notificacao.svg" alt="notifications" />
               <button class="user-info-button" [matMenuTriggerFor]="userMenu">
                 <div class="user-info">
                   <div class="user-avatar">
@@ -110,7 +106,7 @@
             <div class="wallets-section">
               <div class="wallets-header">
                 <span class="section-title">Saldo por carteiras</span>
-                <a href="#" class="view-all-link">Ver todas</a>
+                <a href="/carteira/balance" class="view-all-link">Ver todas</a>
               </div>
               <div class="wallets-grid">
                 <div class="wallet-card" *ngFor="let wallet of wallets">
@@ -122,7 +118,7 @@
                      R$ {{ wallet.saldo | number:'1.2-2' | slice:0:-3 }}<span class="cents">,{{ ((wallet.saldo | number:'1.2-2') ?? '0,00').split(',')[1] }}</span>
                    </div>
                 </div>
-                <button *ngFor="let _ of addWalletPlaceholders" class="wallet-card add-wallet-card">
+                <button (click)="AddCarteira()" *ngFor="let _ of addWalletPlaceholders" class="wallet-card add-wallet-card">
                   <mat-icon class="add-icon">add</mat-icon>
                   <span>Adicionar nova carteira</span>
                 </button>
