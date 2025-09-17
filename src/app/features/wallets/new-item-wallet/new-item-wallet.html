@@ -1,6 +1,6 @@
 <app-header-title [headerInformation]="headerInformation"></app-header-title>
 <div class="template-content">
-  <app-wallet-sidebar></app-wallet-sidebar>
+  <app-wallet-sidebar [menuSelected]="walletMenu"></app-wallet-sidebar>
   <main class="new-item-container">
     <section class="card form-card">
       <header class="card-header">
@@ -55,11 +55,16 @@
           </div>
         </div>
       </div>
-
-      <div class="actions-container">
-        <button class="btn-save" (click)="saveItem()">Salvar</button>
-      </div>
     </section>
-
   </main>
 </div>
+
+<app-footer-info
+  [information]="footerInformation"
+  [context]="footerContext1" 
+  [label]="footerContext2"
+  [confirmCancelLabel]="'Cancelar'"
+  [confirmSubmitLabel]="sendLabel"
+  (cancel)="onCancel()"
+  (submit)="saveItem()">
+</app-footer-info>
