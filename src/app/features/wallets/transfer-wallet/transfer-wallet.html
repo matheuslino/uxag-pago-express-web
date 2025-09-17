@@ -1,4 +1,5 @@
 <app-header-title [headerInformation]="headerInformation"></app-header-title>
+
 <div class="template-content">
   <app-wallet-sidebar></app-wallet-sidebar>
   <main class="transfer-wallet-container">
@@ -7,7 +8,6 @@
         <h2>Informações para envio</h2>
         <p>Complete as informações de acordo com a chave desejada</p>
       </header>
-      
       <hr class="separator">
 
       <div class="form-section">
@@ -64,8 +64,8 @@
         </div>
       </div>
     </section>
-
   </main>
+
   @if (isModalVisible) {
     <div class="modal-overlay">
       <div class="modal-content">
@@ -76,13 +76,14 @@
           </div>
           <button class="modal-close" (click)="closeConfirmationModal()">×</button>
         </div>
-        
         <hr class="modal-divider">
         
         <div class="modal-body">
           <div class="transfer-details">
             <div class="detail-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+                <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
+              </svg>
             </div>
             <div class="detail-item">
               <span>Carteira Origem</span>
@@ -107,13 +108,20 @@
       </div>
     </div>
   }
+
+
 </div>
-<app-footer-info
-  [information]="footerInformation"
-  [context]="footerContext"
-  [label]="footerLabel"
-  [confirmCancelLabel]="`Cancelar transação`"
-  [confirmSubmitLabel]="sendLabel"
-  (cancel)="onCancel()"
-  (submit)="onSubmit()">
-</app-footer-info>
+  <!-- Footer Avançado Substituído -->
+  <app-footer-info
+    [information]="footerInformation"
+    [saldoValor]="saldoValor"
+    [tipoChave]="'Tipo de chave'"
+    [chavePixLabel]="'Chave PIX'"
+    [tipoChaveValor]="tipoChaveValor"
+    [chavePixValor]="chavePixValor"
+    [valorTransacao]="valorTransacao"
+    [confirmCancelLabel]="'Cancelar transação'"
+    [confirmSubmitLabel]="sendLabel"
+    (cancel)="onCancel()"
+    (submit)="onSubmit()">
+  </app-footer-info>

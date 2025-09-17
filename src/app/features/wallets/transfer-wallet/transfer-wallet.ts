@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
-import { FooterInfo } from '../../../shared/components/footer-info/footer-info';
+import { FooterInfoTransferencia } from '../../../shared/components/footer-info-transferencia/footer-info-transferencia';
 
 @Component({
   selector: 'app-transfer-wallet',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
     HeaderTitle,
     RouterModule,
     MatIconModule,
     WalletSidebar,
-    FooterInfo,
+    FooterInfoTransferencia,
   ],
   templateUrl: './transfer-wallet.html',
   styleUrl: './transfer-wallet.scss'
@@ -42,12 +42,10 @@ export class TransferWallet {
   public footerContext: string = 'Transferencia entre contas';
   public footerLabel: string = '';
 
-  
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-  ) {
-  }
+  ) {}
 
   public transferData = {
     favorecido: '',
@@ -55,6 +53,33 @@ export class TransferWallet {
     chavePix: '',
     valor: null as number | null
   };
+
+  // Getters para o Footer Avançado
+  public get saldoValor(): string {
+    return `R$ ${this.headerInformation.saldo.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+  }
+
+  public get tipoChaveValor(): string {
+    if (!this.transferData.chavePix) return '';
+    
+    const chave = this.transferData.chavePix.replace(/\D/g, '');
+    
+    if (chave.length === 11) return 'CPF';
+    if (chave.length === 14) return 'CNPJ';
+    if (this.transferData.chavePix.includes('@')) return 'E-mail';
+    if (this.transferData.chavePix.match(/^\+?[1-9]\d{1,14}$/)) return 'Telefone';
+    
+    return 'Chave aleatória';
+  }
+
+  public get chavePixValor(): string {
+    return this.transferData.chavePix || '';
+  }
+
+  public get valorTransacao(): string {
+    if (!this.transferData.valor) return '';
+    return `R$ ${this.transferData.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+  }
 
   openConfirmationModal(): void {
     if (this.transferData.favorecido && this.transferData.carteiraFavorecido && this.transferData.valor) {
@@ -70,7 +95,7 @@ export class TransferWallet {
 
   confirmTransfer(): void {
     console.log('Transferência confirmada:', this.transferData);
-    
+
     this.transferData = {
       favorecido: '',
       carteiraFavorecido: '',
