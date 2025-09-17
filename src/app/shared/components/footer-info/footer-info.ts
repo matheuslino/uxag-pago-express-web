@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 export class FooterInfo {
 
   @Input() information: string = '';
+  @Input() saldo: string = '';
   @Input() label: string = '';
   @Input() context: string = '';
   @Input() confirmSubmitLabel: string = '';

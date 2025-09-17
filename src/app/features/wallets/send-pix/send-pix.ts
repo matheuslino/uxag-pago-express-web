@@ -45,8 +45,8 @@ export class SendPix {
   }
 
   public sendLabel: string = 'Enviar';
-  public footerInformation: string = '001';
-  public footerContext: string = 'Enviar pix';
+  public footerInformation: string = '#1132 - Barbearia Orizon';
+  public footerContext: string = '';
   public footerLabel: string = '';
   
   public accountData = {

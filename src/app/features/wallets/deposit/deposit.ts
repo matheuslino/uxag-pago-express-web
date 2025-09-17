@@ -50,8 +50,8 @@ export class Deposit {
     saldo: 1000,
   }
 
-  public sendLabel: string = 'Enviar';
-  public footerInformation: string = '001';
+  public sendLabel: string = 'Seguir com depósito';
+  public footerInformation: string = '#1132 - Barbearia Orizon';
   public footerContext: string = 'Depósito';
   public footerLabel: string = '';
 

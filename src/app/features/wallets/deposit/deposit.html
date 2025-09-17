@@ -106,11 +106,12 @@
     </div>
   }
 </div>
+
 <app-footer-info
   [information]="footerInformation"
-  [context]="footerContext"
-  [label]="footerLabel"
-  [confirmCancelLabel]="`Cancelar transação`"
+  [context]="footerContext" 
+  [label]="depositData?.valor ? depositData.valor+' - Pago Express': '0 - Pago Express' "
+  [confirmCancelLabel]="`Cancelar`"
   [confirmSubmitLabel]="sendLabel"
   (cancel)="onCancel()"
   (submit)="onSubmit()">
