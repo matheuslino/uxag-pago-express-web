@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Header } from '../../../shared/components/header/header';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FooterInfo } from '../../../shared/components/footer-info/footer-info';
+import { CommonModule, Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit',
@@ -15,14 +16,21 @@ import { ActivatedRoute, Router } from '@angular/router';
     FormsModule,
     HeaderTitle,
     WalletSidebar,
+    FooterInfo,
+
   ],
   templateUrl: './edit.html',
   styleUrl: './edit.scss'
 })
 export class Edit {
 
-  public walletId: number | undefined;
+  public sendLabel: string = 'Enviar';
+  public footerInformation: string = '001';
+  public footerContext: string = 'Casteira Oficial';
+  public footerLabel: string = '';
+  public isModalVisible = false;
 
+  public walletId: number | undefined;
   walletMenu: string = 'wallet';
 
   public razaoSocial: string = '123 Milhas';
@@ -49,6 +57,7 @@ export class Edit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -56,5 +65,22 @@ export class Edit {
       this.walletId = Number(params.get('id') || '0');
     });
   }
+
+  onCancel(): void {
+    this.location.back();
+  }
+
+  onSubmit(): void {
+    this.openConfirmationModal();
+  }
+
+  openConfirmationModal(): void {
+    if (this.razaoSocial) {
+      this.isModalVisible = true;
+    } else {
+      alert('Por favor, preencha a Chave PIX e o Valor.');
+    }
+  }
+
 
 }

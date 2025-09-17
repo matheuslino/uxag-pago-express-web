@@ -17,7 +17,7 @@ export interface IPendingWithdrawal {
   };
   chavePix: string;
   valor: number;
-  dataHora: string; 
+  dataHora: string;
   status: 'Pendente';
 }
 
@@ -25,14 +25,14 @@ export interface IPendingWithdrawal {
   selector: 'app-transfer',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
     HeaderTitle,
     RouterModule,
     MatIconModule,
     WalletSidebar,
     FooterInfo,
-  ], 
+  ],
   templateUrl: './transfer.html',
   styleUrl: './transfer.scss'
 })
@@ -95,10 +95,10 @@ export class Transfer {
     const newWithdrawal: IPendingWithdrawal = {
       solicitante: {
         name: 'Lucas Admin',
-        email: 'lucas.admin@example.com' 
+        email: 'lucas.admin@example.com'
       },
       carteira: {
-        id: 531, 
+        id: 531,
         name: 'Wallet 2'
       },
       chavePix: this.transferData.chavePix,

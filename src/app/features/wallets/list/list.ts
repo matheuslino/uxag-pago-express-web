@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { MatIconModule } from '@angular/material/icon';
-import { AdminSidebar } from '../../../shared/components/admin-sidebar/admin-sidebar';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 
 interface Empresa {
@@ -48,6 +47,14 @@ export class List {
     }
   ];
 
+  // Lista filtrada
+  public empresasFiltradas: Empresa[] = [...this.empresas];
+
+  // Filtros
+  public filtroRazaoSocial: string = '';
+  public filtroNumeroCarteira: string = '';
+  public filtroApelido: string = '';
+
   public headerInformation = {
     pageTitle: 'Wallets',
     pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
@@ -69,14 +76,9 @@ export class List {
 
   constructor(private router: Router) { }
 
-
   public toggleMenu(index: number, event: MouseEvent): void {
     event.stopPropagation();
-    if (this.menuAbertoIndex === index) {
-      this.menuAbertoIndex = null;
-    } else {
-      this.menuAbertoIndex = index;
-    }
+    this.menuAbertoIndex = this.menuAbertoIndex === index ? null : index;
   }
 
   public fecharMenu(): void {
@@ -90,13 +92,21 @@ export class List {
 
   public configurar(empresa: Empresa): void {
     this.router.navigateByUrl(`/carteira/wallets/config/${empresa.id}`);
-    console.log('Configurar clicado para:', empresa.razaoSocial);
     this.fecharMenu();
   }
 
   public verLogs(empresa: Empresa): void {
     this.router.navigateByUrl(`/carteira/wallets/logs/${empresa.id}`);
-    console.log('Ver logs clicado para:', empresa.razaoSocial);
     this.fecharMenu();
   }
+
+  // Função de filtro
+  public aplicarFiltros(): void {
+    this.empresasFiltradas = this.empresas.filter(e =>
+      (!this.filtroRazaoSocial || e.razaoSocial.toLowerCase().includes(this.filtroRazaoSocial.toLowerCase())) &&
+      (!this.filtroNumeroCarteira || e.numeroCarteira.includes(this.filtroNumeroCarteira)) &&
+      (!this.filtroApelido || e.apelido.toLowerCase().includes(this.filtroApelido.toLowerCase()))
+    );
+  }
+
 }
