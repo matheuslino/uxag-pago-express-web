@@ -5,7 +5,8 @@ import { Router, RouterModule } from '@angular/router';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
-import { FooterInfo } from '../../../shared/components/footer-info/footer-info';
+import { FooterInfoTransferencia } from '../../../shared/components/footer-info-transferencia/footer-info-transferencia';
+
 export interface IPendingWithdrawal {
   solicitante: {
     name: string;
@@ -31,7 +32,7 @@ export interface IPendingWithdrawal {
     RouterModule,
     MatIconModule,
     WalletSidebar,
-    FooterInfo,
+    FooterInfoTransferencia,
   ],
   templateUrl: './transfer.html',
   styleUrl: './transfer.scss'
@@ -40,7 +41,6 @@ export class Transfer {
 
   public hasPendingWithdrawals = false;
   public pendingWithdrawals: IPendingWithdrawal[] = [];
-
   public isModalVisible = false;
 
   public transferData = {
@@ -60,14 +60,49 @@ export class Transfer {
   }
 
   public sendLabel: string = 'Enviar';
-  public footerInformation: string = '001';
-  public footerContext: string = 'Transferencia';
-  public footerLabel: string = '';
-
   public menuAbertoIndex: number | null = null;
 
-  constructor(private router: Router,
-    private location: Location) { }
+  // Propriedades para o Footer
+  public get footerInformation(): string {
+    return '001';
+  }
+
+  public get footerContext(): string {
+    return 'Transferencia';
+  }
+
+  public get footerLabel(): string {
+    return '';
+  }
+
+  public get saldoValor(): string {
+    return `R$ ${this.headerInformation.saldo.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+  }
+
+  public get tipoChaveValor(): string {
+    if (!this.transferData.chavePix) return '';
+    
+    // Detecta o tipo de chave PIX baseado no formato
+    const chave = this.transferData.chavePix.replace(/\D/g, '');
+    
+    if (chave.length === 11) return 'CPF';
+    if (chave.length === 14) return 'CNPJ';
+    if (this.transferData.chavePix.includes('@')) return 'E-mail';
+    if (this.transferData.chavePix.match(/^\+?[1-9]\d{1,14}$/)) return 'Telefone';
+    
+    return 'Chave aleatória';
+  }
+
+  public get chavePixValor(): string {
+    return this.transferData.chavePix || '';
+  }
+
+  public get valorTransacao(): string {
+    if (!this.transferData.valor) return '';
+    return `R$ ${this.transferData.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+  }
+
+  constructor(private router: Router, private location: Location) { }
 
   openConfirmationModal(): void {
     if (this.transferData.chavePix && this.transferData.valor) {
@@ -103,7 +138,7 @@ export class Transfer {
       },
       chavePix: this.transferData.chavePix,
       valor: this.transferData.valor,
-      dataHora: `R$ ${this.transferData.valor.toFixed(2).replace('.', ',')}`, // Formatação simples da data/hora
+      dataHora: new Date().toLocaleString('pt-BR'),
       status: 'Pendente'
     };
 

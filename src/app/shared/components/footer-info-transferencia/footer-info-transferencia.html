@@ -1,0 +1,31 @@
+<div class="footer">
+  <div class="footer-info">
+    <div class="footer-info-left">
+      <div class="saldo-info">
+        <span class="saldo-label">Saldo</span>
+        <span class="saldo-valor">{{ saldoValor }}</span>
+      </div>
+      <span class="footer-info-tag">{{ information }}</span>
+    </div>
+
+    <div class="footer-info-center">
+      <div class="pix-info">
+        <span class="pix-tipo">{{ tipoChave }}</span>
+        <span class="pix-chave">{{ chavePixLabel }}</span>
+      </div>
+      <div class="pix-valores">
+        <span class="pix-tipo-valor">{{ tipoChaveValor }}</span>
+        <span class="pix-chave-valor">{{ chavePixValor }}</span>
+      </div>
+    </div>
+
+    <div class="footer-info-right">
+      <button type="button" class="btn-cancel" (click)="onCancel()">
+        {{ confirmCancelLabel !== '' ? confirmCancelLabel : 'Cancelar transação' }}
+      </button>
+      <button type="button" class="btn-submit" (click)="onSubmit()">
+        {{ confirmSubmitLabel !== '' ? confirmSubmitLabel : 'Enviar' }} {{ valorTransacao ? '(' + valorTransacao + ')' : '' }}
+      </button>
+    </div>
+  </div>
+</div>
