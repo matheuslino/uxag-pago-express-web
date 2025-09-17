@@ -6,6 +6,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server,
   },
   {
+    path: 'administracao/clients/notifications/:id',
+    renderMode: RenderMode.Server,
+  },
+  {
     path: 'carteira/wallets/edit/:id',
     renderMode: RenderMode.Server,
   },
@@ -15,6 +19,22 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'carteira/wallets/config/:id',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'administracao/users/edit/:id',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'administracao/users/credentials/:id',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'administracao/users/link-companies/:id',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'administracao/users/logs/:id',
     renderMode: RenderMode.Server,
   },
   {
