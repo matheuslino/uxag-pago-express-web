@@ -44,9 +44,9 @@
 </div>
 <app-footer-info
   [information]="footerInformation"
-  [context]="footerContext"
-  [label]="footerLabel"
-  [confirmCancelLabel]="`Cancelar transação`"
+  [context]="razaoSocial"
+  [label]="footerContext"
+  [confirmCancelLabel]="`Cancelar`"
   [confirmSubmitLabel]="sendLabel"
   (cancel)="onCancel()"
   (submit)="onSubmit()">
