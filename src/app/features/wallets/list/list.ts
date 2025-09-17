@@ -1,18 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { MatIconModule } from '@angular/material/icon';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
+import { Subject, takeUntil } from 'rxjs';
+import { Empresa, WalletService } from '../../../services/wallet.service';
 
-interface Empresa {
-  id: number;
-  razaoSocial: string;
-  cnpj: string;
-  numeroCarteira: string;
-  apelido: string;
-}
 
 @Component({
   selector: 'app-list',
@@ -28,32 +23,20 @@ interface Empresa {
   templateUrl: './list.html',
   styleUrl: './list.scss'
 })
-export class List {
+export class List implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
 
-  public empresas: Empresa[] = [
-    {
-      id: 1,
-      razaoSocial: 'FASTCOMMERCE',
-      cnpj: '34.192.109/0001-23',
-      numeroCarteira: '5131',
-      apelido: 'Primeira carteira'
-    },
-    {
-      id: 2,
-      razaoSocial: 'Smart Fit',
-      cnpj: '34.192.109/0001-23',
-      numeroCarteira: '0123',
-      apelido: 'Segunda carteira'
-    }
-  ];
 
-  // Lista filtrada
-  public empresasFiltradas: Empresa[] = [...this.empresas];
+  public empresas: Empresa[] = [];
+  public empresasFiltradas: Empresa[] = [];
+  public carregando = false;
+
 
   // Filtros
   public filtroRazaoSocial: string = '';
   public filtroNumeroCarteira: string = '';
   public filtroApelido: string = '';
+
 
   public headerInformation = {
     pageTitle: 'Wallets',
@@ -70,11 +53,58 @@ export class List {
         this.router.navigate(['/wallets/new']);
       }
     }
-  }
+  };
+
 
   public menuAbertoIndex: number | null = null;
 
-  constructor(private router: Router) { }
+
+  constructor(
+    private router: Router,
+    private walletService: WalletService,
+    private cdr: ChangeDetectorRef
+  ) { }
+
+
+  ngOnInit(): void {
+    this.carregarDados();
+  }
+
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+
+  /**
+  
+  
+  
+  Carrega dados do service
+  */
+  private carregarDados(): void {
+    this.carregando = true;
+
+
+    this.walletService.getEmpresas()
+
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (empresas) => {
+          this.empresas = empresas;
+          this.aplicarFiltros();
+          this.carregando = false;
+          this.cdr.detectChanges();
+        },
+        error: (error) => {
+          console.error('Erro ao carregar empresas:', error);
+          this.carregando = false;
+        }
+      });
+
+  }
+
 
   public toggleMenu(index: number, event: MouseEvent): void {
     event.stopPropagation();
@@ -86,7 +116,7 @@ export class List {
   }
 
   public editar(empresa: Empresa): void {
-    this.router.navigateByUrl(`/carteira/wallets/edit/${empresa.id}`);
+    this.router.navigate(['/carteira/wallets/edit', empresa.id]);
     this.fecharMenu();
   }
 
@@ -100,13 +130,39 @@ export class List {
     this.fecharMenu();
   }
 
-  // Função de filtro
+  /**
+   * Aplica filtros na lista de empresas
+   */
   public aplicarFiltros(): void {
-    this.empresasFiltradas = this.empresas.filter(e =>
-      (!this.filtroRazaoSocial || e.razaoSocial.toLowerCase().includes(this.filtroRazaoSocial.toLowerCase())) &&
-      (!this.filtroNumeroCarteira || e.numeroCarteira.includes(this.filtroNumeroCarteira)) &&
-      (!this.filtroApelido || e.apelido.toLowerCase().includes(this.filtroApelido.toLowerCase()))
+    this.empresasFiltradas = this.empresas.filter(empresa =>
+      this.filtrarPorRazaoSocial(empresa) &&
+      this.filtrarPorNumeroCarteira(empresa) &&
+      this.filtrarPorApelido(empresa)
     );
   }
 
+  private filtrarPorRazaoSocial(empresa: Empresa): boolean {
+    return !this.filtroRazaoSocial ||
+      empresa.razaoSocial.toLowerCase().includes(this.filtroRazaoSocial.toLowerCase());
+  }
+
+  private filtrarPorNumeroCarteira(empresa: Empresa): boolean {
+    return !this.filtroNumeroCarteira ||
+      empresa.numeroCarteira.includes(this.filtroNumeroCarteira);
+  }
+
+  private filtrarPorApelido(empresa: Empresa): boolean {
+    return !this.filtroApelido ||
+      empresa.apelido.toLowerCase().includes(this.filtroApelido.toLowerCase());
+  }
+
+  /**
+   * Limpa todos os filtros aplicados
+   */
+  public limparFiltros(): void {
+    this.filtroRazaoSocial = '';
+    this.filtroNumeroCarteira = '';
+    this.filtroApelido = '';
+    this.aplicarFiltros();
+  }
 }

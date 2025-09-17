@@ -64,24 +64,40 @@ export class Edit {
     private location: Location,
     private empresaService: EmpresaService
   ) { }
-
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.walletId = Number(params.get('id') || '0');
-      this.empresa = this.empresaService.getEmpresaById(this.walletId);
+      const id = Number(params.get('id') || '0');
 
-      if (this.empresa) {
-        this.razaoSocial = this.empresa.razaoSocial;
-        this.apelido = this.empresa.apelido;
-        this.numeroCarteira = this.empresa.numeroCarteira;
-
-        // ajustar o footer de acordo com os dados
-        this.footerInformation = `#${this.empresa.id} - ${this.empresa.razaoSocial}`;
-        this.footerContext = this.empresa.apelido;
+      if (!id || id === 0) {
+        // ✅ Redirecionar se ID inválido
+        this.router.navigate(['/wallets']);
+        return;
       }
+
+      this.walletId = id;
+      this.carregarEmpresa(id);
     });
   }
 
+  private carregarEmpresa(id: number): void {
+    this.empresa = this.empresaService.getEmpresaById(id);
+
+    if (this.empresa) {
+      // Preencher os campos do formulário
+      this.razaoSocial = this.empresa.razaoSocial;
+      this.apelido = this.empresa.apelido;
+      this.numeroCarteira = this.empresa.numeroCarteira;
+      this.valor = '0,00'; // ✅ Adicionar valor se existir
+
+      // Configurar footer
+      this.footerInformation = `#${this.empresa.id} - ${this.empresa.razaoSocial}`;
+      this.footerContext = this.empresa.apelido;
+    } else {
+      // ✅ Tratar caso não encontre a empresa
+      console.error(`Empresa com ID ${id} não encontrada`);
+      this.router.navigate(['/wallets']);
+    }
+  }
   onCancel(): void {
     this.location.back();
   }

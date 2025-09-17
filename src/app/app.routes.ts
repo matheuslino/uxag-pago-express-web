@@ -196,6 +196,7 @@ export const routes: Routes = [
               {
                 path: 'edit/:id',
                 component: EditWallet,
+                runGuardsAndResolvers: 'always'   
               },
               {
                 path: 'config/:id',
