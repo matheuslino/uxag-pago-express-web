@@ -29,10 +29,8 @@ export class UserService {
   }
 
   changePassword(passwordData: PasswordChangeRequest): Observable<PasswordChangeResponse> {
-    // Simula delay de rede
     return of(this.mockResponses[0]).pipe(delay(100));
-    
-     }
+  }
 
   // Método para alterar dados mockados durante desenvolvimento
   updateMockUser(user: Partial<User>): void {

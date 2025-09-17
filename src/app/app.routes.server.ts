@@ -6,15 +6,15 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server,
   },
   {
-    path: 'wallets/edit/:id',
+    path: 'carteira/wallets/edit/:id',
     renderMode: RenderMode.Server,
   },
   {
-    path: 'wallets/logs/:id',
+    path: 'carteira/wallets/logs/:id',
     renderMode: RenderMode.Server,
   },
   {
-    path: 'wallets/config/:id',
+    path: 'carteira/wallets/config/:id',
     renderMode: RenderMode.Server,
   },
   {

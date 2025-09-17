@@ -4,23 +4,25 @@
   <div class="extract-container">
     <header class="filters">
       <div class="filter-group">
-        <label for="period">Período</label>
+        <label for="startDate">Período</label>
         <div class="input-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z"/></svg>
-          <input id="period" type="text" value="Jan 6, 2024 - Jan 13, 2024" readonly>
+          <input id="startDate" type="date" [(ngModel)]="startDate" (ngModelChange)="applyFilters()">
+          <input id="endDate" type="date" [(ngModel)]="endDate" (ngModelChange)="applyFilters()">
         </div>
       </div>
       <div class="filter-group">
         <label for="client">Cliente</label>
-        <div class="input-wrapper">
-          <input id="client" type="text" value="123 Milhas - 26.669.170/0001-57" readonly>
-        </div>
+          <app-custom-select
+            [options]="clients"
+            [formControl]="clientControl">
+          </app-custom-select>
       </div>
       <div class="filter-group">
         <label for="wallet">Carteira</label>
-        <div class="input-wrapper">
-          <input id="wallet" type="text" value="6671 - Padrão" readonly>
-        </div>
+          <app-custom-select
+            [options]="wallets"
+            [formControl]="walletControl">
+          </app-custom-select>
       </div>
     </header>
 
@@ -31,12 +33,12 @@
           <p>Abaixo estão os resultados encontrados</p>
         </div>
         <div class="card-total">
-          Total {{ transactions.length }} registros
+          Total {{ filteredTransactions.length }} registros
         </div>
       </header>
 
       <div class="transaction-list">
-        @for (transaction of transactions; track transaction.id; let isLast = $last) {
+        @for (transaction of filteredTransactions; track transaction.id; let isLast = $last) {
           <div class="transaction-item">
             <div class="item-main">
               <div class="item-icon-details">
@@ -45,7 +47,7 @@
                 </div>
                 <div class="item-details">
                   <span class="type">{{ transaction.type }}</span>
-                  <span class="date">{{ transaction.date | date:'MMM dd, yyyy' }} • {{ transaction.date | date:'HH\'h\'mm' }}</span>
+                  <span class="date">{{ transaction.date | date:'MMM dd, yyyy' }} • {{ transaction.date | date:"HH'h'mm" }}</span>
                 </div>
               </div>
 

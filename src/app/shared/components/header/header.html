@@ -48,18 +48,11 @@
             <img src="assets/images/logo.svg" alt="PagoExpress Logo" class="logo mobile-logo" />
 
             <div class="user-actions">
-              <button mat-icon-button class="action-btn" (click)="openMessages()">
-                <mat-icon>mail_outline</mat-icon>
+              <button mat-icon-button class="action-btn">
+                <img src="/assets/icons/mensagens_black.svg" alt="message" />
               </button>
-              <button mat-icon-button 
-                      [matMenuTriggerFor]="notificationMenu" 
-                      class="action-btn">
-                <mat-icon [matBadge]="unreadNotifications" 
-                          matBadgeColor="warn" 
-                          matBadgeSize="small"
-                          [matBadgeHidden]="unreadNotifications === 0">
-                  notifications_none
-                </mat-icon>
+              <button mat-icon-button class="action-btn">
+                <img src="/assets/icons/notificacao_black.svg" alt="notifications" />
               </button>
               <button class="user-info-button" [matMenuTriggerFor]="userMenu">
                 <div class="user-info">
@@ -90,32 +83,6 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<mat-menu #notificationMenu="matMenu" class="notification-menu">
-  <div class="menu-header">
-    <h4>Notificações</h4>
-  </div>
-  <ng-container *ngIf="notifications.length > 0; else noNotifications">
-    <button mat-menu-item *ngFor="let notification of notifications" class="notification-item" [class.unread]="!notification.isRead" (click)="markAsRead(notification)">
-      <div class="notification-content">
-        <h5>{{ notification.title }}</h5>
-        <p>{{ notification.message }}</p>
-        <small>{{ notification.createdAt | date:'short' }}</small>
-      </div>
-    </button>
-  </ng-container>
-  <ng-template #noNotifications>
-    <div class="no-notifications">
-      <mat-icon>notifications_off</mat-icon>
-      <p>Nenhuma notificação</p>
-    </div>
-  </ng-template>
-  <mat-divider></mat-divider>
-  <button mat-menu-item class="view-all-btn" (click)="viewAllNotifications()">
-    <mat-icon>visibility</mat-icon>
-    <span>Ver todas</span>
-  </button>
-</mat-menu>
-
 <mat-menu #userMenu="matMenu">
   <div class="user-menu-header">
     <div class="user-info-detailed">
@@ -126,17 +93,41 @@
       <div class="user-details">
         <div class="user-name">{{ currentUser.name || 'Antônio Coutinho' }}</div>
         <div class="user-email">{{ currentUser.email || 'antonio@example.com' }}</div>
-        <div class="user-role">{{ currentUser.role || 'Gerente de Contas' }}</div>
       </div>
     </div>
   </div>   
   <mat-divider></mat-divider>
-  <button mat-menu-item routerLink="/settings/profile"><mat-icon>person</mat-icon><span>Meus Dados</span></button>
-  <button mat-menu-item routerLink="/settings"><mat-icon>settings</mat-icon><span>Alterar Senha</span></button>
-  <button mat-menu-item><mat-icon>help</mat-icon><span>Idioma</span></button>
-  <mat-divider></mat-divider>
-  <button mat-menu-item (click)="logout()" class="logout-item">
-    <mat-icon>logout</mat-icon>
-    <span>Sair</span>
+  <button class="icon-info-container" routerLink="/perfil">
+    <div class="icon-menu">
+      <img src="assets/icons/user.svg" alt="user" />
+    </div>
+    <div class="icon-text-container">
+      <span class="icon-title">Meus Dados</span>
+      <span class="icon-subtitle">Gerenciar informações pessoais</span>
+    </div>
+  </button>
+  <div class="icon-info-container">
+    <div class="icon-menu">
+      <img src="assets/icons/settings.svg" alt="settings" />
+    </div>
+    <div (click)="openModal()" class="icon-text-container">
+      <span class="icon-title">Alterar Senha</span>
+      <span class="icon-subtitle">Explore outra senha sua</span>
+    </div>
+  </div>
+  <button class="icon-info-container">
+    <div class="icon-menu">
+      <img src="assets/icons/idioma.svg" alt="idioma" />
+    </div>
+    <div class="icon-text-container">
+      <span class="icon-title">Idioma</span>
+      <span class="icon-subtitle">Trocar para outra linguagem</span>
+    </div>
+  </button>
+  <button class="icon-info-container" (click)="logout()">
+    <div class="icon-menu">
+      <img src="assets/icons/sair.svg" alt="sair" />
+    </div>
+    <span class="icon-title">Sair</span>
   </button>
 </mat-menu>

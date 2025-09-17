@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 import { MatIconModule } from '@angular/material/icon';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 
 interface ILinkedUser {
@@ -16,6 +16,7 @@ interface ILinkedUser {
   standalone: true,
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     HeaderTitle,
     RouterModule,
@@ -26,6 +27,9 @@ interface ILinkedUser {
   styleUrl: './config.scss'
 })
 export class Config {
+  public walletId: number | undefined;
+
+  walletMenu: string = 'wallet';
 
   public newUserInput: string = '';
 
@@ -52,7 +56,15 @@ export class Config {
     }
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+  ) { }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.walletId = Number(params.get('id') || '0');
+    });
+  }
 
   addUser(): void {
     if (!this.newUserInput.trim()) {

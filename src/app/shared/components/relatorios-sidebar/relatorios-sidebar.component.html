@@ -1,35 +1,33 @@
 <div class="sidebar">
   <nav class="sidebar-nav">
     <ul class="nav-list">
-      <li class="nav-item has-children" [class.expanded]="isMenuExpanded('saques')">
-        <a (click)="toggleMenu('saques')" [class.active]="isActiveRoute(['/relatorios/saques'])" class="nav-link parent-link">
+      <li class="nav-item">
+        <a routerLink="/relatorios/withdrawals" routerLinkActive="active" class="nav-link parent-link">
           <span>Saques</span>
         </a>
-        <ul class="sub-nav-list" *ngIf="isMenuExpanded('saques')">
-          <li class="sub-nav-item">
-            <a routerLink="/relatorios/saques" routerLinkActive="active" class="sub-nav-link">
-              <span>Cash-in</span>
-            </a>
-             <a routerLink="/relatorios/saques" routerLinkActive="active" class="sub-nav-link">
-              <span>Cash-out</span>
-            </a>
-          </li>
-        </ul>
+        <div class="nav-submenu" *ngIf="menuSelected && menuSelected === 'withdrawals'">
+          <ul class="sub-nav-list">
+            <li class="sub-nav-item">
+              <a routerLink="/relatorios/withdrawals" routerLinkActive="active" class="sub-nav-link">
+                <span>Cash-out</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
-      <li class="nav-item has-children" [class.expanded]="isMenuExpanded('deposito')">
-        <a (click)="toggleMenu('deposito')" [class.active]="isActiveRoute(['/relatorios/deposito'])" class="nav-link parent-link">
+      <li class="nav-item">
+        <a routerLink="/relatorios/deposits" routerLinkActive="active" class="nav-link parent-link">
           <span>Depósito</span>
         </a>
-        <ul class="sub-nav-list" *ngIf="isMenuExpanded('deposito')">
-          <li class="sub-nav-item">
-            <a routerLink="/relatorios/deposito" routerLinkActive="active" class="sub-nav-link">
-              <span>Cash-in</span>
-            </a>
-               <a routerLink="/relatorios/deposito" routerLinkActive="active" class="sub-nav-link">
-              <span>Cash-out</span>
-            </a>
-          </li>
-        </ul>
+        <div class="nav-submenu" *ngIf="menuSelected && menuSelected === 'deposits'">
+          <ul class="sub-nav-list">
+            <li class="sub-nav-item">
+              <a routerLink="/relatorios/deposits" routerLinkActive="active" class="sub-nav-link">
+                <span>Cash-in</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
     </ul>
   </nav>

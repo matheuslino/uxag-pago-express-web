@@ -261,3 +261,23 @@
 .btn-approve:hover {
   background: #5a32a3;
 }
+
+.template-content{
+  width: 100%;
+}
+
+.rejeitarAjsute{
+  position: absolute;
+  top: -1px;
+  left: 26px;
+}
+
+.aprovador-status{
+  display: flex;
+  position: relative;
+}
+
+
+.aprovador-status>div>img{
+ cursor: pointer;
+}

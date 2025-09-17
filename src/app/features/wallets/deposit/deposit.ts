@@ -1,13 +1,23 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
+import { HeaderTitle } from '../../../shared/components/header-title/header-title';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
+import { FooterInfo } from '../../../shared/components/footer-info/footer-info';
 
 @Component({
   selector: 'app-deposit',
   standalone: true,
   imports: [
-    CommonModule,
-    FormsModule 
+    CommonModule, 
+    FormsModule,
+    HeaderTitle,
+    RouterModule,
+    MatIconModule,
+    WalletSidebar,
+    FooterInfo,
   ],
   templateUrl: './deposit.html',
   styleUrl: './deposit.scss'
@@ -29,6 +39,29 @@ export class Deposit {
     pixCopyPaste: '00020126800014br.gov.bcb.pix013696c4a062-e16b-447c-9421-5...'
   };
 
+  public headerInformation = {
+    pageTitle: 'Depósito em carteira',
+    pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+    breadcrumb: [
+      { label: 'Painel', path: '/dashboard' },
+      { label: 'Wallets', path: '/carteira' },
+      { label: 'Visualização', path: '/carteira/deposit' }
+    ],
+    saldo: 1000,
+  }
+
+  public sendLabel: string = 'Seguir com depósito';
+  public footerInformation: string = '#1132 - Barbearia Orizon';
+  public footerContext: string = 'Depósito';
+  public footerLabel: string = '';
+
+  
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+  ) {
+  }
+
   openConfirmationModal(): void {
     if (this.depositData.valor && this.depositData.valor > 0) {
       this.paymentInfo.valor = this.depositData.valor;
@@ -43,8 +76,16 @@ export class Deposit {
   }
 
   proceedWithPayment(): void {
-    console.log('Prosseguindo com o pagamento de:', this.paymentInfo.valor);
     this.closeConfirmationModal();
     this.depositData.valor = null;
   }
+
+  onCancel(): void {
+    this.location.back();
+  }
+
+  onSubmit(): void {
+    this.openConfirmationModal();
+  }
+
 }

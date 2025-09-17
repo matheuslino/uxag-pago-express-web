@@ -45,10 +45,11 @@
           </div>
         </div>
       </div>
-      <div class="temporary-button-container">
+      <!-- <div class="temporary-button-container">
         <button class="btn-transfer" (click)="openConfirmationModal()">Transferir</button>
-      </div>
+      </div> -->
     </section>
+    
     <section class="card pending-card">
       <header class="card-header-pending">
         <div class="title-group">
@@ -68,7 +69,9 @@
               <th>Chave PIX</th>
               <th>
                 Valor
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+                  <path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"/>
+                </svg>
               </th>
               <th>Data/hora</th>
               <th>Status</th>
@@ -114,6 +117,7 @@
       </div>
     </section>
   </main>
+
   @if (isModalVisible) {
     <div class="modal-overlay">
       <div class="modal-content">
@@ -155,3 +159,17 @@
     </div>
   }
 </div>
+
+<app-footer-info
+  [information]="footerInformation"
+  [saldoValor]="saldoValor"
+  [tipoChave]="'Tipo de chave'"
+  [chavePixLabel]="'Chave PIX'"
+  [tipoChaveValor]="tipoChaveValor"
+  [chavePixValor]="chavePixValor"
+  [valorTransacao]="valorTransacao"
+  [confirmCancelLabel]="'Cancelar transação'"
+  [confirmSubmitLabel]="sendLabel"
+  (cancel)="onCancel()"
+  (submit)="onSubmit()">
+</app-footer-info>

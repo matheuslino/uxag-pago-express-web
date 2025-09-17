@@ -4,6 +4,7 @@ import { AdminSidebar } from '../../../../shared/components/admin-sidebar/admin-
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { HeaderTitle } from '../../../../shared/components/header-title/header-title';
+import { ClientSidebar } from '../../../../shared/components/client-sidebar/client-sidebar';
 
 @Component({
   selector: 'app-edit-client',
@@ -12,7 +13,7 @@ import { HeaderTitle } from '../../../../shared/components/header-title/header-t
     RouterModule,
     MatIconModule,
     CommonModule,
-    AdminSidebar,
+    ClientSidebar,
     HeaderTitle,
   ],
   templateUrl: './edit.html',
@@ -24,7 +25,6 @@ export class EditClient {
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.subscribe(params => {
       this.clienteId = Number(params.get('id'));
-      console.log('Editando cliente ID:', this.clienteId);
     });
   }
 

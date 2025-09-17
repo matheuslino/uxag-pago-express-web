@@ -2,31 +2,41 @@
   font-family: 'Inter', sans-serif;
   color: #344054;
   padding: 24px;
-  display: block; 
+  display: block;
 }
 
 .filtros-container {
   display: flex;
-  justify-content: flex-end;
-  gap: 24px;
+  flex-wrap: wrap; 
+  justify-content: flex-start; 
+  gap: 16px;
   margin-bottom: 32px;
+
   .filtro-item {
     display: flex;
     flex-direction: column;
-    gap: 6px; 
+    gap: 6px;
+    flex-grow: 1; 
+    min-width: 200px; 
 
     label {
       font-size: 14px;
       font-weight: 500;
     }
 
-    input {
+    input,
+    select {
       border: 1px solid #D0D5DD;
-      border-radius: 4px;
-      padding: 8px 12px;
+      border-radius: 8px;
+      padding: 10px 14px;
       font-size: 14px;
-      min-width: 230px; 
       color: #101828;
+      background-color: #FFFFFF;
+      width: 100%; 
+    }
+
+    input::placeholder {
+      color: #667085;
     }
   }
 }
@@ -67,7 +77,7 @@
     background-color: #FFFFFF;
     border: 1px solid #E9EAEB;
     border-radius: 12px;
-    overflow: hidden; 
+    overflow: hidden;
 
     .tabela-header, .tabela-linha {
       display: flex;
@@ -83,9 +93,15 @@
 
     .tabela-body {
       .tabela-linha {
-        border-top: 1px solid #E9EAEB; 
+        border-top: 1px solid #E9EAEB;
         font-size: 14px;
         color: #535862;
+      }
+      .tabela-linha-empty {
+        text-align: center;
+        padding: 24px;
+        font-size: 14px;
+        color: #8A8A8A;
       }
     }
   }

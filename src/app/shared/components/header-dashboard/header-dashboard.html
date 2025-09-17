@@ -38,12 +38,8 @@
             <img src="assets/images/logoEX.png" alt="PagoExpress Logo" class="logo mobile-logo" />
 
             <div class="user-actions">
-              <button mat-icon-button>
-                <mat-icon>email</mat-icon>
-              </button>
-              <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
-                <mat-icon [matBadge]="unreadNotifications" aria-hidden="false" matBadgeColor="warn" matBadgeSize="small" [matBadgeHidden]="unreadNotifications === 0">notifications_none</mat-icon>
-              </button>
+              <img src="/assets/icons/mensagens.svg" alt="message" />
+              <img src="/assets/icons/notificacao.svg" alt="notifications" />
               <button class="user-info-button" [matMenuTriggerFor]="userMenu">
                 <div class="user-info">
                   <div class="user-avatar">
@@ -97,11 +93,11 @@
                 <span>{{ balanceChangePercentage }}%</span> últimos 30 dias
               </div>
               <div class="action-buttons">
-                <button mat-stroked-button class="action-btn solicit-btn">
+                <button mat-stroked-button class="action-btn solicit-btn" (click)="goToDeposit()">
                   Solicitar
                   <mat-icon class="icon-space-left">swap_vert</mat-icon>
                 </button>
-                <button mat-flat-button class="action-btn transfer-btn">
+                <button mat-flat-button class="action-btn transfer-btn" (click)="goToTransfer()">
                   Transferir <mat-icon class="icon-space-left">arrow_outward</mat-icon>
                 </button>
               </div>
@@ -110,7 +106,7 @@
             <div class="wallets-section">
               <div class="wallets-header">
                 <span class="section-title">Saldo por carteiras</span>
-                <a href="#" class="view-all-link">Ver todas</a>
+                <a href="/carteira/balance" class="view-all-link">Ver todas</a>
               </div>
               <div class="wallets-grid">
                 <div class="wallet-card" *ngFor="let wallet of wallets">
@@ -122,7 +118,7 @@
                      R$ {{ wallet.saldo | number:'1.2-2' | slice:0:-3 }}<span class="cents">,{{ ((wallet.saldo | number:'1.2-2') ?? '0,00').split(',')[1] }}</span>
                    </div>
                 </div>
-                <button *ngFor="let _ of addWalletPlaceholders" class="wallet-card add-wallet-card">
+                <button (click)="AddCarteira()" *ngFor="let _ of addWalletPlaceholders" class="wallet-card add-wallet-card">
                   <mat-icon class="add-icon">add</mat-icon>
                   <span>Adicionar nova carteira</span>
                 </button>
@@ -164,21 +160,49 @@
 
 <mat-menu #userMenu="matMenu">
   <div class="user-menu-header">
-    <div class="user-info-menu">
+    <div class="user-info-detailed">
       <div class="user-avatar-menu">
-        <img *ngIf="imageLoaded" src="assets/images/user-avatar.png" alt="User Avatar" (error)="onImageError()" />
-        <span *ngIf="!imageLoaded" class="avatar-initials">{{ getUserInitials() }}</span>
+        <img src="assets/images/avatar.png" 
+              alt="User" />
       </div>
       <div class="user-details-menu">
         <div class="user-name-menu">{{ userName }}</div>
         <div class="user-email-menu">{{ userEmail }}</div>
       </div>
     </div>
-  </div>
+  </div>   
   <mat-divider></mat-divider>
-  <button mat-menu-item routerLink="/settings/profile"><mat-icon>person</mat-icon><span>Perfil</span></button>
-  <button mat-menu-item routerLink="/settings"><mat-icon>settings</mat-icon><span>Configurações</span></button>
-  <button mat-menu-item><mat-icon>help</mat-icon><span>Ajuda</span></button>
-  <mat-divider></mat-divider>
-  <button mat-menu-item (click)="logout()" class="logout-item"><mat-icon>logout</mat-icon><span>Sair</span></button>
+  <button class="icon-info-container" routerLink="/perfil/my-data">
+    <div class="icon-menu">
+      <img src="assets/icons/user.svg" alt="user" />
+    </div>
+    <div class="icon-text-container">
+      <span class="icon-title">Meus Dados</span>
+      <span class="icon-subtitle">Gerenciar informações pessoais</span>
+    </div>
+  </button>
+  <button class="icon-info-container" routerLink="/settings">
+    <div class="icon-menu">
+      <img src="assets/icons/settings.svg" alt="settings" />
+    </div>
+    <div class="icon-text-container">
+      <span class="icon-title">Alterar Senha</span>
+      <span class="icon-subtitle">Explore outra senha sua</span>
+    </div>
+  </button>
+  <button class="icon-info-container">
+    <div class="icon-menu">
+      <img src="assets/icons/idioma.svg" alt="idioma" />
+    </div>
+    <div class="icon-text-container">
+      <span class="icon-title">Idioma</span>
+      <span class="icon-subtitle">Trocar para outra linguagem</span>
+    </div>
+  </button>
+  <button class="icon-info-container" (click)="logout()">
+    <div class="icon-menu">
+      <img src="assets/icons/sair.svg" alt="sair" />
+    </div>
+    <span class="icon-title">Sair</span>
+  </button>
 </mat-menu>

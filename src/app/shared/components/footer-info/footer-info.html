@@ -1,19 +1,30 @@
 <div class="footer">
   <div class="footer-info">
     <div class="footer-info-left">
-      <span class="footer-info-tag">#{{ information }}</span>
+      <span class="footer-info-tag">{{ information }}</span>
     </div>
 
-    <div class="footer-info-center">
-      <span class="footer-info-context">
-        {{ context }}:
-      </span>
-      <span class="footer-info-sub">{{ label }}</span>
-    </div>
+    @if (saldo) {
+      <div class="saldo-info">
+        <span class="saldo-label">Saldo</span>
+        <span class="saldo-valor">R$ {{ saldo }}</span>
+      </div>
+    }
+
+    @if (context.length > 0 || label.length > 0 ) {
+      <div class="footer-info-center">
+        <span class="footer-info-context">{{ context }}:</span>
+        <span class="footer-info-sub">{{ label }}</span>
+      </div>
+    }
 
     <div class="footer-info-right">
-      <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
-      <button type="button" class="btn-submit" (click)="onSubmit()">Salvar</button>
+      <button type="button" class="btn-cancel" (click)="onCancel()">
+        {{ confirmCancelLabel !== '' ? confirmCancelLabel : 'Cancelar' }}
+      </button>
+      <button type="button" class="btn-submit" (click)="onSubmit()">
+        {{ confirmSubmitLabel !== '' ? confirmSubmitLabel : 'Salvar' }}
+      </button>
     </div>
   </div>
 </div>

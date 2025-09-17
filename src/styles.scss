@@ -354,9 +354,17 @@ body {
 
 .page-header-saldo {
   display: flex;
+  flex-direction: column;
   padding: 24px 0 32px 0;
   margin-bottom: 24px;
   background-color: #F9F9F9;
+
+  hr {
+    width: auto;
+    height: 1px;
+    color: #DADADA;
+    margin: 0px 68px;
+  }
 }
 
 .page-header {
@@ -455,6 +463,23 @@ body {
   font-weight: 600;
   line-height: normal;
   border: none;
+  cursor: pointer;
+}
+
+.secondary-action-btn {
+  display: flex;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 1000px;
+  background-color: #fff;
+  border: 1px solid #5C4896;
+  color: #5C4896;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
   cursor: pointer;
 }
 
@@ -880,7 +905,7 @@ body {
   }
 
   .template-list-filter-input {
-    min-width: 200px;
+    min-width: 175px;
   }
 }
 
@@ -1022,5 +1047,29 @@ body {
 
   .template-identifier {
     font-size: 0.75rem;
+  }
+}
+
+/* Breakpoint intermediário: esconde colunas antes de quebrar */
+@media (max-width: 992px) {
+  .template-list-results-table {
+    .hide-mobile {
+      display: none;
+    }
+
+    th, td {
+      font-size: 0.95rem;
+      padding: 8px 12px;
+    }
+  }
+
+  .template-list-filters-row {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .template-list-filter-input {
+    min-width: auto;
+    flex: 1;
   }
 }

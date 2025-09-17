@@ -63,9 +63,9 @@ export class HeaderDashboard implements OnInit {
   isBalanceVisible = false;
   isScrolled = false;
 
-  userName = 'Antônio Coutinho';
+  userName = 'Adeilton Junior';
   userRole = 'Gerente de Contas';
-  userEmail = 'antonio.coutinho@example.com';
+  userEmail = 'adeilton@gmail.com';
   accountNumber = '#1132';
   totalBalance = 12200.50;
   balanceChangePercentage = 9;
@@ -73,7 +73,7 @@ export class HeaderDashboard implements OnInit {
   menuItems: MenuItem[] = [
     { path: '/dashboard', label: 'Painel' },
     { path: '/administracao', label: 'Administração' },
-    { path: '/wallets', label: 'Carteira' },
+    { path: '/carteira', label: 'Carteira' },
     { path: '/transacoes', label: 'Transações' },
     { path: '/relatorios', label: 'Relatórios' }
   ];
@@ -176,10 +176,22 @@ export class HeaderDashboard implements OnInit {
   }
 
   goToProfile(): void {
-    this.router.navigate(['/settings/profile']);
+    this.router.navigate(['/perfil']);
   }
 
   goToSettings(): void {
     this.router.navigate(['/settings']);
+  }
+
+  goToDeposit(): void {
+    this.router.navigate(['/carteira/deposit']);
+  }
+
+  goToTransfer(): void {
+    this.router.navigate(['/carteira/transfer']);
+  }
+
+  AddCarteira(): void {
+    this.router.navigate(['/carteira/wallets/new']);
   }
 }

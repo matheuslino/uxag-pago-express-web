@@ -27,8 +27,8 @@ export class Balance {
     pageSubtitle: 'Consulte seu saldo',
     breadcrumb: [
       { label: 'Painel', path: '/dashboard' },
-      { label: 'Wallets', path: '/wallets' },
-      { label: 'Saldo', path: '/wallets/balance' }
+      { label: 'Wallets', path: '/carteira' },
+      { label: 'Saldo', path: '/carteira/balance' }
     ],
   }
 

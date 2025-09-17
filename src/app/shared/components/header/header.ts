@@ -9,6 +9,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { PasswordChangeModalComponent } from '../change-password/change-password';
 
 interface MenuItem {
   label: string;
@@ -46,6 +48,7 @@ interface User {
     MatBadgeModule,
     MatDividerModule,
     MatSidenavModule,
+    MatDialogModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' }
@@ -62,26 +65,9 @@ export class Header implements OnInit {
   menuItems: MenuItem[] = [
     { label: 'Painel', path: '/dashboard', active: true },
     { label: 'Administração', path: '/administracao', active: false },
-    { label: 'Carteira', path: '/wallets', active: false },
-    { label: 'Transações', path: '/transactions', active: false },
-    { label: 'Relatórios', path: '/reports', active: false }
-  ];
-
-  notifications: Notification[] = [
-    {
-      id: '1',
-      title: 'Nova transação',
-      message: 'Você recebeu um pagamento de R$ 1.250,00',
-      isRead: false,
-      createdAt: new Date()
-    },
-    {
-      id: '2',
-      title: 'Relatório mensal',
-      message: 'Seu relatório mensal está disponível',
-      isRead: false,
-      createdAt: new Date(Date.now() - 3600000)
-    }
+    { label: 'Carteira', path: '/carteira', active: false },
+    { label: 'Transações', path: '/transacoes', active: false },
+    { label: 'Relatórios', path: '/relatorios', active: false }
   ];
 
   currentUser: User = {
@@ -94,13 +80,9 @@ export class Header implements OnInit {
   currentLanguage: string = 'F';
   imageLoaded: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-  }
-
-  get unreadNotifications(): number {
-    return this.notifications.filter(n => !n.isRead).length;
   }
 
   getUserInitials(): string {
@@ -129,6 +111,21 @@ export class Header implements OnInit {
     }
   }
 
+  public openModal(): void {
+    const modal = {
+      name: 'Teste 1',
+      description: 'Description',
+    }
+    this.dialog.open(PasswordChangeModalComponent, {
+      width: '80%',
+      maxWidth: '800px',
+      data: {
+        title: modal.name,
+        description: modal.description
+      }
+    });
+  }
+
   openMessages(): void {
     this.router.navigate(['/messages']);
   }
@@ -147,7 +144,7 @@ export class Header implements OnInit {
   }
 
   goToProfile(): void {
-    this.router.navigate(['/settings/profile']);
+    this.router.navigate(['/perfil']);
   }
 
   goToSettings(): void {

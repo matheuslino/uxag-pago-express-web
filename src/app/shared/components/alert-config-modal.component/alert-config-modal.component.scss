@@ -23,8 +23,11 @@
     color: #666;
     width: 32px;
     height: 32px;
-    
+    position: relative;
     mat-icon {
+      position: absolute;
+      top:5px;
+      left:3.5px;
       font-size: 20px;
     }
   }

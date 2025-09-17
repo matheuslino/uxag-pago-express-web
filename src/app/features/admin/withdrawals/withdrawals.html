@@ -7,41 +7,28 @@
         <div class="template-list-filters-row">
           <label class="filter-label">
             Empresa
-            <select 
-              class="template-list-select"
-              [(ngModel)]="filtros.empresaId">
-              <option 
-                *ngFor="let empresa of empresas" 
-                [value]="empresa.id">
+            <select class="template-list-select" [(ngModel)]="filtros.empresaId">
+              <option *ngFor="let empresa of empresas" [ngValue]="empresa.id">
                 {{ empresa.nome }}
               </option>
             </select>
           </label>
           <label class="filter-label">
             Status
-            <select 
-              class="template-list-select"
-              [(ngModel)]="filtros.status">
-              <option 
-                *ngFor="let status of statusOptions" 
-                [value]="status.value">
+            <select class="template-list-select" name="statusFilter" [(ngModel)]="filtros.status"
+              (ngModelChange)="onStatusChange($event)">
+              <option *ngFor="let status of statusOptions" [ngValue]="status.value">
                 {{ status.label }}
               </option>
             </select>
           </label>
           <label class="filter-label">
             Data início
-            <input 
-              class="template-list-filter-input date-input" 
-              type="date"
-              [(ngModel)]="filtros.dataInicio" />
+            <input class="template-list-filter-input date-input" type="date" [(ngModel)]="filtros.dataInicio" />
           </label>
           <label class="filter-label">
             Data fim
-            <input 
-              class="template-list-filter-input date-input" 
-              type="date"
-              [(ngModel)]="filtros.dataFim"
+            <input class="template-list-filter-input date-input" type="date" [(ngModel)]="filtros.dataFim"
               [min]="filtros.dataInicio" />
           </label>
         </div>
@@ -62,7 +49,7 @@
                 </th>
                 <th class="hide-mobile">Carteira</th>
                 <th class="hide-mobile">Chave PIX</th>
-                <th class="hide-mobile">Valor</th>
+                <th class="hide-mobile-partial">Valor</th>
                 <th class="hide-mobile">Data/hora</th>
                 <th class="hide-mobile">Status</th>
                 <th class="hide-mobile">Aprovador</th>
@@ -70,7 +57,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let saque of saques">
+              <tr *ngFor="let saque of saquesFiltrados">
                 <td>
                   <div class="solicitante-info">
                     <span class="solicitante-nome">{{ saque.solicitante }}</span>
@@ -81,7 +68,7 @@
                 <td class="hide-mobile">
                   <span class="chave-pix">{{ saque.chavePix }}</span>
                 </td>
-                <td class="hide-mobile-partial valor-cell">{{ formatarValor(saque.valor) }}</td>
+                <td class="hide-mobile-partial valor-cell ">{{ formatarValor(saque.valor) }}</td>
                 <td class="hide-mobile">{{ formatarDataHora(saque.dataHora) }}</td>
                 <td class="hide-mobile">
                   <div [class]="getStatusClass(saque.status)">
@@ -90,16 +77,15 @@
                   </div>
                 </td>
                 <td class="hide-mobile">{{ saque.aprovador }}</td>
-                <td class="actions-cell">
+                <td class="actions-cell" style="width: 80px;">
                   <div class="aprovador-status" *ngIf="saque.status === 'Pendente'">
-                    <span 
-                      class="aprovador-icon aprovador-icon-green">
-                      ✓
-                    </span>
-                    <span 
-                      class="aprovador-icon aprovador-icon-red">
-                      ✗
-                    </span>
+                    <div>
+                      <img src="assets/images/aprovar.png" alt="Aprovar" (click)="openApprovalModal(saque)">
+                    </div>
+                    <div>
+                      <img src="assets/images/rejeitar.png" alt="Rejeitar" class="rejeitarAjsute"
+                        (click)="onRejeitar(saque)">
+                    </div>
                   </div>
                 </td>
               </tr>

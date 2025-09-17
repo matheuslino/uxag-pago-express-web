@@ -1,5 +1,8 @@
 .wallet-layout {
   flex-direction: row;
+  padding-top: 112px;
+  height: calc(100vh);
+  width: 100%;
 }
 
 .sidenav-container {
@@ -136,7 +139,7 @@
   }
 
   .wallet-content {
-    width: 85vw;
+    width: 100%;
     flex-direction: column!important;
   }
 
@@ -155,11 +158,12 @@
   }
   
   .wallet-layout {
-    width: 85vw;
-    padding: 0;
+    width: 100%;
+    padding: 24px
   }
 
   .wallet-content {
+    width: 100%;
     flex-direction: column!important;
   }
 
@@ -170,4 +174,6 @@
 
 .wallet-content {
   flex-direction: row;
+  height: 100%;
+  width: 100%;
 }

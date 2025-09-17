@@ -1,4 +1,82 @@
-.inactive {
-    background-color: #dadada;
-    border: none;
+:host {
+  --text-primary: #3A3A3A;
+  --border-color: #DADADA;
+  --primary-color: #5C4896;
+  --positive-change: #1F996E;
+  --font-main: 'Inter', sans-serif;
+  --font-special: 'Futuru', sans-serif; 
+}
+
+.back-text {
+  margin-left: 5px;
+}
+
+.saldo-voltar {
+  margin-left: 68px;
+  display: flex;
+  width: auto;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+
+}
+
+.divider {
+    width: auto;
+    height: 1px;
+    background-color: #DADADA;
+    margin: 0 68px;
+}
+
+.saldo-container-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 68px;
+}
+
+.saldo-info {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0 0 0;
+    gap: 8px;    
+    .saldo-label {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin: 0;
+    }
+    .saldo-value-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .saldo-value {
+            font-family: var(--font-special);
+            font-size: 38px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1;
+        }
+        .info-icon {
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+        }
+    }
+    .saldo-percentage {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        .positive-icon {
+            color: var(--positive-change);
+        }
+        span {
+            color: var(--positive-change);
+        }
+    }
 }

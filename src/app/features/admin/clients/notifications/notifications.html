@@ -1,0 +1,47 @@
+<app-header-title [headerInformation]="headerInformation"></app-header-title>
+<div class="template-content">
+  <app-client-sidebar></app-client-sidebar>
+  <div class="template-bg">
+    <div class="template-container">
+      <div class="template-section">
+        <h2 class="template-title">Chamadas</h2>
+        <div class="template-desc">Complete as informações de acordo com a chave desejada</div>
+        <div class="template-row">
+          <div class="template-box">
+            <h3 class="template-subtitle" style="margin-top: 18px;">Por Webhook</h3>
+            <div class="template-fields-row" style="margin-top: -50px;">
+              <div class="template-fields-right">
+                <div class="template-field">
+                  <label for="webhook-cashin"> Cash-in</label>
+                  <input id="webhook-cashin" type="text"  value="" placeholder="Insira a URL de Cash-in" />
+                </div>
+                <div class="template-field">
+                  <label for="webhook-cashout">Cash-out</label>
+                  <input id="webhook-cashout" type="text" value="" placeholder="Insira a URL de Cash-out" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="template-box">
+            <h3 class="template-subtitle" style="margin-top: 18px;">Por e-mail</h3>
+            <div class="template-fields-row" style="margin-top: -50px;">
+              <div class="template-fields-right">
+                <div class="template-field template-toggle-row">
+                  <div class="template-toggle-label-col">
+                    <label for="toggle-email" class="template-toggle-label">Notifica por e-mail</label>
+                    <span class="template-toggle-desc">caso deseja que aconteça essa notificação, deixe ligado</span>
+                  </div>
+                  <input id="toggle-email" type="checkbox" checked class="template-toggle" />
+                </div>
+                <div class="template-field">
+                  <label for="email-notification">E-mail de notificação</label>
+                  <input id="email-notification" type="email" value="" placeholder="exemplo@email.com" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

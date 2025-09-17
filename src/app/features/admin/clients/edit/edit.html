@@ -1,19 +1,12 @@
 <app-header-title [headerInformation]="headerInformation"></app-header-title>
-
 <div class="template-content">
-  <app-admin-sidebar></app-admin-sidebar>
-  
+  <app-client-sidebar [id]="clienteId"></app-client-sidebar>
   <form class="edit-client-form">
-
-   
     <div class="edit-client-header">
       <h1>Informações do cliente</h1>
       <p>Complete as informações de acordo com a chave desejada</p>
     </div>
-   
     <hr />
-
-   
     <div class="edit-client-section">
       <div class="edit-client-section-title">Dados Corporativos</div>
       <div class="edit-client-fields-grid">
@@ -39,9 +32,7 @@
         </div>
       </div>
     </div>
-
     <hr />
-
     <div class="edit-client-section">
       <div class="edit-client-section-title">Dados de contato</div>
       <div class="edit-client-fields-grid">
@@ -55,9 +46,7 @@
         </div>
       </div>
     </div>
-
     <hr />
-
     <div class="edit-client-section">
       <div class="edit-client-section-title">Dados complementares</div>
       <div class="edit-client-fields-grid">
@@ -71,6 +60,5 @@
         </div>
       </div>
     </div>
-
   </form>
 </div>

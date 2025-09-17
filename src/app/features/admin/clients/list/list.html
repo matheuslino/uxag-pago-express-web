@@ -5,32 +5,23 @@
     <div class="template-list-container">
       <div class="template-list-filters-section">
         <div class="template-list-filters-row">
-          <label class="filter-label">
+          <label class="filter-label mesmaLinha">
             Buscar por especificidade
             <div class="search-input-container">
               <img src="/img/lupa.svg" alt="Buscar" class="search-icon" />
-              <input 
-                type="text" 
-                placeholder="Busca por algum cliente..." 
-                class="template-list-filter-input search-input"
-                [(ngModel)]="filtros.buscar" />
+              <input type="text" placeholder="Busca por algum cliente..."
+                class="template-list-filter-input search-input" [(ngModel)]="filtros.buscar" />
             </div>
           </label>
           <label class="filter-label">
             Nome
-            <input 
-              type="text" 
-              placeholder="Nome do cliente" 
-              class="template-list-filter-input"
+            <input type="text" placeholder="Nome do cliente" class="template-list-filter-input"
               [(ngModel)]="filtros.nome" />
           </label>
           <label class="filter-label">
             CNPJ
-            <input 
-              type="text" 
-              placeholder="Número do CNPJ" 
-              class="template-list-filter-input"
-              [(ngModel)]="filtros.cnpj" />
+            <input maxlength="18" type="text" placeholder="Número do CNPJ" class="template-list-filter-input" [value]="filtros.cnpj"
+              (input)="onCnpjInput($event)" />
           </label>
         </div>
       </div>
@@ -55,7 +46,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let cliente of clientes">
+              <tr *ngFor="let cliente of clientesFiltrados">
                 <td>
                   <div class="template-name">{{ cliente.nome }}</div>
                   <div class="template-identifier">{{ cliente.identificador }}</div>
@@ -67,22 +58,16 @@
                 <td class="hide-mobile">{{ cliente.cartaoCredito }}</td>
                 <td class="hide-mobile">{{ cliente.pgtoContas }}</td>
                 <td class="actions-cell">
-                  <img 
-                    src="/img/trash-2.svg" 
-                    alt="Excluir" 
-                    class="action-icon delete-icon"
+                  <img src="/img/trash-2.svg" alt="Excluir" class="action-icon delete-icon"
                     (click)="onExcluirCliente(cliente)" />
-                  <img 
-                    src="/img/lápis.svg" 
-                    alt="Editar" 
-                    class="action-icon edit-icon"
+                  <img src="/img/lápis.svg" alt="Editar" class="action-icon edit-icon"
                     (click)="onEditarCliente(cliente)" />
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>     
+      </div>
     </div>
   </div>
 </div>

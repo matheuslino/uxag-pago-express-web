@@ -6,6 +6,7 @@
           <span>Banco</span>
         </a>
       </li>
+
       <li class="nav-item">
         <a routerLink="/administracao/clients" routerLinkActive="active" class="nav-link">
           <span>Cliente</span>
@@ -16,31 +17,32 @@
         <a routerLink="/administracao/users" routerLinkActive="active" class="nav-link">
           <span>Usuário</span>
         </a>
+        <div class="nav-submenu" *ngIf="menuSelected && menuSelected === 'usuario'">
+          <ul class="sub-nav-list">
+            <li class="sub-nav-item">
+              <a [routerLink]="`/administracao/users/edit/${id}`" routerLinkActive="active" class="sub-nav-link">
+                <span>Editar</span>
+              </a>
+            </li>
+            <li class="sub-nav-item">
+              <a [routerLink]="`/administracao/users/credentials/${id}`" routerLinkActive="active" class="sub-nav-link">
+                <span>Credenciais</span>
+              </a>
+            </li>
+            <li class="sub-nav-item">
+              <a [routerLink]="`/administracao/users/link-companies/${id}`" routerLinkActive="active" class="sub-nav-link">
+                <span>Vincular empresas</span>
+              </a>
+            </li>
+            <li class="sub-nav-item">
+              <a [routerLink]="`/administracao/users/logs/${id}`" routerLinkActive="active" class="sub-nav-link">
+                <span>Logs</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
-      <div class="nav-submenu" *ngIf="menuSelected && menuSelected === 'usuario'">
-        <ul class="sub-nav-list">
-          <li class="sub-nav-item">
-            <a [routerLink]="`/administracao/users/edit/${id}`" routerLinkActive="active" class="sub-nav-link">
-              <span>Editar</span>
-            </a>
-          </li>
-          <li class="sub-nav-item">
-            <a [routerLink]="`/administracao/users/credentials/${id}`" routerLinkActive="active" class="sub-nav-link">
-              <span>Credenciais</span>
-            </a>
-          </li>
-          <li class="sub-nav-item">
-            <a [routerLink]="`/administracao/users/link-companies/${id}`" routerLinkActive="active" class="sub-nav-link">
-              <span>Vincular empresas</span>
-            </a>
-          </li>
-          <li class="sub-nav-item">
-            <a [routerLink]="`/administracao/users/logs/${id}`" routerLinkActive="active" class="sub-nav-link">
-              <span>Logs</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+
       <li class="nav-item">
         <a routerLink="/administracao/pix/list" 
            [class.active]="isActiveRoute(['/administracao/pix/list', '/administracao/pix/new'])" 
@@ -48,21 +50,25 @@
           <span>PIX</span>
         </a>
       </li>
+
       <li class="nav-item">
         <a routerLink="/administracao/withdrawals" routerLinkActive="active" class="nav-link">
           <span>Aprovar saques</span>
         </a>
       </li>
+
       <li class="nav-item">
         <a routerLink="/administracao/notifications" routerLinkActive="active" class="nav-link">
           <span>Notificação de solicitação</span>
         </a>
       </li>
+
       <li class="nav-item">
         <a routerLink="/administracao/batch-bank" routerLinkActive="active" class="nav-link">
           <span>Alterar banco em lote</span>
         </a>
       </li>
+
       <li class="nav-item">
         <a routerLink="/administracao/logs" routerLinkActive="active" class="nav-link">
           <span>Relatório de logs</span>
@@ -73,7 +79,6 @@
           <span>Modais do Sistema</span>
         </a>
       </li>
-      
     </ul>
   </nav>
 </div>

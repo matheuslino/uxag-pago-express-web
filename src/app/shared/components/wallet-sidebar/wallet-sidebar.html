@@ -2,55 +2,73 @@
   <nav class="sidebar-nav">
     <ul class="nav-list">
       <li class="nav-item">
-        <a routerLink="/wallets" routerLinkActive="active" class="nav-link">
+        <a routerLink="/carteira/wallets" routerLinkActive="active" class="nav-link">
           <span>Carteira</span>
         </a>
+        <div class="nav-submenu" *ngIf="menuSelected && menuSelected === 'wallet'">
+          <ul class="sub-nav-list">
+            <li class="sub-nav-item">
+              <a [routerLink]="`/carteira/wallets/edit/${id}`" routerLinkActive="active" class="sub-nav-link">
+                <span>Editar</span>
+              </a>
+            </li>
+            <li class="sub-nav-item">
+              <a [routerLink]="`/carteira/wallets/config/${id}`" routerLinkActive="active" class="sub-nav-link">
+                <span>Configurar usuarios</span>
+              </a>
+            </li>
+            <li class="sub-nav-item">
+              <a [routerLink]="`/carteira/wallets/logs/${id}`" routerLinkActive="active" class="sub-nav-link">
+                <span>Ver logs</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
       
       <li class="nav-item">
-        <a routerLink="/wallets/extract" routerLinkActive="active" class="nav-link">
+        <a routerLink="/carteira/extract" routerLinkActive="active" class="nav-link">
           <span>Extrato</span>
         </a>
       </li>
       
       <li class="nav-item">
-        <a routerLink="/wallets/transfer" routerLinkActive="active" class="nav-link">
+        <a routerLink="/carteira/transfer" routerLinkActive="active" class="nav-link">
           <span>Transferência</span>
         </a>
       </li>
       
       <li class="nav-item">
-        <a routerLink="/wallets/transfer-wallet" routerLinkActive="active" class="nav-link">
+        <a routerLink="/carteira/transfer-wallet" routerLinkActive="active" class="nav-link">
           <span>Enviar transferência entre carteiras</span>
         </a>
       </li>
       
       <li class="nav-item">
-        <a routerLink="/wallets/new-item-wallet" routerLinkActive="active" class="nav-link">
+        <a routerLink="/carteira/new-item-wallet" routerLinkActive="active" class="nav-link">
           <span>Cadastrar item wallet</span>
         </a>
       </li>
       
       <li class="nav-item">
-        <a routerLink="/wallets/balance" routerLinkActive="active" class="nav-link">
+        <a routerLink="/carteira/balance" routerLinkActive="active" class="nav-link">
           <span>Saldo das carteiras</span>
         </a>
       </li>
       
       <li class="nav-item">
-        <a routerLink="/wallets/deposit" routerLinkActive="active" class="nav-link">
+        <a routerLink="/carteira/deposit" routerLinkActive="active" class="nav-link">
           <span>Depósito em carteira</span>
         </a>
       </li>
       
       <li class="nav-item">
-        <a routerLink="/wallets/send-pix" routerLinkActive="active" class="nav-link">
+        <a routerLink="/carteira/send-pix" routerLinkActive="active" class="nav-link">
           <span>Enviar PIX</span>
         </a>
       </li>
-      
       <li class="nav-item">
-        <a routerLink="/wallets/payment" routerLinkActive="active" class="nav-link">
+        <a routerLink="/carteira/payment" routerLinkActive="active" class="nav-link">
           <span>Pagamento</span>
         </a>
       </li>

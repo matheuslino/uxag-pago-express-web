@@ -1,0 +1,12 @@
+<label class="custom-checkbox" [class.disabled]="disabled">
+  <input 
+    type="checkbox" 
+    [checked]="checked" 
+    [disabled]="disabled"
+    (change)="toggle()" 
+  />
+  <span class="checkmark">
+    <img *ngIf="checked" src="/assets/icons/check.svg" alt="check">
+  </span>
+  <span *ngIf="label">{{ label }}</span>
+</label>

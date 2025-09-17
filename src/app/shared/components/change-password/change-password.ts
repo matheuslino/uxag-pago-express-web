@@ -1,6 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl, FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -17,6 +17,7 @@ import { UserService } from '../../../services/user.service';
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,
@@ -40,6 +41,10 @@ export class PasswordChangeModalComponent implements OnInit {
   isLoading = false;
   hideNewPassword = true;
   hideConfirmPassword = true;
+
+  constructor(private cdr: ChangeDetectorRef) {
+
+  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -77,6 +82,7 @@ export class PasswordChangeModalComponent implements OnInit {
     this.userService.getCurrentUser().subscribe({
       next: (user) => {
         this.currentUser = user;
+        this.cdr.detectChanges();
       },
       error: (error) => {
         console.error('Erro ao carregar usuário:', error);

@@ -1,0 +1,49 @@
+<div class="table-container">
+  <table class="template-list-results-table">
+    <thead>
+      <tr>
+        <th *ngIf="isCheckable">
+          <input type="checkbox" 
+            [checked]="selectedRows.size === data.length"
+            (change)="toggleAll($event)">
+        </th>
+        <th *ngFor="let col of columns" (click)="toggleSort(col)">
+          <div class="header-cell">
+            <span>{{ col.header }}</span>
+            <ng-container *ngIf="col.icon">
+              <img [src]="col.icon" alt="icon" class="col-icon" />
+            </ng-container>
+            <mat-icon class="mat-icon-size" *ngIf="col.sortable">
+              <ng-container [ngSwitch]="getSortDirection(col.field)">
+                <ng-container *ngSwitchCase="'asc'">arrow_upward</ng-container>
+                <ng-container *ngSwitchCase="'desc'">arrow_downward</ng-container>
+                <ng-container *ngSwitchDefault>unfold_more</ng-container>
+              </ng-container>
+            </mat-icon>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td *ngIf="isCheckable">
+          <input type="checkbox" 
+            [checked]="selectedRows.has(row)"
+            (change)="toggleRow(row)">
+        </td>
+        <td *ngFor="let col of columns">
+          <div *ngIf="col.field2 && col.field2Type === 'column'" class="container-column">
+            <span class="title">{{ row[col.field] }}</span>
+            <span class="subtitle">{{ row[col.field2] }}</span>
+          </div>
+          <div *ngIf="col.field2 && col.field2Type === 'row'" class="container-row">
+            <span class="title">{{ row[col.field] }} {{ row[col.field2] }}</span>
+          </div>
+          <div *ngIf="!col.field2">
+            <span class="title">{{ row[col.field] }}</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
