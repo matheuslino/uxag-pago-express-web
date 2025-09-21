@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { AdminSidebar } from '../../../shared/components/admin-sidebar/admin-sidebar';
@@ -42,7 +42,6 @@ export interface Saque {
   styleUrl: './withdrawals.scss'
 })
 export class Withdrawals implements OnInit {
-
 
   constructor(
     private dialog: MatDialog,
@@ -130,8 +129,7 @@ export class Withdrawals implements OnInit {
     this.onPeriodoChange();
   }
 
-  // ----------------- NOVO: abrir modal de aprovação -----------------
-  openApprovalModal(saque: Saque) {
+  openApprovalModal(saque: Saque): void {
     const data: WithdrawalAuthorizationData = {
       solicitante: saque.solicitante,
       chave: saque.chavePix,
@@ -146,14 +144,106 @@ export class Withdrawals implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result?.approved) {
         saque.status = 'Aprovado';
-      } else if (result?.approved === false) {
+        saque.statusAprovador = 'aprovado';
+      } else if (result?.approved === false) { // Se o modal retornar { approved: false }
         saque.status = 'Rejeitado';
+        saque.statusAprovador = 'rejeitado';
       }
-      this.cdRef.detectChanges(); // força atualização imediata
+      this.cdRef.detectChanges();
     });
   }
-  // -------------------------------------------------------------------
 
+  onRejeitar(saque: Saque): void {
+    // CORREÇÃO: Usando crases (`) para a string de template
+    if (confirm(`Rejeitar saque de ${this.formatarValor(saque.valor)} para ${saque.solicitante}?`)) {
+      saque.status = 'Rejeitado';
+      saque.statusAprovador = 'rejeitado';
+      console.log('Saque rejeitado:', saque);
+      this.cdRef.detectChanges(); // Garante a atualização da tela
+    }
+  }
+
+  // A função abaixo se tornou redundante, pois o modal já cuida da aprovação.
+  // Você pode removê-la se quiser.
+  /*
+  onAprovar(saque: Saque): void {
+    // CORREÇÃO: Usando crases (`) para a string de template
+    if (confirm(`Aprovar saque de ${this.formatarValor(saque.valor)} para ${saque.solicitante}?`)) {
+      saque.status = 'Aprovado';
+      saque.statusAprovador = 'aprovado';
+      console.log('Saque aprovado:', saque);
+    }
+  }
+  */
+
+  // --- Funções de filtro e getters ---
+
+  get saquesFiltrados(): Saque[] {
+    let saques = this.saques;
+
+    if (this.filtros.empresaId > 0) {
+      saques = saques.filter(saque => saque.empresaId === this.filtros.empresaId);
+    }
+
+    if (this.filtros.status && this.filtros.status !== 'todos') {
+      const filtroStatus = String(this.filtros.status).trim().toLowerCase();
+      saques = saques.filter(saque => String(saque.status || '').trim().toLowerCase() === filtroStatus);
+    }
+
+    if (this.filtros.dataInicio) {
+      const inicio = new Date(this.filtros.dataInicio);
+      inicio.setHours(0, 0, 0, 0); // Considera o dia inteiro
+      saques = saques.filter(saque => saque.dataHora >= inicio);
+    }
+
+    if (this.filtros.dataFim) {
+      const fim = new Date(this.filtros.dataFim);
+      fim.setHours(23, 59, 59, 999); // Considera o dia inteiro
+      saques = saques.filter(saque => saque.dataHora <= fim);
+    }
+
+    return saques;
+  }
+
+  get totalRegistros(): number {
+    return this.saquesFiltrados.length;
+  }
+
+  onStatusChange(value: any): void {
+    console.log('status selecionado ->', value);
+  }
+
+  // --- Funções de formatação e utilitárias ---
+
+  formatarDataHora(data: Date): string {
+    const horas = data.getHours().toString().padStart(2, '0');
+    const minutos = data.getMinutes().toString().padStart(2, '0');
+    const dia = data.getDate().toString().padStart(2, '0');
+    const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+    const ano = data.getFullYear();
+
+    // CORREÇÃO: Usando crases (`) para a string de template
+    return `${horas}h${minutos} — ${dia}/${mes}/${ano}`;
+  }
+
+  formatarValor(valor: number): string {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(valor);
+  }
+
+  getStatusClass(status: string): string {
+    const classes = {
+      'Pendente': 'status-pendente',
+      'Aprovado': 'status-aprovado',
+      'Rejeitado': 'status-rejeitado',
+      'Processando': 'status-processando'
+    };
+    return classes[status as keyof typeof classes] || '';
+  }
+
+  // --- Funções para filtros de data (não utilizadas no HTML, mas presentes no código) ---
   get dataAtual(): string {
     return new Date().toISOString().split('T')[0];
   }
@@ -190,102 +280,4 @@ export class Withdrawals implements OnInit {
         break;
     }
   }
-  get saquesFiltrados(): Saque[] {
-    let saques = this.saques;
-
-    if (this.filtros.empresaId > 0) {
-      saques = saques.filter(saque => saque.empresaId === this.filtros.empresaId);
-    }
-
-    if (this.filtros.status && this.filtros.status !== 'todos') {
-      const filtroStatus = String(this.filtros.status).trim().toLowerCase();
-      saques = saques.filter(saque => String(saque.status || '').trim().toLowerCase() === filtroStatus);
-    }
-
-
-    if (this.filtros.dataInicio) {
-      const inicio = new Date(this.filtros.dataInicio);
-      saques = saques.filter(saque => saque.dataHora >= inicio);
-    }
-
-    if (this.filtros.dataFim) {
-      const fim = new Date(this.filtros.dataFim);
-      saques = saques.filter(saque => saque.dataHora <= fim);
-    }
-
-    return saques;
-  }
-
-  get totalRegistros(): number {
-    return this.saquesFiltrados.length;
-  }
-
-  get saquesPendentes(): Saque[] {
-    return this.saquesFiltrados.filter(saque =>
-      saque.status === 'Pendente' && saque.statusAprovador === 'pendente'
-    );
-  }
-
-  get valorTotalPendente(): number {
-    return this.saquesPendentes.reduce((total, saque) => total + saque.valor, 0);
-  }
-
-  onStatusChange(value: any) {
-    console.log('status selecionado ->', value);
-  }
-
-  onAprovar(saque: Saque): void {
-    if (confirm(`Aprovar saque de ${this.formatarValor(saque.valor)} para ${saque.solicitante}?`)) {
-      saque.status = 'Aprovado';
-      saque.statusAprovador = 'aprovado';
-      console.log('Saque aprovado:', saque);
-    }
-  }
-
-  onRejeitar(saque: Saque): void {
-    if (confirm(`Rejeitar saque de ${this.formatarValor(saque.valor)} para ${saque.solicitante}?`)) {
-      saque.status = 'Rejeitado';
-      saque.statusAprovador = 'rejeitado';
-      console.log('Saque rejeitado:', saque);
-    }
-  }
-
-
-  formatarDataHora(data: Date): string {
-    const horas = data.getHours().toString().padStart(2, '0');
-    const minutos = data.getMinutes().toString().padStart(2, '0');
-    const dia = data.getDate().toString().padStart(2, '0');
-    const mes = (data.getMonth() + 1).toString().padStart(2, '0');
-    const ano = data.getFullYear();
-
-    return `${horas}h${minutos} — ${dia}/${mes}/${ano}`;
-  }
-
-  formatarValor(valor: number): string {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(valor);
-  }
-
-  getStatusClass(status: string): string {
-    const classes = {
-      'Pendente': 'status-pendente',
-      'Aprovado': 'status-aprovado',
-      'Rejeitado': 'status-rejeitado',
-      'Processando': 'status-processando'
-    };
-    return classes[status as keyof typeof classes] || '';
-  }
-
-  getAprovadorIconClass(statusAprovador: string): string {
-    const classes = {
-      'pendente': 'aprovador-icon-pendente',
-      'aprovado': 'aprovador-icon-green',
-      'rejeitado': 'aprovador-icon-red'
-    };
-    return classes[statusAprovador as keyof typeof classes] || '';
-  }
-
-
 }
