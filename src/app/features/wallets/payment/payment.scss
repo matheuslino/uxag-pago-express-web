@@ -23,18 +23,18 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 100%;
+  width: 75%;
   padding: 0 10px;
-  gap:30px;
+  gap:15px;
   .step-item {
-    flex: 1;
+    flex: 0.5;
     text-align: center;
     color: var(--color-text-light);
     padding-top: 10px;
     position: relative;
 
     .line {
-      position: absolute;
+      position: relative;
       top: 0;
       left: 0;
       right: 0;
@@ -46,7 +46,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 1px;
     }
 
     .number {
@@ -61,12 +61,12 @@
       align-items: center;
       justify-content: center;
     }
-    
+
     .label-text {
       font-size: 12px;
       font-weight: 600;
     }
-    
+
     &.active {
       color: var(--color-text-secondary);
       .line {
@@ -191,10 +191,10 @@
 
 .review-section-wrapper {
   display: flex;
-  gap: 600px; 
+  gap: 600px;
   padding: 16px 0;
   border-bottom: 1px solid var(--color-border-separator);
-  align-items: flex-start; 
+  align-items: flex-start;
 
   &:last-child {
     border-bottom: none;
@@ -257,10 +257,36 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  
+
   .item-label-valor {
     font-weight: 400;
     font-size: 12px;
     color: var(--color-text-secondary);
   }
+}
+
+@media (max-width: 768px) {
+  .stepper-container {
+    gap: 16px;
+    padding: 0;
+  }
+
+  /* CORREÇÃO: Altera a direção do flex para empilhar o conteúdo */
+  .step-item .label-group {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .inputs-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+    .step-item .label-text {
+        font-size: 11px;
+    }
+    .card {
+        padding: 24px 16px;
+    }
 }
