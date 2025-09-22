@@ -1,6 +1,5 @@
 .wallet-layout {
   flex-direction: row;
-  padding-top: 112px;
   height: calc(100vh);
   width: 100%;
 }
@@ -105,7 +104,7 @@
   line-height: normal;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
   .page-header {
     padding: 16px 20px;
   }
@@ -132,10 +131,6 @@
   .primary-action-btn {
     width: 100%;
     justify-content: center;
-  }
-  
-  .wallet-layout {
-    padding: 24px
   }
 
   .wallet-content {

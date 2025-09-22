@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 24px 24px 0 24px;
-  
+
   .titleModal {
     margin: 0;
     font-size: 24px;
@@ -14,7 +14,7 @@
 
 .paddingLeft {
   padding: 0px 49px;
-  
+
   .modal-subtitle {
     margin: 0;
     color: #666;
@@ -35,7 +35,7 @@
 }
 
 .company-section {
-  background: #f5f5f5;
+  background: #ffffff;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 24px;
@@ -76,17 +76,17 @@
     flex-direction: column;
     gap: 24px;
   }
-  
+
   .config-item {
     border-bottom: 1px solid #f0f0f0;
     padding-bottom: 20px;
-    
+
     &:last-child {
       border-bottom: none;
       padding-bottom: 0;
     }
   }
-  
+
   .config-header {
     display: flex;
     justify-content: space-between;
@@ -97,7 +97,7 @@
     .config-label {
       flex: 1;
       margin-right: 16px;
-      
+
       span {
         display: block;
         font-size: 16px;
@@ -105,7 +105,7 @@
         color: #333;
         margin-bottom: 4px;
       }
-      
+
       small {
         color: #666;
         font-size: 14px;
@@ -142,21 +142,21 @@
   display: flex;
   gap: 12px;
   justify-content: flex-end;
-  
+
   .buttonCancel {
     color: #666;
     border: 1px solid #ddd;
     padding: 8px 24px;
-    
+
     &:hover {
       background-color: #f5f5f5;
     }
   }
-  
+
   .buttonConfirm {
     padding: 8px 24px;
     min-width: 100px;
-    
+
     mat-spinner {
       margin-right: 8px;
     }
@@ -164,7 +164,7 @@
 }
 
 .buttonConfirm {
-  background-color: #5C4896;
+  background-color: #6c3fc7;
   color: white;
   font-weight: 500;
   font-size: 16px;

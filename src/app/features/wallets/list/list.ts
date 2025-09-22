@@ -26,50 +26,46 @@ import { Empresa, WalletService } from '../../../services/wallet.service';
 export class List implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
-
   public empresas: Empresa[] = [];
   public empresasFiltradas: Empresa[] = [];
   public carregando = false;
 
-
-  // Filtros
   public filtroRazaoSocial: string = '';
   public filtroNumeroCarteira: string = '';
   public filtroApelido: string = '';
 
-
-  public headerInformation = {
-    pageTitle: 'Wallets',
-    pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
-    breadcrumb: [
-      { label: 'Painel', path: '/dashboard' },
-      { label: 'Wallets', path: '/wallets' },
-      { label: 'Visualização', path: '/wallets/list' }
-    ],
-    actionButton: {
-      actionLabel: '+ Adicionar nova carteira',
-      disabled: false,
-      onClick: () => {
-        this.router.navigate(['/wallets/new']);
-      }
-    }
-  };
-
+  public headerInformation: any;
 
   public menuAbertoIndex: number | null = null;
-
-
   constructor(
     private router: Router,
     private walletService: WalletService,
     private cdr: ChangeDetectorRef
-  ) { }
-
+  ) {}
 
   ngOnInit(): void {
+    // agora o this já existe corretamente
+    this.headerInformation = {
+      pageTitle: 'Wallets',
+      pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
+      breadcrumb: [
+        { label: 'Painel', path: '/dashboard' },
+        { label: 'Wallets', path: '/wallets' },
+        { label: 'Visualização', path: '/wallets/list' }
+      ],
+      actionButton: {
+        actionLabel: '+ Adicionar nova carteira',
+        disabled: false,
+        onClick: () => this.adicionarNovaCarteira()
+      }
+    };
+
     this.carregarDados();
   }
 
+  public adicionarNovaCarteira(): void {
+    this.router.navigate(['/carteira/wallets/new']);
+  }
 
   ngOnDestroy(): void {
     this.destroy$.next();

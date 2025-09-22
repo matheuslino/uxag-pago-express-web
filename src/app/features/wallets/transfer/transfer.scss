@@ -81,14 +81,12 @@
   .inputs-row {
     display: flex;
     gap: 24px;
-    width: 554px;
   }
 
   .input-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 265px;
 
     label {
       font-size: 12px;
@@ -402,5 +400,20 @@
       background-color: var(--color-primary-action);
       color: white;
     }
+  }
+}
+
+@media (max-width: 1279px) {
+  .transfer-container {
+    padding: 24px
+  }
+
+  .form-section {
+    flex-direction: column;
+  }
+
+  .inputs-row {
+    width: 100%;
+    flex-direction: column;
   }
 }

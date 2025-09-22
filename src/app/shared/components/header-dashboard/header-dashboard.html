@@ -1,9 +1,28 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="over" class="mobile-sidenav">
-    <div class="sidenav-header">
-      <h4>Menu</h4>
+    <div class="user-menu-header">
+      <div class="user-info-detailed">
+        <div class="user-avatar-menu">
+          <img src="assets/images/avatar.png" 
+                alt="User" />
+        </div>
+        <div class="user-details-menu">
+          <div class="user-name-menu">{{ userName }}</div>
+          <div class="user-role">{{ userRole }}</div>
+        </div>
+      </div>
     </div>
-    <mat-divider></mat-divider>
+    <div class="divider"></div>
+    <div class="user-info">
+      <div class="user-avatar">
+        <img src="assets/images/avatar.png" alt="User Avatar" />
+      </div>
+      <div class="user-details">
+        <span class="user-name">{{ userName }}</span>
+        <span class="user-email-menu">{{ userEmail }}</span>
+      </div>
+    </div>
+    <div class="divider"></div>
     <a *ngFor="let item of menuItems" 
        [routerLink]="item.path" 
        (click)="sidenav.close()" 
@@ -11,6 +30,56 @@
        class="sidenav-link">
       {{ item.label }}
     </a>
+  </mat-sidenav>
+
+  <mat-sidenav #sideprofilenav mode="over" class="mobile-sidenav">
+    <div class="user-menu-header">
+      <div class="user-info-detailed">
+        <div class="user-avatar-menu">
+          <img src="assets/images/avatar.png" 
+                alt="User" />
+        </div>
+        <div class="user-details-menu">
+          <div class="user-name-menu">{{ userName }}</div>
+          <div class="user-role">{{ userRole }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="user-info">
+      <div class="user-avatar">
+        <img src="assets/images/avatar.png" alt="User Avatar" />
+      </div>
+      <div class="user-details">
+        <span class="user-name">{{ userName }}</span>
+        <span class="user-email-menu">{{ userEmail }}</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <button class="icon-info-container" routerLink="/perfil/my-data" (click)="sideprofilenav.close()">
+      <div class="icon-menu">
+        <img src="assets/icons/icon_user_menu.svg" alt="user" />
+        <span class="icon-title">Meus Dados</span>
+      </div>
+    </button>
+    <button class="icon-info-container" routerLink="/settings" (click)="sideprofilenav.close()">
+      <div class="icon-menu">
+        <img src="assets/icons/settings.svg" alt="settings" />
+        <span class="icon-title">Alterar Senha</span>
+      </div>
+    </button>
+    <button class="icon-info-container" (click)="sideprofilenav.close()">
+      <div class="icon-menu">
+        <img src="assets/icons/idioma.svg" alt="idioma" />
+        <span class="icon-title">Idioma</span>
+      </div>
+    </button>
+    <button class="icon-info-container-logout" (click)="sideprofilenav.close()">
+      <div class="icon-menu">
+        <img src="assets/icons/logout.svg" alt="logout" />
+        <span class="icon-title">Sair</span>
+      </div>
+    </button>
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -40,7 +109,7 @@
             <div class="user-actions">
               <img src="/assets/icons/mensagens.svg" alt="message" />
               <img src="/assets/icons/notificacao.svg" alt="notifications" />
-              <button class="user-info-button" [matMenuTriggerFor]="userMenu">
+              <button class="user-info-button" (click)="handleUserMenuClick()" [matMenuTriggerFor]="isLargeScreen ? userMenu : null">
                 <div class="user-info">
                   <div class="user-avatar">
                     <img src="assets/images/avatar.png" alt="User Avatar" />
@@ -86,9 +155,9 @@
                 <div class="balance-amount">
                   R$ {{ totalBalance | number:'1.2-2' | slice:0:-3 }}<span class="cents">,{{ ((totalBalance | number:'1.2-2') ?? '0,00').split(',')[1] }}</span>
                 </div>
-                <mat-icon class="info-icon">visibility</mat-icon>
+                <img src="assets/icons/eye_white.svg" alt="eye" class="icon">
               </div>
-                        <div class="balance-change">
+              <div class="balance-change">
                 <mat-icon class="trend-up-icon">trending_up</mat-icon>
                 <span>{{ balanceChangePercentage }}%</span> últimos 30 dias
               </div>
@@ -102,7 +171,6 @@
                 </button>
               </div>
             </div>
-
             <div class="wallets-section">
               <div class="wallets-header">
                 <span class="section-title">Saldo por carteiras</span>
@@ -130,7 +198,6 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
 
 <mat-menu #notificationMenu="matMenu" class="notification-menu">
   <div class="menu-header">

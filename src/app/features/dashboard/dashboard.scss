@@ -13,24 +13,25 @@
 
 .main-layout {
   display: flex;
-  gap: 24px;
+  gap: 16px;
 }
 
 .main-content {
-  flex: 2;
+  flex: 0.65;
 }
 
 .sidebar {
-  flex: 1;
+  flex: 0.35;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  justify-content: flex-start;
+  gap: 16px;
 }
 
 section, .summary-card, .promo-banner {
   background-color: #ffffff;
   border-radius: 6px;
-  padding: 24px;
+  padding: 32px 16px;
   border: 1px solid #DADADA;
 }
 
@@ -231,7 +232,8 @@ p {
 .stat-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-end;
   gap: 8px;
 
   mat-icon { color: #5C4896; }
@@ -260,16 +262,12 @@ p {
 }
 
 .promo-banner {
-  background-image: url('/assets/images/thumb_example.png');
-  background-size: contain; 
-  background-position: center; 
-  background-repeat: no-repeat; 
-  min-height: 170px;
   padding: 0;
   border:none !important;
+  object-fit: contain;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
 
   .dashboard-container { padding: 24px 16px; }
 

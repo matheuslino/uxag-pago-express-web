@@ -1,4 +1,4 @@
-import { Component, OnInit, LOCALE_ID } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -8,7 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule } from '@angular/forms';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PasswordChangeModalComponent } from '../change-password/change-password';
 
@@ -57,10 +57,12 @@ interface User {
   styleUrl: './header.scss'
 })
 export class Header implements OnInit {
-
+  @ViewChild('sideprofilenav', { static: true }) sideProfileNav!: MatSidenav;
+  isLargeScreen: boolean = true;
   userName = 'Antônio Countinho';
   userRole = 'Gerente de Contas';
   userEmail = 'antonio.coutinho@example.com';
+  isScrolled = false;
 
   menuItems: MenuItem[] = [
     { label: 'Painel', path: '/dashboard', active: true },
@@ -80,7 +82,29 @@ export class Header implements OnInit {
   currentLanguage: string = 'F';
   imageLoaded: boolean = false;
 
-  constructor(private router: Router, private dialog: MatDialog) {}
+  constructor(private router: Router, private dialog: MatDialog) {
+    this.checkScreenSize();
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    this.isScrolled = window.scrollY > 10;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize() {
+    this.isLargeScreen = window.innerWidth >= 1280;
+  }
+
+  handleUserMenuClick() {
+    if (!this.isLargeScreen) {
+      this.sideProfileNav.toggle();
+    }
+  }
 
   ngOnInit(): void {
   }

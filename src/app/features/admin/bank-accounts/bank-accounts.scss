@@ -173,7 +173,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
   .main-content {
     flex-direction: column;
   }
@@ -261,9 +261,4 @@
   .bank-accounts-table th:last-child {
     width: 50px;
   }
-}
-
-.template-content{
-  padding: 4vh 4vw;
-  width: 100%;
 }

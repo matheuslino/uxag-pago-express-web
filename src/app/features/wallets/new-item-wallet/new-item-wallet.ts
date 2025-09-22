@@ -29,7 +29,7 @@ export class NewItemWallet {
   public footerInformation: string = '#1132 - Barbearia Orizon';
   public footerContext1: string = 'Cadastro de item';
   public footerContext2: string = 'Valor pago indevido que voltou à conta';
-  public walletMenu: string = 'wallet';
+  public walletMenu: string = 'new-item-wallet';
 
   public formData = {
     carteira: '',

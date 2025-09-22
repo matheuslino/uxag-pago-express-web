@@ -1,6 +1,5 @@
 .transaction-layout {
   flex-direction: row;
-  padding-top: 112px;
   height: calc(100vh);
   width: 100%;
 }
@@ -61,6 +60,7 @@
   gap: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid #DADADA;
+  flex-wrap: wrap !important;
 }
 
 .header-info {
@@ -105,7 +105,7 @@
   line-height: normal;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
   .page-header {
     padding: 16px 20px;
   }
@@ -114,6 +114,7 @@
     flex-direction: column;
     align-items: stretch;
     gap: 16px;
+
   }
 
   .page-title {
@@ -133,7 +134,7 @@
     width: 100%;
     justify-content: center;
   }
-  
+
   .transaction-layout {
     padding: 24px
   }
@@ -152,11 +153,11 @@
   .breadcrumb {
     flex-wrap: wrap;
   }
-  
+
   .breadcrumb-item {
     font-size: 12px;
   }
-  
+
   .transaction-layout {
     width: 100%;
     padding: 24px

@@ -7,6 +7,7 @@ import { HeaderTitle } from '../../../shared/components/header-title/header-titl
 import { MatIconModule } from '@angular/material/icon';
 import { WalletSidebar } from '../../../shared/components/wallet-sidebar/wallet-sidebar';
 import { CustomSelect } from '../../../shared/components/custom-select/custom-select';
+import { CustomDatePickerRange, DateRange } from '../../../shared/components/custom-datepicker-range/custom-datepicker-range';
 
 export interface Transaction {
   type: string;
@@ -28,6 +29,7 @@ export interface Transaction {
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    CustomDatePickerRange,
     HeaderTitle,
     RouterModule,
     MatIconModule,
@@ -41,7 +43,7 @@ export class Extract implements OnInit, OnDestroy {
   transactions: Transaction[] = [
     {
       type: 'Envio',
-      date: new Date('2025-03-07T15:58:00'),
+      date: new Date('2025-09-07T15:58:00'),
       totalValue: 7.01,
       taxValue: 0.01,
       clientValue: 7.0,
@@ -53,7 +55,7 @@ export class Extract implements OnInit, OnDestroy {
     },
     {
       type: 'Envio',
-      date: new Date('2025-03-07T15:58:00'),
+      date: new Date('2025-09-07T15:58:00'),
       totalValue: 7.01,
       taxValue: 0.01,
       clientValue: 7.0,
@@ -196,13 +198,21 @@ export class Extract implements OnInit, OnDestroy {
 
   filteredTransactions: Transaction[] = [];
   private subs: Subscription[] = [];
+  
+  public dateRange: DateRange = {
+    startDate: '',
+    endDate: ''
+  };
+
+  onDateRangeChange(range: DateRange): void {
+    this.dateRange = range;
+    this.applyFilters();
+  }
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.applyFilters();
-
-    // reatividade nos selects
     this.subs.push(
       this.clientControl.valueChanges.subscribe(() => this.applyFilters()),
       this.walletControl.valueChanges.subscribe(() => this.applyFilters())
@@ -215,22 +225,18 @@ export class Extract implements OnInit, OnDestroy {
 
   applyFilters(): void {
     let filtered = this.transactions;
-
-    if (this.startDate && this.endDate) {
+    if (this.dateRange.startDate !== '' && this.dateRange.endDate !== '') {
       const start = new Date(this.startDate);
       const end = new Date(this.endDate);
       end.setHours(23, 59, 59, 999);
       filtered = filtered.filter(t => t.date >= start && t.date <= end);
     }
-
     if (this.clientControl.value) {
       filtered = filtered.filter(t => t.client === this.clientControl.value);
     }
-
     if (this.walletControl.value) {
       filtered = filtered.filter(t => t.wallet === this.walletControl.value);
     }
-
     this.filteredTransactions = filtered;
   }
 

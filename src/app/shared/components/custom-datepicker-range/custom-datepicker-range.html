@@ -1,0 +1,50 @@
+<div class="date-range-container">
+  <label *ngIf="label" class="date-range-label">{{ label }}</label>
+  <div class="date-range-picker" [class.focused]="isFocused">
+    <div class="date-range-input-wrapper" (click)="togglePicker()">
+      <img src="assets/icons/calendar.svg" alt="calendar" class="calendar-icon">
+      <span class="date-range-text">
+        {{ getDisplayText() }}
+      </span>
+      <span class="dropdown-icon" [class.rotated]="isOpen">
+        <img src="/assets/icons/chevron-down.svg" alt="check">
+      </span>
+    </div>
+    
+    <div class="date-range-dropdown" *ngIf="isOpen" (click)="$event.stopPropagation()">
+      <div class="date-inputs-row">
+        <div class="date-input-group">
+          <label>Data início</label>
+          <input 
+            type="date" 
+            [(ngModel)]="selectedRange.startDate"
+            (ngModelChange)="onDateChange()"
+            class="date-input"
+          />
+        </div>
+        <div class="date-input-group">
+          <label>Data fim</label>
+          <input 
+            type="date" 
+            [(ngModel)]="selectedRange.endDate"
+            (ngModelChange)="onDateChange()"
+            [min]="selectedRange.startDate"
+            class="date-input"
+          />
+        </div>
+      </div>
+      
+      <div class="preset-buttons">
+        <button 
+          type="button"
+          *ngFor="let preset of presets" 
+          class="preset-btn"
+          (click)="selectPreset(preset.key)"
+          [class.active]="activePreset === preset.key"
+        >
+          {{ preset.label }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

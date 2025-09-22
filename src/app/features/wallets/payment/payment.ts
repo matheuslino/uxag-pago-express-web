@@ -74,7 +74,21 @@ export class Payment {
       { label: 'Administração', path: '/admin' },
       { label: 'Saques', path: '/admin/withdrawals' }
     ],
-    saldo: 0,
+    values: {
+      value: 'R$ 189,000',
+      percentage: '7%',
+      filterDays: 7,
+    },
+    actionButton: {
+      actionLabel: 'movimentar',
+      disabled: false,
+      onClick: () => {}
+    },
+    actionButton2: {
+      actionLabel: 'exportar',
+      disabled: false,
+      onClick: () => {}
+    }
   };
   
   // --- Footer Properties ---

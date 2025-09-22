@@ -200,7 +200,7 @@ body {
 }
 
 // Responsividade
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
   .dashboard {
     padding: 0 8px;
   }
@@ -292,7 +292,7 @@ body {
   gap: 16px;
   margin-bottom: 16px;
   
-  @media (max-width: 768px) {
+  @media (max-width: 1279px) {
     flex-direction: column;
     gap: 0;
   }
@@ -306,7 +306,7 @@ body {
   padding-top: 24px;
   border-top: 1px solid var(--gray-200);
   
-  @media (max-width: 768px) {
+  @media (max-width: 1279px) {
     flex-direction: column;
     
     button {
@@ -370,11 +370,19 @@ body {
 .page-header {
   display: flex;
   flex-direction: column;
-  padding: 0px 0 32px 0;
   margin-bottom: 0;
 }
 
 .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  padding: 24px 64px 0 64px;
+}
+
+.breadcrumb-saldo {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -483,7 +491,7 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
   .page-header {
     border-bottom: none;
     padding: 0;
@@ -525,10 +533,16 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .template-content {
-    display: block;
-    padding: 0 12px 0 12px;
+@media (max-width: 1279px) {
+  .template-content{
+    flex-direction: column;
+    padding: 32px 0px!important;
+  }
+
+  .template-bg {
+    background: #fff;
+    width: 100%;
+    padding: 0 24px;
   }
 }
 
@@ -540,6 +554,8 @@ body {
 .template-list-bg {
   background: #fff;
   width: 100%;
+  height: max-content;
+  padding-bottom: 2rem
 }
 
 .template-list-container {
@@ -553,12 +569,11 @@ body {
   display: flex;
   align-items: stretch; 
   justify-content: space-between;
-  gap: 32px;
+  gap: 20px;
   width: 100%;
 }
 
 .template-list-select-section {
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   background: #fAFAFA;
@@ -655,10 +670,9 @@ body {
 
 .template-content {
   display: flex;
-  flex-direction: row;
   width: 100%;
   height: 100%;
-  padding: 0px 68px;
+  padding: 32px 68px;
   background: #fff;
 }
 
@@ -909,12 +923,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .template-content {
-    flex-direction: column;
-    padding: 16px 0;
-  }
-
+@media (max-width: 1279px) {
   .template-list-container {
     padding: 0;
     gap: 20px;

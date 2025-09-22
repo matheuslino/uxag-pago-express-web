@@ -12,3 +12,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.template-list-filters-section,
+.template-list-filters-row,
+.search-input-container,
+.search-input {
+  z-index: auto;
+}
+
+.table-container {
+  position: relative;
+  z-index: 1;
+}

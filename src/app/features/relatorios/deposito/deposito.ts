@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { RelatoriosSidebar } from '../../../shared/components/relatorios-sidebar/relatorios-sidebar.component';
+import { CustomDatePickerRange, DateRange } from '../../../shared/components/custom-datepicker-range/custom-datepicker-range';
 
 interface depositoRecord {
   data: string;
@@ -25,6 +26,7 @@ interface depositoRecord {
     HeaderTitle,
     CommonModule,
     FormsModule,
+    CustomDatePickerRange,
   ],
   templateUrl: './deposito.html',
   styleUrls: ['./deposito.scss']
@@ -73,8 +75,7 @@ export class DepositoRelatorio {
 
   private initializeForm() {
     this.reportForm = this.fb.group({
-      dateInit: [''],
-      dateFinal: [''],
+      dateRange: [{ startDate: '', endDate: '' }],
       razaoSocial: [''],
       wallet: [''],
     });
@@ -93,22 +94,16 @@ export class DepositoRelatorio {
       filteredData = filteredData.filter(item => item.carteira === filters.wallet);
     }
 
-    if (filters.dateInit && filters.dateFinal) {
-      const startDate = new Date(filters.dateInit);
-      const endDate = new Date(filters.dateFinal);
-      
-      startDate.setUTCHours(0, 0, 0, 0);
-      endDate.setUTCHours(23, 59, 59, 999);
-
-      filteredData = filteredData.filter(item => {
-        const itemDateParts = item.data.split('/');
-        const itemDate = new Date(+itemDateParts[2], +itemDateParts[1] - 1, +itemDateParts[0]);
-        itemDate.setUTCHours(0,0,0,0);
-        return itemDate >= startDate && itemDate <= endDate;
-      });
-    }
-
     this.registros = filteredData;
+  }
+  
+  public dateRange: DateRange = {
+    startDate: '',
+    endDate: ''
+  };
+
+  onDateRangeChange(range: DateRange): void {
+    this.applyFilters(this.reportForm.value);
   }
 
   ngOnDestroy() {

@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminSidebar } from '../../../../shared/components/admin-sidebar/admin-sidebar';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { HeaderTitle } from '../../../../shared/components/header-title/header-title';
+import { CustomSelect } from '../../../../shared/components/custom-select/custom-select';
 
 export interface Cliente {
-  id: number;
-  nome: string;
-  avatar?: string;
+  value: number;
+  label: string;
 }
 
 export interface ChavePix {
@@ -26,11 +26,13 @@ export interface ChavePix {
   selector: 'app-list',
   imports: [
     RouterModule,
+    ReactiveFormsModule,
     MatIconModule,
     AdminSidebar,
     HeaderTitle,
     CommonModule,
     FormsModule,
+    CustomSelect,
   ],
   templateUrl: './list.html',
   styleUrl: './list.scss'
@@ -55,10 +57,10 @@ export class List implements OnInit {
   };
 
   public clientes: Cliente[] = [
-    { id: 1, nome: '123 Milhas', avatar: '/img/house.svg' },
-    { id: 2, nome: 'Tech Solutions', avatar: '/img/building.svg' },
-    { id: 3, nome: 'Stark Industries', avatar: '/img/factory.svg' },
-    { id: 4, nome: 'Acme Corp', avatar: '/img/office.svg' }
+    { value: 1, label: '123 Milhas' },
+    { value: 2, label: 'Tech Solutions' },
+    { value: 3, label: 'Stark Industries' },
+    { value: 4, label: 'Acme Corp' }
   ];
 
   public chavesPix: ChavePix[] = [
@@ -117,6 +119,8 @@ export class List implements OnInit {
       criadoEm: new Date('2024-03-18T08:30:00')
     }
   ];
+  
+  public clientControl = new FormControl(1);
 
   public clienteSelecionadoId = 1;
 
@@ -127,7 +131,7 @@ export class List implements OnInit {
   }
 
   get clienteSelecionado(): Cliente | undefined {
-    return this.clientes.find(c => c.id === this.clienteSelecionadoId);
+    return this.clientes.find(c => c.value === this.clienteSelecionadoId);
   }
 
   get chavesFiltradas(): ChavePix[] {
