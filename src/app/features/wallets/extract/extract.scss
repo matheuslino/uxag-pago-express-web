@@ -16,14 +16,14 @@
   --color-bg-page: #FFFFFF;
   --color-bg-card: #FFFFFF;
   --color-bg-icon: #F3F6F8;
-  
+
   --color-tag-credit-text: #5C4896;
   --color-tag-credit-bg: #F6F3FF;
   --color-tag-refund-text: #FF3C00;
   --color-tag-refund-bg: #FFEDE7;
-  
+
   --font-family-primary: 'Inter', sans-serif;
-  --font-family-title: 'Futura', 'Inter', sans-serif; 
+  --font-family-title: 'Futura', 'Inter', sans-serif;
 }
 
 .extract-container {
@@ -34,6 +34,8 @@
   flex-direction: column;
   gap: 24px;
   align-items: center;
+  padding: 24px 32px;
+  box-sizing: border-box;
 }
 
 .filters {
@@ -129,7 +131,7 @@
 .transaction-item {
   display: flex;
   flex-direction: column;
-  
+
   .item-main {
     display: flex;
     justify-content: space-between;
@@ -201,7 +203,7 @@
       }
     }
   }
-  
+
   .item-tags {
     display: flex;
     align-items: center;
@@ -210,7 +212,7 @@
     flex-grow: 1;
     min-width: 170px;
   }
-  
+
   .tag {
     display: inline-flex;
     justify-content: center;
@@ -236,7 +238,7 @@
       background: none;
     }
   }
-  
+
   .separator {
     border: none;
     height: 1px;
