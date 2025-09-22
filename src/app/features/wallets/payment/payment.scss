@@ -106,7 +106,8 @@
 
 .form-section {
   display: flex;
-  gap: 600px;
+  gap: 32px;
+  justify-content: space-between;
 }
 
 .form-section-title {
@@ -265,14 +266,37 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
+  .payment-container {
+    padding: 24px;
+  }
   .stepper-container {
+    flex: 1;
+    width: 100%;
     gap: 16px;
     padding: 0;
   }
 
-  /* CORREÇÃO: Altera a direção do flex para empilhar o conteúdo */
+  .form-section {
+    gap: 0;
+    flex-direction: column;
+  }
+
+  .review-section-wrapper {
+    gap: 0;
+    flex-direction: column;
+  }
+
+  .review-section-title {
+    flex-basis: 32px;
+  }
+
+  .form-section-title {
+    flex-basis: 32px;
+  }
+
   .step-item .label-group {
+    flex: 1;
     flex-direction: column;
     gap: 4px;
   }

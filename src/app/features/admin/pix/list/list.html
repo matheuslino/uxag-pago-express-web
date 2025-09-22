@@ -5,7 +5,13 @@
     <div class="template-list-container">
       <div class="template-list-select-row">
         <div class="template-list-select-section">
-          <span class="template-list-select-title">Cliente</span>
+          <app-custom-select
+            [options]="clientes"
+            [formControl]="clientControl"
+            label="Cliente"
+            placeholder="Selecione um cliente">
+          </app-custom-select>
+          <!-- <span class="template-list-select-title">Cliente</span>
           <select 
             id="template-client-select" 
             class="template-list-select"
@@ -16,17 +22,17 @@
               [value]="cliente.id">
               {{ cliente.nome }}
             </option>
-          </select>
+          </select> -->
         </div>
         <div class="template-list-client-info" *ngIf="clienteSelecionado">
           <span class="template-list-client-avatar">
             <img 
-              [src]="clienteSelecionado.avatar || '/img/house.svg'" 
-              [alt]="clienteSelecionado.nome" />
+              [src]="'/img/house.svg'" 
+              alt="house" />
           </span>
           <div>
             <span class="template-list-select-title">Cliente</span>
-            <div class="template-list-select-subtitle">{{ clienteSelecionado.nome }}</div>
+            <div class="template-list-select-subtitle">{{ clienteSelecionado.label }}</div>
           </div>
         </div>
       </div>

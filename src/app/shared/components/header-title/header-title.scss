@@ -28,6 +28,13 @@
     margin: 0 68px;
 }
 
+.divider-saldo {
+  width: auto;
+  height: 1px;
+  background-color: #DADADA;
+  margin: 0 68px;
+}
+
 .saldo-container-actions {
     display: flex;
     flex-direction: row;
@@ -81,8 +88,31 @@
 }
 
 @media (max-width: 1279px) {
+  .page-header {
+    padding: 0 24px;
+  }
+
   .breadcrumb {
     padding: 24px 64px 0px 0px;
+  }
+
+  .breadcrumb-saldo {
+    padding: 12px 24px;
+  }
+
+  .saldo-container-actions {
+    padding: 0 24px;
+  }
+
+  .divider-saldo {
+    width: auto;
+    height: 1px;
+    background-color: #DADADA;
+    margin: 0 24px;
+  }
+
+  .saldo-voltar {
+    margin-left: 24px;
   }
 
   .header-content {

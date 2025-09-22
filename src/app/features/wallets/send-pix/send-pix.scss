@@ -34,9 +34,9 @@
   }
   .title-and-inputs { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
   .form-section-title { font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin: 0; padding-top: 5px; min-width: 175px; }
-  .inputs-row { display: flex; gap: 24px; width: 554px; }
+  .inputs-row { display: flex; gap: 24px; }
   .input-group {
-    display: flex; flex-direction: column; gap: 8px; width: 265px;
+    display: flex; flex-direction: column; gap: 8px;
     label { font-size: 12px; font-weight: 500; color: var(--color-text-label); }
     input {
       box-sizing: border-box; height: 35px; padding: 10px 12px; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 4px; font-size: 12px;
@@ -49,7 +49,7 @@
     .account-data-title { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--color-text-secondary); margin: 0; }
     .provider-tag { background-color: var(--color-tag-bg); padding: 3px 12px; border-radius: 4px; font-weight: 500; color: white; }
     .account-data-details { display: flex; gap: 24px; }
-    .details-column { display: flex; flex-direction: column; gap: 8px; width: 265px; }
+    .details-column { display: flex; flex-direction: column; gap: 8px; }
     .detail-item {
       display: flex; gap: 6px;
       .label { font-weight: 600; color: var(--color-text-secondary); }
@@ -111,5 +111,26 @@
     padding: 10px 16px; border-radius: 99px; border: none; font-weight: 600; font-size: 16px; cursor: pointer; height: 44px; display: flex; align-items: center;
     &.btn-cancel { background: #FFFFFF; color: #414651; border: 1px solid #D5D7DA; box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05); width: 106px; justify-content: center; }
     &.btn-confirm { background-color: var(--color-primary-action); color: white; width: 114px; justify-content: center; }
+  }
+}
+
+@media (max-width: 1279px) {
+  .send-pix-container {
+    padding: 24px
+  }
+
+  .form-section {
+    flex-direction: column;
+    &--column { flex-direction: column; }
+  }
+
+  .multi-row-inputs {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .inputs-row {
+    width: 100%;
+    flex-direction: column;
   }
 }

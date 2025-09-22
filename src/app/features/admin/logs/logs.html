@@ -4,11 +4,13 @@
   <div class="logs-bg">
     <div class="logs-container">
       <div class="logs-header">
-        <div style="display: flex; flex-direction: column; gap: 6px;">
-          <label for="modulo-select" class="logs-label">Módulo do projeto</label>
-          <select id="modulo-select" class="logs-select" disabled style="width: 300px;">
-            <option selected>ADMIN</option>
-          </select>
+        <div style="display: flex; flex-direction: column; gap: 6px;">          
+            <app-custom-select
+              [options]="profileOptions"
+              [formControl]="profileControl"
+              label="Módulo do projeto"
+              placeholder="Selecione um perfil">
+            </app-custom-select>
         </div>
       </div>
 

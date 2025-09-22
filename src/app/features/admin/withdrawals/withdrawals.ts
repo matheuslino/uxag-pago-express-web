@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderTitle } from '../../../shared/components/header-title/header-title';
 import { AdminSidebar } from '../../../shared/components/admin-sidebar/admin-sidebar';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { WithdrawalAuthorizationData, WithdrawalAuthorizationModalComponent } from '../../../shared/components/withdrawal-authorization-modal.component/withdrawal-authorization-modal.component';
+import { CustomDatePickerRange, DateRange } from '../../../shared/components/custom-datepicker-range/custom-datepicker-range';
+import { CustomSelect } from '../../../shared/components/custom-select/custom-select';
 
 export interface Empresa {
-  id: number;
-  nome: string;
+  value: number;
+  label: string;
 }
 
 export interface Saque {
@@ -37,6 +39,9 @@ export interface Saque {
     HeaderTitle,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    CustomSelect,
+    CustomDatePickerRange,
   ],
   templateUrl: './withdrawals.html',
   styleUrl: './withdrawals.scss'
@@ -59,11 +64,11 @@ export class Withdrawals implements OnInit {
   };
 
   public empresas: Empresa[] = [
-    { id: 0, nome: 'Todas as empresas' },
-    { id: 1, nome: '123 Milhas' },
-    { id: 2, nome: 'Tech Solutions' },
-    { id: 3, nome: 'Stark Industries' },
-    { id: 4, nome: 'Acme Corp' }
+    { value: 0, label: 'Todas as empresas' },
+    { value: 1, label: '123 Milhas' },
+    { value: 2, label: 'Tech Solutions' },
+    { value: 3, label: 'Stark Industries' },
+    { value: 4, label: 'Acme Corp' }
   ];
 
   public statusOptions = [
@@ -116,6 +121,20 @@ export class Withdrawals implements OnInit {
     },
   ];
 
+  public statusControl = new FormControl('todos');
+  public empresaControl = new FormControl(0);
+
+  public dateRange: DateRange = {
+    startDate: '',
+    endDate: ''
+  };
+
+  onDateRangeChange(range: DateRange): void {
+    this.dateRange = range;
+    this.filtros.dataInicio = range.startDate;
+    this.filtros.dataFim = range.endDate;
+  }
+
   public filtros = {
     empresaId: 0,
     status: 'todos',
@@ -125,7 +144,7 @@ export class Withdrawals implements OnInit {
   };
 
   ngOnInit(): void {
-    this.filtros.periodo = 'semana';
+    this.filtros.periodo = 'mes';
     this.onPeriodoChange();
   }
 
@@ -154,54 +173,40 @@ export class Withdrawals implements OnInit {
   }
 
   onRejeitar(saque: Saque): void {
-    // CORREÇÃO: Usando crases (`) para a string de template
     if (confirm(`Rejeitar saque de ${this.formatarValor(saque.valor)} para ${saque.solicitante}?`)) {
       saque.status = 'Rejeitado';
       saque.statusAprovador = 'rejeitado';
-      console.log('Saque rejeitado:', saque);
-      this.cdRef.detectChanges(); // Garante a atualização da tela
+      this.cdRef.detectChanges();
     }
   }
-
-  // A função abaixo se tornou redundante, pois o modal já cuida da aprovação.
-  // Você pode removê-la se quiser.
-  /*
-  onAprovar(saque: Saque): void {
-    // CORREÇÃO: Usando crases (`) para a string de template
-    if (confirm(`Aprovar saque de ${this.formatarValor(saque.valor)} para ${saque.solicitante}?`)) {
-      saque.status = 'Aprovado';
-      saque.statusAprovador = 'aprovado';
-      console.log('Saque aprovado:', saque);
-    }
-  }
-  */
-
-  // --- Funções de filtro e getters ---
 
   get saquesFiltrados(): Saque[] {
     let saques = this.saques;
-
-    if (this.filtros.empresaId > 0) {
-      saques = saques.filter(saque => saque.empresaId === this.filtros.empresaId);
+    const empresaSelecionada = this.empresaControl?.value;
+    if (empresaSelecionada && empresaSelecionada > 0) {
+      saques = saques.filter(saque => saque.empresaId === empresaSelecionada);
     }
-
-    if (this.filtros.status && this.filtros.status !== 'todos') {
-      const filtroStatus = String(this.filtros.status).trim().toLowerCase();
+    
+    // Filtro por status usando FormControl
+    const statusSelecionado = this.statusControl?.value;
+    if (statusSelecionado && statusSelecionado !== 'todos') {
+      const filtroStatus = String(statusSelecionado).trim().toLowerCase();
       saques = saques.filter(saque => String(saque.status || '').trim().toLowerCase() === filtroStatus);
     }
-
-    if (this.filtros.dataInicio) {
-      const inicio = new Date(this.filtros.dataInicio);
-      inicio.setHours(0, 0, 0, 0); // Considera o dia inteiro
+    
+    // Filtro por data de início
+    if (this.dateRange.startDate !== '') {
+      const inicio = new Date(this.dateRange.startDate);
+      inicio.setHours(0, 0, 0, 0);
       saques = saques.filter(saque => saque.dataHora >= inicio);
     }
-
-    if (this.filtros.dataFim) {
-      const fim = new Date(this.filtros.dataFim);
-      fim.setHours(23, 59, 59, 999); // Considera o dia inteiro
+    
+    // Filtro por data fim
+    if (this.dateRange.endDate !== '') {
+      const fim = new Date(this.dateRange.endDate);
+      fim.setHours(23, 59, 59, 999);
       saques = saques.filter(saque => saque.dataHora <= fim);
     }
-
     return saques;
   }
 
@@ -213,16 +218,12 @@ export class Withdrawals implements OnInit {
     console.log('status selecionado ->', value);
   }
 
-  // --- Funções de formatação e utilitárias ---
-
   formatarDataHora(data: Date): string {
     const horas = data.getHours().toString().padStart(2, '0');
     const minutos = data.getMinutes().toString().padStart(2, '0');
     const dia = data.getDate().toString().padStart(2, '0');
     const mes = (data.getMonth() + 1).toString().padStart(2, '0');
     const ano = data.getFullYear();
-
-    // CORREÇÃO: Usando crases (`) para a string de template
     return `${horas}h${minutos} — ${dia}/${mes}/${ano}`;
   }
 

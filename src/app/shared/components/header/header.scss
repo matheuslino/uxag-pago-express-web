@@ -562,6 +562,12 @@
   }
 
   @media (max-width: 1279px) {
+    .top-bar {
+      .top-bar-content {
+        padding: 0px;
+      }
+    }
+
     .divider {
       width: 100%;
       height: 1px;

@@ -5,10 +5,12 @@
     <header class="filters">
       <div class="filter-group">
         <label for="startDate">Período</label>
-        <div class="input-wrapper">
-          <input id="startDate" type="date" [(ngModel)]="startDate" (ngModelChange)="applyFilters()">
-          <input id="endDate" type="date" [(ngModel)]="endDate" (ngModelChange)="applyFilters()">
-        </div>
+        <app-custom-picker-date-range
+          [showPresets]="true"
+          placeholder="Selecione o período"
+          [(ngModel)]="dateRange"
+          (rangeChange)="onDateRangeChange($event)">
+        </app-custom-picker-date-range>
       </div>
       <div class="filter-group">
         <label for="client">Cliente</label>

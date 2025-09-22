@@ -5,12 +5,13 @@
     <div class="template-list-container">
       <form class="filtros-container" [formGroup]="reportForm">
         <div class="filtro-item">
-          <label for="dateInit">Período De</label>
-          <input type="date" id="dateInit" formControlName="dateInit">
-        </div>
-        <div class="filtro-item">
-          <label for="dateFinal">Período Até</label>
-          <input type="date" id="dateFinal" formControlName="dateFinal">
+          <app-custom-picker-date-range
+            label="Período"
+            [showPresets]="true"
+            placeholder="Selecione o período"
+            formControlName="dateRange"
+            (rangeChange)="onDateRangeChange($event)">
+          </app-custom-picker-date-range>
         </div>
         <div class="filtro-item">
           <label for="razao-social">Razão social</label>

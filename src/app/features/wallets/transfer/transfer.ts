@@ -56,7 +56,21 @@ export class Transfer {
       { label: 'Wallets', path: '/wallets' },
       { label: 'Visualização', path: '/wallets/list' }
     ],
-    saldo: 1000,
+    values: {
+      value: 'R$ 189,000',
+      percentage: '7%',
+      filterDays: 7,
+    },
+    actionButton: {
+      actionLabel: 'movimentar',
+      disabled: false,
+      onClick: () => {}
+    },
+    actionButton2: {
+      actionLabel: 'exportar',
+      disabled: false,
+      onClick: () => {}
+    }
   }
 
   public sendLabel: string = 'Enviar';
@@ -76,7 +90,7 @@ export class Transfer {
   }
 
   public get saldoValor(): string {
-    return `R$ ${this.headerInformation.saldo.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+    return `R$ ${this.headerInformation.values.value}`;
   }
 
   public get tipoChaveValor(): string {

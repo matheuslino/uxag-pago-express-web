@@ -34,7 +34,6 @@
   flex-direction: column;
   gap: 24px;
   align-items: center;
-  padding: 24px 32px;
   box-sizing: border-box;
 }
 
@@ -46,7 +45,6 @@
   width: 100%;
 
   .filter-group {
-    display: flex;
     flex: 1;
     align-items: center;
     gap: 16px;
@@ -244,5 +242,11 @@
     height: 1px;
     background-color: var(--color-border-separator);
     margin: 0;
+  }
+}
+
+@media (max-width: 1279px) {
+  .extract-container {
+    padding: 24px
   }
 }

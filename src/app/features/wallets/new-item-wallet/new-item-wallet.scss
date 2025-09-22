@@ -61,14 +61,12 @@
   .inputs-row {
     display: flex;
     gap: 24px;
-    width: 554px; 
   }
 
   .input-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 265px;
     
     &.full-width {
       width: 100%;
@@ -116,5 +114,25 @@
 
   &:hover {
     opacity: 0.9;
+  }
+}
+
+@media (max-width: 1279px) {
+  .new-item-container {
+    padding: 24px
+  }
+
+  .form-section {
+    flex-direction: column;
+  }
+
+  .multi-row-inputs {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .inputs-row {
+    width: 100%;
+    flex-direction: column;
   }
 }

@@ -1,6 +1,5 @@
 .report-layout {
   flex-direction: row;
-  padding-top: 112px;
   height: calc(100vh);
 }
 
@@ -131,10 +130,6 @@
   .primary-action-btn {
     width: 100%;
     justify-content: center;
-  }
-  
-  .report-layout {
-    padding: 24px
   }
 
   .report-content {

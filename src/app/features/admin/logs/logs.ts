@@ -4,6 +4,8 @@ import { HeaderTitle } from '../../../shared/components/header-title/header-titl
 import { AdminSidebar } from '../../../shared/components/admin-sidebar/admin-sidebar';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { CustomSelect } from '../../../shared/components/custom-select/custom-select';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-logs',
@@ -12,7 +14,10 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     AdminSidebar,
     HeaderTitle,
+    ReactiveFormsModule,
+    FormsModule,
     CommonModule,
+    CustomSelect,
   ],
   templateUrl: './logs.html',
   styleUrl: './logs.scss'
@@ -28,5 +33,11 @@ export class Logs {
       { label: 'Logs', path: '/administracao/logs' }
     ],
   }
+
+  public profileOptions = [
+    { value: 'ADMIN', label: 'Admin' },
+  ];
+
+  public profileControl = new FormControl('todos');
 
 }

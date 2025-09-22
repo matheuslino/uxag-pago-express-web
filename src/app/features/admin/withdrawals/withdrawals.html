@@ -6,31 +6,30 @@
       <div class="template-list-filters-section">
         <div class="template-list-filters-row">
           <label class="filter-label">
-            Empresa
-            <select class="template-list-select" [(ngModel)]="filtros.empresaId">
-              <option *ngFor="let empresa of empresas" [ngValue]="empresa.id">
-                {{ empresa.nome }}
-              </option>
-            </select>
+            <app-custom-select
+              [options]="empresas"
+              [formControl]="empresaControl"
+              label="Empresa"
+              placeholder="Selecione uma empresa">
+            </app-custom-select>
           </label>
           <label class="filter-label">
-            Status
-            <select class="template-list-select" name="statusFilter" [(ngModel)]="filtros.status"
-              (ngModelChange)="onStatusChange($event)">
-              <option *ngFor="let status of statusOptions" [ngValue]="status.value">
-                {{ status.label }}
-              </option>
-            </select>
+            <app-custom-select
+              [options]="statusOptions"
+              [formControl]="statusControl"
+              label="Status"
+              placeholder="Selecione um status">
+            </app-custom-select>
           </label>
-          <label class="filter-label">
-            Data início
-            <input class="template-list-filter-input date-input" type="date" [(ngModel)]="filtros.dataInicio" />
-          </label>
-          <label class="filter-label">
-            Data fim
-            <input class="template-list-filter-input date-input" type="date" [(ngModel)]="filtros.dataFim"
-              [min]="filtros.dataInicio" />
-          </label>
+          <div class="filter-label">
+            <app-custom-picker-date-range
+              label="Período"
+              [showPresets]="true"
+              placeholder="Selecione o período"
+              [(ngModel)]="dateRange"
+              (rangeChange)="onDateRangeChange($event)">
+            </app-custom-picker-date-range>
+          </div>
         </div>
       </div>
 
@@ -47,9 +46,9 @@
                 <th>Solicitante / Valor</th>
                 <th class="hide-mobile">Carteira</th>
                 <th class="hide-mobile">Chave PIX</th>
-                <th class="hide-mobile-partial">Valor</th>
+                <th class="hide-mobile">Valor</th>
                 <th class="hide-mobile">Data/hora</th>
-                <th class="hide-mobile">Status</th>
+                <th>Status</th>
                 <th class="hide-mobile">Aprovador</th>
                 <th class="actions-column"></th>
               </tr>
@@ -66,9 +65,9 @@
                 <td class="hide-mobile">
                   <span class="chave-pix">{{ saque.chavePix }}</span>
                 </td>
-                <td class="hide-mobile-partial valor-cell ">{{ formatarValor(saque.valor) }}</td>
+                <td class="hide-mobile valor-cell ">{{ formatarValor(saque.valor) }}</td>
                 <td class="hide-mobile">{{ formatarDataHora(saque.dataHora) }}</td>
-                <td class="hide-mobile">
+                <td>
                   <div [class]="getStatusClass(saque.status)">
                     <span class="status-icon"></span>
                     {{ saque.status }}
