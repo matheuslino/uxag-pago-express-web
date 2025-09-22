@@ -1,9 +1,28 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="over" class="mobile-sidenav">
-    <a routerLink="/dashboard" routerLinkActive="active" class="sidenav-header">
-      <img src="assets/images/logo.svg" 
-        alt="User" />
-    </a>
+    <div class="user-menu-header">
+      <div class="user-info-detailed">
+        <div class="user-avatar-menu">
+          <img src="assets/images/avatar.png" 
+                alt="User" />
+        </div>
+        <div class="user-details-menu">
+          <div class="user-name-menu">{{ userName }}</div>
+          <div class="user-role">{{ userRole }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="user-info">
+      <div class="user-avatar">
+        <img src="assets/images/avatar.png" alt="User Avatar" />
+      </div>
+      <div class="user-details">
+        <span class="user-name">{{ userName }}</span>
+        <span class="user-email-menu">{{ userEmail }}</span>
+      </div>
+    </div>
+    <div class="divider"></div>
     <a *ngFor="let item of menuItems" 
        [routerLink]="item.path" 
        (click)="sidenav.close()" 
@@ -12,8 +31,59 @@
       {{ item.label }}
     </a>
   </mat-sidenav>
+
+  <mat-sidenav #sideprofilenav mode="over" class="mobile-sidenav">
+    <div class="user-menu-header">
+      <div class="user-info-detailed">
+        <div class="user-avatar-menu">
+          <img src="assets/images/avatar.png" 
+                alt="User" />
+        </div>
+        <div class="user-details-menu">
+          <div class="user-name-menu">{{ userName }}</div>
+          <div class="user-role">{{ userRole }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="user-info">
+      <div class="user-avatar">
+        <img src="assets/images/avatar.png" alt="User Avatar" />
+      </div>
+      <div class="user-details">
+        <span class="user-name">{{ userName }}</span>
+        <span class="user-email-menu">{{ userEmail }}</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <button class="icon-info-container" routerLink="/perfil/my-data" (click)="sideprofilenav.close()">
+      <div class="icon-menu">
+        <img src="assets/icons/icon_user_menu.svg" alt="user" />
+        <span class="icon-title">Meus Dados</span>
+      </div>
+    </button>
+    <button class="icon-info-container" routerLink="/settings" (click)="sideprofilenav.close()">
+      <div class="icon-menu">
+        <img src="assets/icons/settings.svg" alt="settings" />
+        <span class="icon-title">Alterar Senha</span>
+      </div>
+    </button>
+    <button class="icon-info-container" (click)="sideprofilenav.close()">
+      <div class="icon-menu">
+        <img src="assets/icons/idioma.svg" alt="idioma" />
+        <span class="icon-title">Idioma</span>
+      </div>
+    </button>
+    <button class="icon-info-container-logout" (click)="sideprofilenav.close()">
+      <div class="icon-menu">
+        <img src="assets/icons/logout.svg" alt="logout" />
+        <span class="icon-title">Sair</span>
+      </div>
+    </button>
+  </mat-sidenav>
+
   <mat-sidenav-content>
-    <div class="header-container">
+    <div class="header-container"  [class.scrolled]="isScrolled">
       <div class="header-content-wrapper">
         <mat-toolbar class="top-bar">
           <div class="top-bar-content">
@@ -46,15 +116,11 @@
             </div>
 
             <img src="assets/images/logo.svg" alt="PagoExpress Logo" class="logo mobile-logo" />
-
+            
             <div class="user-actions">
-              <button mat-icon-button class="action-btn">
-                <img src="/assets/icons/mensagens_black.svg" alt="message" />
-              </button>
-              <button mat-icon-button class="action-btn">
-                <img src="/assets/icons/notificacao_black.svg" alt="notifications" />
-              </button>
-              <button class="user-info-button" [matMenuTriggerFor]="userMenu">
+              <img src="/assets/icons/mensagens_black.svg" alt="message" />
+              <img src="/assets/icons/notificacao_black.svg" alt="notifications" />
+              <button class="user-info-button" (click)="handleUserMenuClick()" [matMenuTriggerFor]="isLargeScreen ? userMenu : null">
                 <div class="user-info">
                   <div class="user-avatar">
                     <img src="assets/images/avatar.png" alt="User Avatar" />

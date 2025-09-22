@@ -19,7 +19,6 @@
   border: 0;
   padding: 0;
   cursor: pointer;
-
 }
 
 .divider {
@@ -79,4 +78,15 @@
             color: var(--positive-change);
         }
     }
+}
+
+@media (max-width: 1279px) {
+  .breadcrumb {
+    padding: 24px 64px 0px 0px;
+  }
+
+  .header-content {
+    margin: 0;
+    border-bottom: none;
+  }
 }

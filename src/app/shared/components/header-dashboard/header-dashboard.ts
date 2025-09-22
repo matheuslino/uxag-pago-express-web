@@ -1,4 +1,4 @@
-import { Component, OnInit, LOCALE_ID, HostListener } from '@angular/core';
+import { Component, OnInit, LOCALE_ID, HostListener, ViewChild } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { filter, map } from 'rxjs/operators';
 import localePt from '@angular/common/locales/pt';
 import { FormsModule } from '@angular/forms';
@@ -56,6 +56,8 @@ interface Wallet {
   styleUrl: './header-dashboard.scss'
 })
 export class HeaderDashboard implements OnInit {
+  @ViewChild('sideprofilenav', { static: true }) sideProfileNav!: MatSidenav;
+  isLargeScreen: boolean = true;
   imageLoaded = true;
   unreadNotifications = 0;
   addWalletPlaceholders: any[] = [];
@@ -107,11 +109,28 @@ export class HeaderDashboard implements OnInit {
     }
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.checkScreenSize();
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
     this.isScrolled = window.scrollY > 10;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize() {
+    this.isLargeScreen = window.innerWidth >= 1280;
+  }
+
+  handleUserMenuClick() {
+    if (!this.isLargeScreen) {
+      this.sideProfileNav.toggle();
+    }
   }
 
   ngOnInit(): void {

@@ -200,7 +200,7 @@ body {
 }
 
 // Responsividade
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
   .dashboard {
     padding: 0 8px;
   }
@@ -292,7 +292,7 @@ body {
   gap: 16px;
   margin-bottom: 16px;
   
-  @media (max-width: 768px) {
+  @media (max-width: 1279px) {
     flex-direction: column;
     gap: 0;
   }
@@ -306,7 +306,7 @@ body {
   padding-top: 24px;
   border-top: 1px solid var(--gray-200);
   
-  @media (max-width: 768px) {
+  @media (max-width: 1279px) {
     flex-direction: column;
     
     button {
@@ -370,7 +370,7 @@ body {
 .page-header {
   display: flex;
   flex-direction: column;
-  padding: 0px 0 32px 0;
+  padding: 0px 0 32px 32px;
   margin-bottom: 0;
 }
 
@@ -483,7 +483,7 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
   .page-header {
     border-bottom: none;
     padding: 0;
@@ -525,7 +525,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
   .template-content {
     display: block;
     padding: 0 12px 0 12px;
@@ -909,7 +909,7 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
   .template-content {
     flex-direction: column;
     padding: 16px 0;
