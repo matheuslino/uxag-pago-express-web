@@ -130,7 +130,7 @@
   display: flex;
   align-items: center;
   font-size: 14px;
-  
+
   &:last-child {
     border-right: none;
   }
@@ -163,16 +163,16 @@ mat-form-field {
   .form-row {
     flex-direction: column;
   }
-  
+
   .table-header,
   .table-row {
     grid-template-columns: 1fr;
   }
-  
+
   .table-cell {
     border-right: none;
     border-bottom: 1px solid #e0e0e0;
-    
+
     &:last-child {
       border-bottom: none;
     }
@@ -188,7 +188,7 @@ mat-form-field {
 }
 
 .buttonConfirm {
-  background-color: #5C4896;
+  background-color: #6c3fc7;
   color: white;
   font-weight: 500;
   font-size: 16px;
