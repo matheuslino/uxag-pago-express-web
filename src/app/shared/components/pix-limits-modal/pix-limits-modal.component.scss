@@ -5,7 +5,6 @@
   background: #fff;
   border-radius: 12px;
   padding: 0;
-  max-width: 650px;
   width: 100%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
@@ -133,13 +132,16 @@
 
   .cancel-button {
     color: #6b7280;
+    border: 1px solid #D0D5DD;
+    border-radius: 99px;
+
   }
 
   .save-button {
     background-color: #5C4896;
     color: #fff;
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 99px;
 
     &:hover {
       background-color: #5C4896;
