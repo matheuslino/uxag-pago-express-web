@@ -162,7 +162,7 @@
 }
 
 .buttonConfirm {
-  background-color: #6c3fc7;
+  background-color: #5C4896;
   color: white;
   font-weight: 500;
   font-size: 16px;
@@ -179,12 +179,12 @@
 ::ng-deep .mat-mdc-slide-toggle.mat-mdc-slide-toggle-checked {
   .mdc-switch__track::before,
   .mdc-switch__track::after {
-    background-color: #7F56D9 !important;
-    border-color: #7F56D9 !important;
+    background-color: #5C4896 !important;
+    border-color: #5C4896 !important;
   }
 
   .mdc-switch__handle {
-    background-color: #7F56D9 !important;
+    background-color: #5C4896 !important;
   }
 }
 
