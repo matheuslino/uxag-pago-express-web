@@ -154,7 +154,6 @@
   }
 }
 
-// Responsividade
 @media (max-width: 768px) {
   .date-range-dropdown {
     min-width: 280px;
@@ -166,37 +165,5 @@
   
   .preset-buttons {
     grid-template-columns: 1fr 1fr;
-  }
-}
-
-// Dark mode support (opcional)
-@media (prefers-color-scheme: dark) {
-  .date-range-input-wrapper,
-  .date-range-dropdown,
-  .date-input,
-  .preset-btn {
-    background: #1f2937;
-    border-color: #374151;
-    color: #f9fafb;
-  }
-  
-  .date-range-label {
-    color: #d1d5db;
-  }
-  
-  .calendar-icon,
-  .dropdown-icon {
-    color: #9ca3af;
-  }
-  
-  .preset-btn {
-    &:hover {
-      background: #374151;
-    }
-    
-    &.active {
-      background: #6366f1;
-      border-color: #6366f1;
-    }
   }
 }

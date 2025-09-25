@@ -30,6 +30,11 @@
        class="sidenav-link">
       {{ item.label }}
     </a>
+    <button class="icon-info-container-logout" (click)="sidenav.close()">
+      <div class="icon-menu">
+        <span class="icon-title">fechar</span>
+      </div>
+    </button>
   </mat-sidenav>
 
   <mat-sidenav #sideprofilenav mode="over" class="mobile-sidenav">

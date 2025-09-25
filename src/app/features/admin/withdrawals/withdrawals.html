@@ -49,7 +49,7 @@
                 <th class="hide-mobile">Valor</th>
                 <th class="hide-mobile">Data/hora</th>
                 <th>Status</th>
-                <th class="hide-mobile">Aprovador</th>
+                <th class="hide-mobile hide-medium-desktop">Aprovador</th>
                 <th class="actions-column"></th>
               </tr>
             </thead>
@@ -73,7 +73,7 @@
                     {{ saque.status }}
                   </div>
                 </td>
-                <td class="hide-mobile">{{ saque.aprovador }}</td>
+                <td class="hide-mobile hide-medium-desktop">{{ saque.aprovador }}</td>
                 <td class="actions-cell" style="width: 80px;">
                   <div class="aprovador-status" *ngIf="saque.status === 'Pendente'">
                     <div>
