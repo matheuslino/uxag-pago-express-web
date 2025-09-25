@@ -132,11 +132,14 @@
 
         .cancel-button {
             color: #666;
+            border: 1px solid #D0D5DD;
+            border-radius: 99px;
         }
 
         .save-button {
-            background-color: #7c4dff;
+            background-color: #5C4896;
             color: white;
+            border-radius: 99px;
 
             &:disabled {
                 background-color: #ccc;
@@ -202,12 +205,13 @@
     position: relative;
 
     .add-new-button {
-        color: #7c4dff;
-        border-color: #7c4dff;
+        color: #5C4896;
+        border-color: #5C4896;
         position: absolute;
         right: 0%;
+        border-radius: 99px;
         &:hover {
-            background-color: #f3e5f5;
+            background-color: #5C4896;
         }
     }
 }

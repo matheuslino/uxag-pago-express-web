@@ -30,6 +30,11 @@
        class="sidenav-link">
       {{ item.label }}
     </a>
+    <button class="icon-info-container-logout" (click)="sidenav.close()">
+      <div class="icon-menu">
+        <span class="icon-title">fechar</span>
+      </div>
+    </button>
   </mat-sidenav>
 
   <mat-sidenav #sideprofilenav mode="over" class="mobile-sidenav">
@@ -62,7 +67,7 @@
         <span class="icon-title">Meus Dados</span>
       </div>
     </button>
-    <button class="icon-info-container" routerLink="/settings" (click)="sideprofilenav.close()">
+    <button class="icon-info-container" routerLink="/settings" (click)="openModal()">
       <div class="icon-menu">
         <img src="assets/icons/settings.svg" alt="settings" />
         <span class="icon-title">Alterar Senha</span>

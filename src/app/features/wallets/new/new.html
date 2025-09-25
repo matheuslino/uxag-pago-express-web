@@ -26,3 +26,12 @@
     </div>
   </main>
 </div>
+<app-footer-info
+  [information]="footerInformation"
+  [context]="footerContext" 
+  [label]="footerLabel"
+  [confirmCancelLabel]="`Cancelar`"
+  [confirmSubmitLabel]="sendLabel"
+  (cancel)="onCancel()"
+  (submit)="onSubmit()">
+</app-footer-info>

@@ -41,7 +41,7 @@
                 <th class="hide-mobile">Envia PIX</th>
                 <th class="hide-mobile">Boleto</th>
                 <th class="hide-mobile">Cartão de crédito</th>
-                <th class="hide-mobile">Pgt. de contas</th>
+                <th class="hide-mobile hide-medium-desktop">Pgt. de contas</th>
                 <th class="actions-column"></th>
               </tr>
             </thead>
@@ -56,7 +56,7 @@
                 <td class="hide-mobile">{{ cliente.enviaPix }}</td>
                 <td class="hide-mobile">{{ cliente.boleto }}</td>
                 <td class="hide-mobile">{{ cliente.cartaoCredito }}</td>
-                <td class="hide-mobile">{{ cliente.pgtoContas }}</td>
+                <td class="hide-mobile hide-medium-desktop">{{ cliente.pgtoContas }}</td>
                 <td class="actions-cell">
                   <img src="/img/trash-2.svg" alt="Excluir" class="action-icon delete-icon"
                     (click)="onExcluirCliente(cliente)" />

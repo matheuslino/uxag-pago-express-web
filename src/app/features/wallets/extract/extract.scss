@@ -28,6 +28,7 @@
 
 .extract-container {
   width: 100%;
+  height: max-content;
   background-color: var(--color-bg-page);
   font-family: var(--font-family-primary);
   display: flex;
@@ -89,10 +90,11 @@
   padding: 24px 32px;
   gap: 24px;
   width: 100%;
+  height: max-content;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border-light);
   border-radius: 6px;
-
+  margin-bottom: 24px;
   .card-header {
     display: flex;
     justify-content: space-between;

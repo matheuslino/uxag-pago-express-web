@@ -23,7 +23,7 @@ interface IBalance {
 export class Balance {
 
   public headerInformation = {
-    pageTitle: 'Saldo',
+    pageTitle: 'Saldo por carteiras',
     pageSubtitle: 'Consulte seu saldo',
     breadcrumb: [
       { label: 'Painel', path: '/dashboard' },

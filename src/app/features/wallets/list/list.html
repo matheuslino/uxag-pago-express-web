@@ -68,15 +68,16 @@
             </button>
             <div class="dropdown-menu" *ngIf="menuAbertoIndex === i">
               <a (click)="editar(empresa)">
-                <i class="material-icons-outlined">person</i>
+                <img src="assets/icons/user_option.svg" alt="user">
                 <span>Editar</span>
               </a>
               <a (click)="configurar(empresa)">
-                <i class="material-icons-outlined">settings</i>
+                <img src="assets/icons/settings_option.svg" alt="user">
                 <span>Configurar</span>
               </a>
+              <div class="divider"></div>
               <a (click)="verLogs(empresa)">
-                <i class="material-icons-outlined">home</i>
+                <img src="assets/icons/home_option.svg" alt="user">
                 <span>Ver logs</span>
               </a>
             </div>

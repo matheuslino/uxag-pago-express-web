@@ -192,6 +192,7 @@ mat-form-field {
   color: white;
   font-weight: 500;
   font-size: 16px;
+  border-radius: 99px;
 }
 
 .buttonCancel {
@@ -199,6 +200,7 @@ mat-form-field {
   color: #414651 !important;
   font-weight: 500;
   font-size: 16px;
+  border-radius: 99px;
 }
 
 .paddingLeft {
@@ -214,4 +216,5 @@ mat-form-field {
 .buttonSave{
     color: #5C4896;
     border-color: #5C4896;
+    border-radius: 99px;
 }

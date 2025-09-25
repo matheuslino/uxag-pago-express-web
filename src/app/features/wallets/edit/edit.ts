@@ -69,7 +69,6 @@ export class Edit {
       const id = Number(params.get('id') || '0');
 
       if (!id || id === 0) {
-        // ✅ Redirecionar se ID inválido
         this.router.navigate(['/wallets']);
         return;
       }
@@ -81,29 +80,24 @@ export class Edit {
 
   private carregarEmpresa(id: number): void {
     this.empresa = this.empresaService.getEmpresaById(id);
-
     if (this.empresa) {
-      // Preencher os campos do formulário
       this.razaoSocial = this.empresa.razaoSocial;
       this.apelido = this.empresa.apelido;
       this.numeroCarteira = this.empresa.numeroCarteira;
-      this.valor = '0,00'; // ✅ Adicionar valor se existir
-
-      // Configurar footer
+      this.valor = '0,00';
       this.footerInformation = `#${this.empresa.id} - ${this.empresa.razaoSocial}`;
       this.footerContext = this.empresa.apelido;
     } else {
-      // ✅ Tratar caso não encontre a empresa
       console.error(`Empresa com ID ${id} não encontrada`);
       this.router.navigate(['/wallets']);
     }
   }
+
   onCancel(): void {
     this.location.back();
   }
 
   onSubmit(): void {
-    // aqui você poderia salvar no service/DB
     this.location.back();
   }
 }

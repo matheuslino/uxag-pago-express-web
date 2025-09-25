@@ -1,26 +1,15 @@
-.template-content {
-    padding: 4vh 4vw;
-    width: 100%;
-}
-
-.actions-column {
-    min-width: 80px;
-}
-
 .mesmaLinha {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.template-list-filters-section,
-.template-list-filters-row,
 .search-input-container,
 .search-input {
   z-index: auto;
 }
 
 .table-container {
-  position: relative;
   z-index: 1;
 }
+

@@ -27,7 +27,7 @@ export class TransferWallet {
   public isModalVisible = false;
 
   public headerInformation = {
-    pageTitle: 'Transferência entre contas',
+    pageTitle: 'Enviar transferência entre carteiras',
     pageSubtitle: 'Você pode já enviar o pix pelo Internet Banking',
     breadcrumb: [
       { label: 'Painel', path: '/dashboard' },
