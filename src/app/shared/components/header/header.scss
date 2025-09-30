@@ -669,10 +669,10 @@
   .icon-info-container-logout {
     position: absolute;
     bottom: 4rem;
-    padding: 12px 0;
-    min-width: 175px;
+    min-width: 150px;
     opacity: 1;
     border-radius: 99px;
+    margin-left: 75px;
     background-color: #5C4896;
     border: none;
 
@@ -693,7 +693,7 @@
       }
 
       .icon-title {
-        font-size: 22px;
+        font-size: 16px;
         color: white;
       }
     }
